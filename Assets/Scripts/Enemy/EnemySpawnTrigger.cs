@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(BoxCollider))]
 public class EnemySpawnTrigger : MonoBehaviour
 {
     // Has the player entered the trigger yet?
@@ -32,55 +33,29 @@ public class EnemySpawnTrigger : MonoBehaviour
             Debug.LogError($"No player found in scene");
         }
     }
-
-    // Update is called once per frame
-    private void Update()
+    
+    // On trigger enter
+    private void OnTriggerEnter(Collider other)
     {
-        // If the player has already entered the trigger, do nothing
+        // Don't double-trigger
         if (playerEntered)
         {
             return;
         }
-        
-        // Do nothing if player is not in trigger
-        if (!IsPlayerInTrigger())
+
+        // Ignore if it wasn't the player
+        if (other.gameObject != player)
         {
             return;
         }
-
-        // The player has entered the trigger
-        playerEntered = true;
-            
-        // Spawn the enemies
-        SpawnEnemies();
-    }
-    
-    // Spawn enemy's by calling spawn on the enemy spawn volume
-    private void SpawnEnemies()
-    {
-        enemySpawnVolume.SpawnEnemies();
-    }
-    
-    // Check if the player is in the trigger
-    private bool IsPlayerInTrigger()
-    {
-        // Debug print that the player has entered trigger
+        
         Debug.Log($"Player entered trigger {gameObject.name}");
-        
-        // Get the player's position
-        var playerPosition = player.transform.position;
-        
-        // Get the trigger's position
-        var triggerPosition = transform.position;
-        
-        // Get the trigger's size
-        var triggerSize = transform.localScale;
 
-        // Check if the player is in the trigger
-        return playerPosition.x > triggerPosition.x - triggerSize.x / 2 &&
-               playerPosition.x < triggerPosition.x + triggerSize.x / 2 &&
-               playerPosition.y > triggerPosition.y - triggerSize.y / 2 &&
-               playerPosition.y < triggerPosition.y + triggerSize.y / 2;
+        // Set the player entered flag to true
+        playerEntered = true;
+                
+        // Spawn enemy's by calling spawn on the enemy spawn volume
+        enemySpawnVolume.SpawnEnemies();
     }
     
     // Render a gizmo of the trigger's volume
