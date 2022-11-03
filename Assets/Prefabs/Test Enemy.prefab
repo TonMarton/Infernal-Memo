@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7433587802925241361}
   - component: {fileID: 8380581288716273871}
   - component: {fileID: 3988548283503808572}
+  - component: {fileID: 1428563558965503323}
   m_Layer: 0
   m_Name: Test Enemy
   m_TagString: Untagged
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1428563558965503323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175516084602822194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a21909c65520f4884df3cdfb256198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 0}
