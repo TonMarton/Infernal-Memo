@@ -5,21 +5,18 @@ public class EnemySpawnVolume : MonoBehaviour
 {
     // Array of enemy spawners in the game
     private EnemySpawner[] enemySpawners;
-    
-    // Start is called before the first frame update
-    private void Start()
+
+    private void Awake()
     {
         // Get array of enemy spawners in the game
         enemySpawners = FindObjectsOfType<EnemySpawner>();
-        
     }
 
     // Update is called once per frame
     private void Update()
     {
-        
     }
-    
+
     // Search for all enemy spawner's inside the volume boundaries within the world
     public void SpawnEnemies()
     {
@@ -32,7 +29,7 @@ public class EnemySpawnVolume : MonoBehaviour
                 // Spawn the enemy
                 enemySpawner.SpawnEnemy();
             }
-            
+
             bool IsInsideVolume(Vector3 transformPosition)
             {
                 // Check if the position is within the volume
@@ -45,7 +42,7 @@ public class EnemySpawnVolume : MonoBehaviour
             }
         }
     }
-    
+
     // Draw a box in the editor to show where the enemy spawn volume is
     private void OnDrawGizmos()
     {
