@@ -92,7 +92,8 @@ public class RangedEnemyAI : EnemyAI
                     }
                     else
                     {
-                        if (PlayerInLineOfSight())
+                        // Is the player within range?
+                        if (PlayerInRange())
                         {
                             // face toward the player
                             FaceTowardPlayer();
