@@ -1,6 +1,4 @@
 ﻿using System;
-using UnityEditor;
-using UnityEditor.UIElements;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -10,6 +8,8 @@ public class RangedEnemyAI : EnemyAI
     [SerializeField] private float maxIdleTime = 4f;
     [SerializeField] private float minMoveTime = 0.5f;
     [SerializeField] private float maxMoveTime = 2;
+    [SerializeField] private float moveDistance = 1f;
+    private Vector3? movePoint;
 
     // enum for the different states the enemy can be in
     private enum State
@@ -52,7 +52,7 @@ public class RangedEnemyAI : EnemyAI
             {
                 case State.Idle:
                     UpdateDebugText(idleTime.ToString());
-                    
+
                     // if the enemy has been idle for long enough, move to the next state
                     if (idlingFor >= idleTime)
                     {
@@ -61,6 +61,9 @@ public class RangedEnemyAI : EnemyAI
 
                         // our next time is moving
                         state = State.Move;
+
+                        // reset the move point
+                        movePoint = null;
 
                         // reset idle time
                         idlingFor = 0f;
@@ -80,7 +83,7 @@ public class RangedEnemyAI : EnemyAI
                     break;
                 case State.Move:
                     UpdateDebugText(moveTime.ToString());
-                    
+
                     // done moving?
                     if (movingFor >= moveTime)
                     {
@@ -89,11 +92,32 @@ public class RangedEnemyAI : EnemyAI
                     }
                     else
                     {
-                        // face toward the player
-                        FaceTowardPlayer();
+                        if (PlayerInLineOfSight())
+                        {
+                            // face toward the player
+                            FaceTowardPlayer();
 
-                        // move toward the player
-                        MoveTowardPlayer();
+                            // move toward the player
+                            MoveTowardPlayer();
+                        }
+                        else
+                        {
+                            // move point not yet chosen?
+                            if (movePoint == null)
+                            {
+                                // choose a facing dir 
+                                var facingDir = Random.insideUnitCircle.normalized;
+
+                                // Look toward that direction
+                                transform.LookAt(transform.position + new Vector3(facingDir.x, 0, facingDir.y));
+
+                                // Pick a point in that direction to move toward
+                                movePoint = transform.position + transform.forward * moveDistance;
+                            }
+
+                            // move to the point
+                            MoveTowardPoint(movePoint.Value);
+                        }
 
                         // increment moving for
                         movingFor += Time.deltaTime;
@@ -102,7 +126,7 @@ public class RangedEnemyAI : EnemyAI
                     break;
                 case State.Attack:
                     UpdateDebugText("");
-                    
+
                     // ready to move to the next state?
                     if (attack.IsDoneAttacking() || !ShouldAttack())
                     {

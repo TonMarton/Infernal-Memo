@@ -57,11 +57,15 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
 
     private protected void MoveTowardPlayer()
     {
-        // set the agent destination to target
-        agent.SetDestination(player.transform.position);
+        MoveTowardPoint(player.transform.position);
+    }
+    
+    private protected void MoveTowardPoint(Vector3 point)
+    {
+        agent.SetDestination(point);
         
         // start the agent
-        agent.isStopped = true;
+        agent.isStopped = false;
     }
 
     protected void FaceTowardPlayer()
