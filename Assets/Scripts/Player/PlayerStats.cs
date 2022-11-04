@@ -7,8 +7,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] 
     private int startingHealth = 100;
 
-    private int health;
-    private int shells = 0;
+    public int health { get; private set; }
+    public int armor { get; private set; }
+    public int shells { get; private set; } = 0;
     
     // Start is called before the first frame update
     private void Awake()
