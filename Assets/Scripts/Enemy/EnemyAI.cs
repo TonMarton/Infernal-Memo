@@ -93,7 +93,7 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
         var range = Vector3.Distance(transform.position, GetPlayer().transform.position);
 
         // check if player is within range
-        return range <= minAttackRange;
+        return range <= lineOfSightRange;
     }
 
     protected bool PlayerInLineOfSight()
