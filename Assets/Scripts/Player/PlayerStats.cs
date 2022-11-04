@@ -38,13 +38,11 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void Heal(int healing) {
-        if (health + healing > maxHealth) {
-            health = maxHealth;
-        } else {
-            health += healing;
-        }
+        health = Mathf.Min(healing + health, maxHealth);
+
+        Debug.Log("Healed " + healing + " damage. Current health: " + health);
     }
-    
+
     private void Die()
     {
         // TODO: play death sound with Fmod
