@@ -21,6 +21,9 @@ public class PlayerStats : MonoBehaviour
     {
         health -= damage;
         
+        // Print how much damage was taken, and the player's current health
+        Debug.Log("Took " + damage + " damage. Current health: " + health);
+        
         if (health <= 0)
         {
             Die();

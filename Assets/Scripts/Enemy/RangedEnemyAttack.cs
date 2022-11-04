@@ -10,15 +10,12 @@ public class RangedEnemyAttack : EnemyAttack
     public override void Attack()
     {
         // remember that we're attacking
-        attacking = true;
-        
-        Debug.Log("Attacking");
+        attackState = AttackState.Attacking;
         
         // do a line trace attack forward
         if (!Physics.Raycast(transform.position, transform.forward, out var hit, range))
         {
             // attack whiffed
-            Debug.Log("Attack whiffed");
             return;
         }
 
@@ -40,8 +37,7 @@ public class RangedEnemyAttack : EnemyAttack
     private IEnumerator ResetAttacking()
     {
         yield return new WaitForSeconds(2f);
-        // log that we're done attacking
         Debug.Log("Done attacking");
-        attacking = false;
+        attackState = AttackState.AttackFinished;
     }
 }

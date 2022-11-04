@@ -8,7 +8,7 @@ public class RangedEnemyAI : EnemyAI
     [SerializeField] private float maxIdleTime = 4f;
     [SerializeField] private float minMoveTime = 0.5f;
     [SerializeField] private float maxMoveTime = 2;
-    [SerializeField] private float moveDistance = 1f;
+    [SerializeField] private float moveDistance = 0.5f;
     private Vector3? movePoint;
 
     // enum for the different states the enemy can be in
@@ -74,10 +74,7 @@ public class RangedEnemyAI : EnemyAI
                         idlingFor += Time.deltaTime;
 
                         // stop moving
-                        StopMovingTowardsPlayer();
-
-                        // face toward the player
-                        FaceTowardPlayer();
+                        StopMoving();
                     }
 
                     break;
@@ -128,21 +125,49 @@ public class RangedEnemyAI : EnemyAI
                 case State.Attack:
                     UpdateDebugText("");
 
-                    // ready to move to the next state?
-                    if (attack.IsDoneAttacking() || !ShouldAttack())
+                    var moveToNextState = false;
+
+                    // not attacking yet?
+                    if (attack.attackState == AttackState.NotAttacking)
                     {
+                        // should we attack?
+                        if (ShouldAttack())
+                        {
+                            // stop moving
+                            StopMoving();
+                            
+                            // face toward player
+                            FaceTowardPlayer();
+
+                            // attack the player
+                            attack.Attack();
+                        }
+                        // shouldn't attack?
+                        else
+                        {
+                            // then move to the next state
+                            moveToNextState = true;
+                        }
+                    }
+                    // done attacking?
+                    else if (attack.attackState == AttackState.AttackFinished)
+                    {
+                        // then let's move to the next state
+                        moveToNextState = true;
+                    }
+
+                    // move to next state?
+                    if (moveToNextState)
+                    {
+                        // reset attack state
+                        attack.NoLongerAttacking();
+
                         // move to the next state
                         state = State.Idle;
                         // set the idle time to a random value between min and max
                         idleTime = Random.Range(minIdleTime, maxIdleTime);
                         // reset moving for
                         movingFor = 0f;
-                    }
-                    // not already attacking?
-                    else if (!attack.IsAttacking())
-                    {
-                        // attack the player
-                        attack.Attack();
                     }
 
                     break;

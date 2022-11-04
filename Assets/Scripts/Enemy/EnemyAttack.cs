@@ -1,25 +1,26 @@
 ﻿using UnityEngine;
 
+public enum AttackState
+{
+    NotAttacking,
+    Attacking,
+    AttackFinished
+}
+
 public class EnemyAttack : MonoBehaviour
 {
     // damage for the attack
-    [SerializeField]
-    protected int damage = 10;
+    [SerializeField] protected int damage = 10;
 
-    protected bool attacking = false;
-    
+    public AttackState attackState { get; protected set; }
+
     public virtual void Attack()
     {
         // TODO: play attack sound with Fmod
     }
 
-    public bool IsAttacking()
+    public void NoLongerAttacking()
     {
-        return attacking;
-    }
-
-    public bool IsDoneAttacking()
-    {
-        return !IsAttacking();
+        attackState = AttackState.NotAttacking;
     }
 }
