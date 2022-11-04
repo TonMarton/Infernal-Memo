@@ -14,8 +14,10 @@ GameObject:
   - component: {fileID: 1428563558965503323}
   - component: {fileID: 3041213485972525132}
   - component: {fileID: 4154061717746472633}
+  - component: {fileID: 5120652054452787923}
+  - component: {fileID: -5710291602564345939}
   m_Layer: 0
-  m_Name: Test Enemy
+  m_Name: Ranged Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,3 +135,31 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &5120652054452787923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175516084602822194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 673b821aab72c914d8cf92242ff56bbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minAttackRange: 5
+  lineOfSightRange: 10
+--- !u!114 &-5710291602564345939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175516084602822194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 462976695b8d415fa67e953279683810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 10
+  range: 10
