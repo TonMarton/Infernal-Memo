@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    [SerializeField] 
+    [SerializeField]
     private int startingHealth = 100;
+
+    [SerializeField]
+    private int maxHealth = 100;
 
     public int health { get; private set; }
     public int armor { get; private set; }
@@ -32,6 +35,14 @@ public class PlayerStats : MonoBehaviour
         }
         
         // TODO: play hurt sound with Fmod
+    }
+
+    public void Heal(int healing) {
+        if (health + healing > maxHealth) {
+            health = maxHealth;
+        } else {
+            health += healing;
+        }
     }
     
     private void Die()
