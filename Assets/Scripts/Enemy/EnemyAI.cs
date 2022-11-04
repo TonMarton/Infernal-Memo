@@ -59,11 +59,11 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
     {
         MoveTowardPoint(player.transform.position);
     }
-    
+
     private protected void MoveTowardPoint(Vector3 point)
     {
         agent.SetDestination(point);
-        
+
         // start the agent
         agent.isStopped = false;
     }
@@ -72,13 +72,12 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
     {
         transform.LookAt(player.transform);
     }
-    
-    private protected void StopMovingTowardsPlayer()
+
+    private protected void StopMoving()
     {
         // stop the agent
         agent.isStopped = true;
     }
-
 
     public GameObject GetPlayer()
     {
