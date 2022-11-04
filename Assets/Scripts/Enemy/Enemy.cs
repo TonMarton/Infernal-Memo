@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(EnemyStats))]
-[RequireComponent(typeof(EnemyNavMesh))]
+[RequireComponent(typeof(EnemyAI))]
 public class Enemy : MonoBehaviour
 {
 }

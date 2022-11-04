@@ -12,14 +12,32 @@ public class PlayerStats : MonoBehaviour
     private int bullets = 0;
     
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         // Initialize health 
         health = startingHealth;
     }
+    
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        
+        if (health <= 0)
+        {
+            Die();
+            return;
+        }
+        
+        // TODO: play hurt sound with Fmod
+    }
+    
+    private void Die()
+    {
+        // TODO: play death sound with Fmod
+    }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         
     }
