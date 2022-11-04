@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{926e8b03-ffee-474d-9b99-b80af908aeb0}">
 		<property name="assetPath">
-			<value>Inception (Loopable).wav</value>
+			<value>musics/Inception (Loopable).wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>
