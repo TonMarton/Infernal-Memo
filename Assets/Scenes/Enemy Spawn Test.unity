@@ -268,7 +268,7 @@ GameObject:
   m_Component:
   - component: {fileID: 984738753}
   m_Layer: 0
-  m_Name: Room 1
+  m_Name: Room 1 Spawns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -305,7 +305,7 @@ GameObject:
   - component: {fileID: 1049907983}
   - component: {fileID: 1049907982}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Hallway
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 1088396184}
   - component: {fileID: 1088396183}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
