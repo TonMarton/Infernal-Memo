@@ -44,9 +44,11 @@ public class RangedEnemyAI : EnemyAI
                 {
                     // pick a random time to move for
                     moveTime = Random.Range(minMoveTime, maxMoveTime);
+                    
                     // our next time is moving
                     state = State.Move;
                     Debug.Log("Move");
+                    
                     // reset idle time
                     idlingFor = 0f;
                 }
@@ -57,6 +59,9 @@ public class RangedEnemyAI : EnemyAI
                     
                     // stop moving
                     StopMovingTowardsPlayer();
+                    
+                    // face toward the player
+                    FaceTowardPlayer();
                 }
 
                 break;
@@ -70,8 +75,12 @@ public class RangedEnemyAI : EnemyAI
                 }
                 else
                 {
+                    // face toward the player
+                    FaceTowardPlayer();
+                    
                     // move toward the player
                     MoveTowardPlayer();                   
+                    
                     // increment moving for
                     movingFor += Time.deltaTime;
                 }
