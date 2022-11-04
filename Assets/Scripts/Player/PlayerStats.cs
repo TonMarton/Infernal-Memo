@@ -9,7 +9,6 @@ public class PlayerStats : MonoBehaviour
 
     private int health;
     private int shells = 0;
-    private int bullets = 0;
     
     // Start is called before the first frame update
     private void Awake()
