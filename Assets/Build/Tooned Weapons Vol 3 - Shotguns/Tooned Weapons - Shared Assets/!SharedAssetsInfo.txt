@@ -1,0 +1,3 @@
+These are assets shared between multiple packages in the Tooned Weapons series. They are included in this folder alongside each package so that the packs do not contain duplicates. It is okay to overwrite these files with the versions from any of the other packs as they are all identical.
+
+The Dev folder within the Textures folder contains the base textures and color palette used in the development of all model textures in this series, for your use in making your own textures if so desired.

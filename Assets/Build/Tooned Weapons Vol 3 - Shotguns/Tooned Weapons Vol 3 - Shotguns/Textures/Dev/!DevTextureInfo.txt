@@ -1,0 +1,7 @@
+This folder contains AO bakes and UV maps for the models included in this pack. You can use them to make your own textures if so desired.
+
+Some attachments share textures with others, or with the weapon to which they are attached. In Volume 3 - Shotguns, these models share textures:
+
+* Double-Barrel Shotgun: Base weapon + Crosshair
+* Lever-Action Shotgun: [None]
+* Pump Shotgun: [None]
