@@ -32,7 +32,16 @@ public class EnemySpawner : MonoBehaviour
 
         // Draw the enemy's mesh to represent the enemy in editor
         // find the mesh filter component in children
-        var mesh = enemyPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
-        Gizmos.DrawMesh(mesh, 0, transform.position, transform.rotation, transform.localScale);
+        var meshFilter = enemyPrefab.GetComponentInChildren<MeshFilter>();
+        var mesh = meshFilter.sharedMesh;
+        var meshTransform = meshFilter.gameObject.transform;
+        
+        Gizmos.DrawMesh(mesh, 0, 
+            transform.position + meshTransform.localPosition, 
+            transform.rotation * meshTransform.localRotation, 
+            meshTransform.localScale);
+        
+        // draw an arrow for the direction facing
+        Gizmos.DrawRay(transform.position, transform.forward);
     }
 }
