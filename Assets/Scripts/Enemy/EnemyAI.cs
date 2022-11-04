@@ -25,9 +25,9 @@ public interface IEnemyShouldAttack
 public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
 {
     [SerializeField] private float minAttackRange = 5f;
-    [SerializeField] private float lineOfSightRange = 10f;
+    [SerializeField] private float lineOfSightRange = 30f;
 
-    private GameObject player;
+    protected GameObject player;
     private NavMeshAgent agent;
     private protected EnemyAttack attack;
 
@@ -54,26 +54,30 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
     {
         // set the agent destination to target
         agent.SetDestination(player.transform.position);
+        
+        // start the agent
+        agent.isStopped = true;
+    }
+    
+    private protected void StopMovingTowardsPlayer()
+    {
+        // stop the agent
+        agent.isStopped = true;
     }
 
-    public bool ShouldAttack()
-    {
-        throw new System.NotImplementedException();
-    }
 
     public GameObject GetPlayer()
     {
         return player;
     }
 
-
-    bool IEnemyShouldAttack.ShouldAttack()
+    public bool ShouldAttack()
     {
         // Attack if player is within range and in line of sight
         return PlayerInRange() && PlayerInLineOfSight();
     }
 
-    private bool PlayerInRange()
+    protected bool PlayerInRange()
     {
         // get the range to the player
         var range = Vector3.Distance(transform.position, GetPlayer().transform.position);
@@ -82,7 +86,7 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
         return range <= minAttackRange;
     }
 
-    private bool PlayerInLineOfSight()
+    protected bool PlayerInLineOfSight()
     {
         // do a raycast to check whether player is in line of sight of the enemy
         var rayDirection = player.transform.position - transform.position;
