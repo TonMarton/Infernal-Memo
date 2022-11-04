@@ -14,7 +14,7 @@ public class RangedEnemyAttack : EnemyAttack
         
         Debug.Log("Attacking");
         
-        // do a line trace attack at the player
+        // do a line trace attack forward
         if (!Physics.Raycast(transform.position, transform.forward, out var hit, range))
         {
             // attack whiffed

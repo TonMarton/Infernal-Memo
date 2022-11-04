@@ -31,7 +31,8 @@ public class EnemySpawner : MonoBehaviour
         Gizmos.color = Color.green;
 
         // Draw the enemy's mesh to represent the enemy in editor
-        var mesh = enemyPrefab.GetComponent<MeshFilter>().sharedMesh;
+        // find the mesh filter component in children
+        var mesh = enemyPrefab.GetComponentInChildren<MeshFilter>().sharedMesh;
         Gizmos.DrawMesh(mesh, 0, transform.position, transform.rotation, transform.localScale);
     }
 }

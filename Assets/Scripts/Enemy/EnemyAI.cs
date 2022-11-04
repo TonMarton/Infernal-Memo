@@ -48,6 +48,11 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
     // Update is called once per frame
     private void Update()
     {
+        // Draw a line for the nav mesh agent's current pathfinding destination
+        if (agent.path.corners.Length > 1)
+        {
+            Debug.DrawLine(transform.position, agent.path.corners[1], Color.red);
+        }
     }
 
     private protected void MoveTowardPlayer()
@@ -57,6 +62,11 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
         
         // start the agent
         agent.isStopped = true;
+    }
+
+    protected void FaceTowardPlayer()
+    {
+        transform.LookAt(player.transform);
     }
     
     private protected void StopMovingTowardsPlayer()
