@@ -1,8 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="SnapshotList" id="{d3498a20-41fe-4a2c-9720-c9a3bf48d136}">
-		<relationship name="mixer">
-			<destination>{2a61f93e-b6e5-4bd5-8ab8-6a418395e73b}</destination>
-		</relationship>
-	</object>
-</objects>
+version https://git-lfs.github.com/spec/v1
+oid sha256:0f72597affafdc383ffc98c79a66d6d80a3cc2cdcf3fa77846f8022dee12b265
+size 300
