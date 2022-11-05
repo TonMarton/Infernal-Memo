@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PauseMenu : MonoBehaviour
     {
         // continue button toggles the pause menu
         continueButton.onClick.AddListener(Toggle);
+
+        mainMenuButton.onClick.AddListener(OpenMainMenu);
 
         // exit button quits the game 
         exitButton.onClick.AddListener(Quit);
@@ -34,6 +37,11 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    private void OpenMainMenu()
+    {
+        SceneManager.LoadScene("Title Screen");
     }
 
     private static void Quit()
