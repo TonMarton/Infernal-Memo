@@ -22,6 +22,7 @@ public interface IEnemyShouldAttack
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAttack))]
+[DisallowMultipleComponent]
 public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
 {
     [SerializeField] private float minAttackRange = 5f;

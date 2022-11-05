@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 public class PlayerBase : MonoBehaviour
 {
     public const string PLAYER_TAG = "Player";
