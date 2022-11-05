@@ -1,17 +1,3 @@
-{
-    "name": "FMODUnityResonanceEditor",
-    "references": [
-        "FMODUnityResonance"
-    ],
-    "includePlatforms": [
-        "Editor"
-    ],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:a8282b19ce6359e8307313105f07d9d11e851355bcb1824089b6c91d7a9f810a
+size 388
