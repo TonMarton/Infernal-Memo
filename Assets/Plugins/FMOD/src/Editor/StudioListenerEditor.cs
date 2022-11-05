@@ -1,28 +1,3 @@
-﻿using UnityEditor;
-
-namespace FMODUnity
-{
-    [CustomEditor(typeof(StudioListener))]
-    [CanEditMultipleObjects]
-    public class StudioListenerEditor : Editor
-    {
-        public SerializedProperty attenuationObject;
-
-        private void OnEnable()
-        {
-            attenuationObject = serializedObject.FindProperty("attenuationObject");
-        }
-
-        public override void OnInspectorGUI()
-        {
-            serializedObject.Update();
-            EditorGUI.BeginDisabledGroup(true);
-            int index = ((StudioListener)serializedObject.targetObject).ListenerNumber;
-            EditorGUILayout.IntSlider("Listener Index", index, 0, FMOD.CONSTANTS.MAX_LISTENERS - 1);
-            EditorGUI.EndDisabledGroup();
-
-            EditorGUILayout.PropertyField(attenuationObject);
-            serializedObject.ApplyModifiedProperties();
-        }
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:35f1d5e67225ff4d08bc439b8d23d3014f0fe9539f8ed2e02a46061539fa9517
+size 871
