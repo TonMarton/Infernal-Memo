@@ -11,11 +11,15 @@ public enum WeaponType
 [DisallowMultipleComponent]
 public class PlayerWeaponSystem : MonoBehaviour
 {
+
+    [SerializeField] private HUD HUD;
+
     private WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
     
     private void Awake()
     {
+        var HUD = GameObject.Find("Player");
         // set reference to stapler attack
         staplerAttack = GetComponent<PlayerStaplerAttack>();
         
@@ -44,17 +48,19 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         // set current weapon
         currentWeaponType = weaponType;
+
+        HUD.ToggleCrossHair(weaponType == WeaponType.Shotgun);
     }
     
     public void SwitchWeaponNext()
     {
         // switch to next weapon
-        currentWeaponType = (WeaponType)(((int)currentWeaponType + 1) % System.Enum.GetValues(typeof(WeaponType)).Length);
+        SwitchWeapon((WeaponType)(((int)currentWeaponType + 1) % System.Enum.GetValues(typeof(WeaponType)).Length));
     }
     
     public void SwitchWeaponPrevious()
     {
         // switch to previous weapon
-        currentWeaponType = (WeaponType)(((int)currentWeaponType - 1) % System.Enum.GetValues(typeof(WeaponType)).Length);
+        SwitchWeapon((WeaponType)(((int)currentWeaponType - 1) % System.Enum.GetValues(typeof(WeaponType)).Length));
     }
 }

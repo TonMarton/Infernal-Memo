@@ -284,6 +284,7 @@ MonoBehaviour:
   startingHealth: 100
   maxHealth: 100
   deathMenu: {fileID: 2847941732124859794}
+  HUD: {fileID: 0}
 --- !u!114 &-7273339783095973456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -439,6 +440,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18adc9a4aeb34994b26d97f9d7d85443, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HUD: {fileID: 0}
 --- !u!1001 &3811574758114830044
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -449,6 +451,10 @@ PrefabInstance:
     - target: {fileID: 4842055535405262862, guid: 7301166ad34b53a46b48a79364900b87, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4842055535405262862, guid: 7301166ad34b53a46b48a79364900b87, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5362456463136819386, guid: 7301166ad34b53a46b48a79364900b87, type: 3}
       propertyPath: m_RootOrder
