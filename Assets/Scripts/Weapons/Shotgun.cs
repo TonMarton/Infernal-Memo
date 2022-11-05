@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shotgun : MonoBehaviour
 {
+<<<<<<< HEAD
     public Transform fpsCam;
     public AudioSource fireSound;
     public AudioSource reloadSound;
@@ -16,13 +17,18 @@ public class Shotgun : MonoBehaviour
     float lastFireTime;
 
     public void CreateBulletHole(Vector3 point, Vector3 normal)
+=======
+    // Start is called before the first frame update
+    void Start()
+>>>>>>> parent of 146afeb (Basic shotgun functionality)
     {
-        GameObject bulletHole = Instantiate(bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f), Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
-        Destroy(bulletHole, 10f);
+        
     }
 
-    private void Start()
+    // Update is called once per frame
+    void Update()
     {
+<<<<<<< HEAD
         muzzleFlash.gameObject.SetActive(false);
     }
 
@@ -68,5 +74,8 @@ public class Shotgun : MonoBehaviour
         {
             muzzleFlash.SetActive(false);
         }
+=======
+        
+>>>>>>> parent of 146afeb (Basic shotgun functionality)
     }
 }
