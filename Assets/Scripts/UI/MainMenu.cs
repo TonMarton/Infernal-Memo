@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public void PlayGame() {
-        SceneManager.LoadScene("Enemy Spawn Test");
+        SceneManager.LoadScene("Instructions Screen");
     }
 
     public void QuitGame() {
