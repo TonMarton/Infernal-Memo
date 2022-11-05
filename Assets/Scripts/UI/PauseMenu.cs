@@ -3,12 +3,11 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    // hold a reference to continue, main menu, and exit buttons
     [SerializeField] private Button continueButton;
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button exitButton;
 
-    private void Start()
+    private void Awake()
     {
         // continue button toggles the pause menu
         continueButton.onClick.AddListener(Toggle);

@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [SerializeField] private int startingHealth = 100;
-
     [SerializeField] private int maxHealth = 100;
+    [SerializeField] private DeathMenu deathMenu;
 
     public int health { get; private set; }
     public int armor { get; private set; }
@@ -45,6 +45,9 @@ public class PlayerStats : MonoBehaviour
     private void Die()
     {
         // TODO: play death sound with Fmod
+        
+        // show the death menu 
+        deathMenu.Show();
     }
 
     // Update is called once per frame
