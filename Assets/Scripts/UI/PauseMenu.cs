@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
 
     private void Awake()
     {
+        // bind escape to open pause menu
+        // InputManager.Instance.BindAction("Pause", OpenPauseMenu, InputManager.INPUT_STATE.PRESSED);
     }
 
     public void Activate()
