@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class EnemySpawnVolume : MonoBehaviour
 {
     // Array of enemy spawners in the game

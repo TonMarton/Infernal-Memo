@@ -7,6 +7,7 @@ public enum AttackState
     AttackFinished
 }
 
+[DisallowMultipleComponent]
 public class EnemyAttack : MonoBehaviour
 {
     // damage for the attack
