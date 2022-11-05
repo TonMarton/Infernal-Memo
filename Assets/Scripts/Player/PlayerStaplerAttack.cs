@@ -33,9 +33,6 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
         // mark as attacking
         staplerAttackState = StaplerAttackState.Attacking;
         
-        // log that attacking
-        Debug.Log("~~~~~~~~~~~~~~~~~~~~~ Attacking");
-        
         // start can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StartCanHit), startCanHitTime);
 
@@ -60,9 +57,6 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
 
     private void FinishAttack()
     {
-        // log that we finished attacking
-        Debug.Log("----- Finished attacking");
-        
         // mark as not attacking
         staplerAttackState = StaplerAttackState.NotAttacking;
     }

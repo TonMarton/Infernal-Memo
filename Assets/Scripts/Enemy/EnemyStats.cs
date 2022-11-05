@@ -23,7 +23,7 @@ public class EnemyStats : MonoBehaviour
         // take damage
         health -= damage;
         
-        Debug.Log("Enemy took " + damage + " damage. Health is now " + health);
+        Debug.Log("~~~ Enemy took " + damage + " damage. Health is now " + health);
         
         // apply knockback if it was provided
         if (knockback != null)
