@@ -1,28 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.02.02.00">
-	<object class="MixerMaster" id="{40e335d6-651b-4a62-b10f-f7811a2907fc}">
-		<property name="name">
-			<value>Master Bus</value>
-		</property>
-		<relationship name="effectChain">
-			<destination>{d3006275-dd96-4128-a52b-d25af53d040c}</destination>
-		</relationship>
-		<relationship name="panner">
-			<destination>{a845a77b-a945-401a-9bce-98240bb9a9ff}</destination>
-		</relationship>
-		<relationship name="mixer">
-			<destination>{2a61f93e-b6e5-4bd5-8ab8-6a418395e73b}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusEffectChain" id="{d3006275-dd96-4128-a52b-d25af53d040c}">
-		<relationship name="effects">
-			<destination>{9314fc7e-43c9-494b-8624-690411452b62}</destination>
-		</relationship>
-	</object>
-	<object class="MixerBusPanner" id="{a845a77b-a945-401a-9bce-98240bb9a9ff}">
-		<property name="overridingOutputFormat">
-			<value>2</value>
-		</property>
-	</object>
-	<object class="MixerBusFader" id="{9314fc7e-43c9-494b-8624-690411452b62}" />
-</objects>
+version https://git-lfs.github.com/spec/v1
+oid sha256:23c1146ce37dfee59634ace70ae1037da59c7f3c0c3e07ebe4e5e4fba406f007
+size 1063
