@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [DisallowMultipleComponent]
 public class HUD : MonoBehaviour
@@ -7,24 +8,31 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
     [SerializeField] private TextMeshProUGUI shellsText;
-
-    private PlayerStats playerStats;
+    [SerializeField] private Image crossHair;
 
     private void Awake()
     {
         // hide cursor
-        Cursor.visible = false;
-
-        // store a reference to the player's PlayerStats component
-        var player = GameObject.Find("Player");
-        playerStats = player.GetComponent<PlayerStats>();
+        UnityEngine.Cursor.visible = false;
     }
 
-    private void Update()
+    public void ToggleCrossHair(bool show)
     {
-        // update the HUD with the player's stats
-        healthText.text = "Health: " + playerStats.health;
-        armorText.text = "Armor: " + playerStats.armor;
-        shellsText.text = "Shells: " + playerStats.shells;
+        crossHair.visible = show;
+    }
+
+    public void ChangeHealthText(int health)
+    {
+        healthText.text = "Health: " + health;
+    }
+
+    public void ChangeArmorText(int armor)
+    {
+        armorText.text = "Armor: " + armor;
+    }
+
+    public void ChangeShellsText(int shells)
+    {
+        shellsText.text = "Shells: " + shells;
     }
 }
