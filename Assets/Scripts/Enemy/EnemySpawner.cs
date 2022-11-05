@@ -27,6 +27,13 @@ public class EnemySpawner : MonoBehaviour
     // Draw a gizmo representing the spawn point that shows a symbol for the enemy that will be spawned
     private void OnDrawGizmos()
     {
+        // game playing?
+        if (Application.isPlaying)
+        {
+            // then don't draw the gizmo. we only want to see it in the editor when not playing
+            return;
+        }
+        
         // Set the color of the gizmo to green
         Gizmos.color = Color.green;
 

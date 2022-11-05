@@ -62,6 +62,42 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Weapon Melee"",
+                    ""type"": ""Button"",
+                    ""id"": ""bc39ae11-20cf-4323-8abb-5f33e2e994b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Weapon Shotgun"",
+                    ""type"": ""Button"",
+                    ""id"": ""0afb44fd-d3bd-4d51-971c-2886090c27ca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Previous Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""f168bb5a-3810-4837-b3bd-16c28560674a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Next Weapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""8b95eb91-76de-429d-a843-3569a21470d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -291,7 +327,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -302,8 +338,52 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""90b7cc3c-f9e4-4240-80a9-4515f9502dfb"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Select Weapon Melee"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b5d8585c-8066-46e7-9998-5d0a11d6a5d1"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Select Weapon Shotgun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4faadaf1-30be-4a97-864a-f1c53b54f8c5"",
+                    ""path"": ""<VirtualMouse>/backButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Select Previous Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ae0f800b-d3a2-47a0-a1ee-4eea631a4bc1"",
+                    ""path"": ""<VirtualMouse>/forwardButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Select Next Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -895,6 +975,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_SelectWeaponMelee = m_Player.FindAction("Select Weapon Melee", throwIfNotFound: true);
+        m_Player_SelectWeaponShotgun = m_Player.FindAction("Select Weapon Shotgun", throwIfNotFound: true);
+        m_Player_SelectPreviousWeapon = m_Player.FindAction("Select Previous Weapon", throwIfNotFound: true);
+        m_Player_SelectNextWeapon = m_Player.FindAction("Select Next Weapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -970,6 +1054,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_SelectWeaponMelee;
+    private readonly InputAction m_Player_SelectWeaponShotgun;
+    private readonly InputAction m_Player_SelectPreviousWeapon;
+    private readonly InputAction m_Player_SelectNextWeapon;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -978,6 +1066,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @SelectWeaponMelee => m_Wrapper.m_Player_SelectWeaponMelee;
+        public InputAction @SelectWeaponShotgun => m_Wrapper.m_Player_SelectWeaponShotgun;
+        public InputAction @SelectPreviousWeapon => m_Wrapper.m_Player_SelectPreviousWeapon;
+        public InputAction @SelectNextWeapon => m_Wrapper.m_Player_SelectNextWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -999,6 +1091,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @SelectWeaponMelee.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponMelee;
+                @SelectWeaponMelee.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponMelee;
+                @SelectWeaponMelee.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponMelee;
+                @SelectWeaponShotgun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponShotgun;
+                @SelectWeaponShotgun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponShotgun;
+                @SelectWeaponShotgun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponShotgun;
+                @SelectPreviousWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectPreviousWeapon;
+                @SelectPreviousWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectPreviousWeapon;
+                @SelectPreviousWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectPreviousWeapon;
+                @SelectNextWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectNextWeapon;
+                @SelectNextWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectNextWeapon;
+                @SelectNextWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectNextWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1015,6 +1119,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @SelectWeaponMelee.started += instance.OnSelectWeaponMelee;
+                @SelectWeaponMelee.performed += instance.OnSelectWeaponMelee;
+                @SelectWeaponMelee.canceled += instance.OnSelectWeaponMelee;
+                @SelectWeaponShotgun.started += instance.OnSelectWeaponShotgun;
+                @SelectWeaponShotgun.performed += instance.OnSelectWeaponShotgun;
+                @SelectWeaponShotgun.canceled += instance.OnSelectWeaponShotgun;
+                @SelectPreviousWeapon.started += instance.OnSelectPreviousWeapon;
+                @SelectPreviousWeapon.performed += instance.OnSelectPreviousWeapon;
+                @SelectPreviousWeapon.canceled += instance.OnSelectPreviousWeapon;
+                @SelectNextWeapon.started += instance.OnSelectNextWeapon;
+                @SelectNextWeapon.performed += instance.OnSelectNextWeapon;
+                @SelectNextWeapon.canceled += instance.OnSelectNextWeapon;
             }
         }
     }
@@ -1175,6 +1291,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnSelectWeaponMelee(InputAction.CallbackContext context);
+        void OnSelectWeaponShotgun(InputAction.CallbackContext context);
+        void OnSelectPreviousWeapon(InputAction.CallbackContext context);
+        void OnSelectNextWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
