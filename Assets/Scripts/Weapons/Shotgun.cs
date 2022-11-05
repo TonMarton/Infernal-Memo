@@ -5,8 +5,6 @@ using UnityEngine;
 public class Shotgun : MonoBehaviour
 {
     public Transform fpsCam;
-    public AudioSource fireSound;
-    public AudioSource reloadSound;
     [Min(0f)] [Tooltip("Degrees for spread on y-axis (horizontal)")] public float maxSpreadDegreesY = 5f;
     [Min(0f)] [Tooltip("Degrees for spread on x-axis (vertical)")] public float maxSpreadDegreesX = 5f;
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
@@ -28,8 +26,8 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
-        // Play fire sound
-        fireSound.Play();
+        // TODO: Play fire sound
+        
         // Enable muzzle flash
         muzzleFlash.gameObject.SetActive(true);
         // Keep track of time fired

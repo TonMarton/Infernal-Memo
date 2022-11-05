@@ -14,7 +14,7 @@ public class StaplerHitbox : MonoBehaviour
     [SerializeField] private float damage = 40f;
     [SerializeField] private float knockbackForce = 10f;
     private BoxCollider boxCollider;
-    private bool enabled = false;
+    private bool hitboxEnabled = false;
     
     private void Awake()
     {
@@ -25,7 +25,7 @@ public class StaplerHitbox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // hitbox disabled?
-        if (!enabled)
+        if (!hitboxEnabled)
         {
             // then do nothing
             return;
@@ -60,18 +60,18 @@ public class StaplerHitbox : MonoBehaviour
     public void StartCanHit()
     {
         // enable the box collider
-        enabled = true;
+        hitboxEnabled = true;
     }
 
     public void StopCanHit()
     {
         // disable the box collider
-        enabled = false;
+        hitboxEnabled = false;
     }
 
     private bool CanHit()
     {
-        return boxCollider && enabled;
+        return boxCollider && hitboxEnabled;
     }
 
     private void OnDrawGizmos()
