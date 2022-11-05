@@ -7,8 +7,8 @@ public class Shotgun : MonoBehaviour
     public Transform fpsCam;
     public AudioSource fireSound;
     public AudioSource reloadSound;
-    [Min(0f)] public float maxSpreadDegreesX = 5f;
-    [Min(0f)] public float maxSpreadDegreesY = 5f;
+    [Min(0f)] [Tooltip("Degrees for spread on y-axis (horizontal)")] public float maxSpreadDegreesY = 5f;
+    [Min(0f)] [Tooltip("Degrees for spread on x-axis (vertical)")] public float maxSpreadDegreesX = 5f;
     public LayerMask layerMask = Physics.DefaultRaycastLayers;
     public int bulletCount = 20;
     public GameObject bulletHolePrefab;
@@ -28,32 +28,42 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
+        // Play fire sound
         fireSound.Play();
+        // Enable muzzle flash
         muzzleFlash.gameObject.SetActive(true);
+        // Keep track of time fired
         lastFireTime = Time.time;
 
+        // Create multiple bullets
         for (int i = 0; i < bulletCount; i++)
         {
             Vector3 fpsCamForward = fpsCam.forward;
+            // Spread functionality
             Vector3 bulletTrajectory = Quaternion.Euler(Random.Range(-maxSpreadDegreesX, maxSpreadDegreesX), Random.Range(-maxSpreadDegreesY, maxSpreadDegreesY), 0) * fpsCamForward;
 
-            RaycastHit hit;
-            float range = 10000f;
+            RaycastHit hit; // hit information
+            float range = 10000f; // max distance
+            // Raycast
             if (Physics.Raycast(fpsCam.transform.position, bulletTrajectory, out hit, range, layerMask))
             {
                 // Bullet hole when hitting a wall
                 CreateBulletHole(hit.point, hit.normal);
+
+                // To-do: Damage enemy
             }
         }
     }
 
     private void Update()
     {
+        // To-do: Hold down mouse button and wait a specified interval between shots
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Shoot();
         }
 
+        // Muzzle flash delay
         if (muzzleFlash.activeSelf && Time.time > lastFireTime + 0.1f)
         {
             muzzleFlash.SetActive(false);
