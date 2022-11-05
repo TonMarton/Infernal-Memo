@@ -1,11 +1,19 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
+public enum StaplerAttackState
+{
+    NotAttacking,
+    Attacking,
+}
+
+[DisallowMultipleComponent]
 public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
 {
     [SerializeField] private StaplerHitbox staplerHitbox;
     [SerializeField] private float startCanHitTime = 0.2f;
     [SerializeField] private float stopCanHitTime = 0.8f;
+    [SerializeField] private float finishAttackTime = 1.2f;
+    private StaplerAttackState staplerAttackState = StaplerAttackState.NotAttacking;
 
     private void Awake()
     {
@@ -15,11 +23,27 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
 
     public void Attack()
     {
-        // start can hit after a delay
+        // already attacking?
+        if (staplerAttackState == StaplerAttackState.Attacking)
+        {
+            // don't double attack
+            return;
+        }
+        
+        // mark as attacking
+        staplerAttackState = StaplerAttackState.Attacking;
+        
+        // log that attacking
+        Debug.Log("~~~~~~~~~~~~~~~~~~~~~ Attacking");
+        
+        // start can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StartCanHit), startCanHitTime);
 
-        // stop can hit after a delay
+        // stop can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StopCanHit), stopCanHitTime);
+        
+        // finish attack after a delay (will use end of animation for this later)
+        Invoke(nameof(FinishAttack), finishAttackTime);
     }
 
     private void StartCanHit()
@@ -34,22 +58,13 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
         staplerHitbox.StopCanHit();
     }
 
-    // draw GUI of the hitbox volume if it's active
-    private void OnGUI()
+    private void FinishAttack()
     {
-        // hitbox can't hit?
-        if (!staplerHitbox.CanHit())
-        {
-            // don't draw the gizmo
-            return;
-        }
-
-        // draw a cube at the hitbox position
-        var hitboxPosition = staplerHitbox.transform.position;
-        // get size of the hitbox volume's transform
-        var hitboxSize = staplerHitbox.transform.lossyScale;
-        var hitboxRect = new Rect(hitboxPosition.x, hitboxPosition.y, hitboxSize.x, hitboxSize.y);
-        GUI.Box(hitboxRect, "Hitbox");
+        // log that we finished attacking
+        Debug.Log("----- Finished attacking");
+        
+        // mark as not attacking
+        staplerAttackState = StaplerAttackState.NotAttacking;
     }
 }
 

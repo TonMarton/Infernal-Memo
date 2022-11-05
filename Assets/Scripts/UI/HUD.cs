@@ -1,6 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class HUD : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI healthText;

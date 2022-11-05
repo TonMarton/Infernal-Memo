@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class RangedEnemyAttack : EnemyAttack
 {
     // max range for the attack
@@ -23,7 +24,6 @@ public class RangedEnemyAttack : EnemyAttack
         if (hit.collider.CompareTag(PlayerBase.PLAYER_TAG))
         {
             // apply damage
-            Debug.Log("Hit player");
             hit.collider.gameObject.GetComponent<PlayerStats>().TakeDamage(damage);
         }
         
@@ -37,7 +37,6 @@ public class RangedEnemyAttack : EnemyAttack
     private IEnumerator ResetAttacking()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("Done attacking");
         attackState = AttackState.AttackFinished;
     }
 }

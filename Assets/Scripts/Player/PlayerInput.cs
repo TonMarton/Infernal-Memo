@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[DisallowMultipleComponent]
 public class PlayerInput : MonoBehaviour
 {
     [SerializeField] private PauseMenu pauseMenu;

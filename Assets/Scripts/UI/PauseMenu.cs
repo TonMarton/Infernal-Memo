@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+[DisallowMultipleComponent]
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] private Button continueButton;

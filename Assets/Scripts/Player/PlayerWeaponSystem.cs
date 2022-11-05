@@ -8,6 +8,7 @@ public enum WeaponType
     Shotgun
 }
 
+[DisallowMultipleComponent]
 public class PlayerWeaponSystem : MonoBehaviour
 {
     private WeaponType currentWeaponType;
