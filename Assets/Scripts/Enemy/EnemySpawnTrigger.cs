@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider))]
+[DisallowMultipleComponent]
 public class EnemySpawnTrigger : MonoBehaviour
 {
     // Has the player entered the trigger yet?

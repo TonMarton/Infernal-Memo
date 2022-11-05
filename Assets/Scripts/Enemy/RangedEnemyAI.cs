@@ -2,6 +2,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[DisallowMultipleComponent]
 public class RangedEnemyAI : EnemyAI
 {
     [SerializeField] private float minIdleTime = 2f;

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class EnemySpawner : MonoBehaviour
 {
     // The enemy prefab to spawn with this enemy spawner

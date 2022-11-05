@@ -2,6 +2,7 @@
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+[DisallowMultipleComponent]
 public class DeathMenu : MonoBehaviour
 {
     [SerializeField] private Button restartButton;

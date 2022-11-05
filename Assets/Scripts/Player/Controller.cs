@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
+[DisallowMultipleComponent]
 public class Controller : MonoBehaviour
 {
     public bool _canMove { get; private set; } = true;
