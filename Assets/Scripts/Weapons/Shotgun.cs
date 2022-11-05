@@ -40,7 +40,12 @@ public class Shotgun : MonoBehaviour
         {
             Vector3 fpsCamForward = fpsCam.forward;
             // Spread functionality
-            Vector3 bulletTrajectory = Quaternion.Euler(Random.Range(-maxSpreadDegreesX, maxSpreadDegreesX), Random.Range(-maxSpreadDegreesY, maxSpreadDegreesY), 0) * fpsCamForward;
+            float degreesX = Random.Range(-maxSpreadDegreesX, maxSpreadDegreesX);
+            float degreesY = Random.Range(-maxSpreadDegreesY, maxSpreadDegreesY);
+            Quaternion rotationX = Quaternion.AngleAxis(degreesX, fpsCam.right);
+            Quaternion rotationY = Quaternion.AngleAxis(degreesY, fpsCam.up);
+            Vector3 bulletTrajectory = rotationX * rotationY * fpsCamForward;
+            //Vector3 bulletTrajectory = , Random.Range(-maxSpreadDegreesY, maxSpreadDegreesY), 0); * fpsCamForward;
 
             RaycastHit hit; // hit information
             float range = 10000f; // max distance
