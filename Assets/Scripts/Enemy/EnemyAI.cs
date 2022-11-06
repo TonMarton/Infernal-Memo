@@ -31,6 +31,7 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
     protected GameObject player;
     private NavMeshAgent agent;
     private protected EnemyAttack attack;
+    public bool isAwake = false;
 
     private void Awake()
     {
