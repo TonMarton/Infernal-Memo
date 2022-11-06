@@ -11,6 +11,7 @@ public class Shotgun : MonoBehaviour
     [SerializeField] private GameObject shotgunModel;
 
     [Min(1)] [SerializeField] private int bulletCount = 20;
+    [Min(1)] [SerializeField] private int shellsShootCost = 2;
 
     [Header("Bullet Hole")] [SerializeField]
     private GameObject bulletHolePrefab;
@@ -27,14 +28,20 @@ public class Shotgun : MonoBehaviour
 
     [SerializeField] [Min(0f)] [Tooltip("Degrees for spread on x-axis (vertical)")]
     private float maxSpreadDegreesX = 5f;
-    
+
+    private PlayerStats playerStats;
+
+    // Sounds
     private FMOD.Studio.EventInstance shootSoundInstance;
     private FMOD.Studio.EventInstance reloadSoundInstance;
 
     private float lastFireTime;
 
+
     private void Awake()
     {
+        playerStats = GetComponentInParent<PlayerStats>();
+
         // hide shotgun and muzzle flash to start
         SetVisible(false);
         SetMuzzleFlashVisible(false);
@@ -71,9 +78,16 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
+        // does the player have enough shells?
+        if (!playerStats.UseShells(shellsShootCost))
+        {
+            // TODO: play out of ammo sound
+            return;
+        }
+
         // play shoot sound
         PlayShootSound();
-        
+
         // play reload sound after a delay
         // TODO: tie this to an animation event
         // play it after a delay
@@ -94,18 +108,12 @@ public class Shotgun : MonoBehaviour
 
     private void PlayShootSound()
     {
-        shootSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Sfxs/Player/gun/Shoot");
-        shootSoundInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        shootSoundInstance.start();
-        shootSoundInstance.release(); 
+        SoundUtils.PlaySound3D(shootSoundInstance, "Sfxs/Player/gun/Shoot", gameObject);
     }
 
     private void PlayReloadSound()
     {
-        reloadSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Sfxs/Player/gun/Reload");
-        reloadSoundInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        reloadSoundInstance.start();
-        reloadSoundInstance.release();
+        SoundUtils.PlaySound3D(reloadSoundInstance, "Sfxs/Player/gun/Reload", gameObject);
     }
 
     private void ShootBullet()
