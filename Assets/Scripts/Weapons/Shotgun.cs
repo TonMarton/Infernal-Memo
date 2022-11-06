@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Shotgun : MonoBehaviour
 {
     // TODO: customize the layer mask so it doesn't hit things like trigger volumes
-    [SerializeField] private LayerMask layerMask = Physics.DefaultRaycastLayers;
+    [FormerlySerializedAs("layerMask")] [SerializeField]
+    private LayerMask collisionLayerMask = Physics.DefaultRaycastLayers;
+
     [SerializeField] private Transform fpsCam;
 
     [SerializeField] private GameObject shotgunModel;
@@ -148,30 +151,32 @@ public class Shotgun : MonoBehaviour
 
         // Raycast for hit
         const float range = 10000f; // max distance
-        if (!Physics.Raycast(fpsCam.transform.position, bulletTrajectory, out var hit, range, layerMask))
+        if (!Physics.Raycast(fpsCam.transform.position, bulletTrajectory, out var hit, range, collisionLayerMask))
         {
             // didn't hit so nothing to do
             return;
         }
+        
+        // log the collider layer
+        Debug.Log($"Shotgun hit layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
 
-        // Create a bullet hole when hitting a wall
-        // TODO: don't make a bullet hole when hitting an enemy
-        CreateBulletHoleDecal(hit.point, hit.normal);
+        // Not an enemy?
+        if (hit.collider.gameObject.layer != LayerMask.NameToLayer(Enemy.EnemyLayer))
+        {
+            // Create a bullet hole
+            CreateBulletHoleDecal(hit.point, hit.normal);
+        }
 
         // find the game object that was hit
         // and see if it was an enemy
         var hitObject = hit.collider.gameObject;
-        // log the hit object's tag
-        Debug.Log("Hit object: " + hitObject.tag);
+
         // log the tag of the object that was hit
         if (!hitObject.CompareTag(Enemy.EnemyTag))
         {
             // wasn't an enemy so nothing to do
             return;
         }
-        
-        // log that we hit
-        Debug.Log("~~~~~ Hit");
 
         // damage the enemy
         var enemy = hitObject.GetComponentInParent<Enemy>();

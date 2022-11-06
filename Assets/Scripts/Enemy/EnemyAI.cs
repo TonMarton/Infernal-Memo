@@ -31,6 +31,7 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
     protected GameObject player;
     private NavMeshAgent agent;
     private protected EnemyAttack attack;
+    public bool isAwake = false;
 
     private void Awake()
     {
@@ -110,7 +111,7 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
             return false;
         }
 
-        // did the raycast hits the player?
+        // did the raycast hit the player?
         return hit.collider.gameObject == player;
     }
 }

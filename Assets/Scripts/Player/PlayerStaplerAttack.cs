@@ -13,7 +13,10 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
     [SerializeField] private float startCanHitTime = 0.2f;
     [SerializeField] private float stopCanHitTime = 0.8f;
     [SerializeField] private float finishAttackTime = 1.2f;
+    [SerializeField] private float cooldownBetweenAttacks = 5.0f;
+
     private StaplerAttackState staplerAttackState = StaplerAttackState.NotAttacking;
+    private float currentCooldown;
 
     private void Awake()
     {
@@ -21,24 +24,40 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
         staplerHitbox.StopCanHit();
     }
 
+    private void Update()
+    {
+        // update cooldown timer
+        currentCooldown -= Time.deltaTime;
+    }
+
     public void Attack()
     {
+        // still cooling down?
+        if (currentCooldown > 0.0f)
+        {
+            // can't attack yet
+            return;
+        }
+
         // already attacking?
         if (staplerAttackState == StaplerAttackState.Attacking)
         {
             // don't double attack
             return;
         }
-        
+
         // mark as attacking
         staplerAttackState = StaplerAttackState.Attacking;
-        
+
+        // reset cooldown timer
+        currentCooldown = cooldownBetweenAttacks;
+
         // start can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StartCanHit), startCanHitTime);
 
         // stop can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StopCanHit), stopCanHitTime);
-        
+
         // finish attack after a delay (will use end of animation for this later)
         Invoke(nameof(FinishAttack), finishAttackTime);
     }
@@ -47,6 +66,9 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
     {
         // delegate to the hitbox
         staplerHitbox.StartCanHit();
+
+        // check for collisions that already happened when the hitbox was just enabled
+        staplerHitbox.CheckForCollisions();
     }
 
     private void StopCanHit()
