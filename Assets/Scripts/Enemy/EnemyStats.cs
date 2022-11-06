@@ -3,9 +3,14 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] private int startHealth = 100;
     [SerializeField] private float health;
     [SerializeField] private float minTimeBetweenDamageSounds = 0.5f;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference hurtSoundEvent;
+    [SerializeField] private FMODUnity.EventReference deathSoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance hurtSoundInstance;
@@ -59,7 +64,7 @@ public class EnemyStats : MonoBehaviour
             if (damageSoundCooldown <= 0)
             {
                 // play hurt sound
-                SoundUtils.PlaySound3D(hurtSoundInstance, "Sfxs/Enemy/Enemy Damage", gameObject);
+                SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
 
                 // reset the damage sound cooldown
                 damageSoundCooldown = minTimeBetweenDamageSounds;
@@ -73,7 +78,7 @@ public class EnemyStats : MonoBehaviour
         // TODO: play death sound with fmod
 
         // play death sound
-        SoundUtils.PlaySound3D(hurtSoundInstance, "Sfxs/Enemy/Enemy death", gameObject);
+        SoundUtils.PlaySound3D(hurtSoundInstance, deathSoundEvent, gameObject);
 
         // disable enemy
         gameObject.SetActive(false);

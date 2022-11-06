@@ -33,14 +33,20 @@ public class Shotgun : MonoBehaviour
 
     [SerializeField] [Min(0f)] [Tooltip("Degrees for spread on x-axis (vertical)")]
     private float maxSpreadDegreesX = 5f;
-
-    private PlayerStats playerStats;
-    private float currentCooldownTime;
+    
+    [FormerlySerializedAs("shootSound")]
+    [Header("Sound")]
+    [SerializeField]
+    private FMODUnity.EventReference shootSoundEvent;
+    [FormerlySerializedAs("reloadSound")] [FormerlySerializedAs("reloadShootSound")] [SerializeField]
+    private FMODUnity.EventReference reloadSoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance shootSoundInstance;
     private FMOD.Studio.EventInstance reloadSoundInstance;
 
+    private PlayerStats playerStats;
+    private float currentCooldownTime;
     private float lastFireTime;
 
 
@@ -127,12 +133,12 @@ public class Shotgun : MonoBehaviour
 
     private void PlayShootSound()
     {
-        SoundUtils.PlaySound3D(shootSoundInstance, "Sfxs/Player/gun/Shoot", gameObject);
+        SoundUtils.PlaySound3D(shootSoundInstance, shootSoundEvent, gameObject);
     }
 
     private void PlayReloadSound()
     {
-        SoundUtils.PlaySound3D(reloadSoundInstance, "Sfxs/Player/gun/Reload", gameObject);
+        SoundUtils.PlaySound3D(reloadSoundInstance, reloadSoundEvent, gameObject);
     }
 
     private void ShootBullet()
@@ -156,9 +162,6 @@ public class Shotgun : MonoBehaviour
             // didn't hit so nothing to do
             return;
         }
-        
-        // log the collider layer
-        Debug.Log($"Shotgun hit layer: {LayerMask.LayerToName(hit.collider.gameObject.layer)}");
 
         // Not an enemy?
         if (hit.collider.gameObject.layer != LayerMask.NameToLayer(Enemy.EnemyLayer))

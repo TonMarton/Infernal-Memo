@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [DisallowMultipleComponent]
 public class PlayerStats : MonoBehaviour
@@ -11,17 +12,21 @@ public class PlayerStats : MonoBehaviour
     [Header("Ammo")] [SerializeField] private int startingShells = 20;
     [SerializeField] private int maxShells = 99;
 
-    [SerializeField] private DeathMenu deathMenu;
+    [Header("UI")] [SerializeField] private DeathMenu deathMenu;
     [SerializeField] private HUD hud;
+
+    [FormerlySerializedAs("hurtSound")] [Header("Sound")] [SerializeField] private FMODUnity.EventReference hurtSoundEvent;
+    [FormerlySerializedAs("deathSound")] [SerializeField] private FMODUnity.EventReference deathSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance hurtSoundInstance;
+    private FMOD.Studio.EventInstance deathSoundInstance;
 
     // Stats
     private int health;
     private int armor;
     private int shells;
 
-    // Sounds
-    private FMOD.Studio.EventInstance hurtSoundInstance;
-    private FMOD.Studio.EventInstance deathSoundInstance;
 
     // Start is called before the first frame update
     private void Awake()
@@ -54,7 +59,7 @@ public class PlayerStats : MonoBehaviour
         }
 
         // play hurt sound
-        SoundUtils.PlaySound3D(hurtSoundInstance, "Sfxs/Player/Damage/Damage", gameObject);
+        SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
     }
 
     public void Heal(int healing)
