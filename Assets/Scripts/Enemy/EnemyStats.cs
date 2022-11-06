@@ -36,8 +36,8 @@ public class EnemyStats : MonoBehaviour
         // take damage
         health -= damage;
         
-        // log damage
-        Debug.Log("Took " + damage + " damage. Health is now " + health);
+        // log how much damage we took and our current health
+        Debug.Log("Enemy took " + damage + " damage. Health is now " + health);
 
         // apply knockback if it was provided
         if (knockback != null)
@@ -58,11 +58,9 @@ public class EnemyStats : MonoBehaviour
             // has it been long enough since the last damage sound?
             if (damageSoundCooldown <= 0)
             {
-                // log playing damage sound
-                Debug.Log("Playing damage sound");
                 // play hurt sound
                 SoundUtils.PlaySound3D(hurtSoundInstance, "Sfxs/Enemy/Enemy Damage", gameObject);
-                
+
                 // reset the damage sound cooldown
                 damageSoundCooldown = minTimeBetweenDamageSounds;
             }

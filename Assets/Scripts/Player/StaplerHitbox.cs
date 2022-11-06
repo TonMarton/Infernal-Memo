@@ -12,28 +12,35 @@ public struct Knockback
 public class StaplerHitbox : MonoBehaviour
 {
     [SerializeField] private float damage = 40f;
-    [SerializeField] private float knockbackForce = 10f;
-    private BoxCollider boxCollider;
+    [SerializeField] private float knockbackForce = 40f;
     private bool hitboxEnabled = false;
-    
+    private bool didDamageThisAttack = false;
+
     private void Awake()
     {
-        boxCollider = GetComponent<BoxCollider>();
     }
 
     // on trigger collision
     private void OnTriggerEnter(Collider other)
     {
-        // hitbox disabled?
-        if (!hitboxEnabled)
+        // check collision
+        CheckCollision(other);
+    }
+
+    public void CheckForCollisions()
+    {
+        // find all colliders in the overlap box
+        var colliders = Physics.OverlapBox(transform.position, transform.localScale / 2f);
+
+        // check if any of them are enemies
+        foreach (var collider in colliders)
         {
-            // then do nothing
-            return;
+            CheckCollision(collider);
         }
-        
-        // debug log the other collider tag, collided with tag
-        Debug.Log("Collided with " + other.tag);
-        
+    }
+
+    private void CheckCollision(Component other)
+    {
         // wasn't an enemy?
         if (!other.gameObject.CompareTag(Enemy.EnemyTag))
         {
@@ -41,17 +48,31 @@ public class StaplerHitbox : MonoBehaviour
             return;
         }
 
-        Debug.Log("!!! Damage " + other.name);
+        var enemyStats = other.gameObject.GetComponentInParent<EnemyStats>();
+        DamageEnemy(enemyStats);
+    }
 
+    private void DamageEnemy(EnemyStats enemyStats)
+    {
+        // can't hit?
+        if (!CanHit())
+        {
+            // then do nothing
+            return;
+        }
+        
+        // remember that we did damage already this attack
+        didDamageThisAttack = true;
+        
         // build a knockback with a direction and a force
         var knockback = new Knockback
         {
-            direction = (other.transform.position - transform.position).normalized,
+            direction = (enemyStats.transform.position - transform.position).normalized,
             force = knockbackForce
         };
 
         // do damage to the enemy stats
-        other.gameObject.GetComponentInParent<EnemyStats>().TakeDamage(damage, knockback);
+        enemyStats.TakeDamage(damage, knockback);
 
         // disable the hitbox
         StopCanHit();
@@ -59,6 +80,9 @@ public class StaplerHitbox : MonoBehaviour
 
     public void StartCanHit()
     {
+        // didn't do damage yet this attack
+        didDamageThisAttack = false;
+        
         // enable the box collider
         hitboxEnabled = true;
     }
@@ -71,7 +95,7 @@ public class StaplerHitbox : MonoBehaviour
 
     private bool CanHit()
     {
-        return boxCollider && hitboxEnabled;
+        return hitboxEnabled && !didDamageThisAttack;
     }
 
     private void OnDrawGizmos()
