@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{6c38c146-d796-4161-a520-bc3d400416ca}">
 		<property name="assetPath">
-			<value>sfxs/CHOMPE~1.WAV</value>
+			<value>sfxs/Enemy hit.WAV</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>48</value>

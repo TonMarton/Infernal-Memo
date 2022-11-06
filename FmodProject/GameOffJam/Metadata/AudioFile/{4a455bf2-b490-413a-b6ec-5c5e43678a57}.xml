@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{4a455bf2-b490-413a-b6ec-5c5e43678a57}">
 		<property name="assetPath">
-			<value>sfxs/Games, Video, Retro, Star, Win, Gain x1 SND30884.wav</value>
+			<value>sfxs/Win Stinger.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

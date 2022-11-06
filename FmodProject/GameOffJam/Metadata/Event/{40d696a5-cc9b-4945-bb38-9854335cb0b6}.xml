@@ -63,13 +63,15 @@
 		<relationship name="modules">
 			<destination>{2d2a893e-aab7-4bd6-bdaf-139f9c023d19}</destination>
 			<destination>{05551276-3fae-472d-874a-eb93de58cc46}</destination>
-			<destination>{bb5a034c-a0e5-4e24-8655-f8e7ec26bde9}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{ca78dbc1-afb5-4c19-a669-9446ebaa8dd6}</destination>
 		</relationship>
 	</object>
 	<object class="GroupTrack" id="{6c028858-0585-407f-baab-ad6cb5219b4c}">
+		<relationship name="modules">
+			<destination>{bb5a034c-a0e5-4e24-8655-f8e7ec26bde9}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{d2a430a9-b1ee-4323-8335-aa4adb180563}</destination>
 		</relationship>
@@ -127,20 +129,6 @@
 			<destination>{dc79188e-28f8-4a8c-be6f-b61abedcac7e}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{bb5a034c-a0e5-4e24-8655-f8e7ec26bde9}">
-		<property name="start">
-			<value>136.97600907029479</value>
-		</property>
-		<property name="length">
-			<value>116.37595058032275</value>
-		</property>
-		<property name="timelockedOffset">
-			<value>20.600058489972042</value>
-		</property>
-		<relationship name="audioFile">
-			<destination>{dc79188e-28f8-4a8c-be6f-b61abedcac7e}</destination>
-		</relationship>
-	</object>
 	<object class="EventMixerGroup" id="{ca78dbc1-afb5-4c19-a669-9446ebaa8dd6}">
 		<property name="name">
 			<value>Audio 1</value>
@@ -153,6 +141,20 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{8af483be-cabc-451f-bece-3822a18514ba}</destination>
+		</relationship>
+	</object>
+	<object class="SingleSound" id="{bb5a034c-a0e5-4e24-8655-f8e7ec26bde9}">
+		<property name="start">
+			<value>136.97476913225773</value>
+		</property>
+		<property name="length">
+			<value>116.37595058032281</value>
+		</property>
+		<property name="timelockedOffset">
+			<value>20.600058489971985</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{dc79188e-28f8-4a8c-be6f-b61abedcac7e}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{d2a430a9-b1ee-4323-8335-aa4adb180563}">
@@ -202,7 +204,7 @@
 	</object>
 	<object class="NamedMarker" id="{5ede757b-ae92-4d11-bd8d-2931c60e1ff1}">
 		<property name="position">
-			<value>136.97600907029479</value>
+			<value>136.97476913225773</value>
 		</property>
 		<property name="name">
 			<value>Marker A</value>

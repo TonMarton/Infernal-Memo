@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{c873e74b-956e-4bb0-95e5-b9fc94de672f}">
 		<property name="assetPath">
-			<value>sfxs/Mechanical, Click, Elevator Button, Call, Press SND29011.wav</value>
+			<value>sfxs/Elevator button.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>
