@@ -17,12 +17,12 @@ public class EnemySpawner : MonoBehaviour
     }
 
     // Spawn an enemy
-    public void SpawnEnemy()
+    public Enemy SpawnEnemy()
     {
         // Small vertical offset above the spawner
         var spawnPosition = transform.position + Vector3.up * 1.0f;
         // Spawn the enemy prefab
-        Instantiate(enemyPrefab, spawnPosition, transform.rotation);
+        return Instantiate(enemyPrefab, spawnPosition, transform.rotation);
     }
 
     // Draw a gizmo representing the spawn point that shows a symbol for the enemy that will be spawned
