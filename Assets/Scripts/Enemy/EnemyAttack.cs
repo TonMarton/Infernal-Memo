@@ -1,3 +1,27 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d808b82c57f7fb6c66cb42b87f70ef64322213da93ec70c1eab6252b0287cc52
-size 501
+﻿using UnityEngine;
+
+public enum AttackState
+{
+    NotAttacking,
+    Attacking,
+    AttackFinished
+}
+
+[DisallowMultipleComponent]
+public class EnemyAttack : MonoBehaviour
+{
+    // damage for the attack
+    [SerializeField] protected int damage = 10;
+
+    public AttackState attackState { get; protected set; }
+
+    public virtual void Attack()
+    {
+        // TODO: play attack sound with Fmod
+    }
+
+    public void NoLongerAttacking()
+    {
+        attackState = AttackState.NotAttacking;
+    }
+}

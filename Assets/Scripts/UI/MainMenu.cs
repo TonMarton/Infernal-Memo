@@ -1,3 +1,19 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:87b6077bb9d89714e10e4ac36cb3709908de1f9606073014c407c48276d5a0d0
-size 491
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class MainMenu : MonoBehaviour
+{
+    public void PlayGame() {
+        SceneManager.LoadScene("Instructions Screen");
+    }
+
+    public void QuitGame() {
+#if UNITY_EDITOR
+        // Application.Quit() does not work in the editor so
+        // UnityEditor.EditorApplication.isPlaying need to be set to false to end the game
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+         Application.Quit();
+#endif
+    }
+}
