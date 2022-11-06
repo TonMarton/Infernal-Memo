@@ -1,5 +1,6 @@
 ## Unity ##
 
+*.cs text
 *.cginc text
 *.shader text
 *.mat merge=unityyamlmerge eol=lf
@@ -54,7 +55,6 @@ Assets/Plugins/FMOD/**/* filter=lfs diff=lfs merge=lfs -text
 *.mat filter=lfs diff=lfs merge=lfs -text
 *.prefab filter=lfs diff=lfs merge=lfs -text
 *.txt filter=lfs diff=lfs merge=lfs -text
-*.cs filter=lfs diff=lfs merge=lfs -text
 *.inputactions filter=lfs diff=lfs merge=lfs -text
 *.asmdef filter=lfs diff=lfs merge=lfs -text
 *.TXT filter=lfs diff=lfs merge=lfs -text
