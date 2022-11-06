@@ -11,7 +11,10 @@ public enum WeaponType
 [DisallowMultipleComponent]
 public class PlayerWeaponSystem : MonoBehaviour
 {
-    [SerializeField] private HUD HUD;
+    [Header("Sound")] [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
 
     private WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
@@ -72,6 +75,8 @@ public class PlayerWeaponSystem : MonoBehaviour
                 shotgun.SetVisible(true);
                 // TODO: hide stapler
                 // TODO: play shotgun show sound
+                // play draw shotgun sound
+                SoundUtils.PlaySound3D(shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

@@ -9,11 +9,20 @@ public enum StaplerAttackState
 [DisallowMultipleComponent]
 public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
 {
+    [Header("Hitbox volume")]
     [SerializeField] private StaplerHitbox staplerHitbox;
+    
+    [Header("Stats")]
     [SerializeField] private float startCanHitTime = 0.2f;
     [SerializeField] private float stopCanHitTime = 0.8f;
     [SerializeField] private float finishAttackTime = 1.2f;
     [SerializeField] private float cooldownBetweenAttacks = 5.0f;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference attackSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance attackSoundInstance;
 
     private StaplerAttackState staplerAttackState = StaplerAttackState.NotAttacking;
     private float currentCooldown;
@@ -51,6 +60,9 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
 
         // reset cooldown timer
         currentCooldown = cooldownBetweenAttacks;
+        
+        // play attack sound
+        SoundUtils.PlaySound3D(attackSoundInstance, attackSoundEvent, gameObject);
 
         // start can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StartCanHit), startCanHitTime);

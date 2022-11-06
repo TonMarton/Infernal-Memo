@@ -11,10 +11,18 @@ public struct Knockback
 [DisallowMultipleComponent]
 public class StaplerHitbox : MonoBehaviour
 {
+    [Header("Stats")]
     [SerializeField] private float damage = 40f;
     [SerializeField] private float knockbackForce = 40f;
-    private bool hitboxEnabled = false;
-    private bool didDamageThisAttack = false;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference impactSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance impactSoundInstance;
+    
+    private bool hitboxEnabled;
+    private bool didDamageThisAttack;
 
     private void Awake()
     {
@@ -70,6 +78,9 @@ public class StaplerHitbox : MonoBehaviour
             direction = (enemyStats.transform.position - transform.position).normalized,
             force = knockbackForce
         };
+        
+        // play impact sound
+        SoundUtils.PlaySound3D(impactSoundInstance, impactSoundEvent, gameObject);
 
         // do damage to the enemy stats
         enemyStats.TakeDamage(damage, knockback);
