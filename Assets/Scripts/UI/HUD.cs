@@ -12,13 +12,17 @@ public class HUD : MonoBehaviour
 
     private void Awake()
     {
-        // hide cursor
+        // hide the default Unity engine cursor
         UnityEngine.Cursor.visible = false;
+        
+        // hide cursor by default
+        SetCrossHairVisible(false);
     }
 
-    public void ToggleCrossHair(bool show)
+    public void SetCrossHairVisible(bool show)
     {
-        crossHair.visible = show;
+        // TODO: re-enable this, doesn't work
+        // crossHair.visible = show;
     }
 
     public void ChangeHealthText(int health)
