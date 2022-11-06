@@ -6,6 +6,7 @@ public class EnemySpawnVolume : MonoBehaviour
 {
     // Array of enemy spawners in the game
     private EnemySpawner[] enemySpawners;
+    private List<Enemy> enemies = new List<Enemy>();
 
     private void Awake()
     {
@@ -28,7 +29,7 @@ public class EnemySpawnVolume : MonoBehaviour
             if (IsInsideVolume(enemySpawner.transform.position))
             {
                 // Spawn the enemy
-                enemySpawner.SpawnEnemy();
+                enemies.Add(enemySpawner.SpawnEnemy());
             }
 
             bool IsInsideVolume(Vector3 transformPosition)
@@ -41,6 +42,13 @@ public class EnemySpawnVolume : MonoBehaviour
                        transformPosition.z >= transform.position.z - transform.localScale.z / 2 &&
                        transformPosition.z <= transform.position.z + transform.localScale.z / 2;
             }
+        }
+    }
+
+    public void WakeEnemies()
+    {
+        foreach (var enemy in enemies) {
+            enemy.GetComponent<EnemyAI>().isAwake = true;
         }
     }
 
