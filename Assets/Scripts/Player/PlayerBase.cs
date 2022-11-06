@@ -1,3 +1,13 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:270020ee5e760ded30fbd6bb7ddc71be9f68cdab7e4fbe4ab80e5c65eeba2348
-size 250
+﻿using UnityEngine;
+
+[DisallowMultipleComponent]
+public class PlayerBase : MonoBehaviour
+{
+    public const string PLAYER_TAG = "Player";
+    
+    private void Awake()
+    {
+        // set the player tag
+        gameObject.tag = PLAYER_TAG;
+    }
+}
