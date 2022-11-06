@@ -5,34 +5,44 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class PlayerStats : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField] private int startingHealth = 100;
     [SerializeField] private int maxHealth = 100;
+    
+    [Header("Ammo")]
+    [SerializeField] private int startingShells = 20;
+    [SerializeField] private int maxShells = 99;
 
     [SerializeField] private DeathMenu deathMenu;
-    [SerializeField] private HUD HUD;
+    [SerializeField] private HUD hud;
 
-    public int health { get; private set; }
-    public int armor { get; private set; }
-    public int shells { get; private set; } = 0;
+    private int health;
+    private int armor;
+    private int shells;
 
     // Start is called before the first frame update
     private void Awake()
     {
-        // Initialize health 
+        // initialize stats 
         health = startingHealth;
-        HUD.ChangeHealthText(health);
-        HUD.ChangeArmorText(0);
-        HUD.ChangeShellsText(0);
+        shells = startingShells;
+        
+        // set reference to HUD
+        hud = GetComponentInChildren<HUD>();
+        
+        // initialize HUD
+        hud.ChangeHealthText(health);
+        hud.ChangeArmorText(armor);
+        hud.ChangeShellsText(shells);
     }
 
     public void TakeDamage(int damage)
     {
+        // take damage
         health -= damage;
 
-        HUD.ChangeHealthText(health);
-
-        // Print how much damage was taken, and the player's current health
-        Debug.Log("Took " + damage + " damage. Current health: " + health);
+        // update HUD
+        hud.ChangeHealthText(health);
 
         if (health <= 0)
         {
@@ -47,9 +57,8 @@ public class PlayerStats : MonoBehaviour
     {
         health = Mathf.Min(healing + health, maxHealth);
 
-        HUD.ChangeHealthText(health);
-
-        Debug.Log("Healed " + healing + " damage. Current health: " + health);
+        // update HUD
+        hud.ChangeHealthText(health);
     }
 
     private void Die()
@@ -58,5 +67,23 @@ public class PlayerStats : MonoBehaviour
         
         // show the death menu 
         deathMenu.Show();
+    }
+
+    public bool UseShells(int count)
+    {
+        if (shells < count)
+        {
+            // didn't have enough ammo
+            return false;
+        }
+        
+        // use the shells
+        shells -= count;
+        
+        // update HUD
+        hud.ChangeShellsText(shells);
+        
+        // had enough ammo
+        return true;
     }
 }
