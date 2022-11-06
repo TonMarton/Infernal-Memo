@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{3c9f81a1-3b2e-46e2-a85b-19c4f1ee072d}">
+	<object class="AudioFile" id="{7970cc33-b6ff-4ee1-bffe-4692d4bc166c}">
 		<property name="assetPath">
-			<value>sfxs/shotgun shoot.wav</value>
+			<value>sfxs/shotgun reload2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
