@@ -27,6 +27,9 @@ public class Shotgun : MonoBehaviour
 
     [SerializeField] [Min(0f)] [Tooltip("Degrees for spread on x-axis (vertical)")]
     private float maxSpreadDegreesX = 5f;
+    
+    private FMOD.Studio.EventInstance shootSoundInstance;
+    private FMOD.Studio.EventInstance reloadSoundInstance;
 
     private float lastFireTime;
 
@@ -68,7 +71,13 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
-        // TODO: Play fire sound
+        // play shoot sound
+        PlayShootSound();
+        
+        // play reload sound after a delay
+        // TODO: tie this to an animation event
+        // play it after a delay
+        Invoke(nameof(PlayReloadSound), 0.5f);
 
         // show muzzle flash
         SetMuzzleFlashVisible(true);
@@ -81,6 +90,22 @@ public class Shotgun : MonoBehaviour
         {
             ShootBullet();
         }
+    }
+
+    private void PlayShootSound()
+    {
+        shootSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Sfxs/Player/gun/Shoot");
+        shootSoundInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        shootSoundInstance.start();
+        shootSoundInstance.release(); 
+    }
+
+    private void PlayReloadSound()
+    {
+        reloadSoundInstance = FMODUnity.RuntimeManager.CreateInstance("event:/Sfxs/Player/gun/Reload");
+        reloadSoundInstance.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        reloadSoundInstance.start();
+        reloadSoundInstance.release();
     }
 
     private void ShootBullet()
