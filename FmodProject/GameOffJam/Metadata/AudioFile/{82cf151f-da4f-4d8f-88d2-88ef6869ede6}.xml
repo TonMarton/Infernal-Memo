@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{82cf151f-da4f-4d8f-88d2-88ef6869ede6}">
 		<property name="assetPath">
-			<value>Machines, Elevator, Long Elevator, Ski Jump Tower, Going Up, Perspective 2 SND64838.wav</value>
+			<value>sfxs/Elevator loop rising.wav</value>
 		</property>
 		<property name="isStreaming">
 			<value>true</value>

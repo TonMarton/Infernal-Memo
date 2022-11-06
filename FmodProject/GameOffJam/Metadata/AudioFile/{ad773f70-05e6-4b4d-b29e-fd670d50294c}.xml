@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{ad773f70-05e6-4b4d-b29e-fd670d50294c}">
 		<property name="assetPath">
-			<value>Scifi, Door, Door Close, Elevator SND72973.wav</value>
+			<value>sfxs/Elevator closing door.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>

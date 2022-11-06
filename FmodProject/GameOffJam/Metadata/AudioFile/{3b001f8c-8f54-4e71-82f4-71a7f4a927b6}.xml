@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{3b001f8c-8f54-4e71-82f4-71a7f4a927b6}">
 		<property name="assetPath">
-			<value>sfxs/Games, Video, Retro, Game Over SND58374.wav</value>
+			<value>sfxs/Lose Stinger.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>96</value>
