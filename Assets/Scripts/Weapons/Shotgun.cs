@@ -12,6 +12,7 @@ public class Shotgun : MonoBehaviour
 
     [Min(1)] [SerializeField] private int bulletCount = 20;
     [Min(1)] [SerializeField] private int shellsShootCost = 2;
+    [Min(0)] [SerializeField] private float cooldownTime = 1.4f;
 
     [Header("Bullet Hole")] [SerializeField]
     private GameObject bulletHolePrefab;
@@ -30,6 +31,7 @@ public class Shotgun : MonoBehaviour
     private float maxSpreadDegreesX = 5f;
 
     private PlayerStats playerStats;
+    private float currentCooldownTime;
 
     // Sounds
     private FMOD.Studio.EventInstance shootSoundInstance;
@@ -49,6 +51,9 @@ public class Shotgun : MonoBehaviour
 
     private void Update()
     {
+        // update cooldown time
+        currentCooldownTime -= Time.deltaTime;
+        
         // hide muzzle flash after a delay
         if (muzzleFlash.activeSelf && Time.time > lastFireTime + hideMuzzleFlashAfterTime)
         {
@@ -78,12 +83,22 @@ public class Shotgun : MonoBehaviour
 
     public void Shoot()
     {
+        // didn't cooldown yet?
+        if (currentCooldownTime > 0)
+        {
+            // can't shoot
+            return;
+        }
+
         // does the player have enough shells?
         if (!playerStats.UseShells(shellsShootCost))
         {
             // TODO: play out of ammo sound
             return;
         }
+        
+        // reset cooldown time
+        currentCooldownTime = cooldownTime;
 
         // play shoot sound
         PlayShootSound();
@@ -91,7 +106,7 @@ public class Shotgun : MonoBehaviour
         // play reload sound after a delay
         // TODO: tie this to an animation event
         // play it after a delay
-        Invoke(nameof(PlayReloadSound), 0.5f);
+        Invoke(nameof(PlayReloadSound), 0.2f);
 
         // show muzzle flash
         SetMuzzleFlashVisible(true);
