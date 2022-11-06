@@ -29,6 +29,10 @@ public class RangedEnemyAI : EnemyAI
 
     private void Update()
     {
+        if (!isAwake) {
+            return;
+        }
+
         PerformActionForCurrentState();
 
         // Draw a thick arrow to the player
