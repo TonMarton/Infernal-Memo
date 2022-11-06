@@ -13,6 +13,7 @@ public class Shotgun : MonoBehaviour
     [Min(1)] [SerializeField] private int bulletCount = 20;
     [Min(1)] [SerializeField] private int shellsShootCost = 2;
     [Min(0)] [SerializeField] private float cooldownTime = 1.4f;
+    [Min(1)] [SerializeField] private float damagePerBullet = 2f;
 
     [Header("Bullet Hole")] [SerializeField]
     private GameObject bulletHolePrefab;
@@ -53,7 +54,7 @@ public class Shotgun : MonoBehaviour
     {
         // update cooldown time
         currentCooldownTime -= Time.deltaTime;
-        
+
         // hide muzzle flash after a delay
         if (muzzleFlash.activeSelf && Time.time > lastFireTime + hideMuzzleFlashAfterTime)
         {
@@ -96,7 +97,7 @@ public class Shotgun : MonoBehaviour
             // TODO: play out of ammo sound
             return;
         }
-        
+
         // reset cooldown time
         currentCooldownTime = cooldownTime;
 
@@ -145,14 +146,36 @@ public class Shotgun : MonoBehaviour
         Quaternion rotationY = Quaternion.AngleAxis(degreesY, fpsCam.up);
         Vector3 bulletTrajectory = rotationX * rotationY * fpsCamForward;
 
-        const float range = 10000f; // max distance
         // Raycast for hit
-        if (Physics.Raycast(fpsCam.transform.position, bulletTrajectory, out var hit, range, layerMask))
+        const float range = 10000f; // max distance
+        if (!Physics.Raycast(fpsCam.transform.position, bulletTrajectory, out var hit, range, layerMask))
         {
-            // Create a bullet hole when hitting a wall
-            CreateBulletHoleDecal(hit.point, hit.normal);
-
-            // To-do: Damage enemy
+            // didn't hit so nothing to do
+            return;
         }
+
+        // Create a bullet hole when hitting a wall
+        // TODO: don't make a bullet hole when hitting an enemy
+        CreateBulletHoleDecal(hit.point, hit.normal);
+
+        // find the game object that was hit
+        // and see if it was an enemy
+        var hitObject = hit.collider.gameObject;
+        // log the hit object's tag
+        Debug.Log("Hit object: " + hitObject.tag);
+        // log the tag of the object that was hit
+        if (!hitObject.CompareTag(Enemy.EnemyTag))
+        {
+            // wasn't an enemy so nothing to do
+            return;
+        }
+        
+        // log that we hit
+        Debug.Log("~~~~~ Hit");
+
+        // damage the enemy
+        var enemy = hitObject.GetComponentInParent<Enemy>();
+        var enemyStats = enemy.GetComponent<EnemyStats>();
+        enemyStats.TakeDamage(damagePerBullet, knockback: null);
     }
 }

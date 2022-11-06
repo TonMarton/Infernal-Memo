@@ -16,9 +16,14 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private DeathMenu deathMenu;
     [SerializeField] private HUD hud;
 
+    // Stats
     private int health;
     private int armor;
     private int shells;
+    
+    // Sounds
+    private FMOD.Studio.EventInstance hurtSoundInstance;
+    private FMOD.Studio.EventInstance deathSoundInstance;
 
     // Start is called before the first frame update
     private void Awake()
@@ -50,7 +55,8 @@ public class PlayerStats : MonoBehaviour
             return;
         }
 
-        // TODO: play hurt sound with Fmod
+        // play hurt sound
+        SoundUtils.PlaySound3D(hurtSoundInstance, "Sfxs/Player/Damage/Damage", gameObject);
     }
 
     public void Heal(int healing)
