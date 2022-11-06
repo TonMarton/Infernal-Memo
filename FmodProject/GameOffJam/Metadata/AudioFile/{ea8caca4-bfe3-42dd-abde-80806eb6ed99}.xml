@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{ea8caca4-bfe3-42dd-abde-80806eb6ed99}">
 		<property name="assetPath">
-			<value>dry fire second layer.wav</value>
+			<value>sfxs/dry fire second layer.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
