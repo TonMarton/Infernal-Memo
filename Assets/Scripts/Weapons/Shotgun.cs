@@ -161,17 +161,13 @@ public class Shotgun : MonoBehaviour
         // find the game object that was hit
         // and see if it was an enemy
         var hitObject = hit.collider.gameObject;
-        // log the hit object's tag
-        Debug.Log("Hit object: " + hitObject.tag);
+        
         // log the tag of the object that was hit
         if (!hitObject.CompareTag(Enemy.EnemyTag))
         {
             // wasn't an enemy so nothing to do
             return;
         }
-        
-        // log that we hit
-        Debug.Log("~~~~~ Hit");
 
         // damage the enemy
         var enemy = hitObject.GetComponentInParent<Enemy>();

@@ -49,8 +49,6 @@ public class EnemySpawnTrigger : MonoBehaviour
             return;
         }
 
-        Debug.Log($"Player entered trigger {gameObject.name}");
-
         // Set the player entered flag to true
         playerEntered = true;
 

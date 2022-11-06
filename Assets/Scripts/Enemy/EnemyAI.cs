@@ -110,7 +110,7 @@ public class EnemyAI : MonoBehaviour, IEnemyShouldAttack
             return false;
         }
 
-        // did the raycast hits the player?
+        // did the raycast hit the player?
         return hit.collider.gameObject == player;
     }
 }
