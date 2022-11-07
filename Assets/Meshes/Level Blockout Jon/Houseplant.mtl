@@ -1,8 +1,3 @@
-newmtl Houseplant_mat1
-illum 4
-Kd 0.50 0.50 0.50
-Ka 0.00 0.00 0.00
-Tf 1.00 1.00 1.00
-Ni 1.00
-
-map_Kd Houseplant_BaseColor.png
+version https://git-lfs.github.com/spec/v1
+oid sha256:359b9b5ea10966d9ba340185576ea66d69e7eaf1013010e3b351584fa8c24d77
+size 125
