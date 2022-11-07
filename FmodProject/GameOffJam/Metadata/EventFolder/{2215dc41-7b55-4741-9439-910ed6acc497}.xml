@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:704a7b6d9d674b1b4be8e0b9dbd136b3d7ec8df55d440c50070e13f3f50be5f9
-size 362
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{2215dc41-7b55-4741-9439-910ed6acc497}">
+		<property name="name">
+			<value>Jump</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5b517a3d-c097-4630-bafc-b6f6e09a67e5}</destination>
+		</relationship>
+	</object>
+</objects>

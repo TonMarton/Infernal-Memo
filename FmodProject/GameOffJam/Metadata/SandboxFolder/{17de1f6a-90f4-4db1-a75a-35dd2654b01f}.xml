@@ -1,3 +1,4 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:6af1325bc7506b2a7352fdf924333bdfbd6f67781457ebce8913867f95e20c56
-size 181
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MasterSandboxFolder" id="{17de1f6a-90f4-4db1-a75a-35dd2654b01f}" />
+</objects>

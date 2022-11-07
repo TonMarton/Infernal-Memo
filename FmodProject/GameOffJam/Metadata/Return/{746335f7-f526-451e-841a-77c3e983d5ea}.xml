@@ -1,3 +1,36 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:1761d8716c4d692cfae0be06e1e1228b7e81d8ccc39b67589e9f9a3226f1c041
-size 1336
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerReturn" id="{746335f7-f526-451e-841a-77c3e983d5ea}">
+		<property name="overridingInputFormat">
+			<value>2</value>
+		</property>
+		<property name="name">
+			<value>Reverb</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{7afd903c-c5c7-43f0-902a-e9bde14a08c4}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{598e2356-d1f4-4e23-a30e-fa2703c721cd}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{40e335d6-651b-4a62-b10f-f7811a2907fc}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{7afd903c-c5c7-43f0-902a-e9bde14a08c4}">
+		<relationship name="effects">
+			<destination>{4d628cb6-2ec0-4941-afb7-67f860a8a6e1}</destination>
+			<destination>{cdd8669f-d50f-43be-a455-e91dfc0d43cd}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{598e2356-d1f4-4e23-a30e-fa2703c721cd}" />
+	<object class="SFXReverbEffect" id="{4d628cb6-2ec0-4941-afb7-67f860a8a6e1}">
+		<property name="wetLevel">
+			<value>0</value>
+		</property>
+		<property name="dryLevel">
+			<value>-80</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{cdd8669f-d50f-43be-a455-e91dfc0d43cd}" />
+</objects>

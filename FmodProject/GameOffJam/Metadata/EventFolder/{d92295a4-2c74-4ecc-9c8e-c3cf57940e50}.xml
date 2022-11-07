@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:2d4f54d3d90e1708774e51785d3b0e5dd5d7b1c363d391d641e7e5f2f9461022
-size 371
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{d92295a4-2c74-4ecc-9c8e-c3cf57940e50}">
+		<property name="name">
+			<value>coffe machine</value>
+		</property>
+		<relationship name="folder">
+			<destination>{a93fea4a-5986-4cde-82f9-7b45cba1e89e}</destination>
+		</relationship>
+	</object>
+</objects>

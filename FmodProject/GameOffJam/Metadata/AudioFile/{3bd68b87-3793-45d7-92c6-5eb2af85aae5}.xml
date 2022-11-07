@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:732e9914c723ef10340c592171db8879138bcfa6b2594c2bd2a660bdd115671d
-size 616
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{3bd68b87-3793-45d7-92c6-5eb2af85aae5}">
+		<property name="assetPath">
+			<value>sfxs/Elevator opening door.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>4.526395833333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>

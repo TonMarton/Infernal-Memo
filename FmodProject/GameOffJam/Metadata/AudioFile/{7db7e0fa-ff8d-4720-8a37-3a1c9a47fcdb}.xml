@@ -1,3 +1,20 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:462138044225b482eeb941f1e65f31de4f30696e7c526793788e4804b85c0996
-size 604
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7db7e0fa-ff8d-4720-8a37-3a1c9a47fcdb}">
+		<property name="assetPath">
+			<value>sfxs/Jump1_VO.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>48</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3347500000000001</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>

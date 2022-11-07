@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:d29e0c3bc029ce241596e5e57238d113120b5d979b1e90957f9b16866b34a047
-size 365
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{b37663c3-e791-46e5-9dfe-a04b8b9ebc91}">
+		<property name="name">
+			<value>Shotgun</value>
+		</property>
+		<relationship name="folder">
+			<destination>{46c4f82d-48b0-4cf7-8190-56422189f6f3}</destination>
+		</relationship>
+	</object>
+</objects>

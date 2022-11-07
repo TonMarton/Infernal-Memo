@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:dab301c56450de68dd62ace6e069ce6a1835f785fce81b58c7701d50a67e2fda
-size 384
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{dfa21ed4-12fe-4696-9135-8afeb6b0b60c}">
+		<property name="assetPath">
+			<value>musics/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:f8432010af919583eff92e918c008fc1af5b1d23af2e1104630b2048da509db1
-size 417
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="SnapshotList" id="{d3498a20-41fe-4a2c-9720-c9a3bf48d136}">
+		<relationship name="items">
+			<destination>{73f5a790-cd4b-4141-9d7a-7d37a8431ae4}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{2a61f93e-b6e5-4bd5-8ab8-6a418395e73b}</destination>
+		</relationship>
+	</object>
+</objects>

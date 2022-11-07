@@ -1,3 +1,11 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:de830301a716ed40db48f7f03aff8d3689095ad625f55cd8b9ed84503f92161c
-size 364
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{c5883ee2-502a-4b27-9337-cdff26ca2c58}">
+		<property name="name">
+			<value>Damage</value>
+		</property>
+		<relationship name="folder">
+			<destination>{5b517a3d-c097-4630-bafc-b6f6e09a67e5}</destination>
+		</relationship>
+	</object>
+</objects>

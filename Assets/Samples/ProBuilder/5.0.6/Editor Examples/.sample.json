@@ -1,3 +1,5 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b6a05f125fdec1e2763aeefbf9cddaf3126db82a731bdba7bc6a536e10cdf445
-size 185
+{
+	"displayName":"Editor Examples",
+	"description": "Scripts demonstrating how to integrate new functionality into the ProBuilder editor window.",
+	"createSeparatePackage": true
+}

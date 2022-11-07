@@ -1,3 +1,25 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:72b89bf569ff4a4b1ace8076a613e3faa31c8464d00864583fb8cf803822f3f2
-size 775
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{be376dc5-e4fe-4c6e-966b-12c2b9fe18cd}">
+		<property name="name">
+			<value>Dry fire</value>
+		</property>
+		<relationship name="folder">
+			<destination>{24c08485-0465-470b-bd71-0b8680bb76ac}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{e12db3f4-ef16-4543-9815-08148119c7f3}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{e12db3f4-ef16-4543-9815-08148119c7f3}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

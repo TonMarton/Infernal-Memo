@@ -1,3 +1,29 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:4ffacb8ac4ca482e6c9729eb9ab0a7d529e23368aec70be85f6b04140fd45cec
-size 1182
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{fc672f31-4de7-4551-a251-8e8d689d7058}">
+		<property name="volume">
+			<value>-9</value>
+		</property>
+		<property name="name">
+			<value>Musics</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{974205cf-8e9a-4297-a3d2-2fd68d3fa4b3}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{e9aa3048-ef5f-414a-8cc2-5b8671f1bbc3}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{40e335d6-651b-4a62-b10f-f7811a2907fc}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{974205cf-8e9a-4297-a3d2-2fd68d3fa4b3}">
+		<relationship name="effects">
+			<destination>{1131b73a-4657-4df5-92dd-d97d206b9fdc}</destination>
+			<destination>{fb31ad5c-8020-4d7d-b1d1-c8e5b2425869}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{e9aa3048-ef5f-414a-8cc2-5b8671f1bbc3}" />
+	<object class="ThreeEQEffect" id="{1131b73a-4657-4df5-92dd-d97d206b9fdc}" />
+	<object class="MixerBusFader" id="{fb31ad5c-8020-4d7d-b1d1-c8e5b2425869}" />
+</objects>
