@@ -1,3 +1,44 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:cf805203d9d3f36610691ecd42227dca1effdc43f316c040edc0a18026b347d9
-size 424
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemy
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Player Hitbox
+  - Water
+  - UI
+  - Enemy
+  - Shotgun
+  - Triggers
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

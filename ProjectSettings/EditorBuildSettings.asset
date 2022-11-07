@@ -1,3 +1,17 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:b36e6f898235a23e600fe35b7dfcb21224ff52d15303f8058c07efdbaf3bf877
-size 471
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Title Screen.unity
+    guid: b9ff9ae6e21db4fb697482a6c41bf1d5
+  - enabled: 1
+    path: Assets/Scenes/Instructions Screen.unity
+    guid: b8f62c262743a4352a955a75ec49b3b4
+  - enabled: 1
+    path: Assets/Scenes/Enemy Spawn Test.unity
+    guid: 2c1ed2abb545c6842a849d5bc8882a64
+  m_configObjects: {}
