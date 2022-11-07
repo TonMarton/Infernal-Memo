@@ -98,3 +98,6 @@ fmod_editor.log
 # Ignore FMOD plugin, everyone will just download it manually
 Assets/Plugins/FMOD/**/*
 Assets/Plugins/FMOD.meta
+
+# Definitely check in obj files
+!*.obj
