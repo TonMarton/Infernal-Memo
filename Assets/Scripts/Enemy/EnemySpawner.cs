@@ -34,7 +34,7 @@ public class EnemySpawner : MonoBehaviour
             // then don't draw the gizmo. we only want to see it in the editor when not playing
             return;
         }
-        
+
         // Set the color of the gizmo to green
         Gizmos.color = Color.green;
 
@@ -43,12 +43,15 @@ public class EnemySpawner : MonoBehaviour
         var meshFilter = enemyPrefab.GetComponentInChildren<MeshFilter>();
         var mesh = meshFilter.sharedMesh;
         var meshTransform = meshFilter.gameObject.transform;
-        
-        Gizmos.DrawMesh(mesh, 0, 
-            transform.position + meshTransform.localPosition, 
-            transform.rotation * meshTransform.localRotation, 
+
+        // also add half the mesh's height to the position so the gizmo is centered on the enemy
+        var position = transform.position + meshTransform.localPosition + Vector3.up * (mesh.bounds.size.y) * 3;
+
+        Gizmos.DrawMesh(mesh, 0,
+            position,
+            transform.rotation * meshTransform.localRotation,
             meshTransform.localScale);
-        
+
         // draw an arrow for the direction facing
         Gizmos.DrawRay(transform.position, transform.forward);
     }

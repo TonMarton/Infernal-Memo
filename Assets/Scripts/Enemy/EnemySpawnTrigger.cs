@@ -37,6 +37,9 @@ public class EnemySpawnTrigger : MonoBehaviour
     // On trigger enter
     private void OnTriggerEnter(Collider other)
     {
+        // log the trigger
+        Debug.Log($"Triggered by {other.gameObject.name}");
+        
         // Don't double-trigger
         if (playerEntered)
         {
