@@ -138,6 +138,9 @@
 		<property name="color">
 			<value>Blue</value>
 		</property>
+		<property name="volume">
+			<value>-0.5</value>
+		</property>
 		<property name="name">
 			<value>Tile/stone</value>
 		</property>
@@ -176,6 +179,9 @@
 	<object class="EventMixerGroup" id="{1a7363de-ecc7-4853-a747-3908a0ece785}">
 		<property name="color">
 			<value>Green</value>
+		</property>
+		<property name="volume">
+			<value>-3</value>
 		</property>
 		<property name="name">
 			<value>Wood</value>
