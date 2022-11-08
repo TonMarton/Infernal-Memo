@@ -357,33 +357,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a43e21791e2ff041af66aae54d7574c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _canSprint: 1
-  _canJump: 1
-  _canCrouch: 1
-  _canShakeScreen: 1
-  _sprintKey: 304
-  _jumpKey: 32
-  _crouchKey: 99
-  _walkSpeed: 3.65
-  _sprintSpeed: 6.15
-  _crouchSpeed: 1.85
-  _lookSpeedX: 2
-  _lookSpeedY: 2
-  _upperLookLimit: 80
-  _lowerLookLimit: 80
-  _jumpForce: 8
+  canSprint: 1
+  canJump: 1
+  canCrouch: 1
+  canShakeScreen: 1
+  sprintKey: 304
+  jumpKey: 32
+  crouchKey: 99
+  walkSpeed: 3.65
+  sprintSpeed: 6.15
+  crouchSpeed: 1.85
+  lookSpeedX: 2
+  lookSpeedY: 2
+  upperLookLimit: 80
+  lowerLookLimit: 80
+  jumpForce: 8
   _gravity: 30
   _crouchHeight: 0.5
-  _standingHeight: 2
-  _timeToCrouch: 0.25
-  _crouchingCenter: {x: 0, y: 0.5, z: 0}
-  _standingCenter: {x: 0, y: 0, z: 0}
-  _walkShakeSpeed: 0
-  _walkShakeAmount: 0
-  _sprintShakeSpeed: 0
-  _sprintShakeAmount: 0
-  _crouchShakeSpeed: 8
-  _crouchShakeAmount: 0.25
+  standingHeight: 2
+  timeToCrouch: 0.25
+  crouchingCenter: {x: 0, y: 0.5, z: 0}
+  standingCenter: {x: 0, y: 0, z: 0}
+  walkShakeSpeed: 0
+  walkShakeAmount: 0
+  sprintShakeSpeed: 0
+  sprintShakeAmount: 0
+  crouchShakeSpeed: 8
+  crouchShakeAmount: 0.25
+  jumpSoundEvent:
+    Guid:
+      Data1: -1079842936
+      Data2: 1214629677
+      Data3: -1876612434
+      Data4: 531018577
+    Path: event:/Sfxs/Player/Jump/Jump
 --- !u!114 &6386166238158225820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -586,6 +593,27 @@ MonoBehaviour:
       Data3: -1733723725
       Data4: 768986661
     Path: event:/Sfxs/Player/guns/Shotgun/Draw_handling
+  staplerDrawSoundEvent:
+    Guid:
+      Data1: -142356871
+      Data2: 1073853546
+      Data3: -1187312963
+      Data4: 1138031890
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler draw
+  shotgunPutAwaySoundEvent:
+    Guid:
+      Data1: -649734347
+      Data2: 1252412774
+      Data3: -2129632847
+      Data4: -594660367
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler put away
+  staplerPutAwaySoundEvent:
+    Guid:
+      Data1: -649734347
+      Data2: 1252412774
+      Data3: -2129632847
+      Data4: -594660367
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler put away
 --- !u!114 &4289160584079738295
 MonoBehaviour:
   m_ObjectHideFlags: 0

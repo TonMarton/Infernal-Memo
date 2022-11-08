@@ -170,6 +170,34 @@ MonoBehaviour:
   continueButton: {fileID: 1080105097180891536}
   mainMenuButton: {fileID: 8228897804775338806}
   exitButton: {fileID: 5431259600055396662}
+  hoverSoundEvent:
+    Guid:
+      Data1: 1590263301
+      Data2: 1220189635
+      Data3: -83350644
+      Data4: 1286614083
+    Path: event:/Sfxs/Interface sfxs/Ui Hover
+  clickSoundEvent:
+    Guid:
+      Data1: -1377515376
+      Data2: 1113606695
+      Data3: -1803207552
+      Data4: 577484025
+    Path: event:/Sfxs/Interface sfxs/Ui Start
+  openSoundEvent:
+    Guid:
+      Data1: 1032952035
+      Data2: 1238844312
+      Data3: -435482496
+      Data4: 1332729566
+    Path: event:/Sfxs/Interface sfxs/Ui front
+  closeSoundEvent:
+    Guid:
+      Data1: -1415100841
+      Data2: 1243950651
+      Data3: 1830584477
+      Data4: 396189949
+    Path: event:/Sfxs/Interface sfxs/Ui Back
 --- !u!1 &1672389788628985574
 GameObject:
   m_ObjectHideFlags: 0

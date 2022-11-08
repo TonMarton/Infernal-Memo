@@ -3,25 +3,35 @@
   <component name="ChangeListManager">
     <list default="true" id="b0d4cc34-3413-449c-9830-0a069bfb2a6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFootsteps.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerFootsteps.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{1a1286ba-a648-4f1e-bd19-9e5f889f7c62}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{1a1286ba-a648-4f1e-bd19-9e5f889f7c62}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{23c9a0b7-693e-4202-a9a1-453fa047bd47}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{23c9a0b7-693e-4202-a9a1-453fa047bd47}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{3b001f8c-8f54-4e71-82f4-71a7f4a927b6}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{3b001f8c-8f54-4e71-82f4-71a7f4a927b6}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{69eb5d6d-ee6c-4b28-8df6-d3aedd1bec29}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{69eb5d6d-ee6c-4b28-8df6-d3aedd1bec29}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{782dccad-aee7-4b91-9af0-a5eec2042b61}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{782dccad-aee7-4b91-9af0-a5eec2042b61}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{86e821cc-501e-4b9c-9c39-fd2ade398c1c}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{86e821cc-501e-4b9c-9c39-fd2ade398c1c}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{8d5e7c24-b4af-42f6-911b-ab8d2edcba55}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{8d5e7c24-b4af-42f6-911b-ab8d2edcba55}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{c4f36f2d-70a9-43c1-8f70-109279406604}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{c4f36f2d-70a9-43c1-8f70-109279406604}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{cdfa0472-cacb-4c7f-bfe3-44c04e99a2e8}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{cdfa0472-cacb-4c7f-bfe3-44c04e99a2e8}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{d81edaaf-089b-49d1-855e-5b3bea7a918b}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{d81edaaf-089b-49d1-855e-5b3bea7a918b}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{e3d80c8a-0698-4bd4-a86f-de81b1e76617}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{e3d80c8a-0698-4bd4-a86f-de81b1e76617}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{e9e108c0-2020-4d8b-b9a1-91d6d2efc0d4}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{e9e108c0-2020-4d8b-b9a1-91d6d2efc0d4}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{f838b4fe-b532-4c2f-b2ee-79d6afa6e55d}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{f838b4fe-b532-4c2f-b2ee-79d6afa6e55d}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.bank" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.strings.bank" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.strings.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.polybrush/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.probuilder/Settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/Packages/com.unity.testtools.codecoverage/Settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Pause Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Pause Menu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerWeaponSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{367edbe8-e1db-4972-b2e3-2291573ceda1}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{367edbe8-e1db-4972-b2e3-2291573ceda1}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{3c9f81a1-3b2e-46e2-a85b-19c4f1ee072d}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{3c9f81a1-3b2e-46e2-a85b-19c4f1ee072d}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{3fa615c8-f484-41d1-8ed6-1ce7cf68460c}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{3fa615c8-f484-41d1-8ed6-1ce7cf68460c}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{4a9f39d5-d46c-43f6-ace7-aa4b20cfd949}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{4a9f39d5-d46c-43f6-ace7-aa4b20cfd949}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{5bb9d57c-45b6-4ce9-aaaf-103826979284}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{5bb9d57c-45b6-4ce9-aaaf-103826979284}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{613847a4-176c-4021-b98e-5b58978f24b4}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{613847a4-176c-4021-b98e-5b58978f24b4}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{6b21e17b-cf36-49e7-914f-0798b90e52d4}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{6b21e17b-cf36-49e7-914f-0798b90e52d4}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{6f552344-15de-4f5b-8c0b-554041ec61b9}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{6f552344-15de-4f5b-8c0b-554041ec61b9}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{71bc5f13-df67-46ed-a8b6-05fb3e67d239}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{71bc5f13-df67-46ed-a8b6-05fb3e67d239}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{73be6d9f-540d-4dfd-afd0-db2b23066006}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{73be6d9f-540d-4dfd-afd0-db2b23066006}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{7970cc33-b6ff-4ee1-bffe-4692d4bc166c}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{7970cc33-b6ff-4ee1-bffe-4692d4bc166c}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{93138ced-4089-4b2e-8425-3d2955c77921}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{93138ced-4089-4b2e-8425-3d2955c77921}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{ad773f70-05e6-4b4d-b29e-fd670d50294c}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{ad773f70-05e6-4b4d-b29e-fd670d50294c}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{b21a413b-8fae-4d61-ad47-acb98d6d9ecb}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{b21a413b-8fae-4d61-ad47-acb98d6d9ecb}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{b66ecdca-6c80-49d5-bf58-743af190a044}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{b66ecdca-6c80-49d5-bf58-743af190a044}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{bee4e59d-f794-4b99-8397-bb14a2c2b50f}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{bee4e59d-f794-4b99-8397-bb14a2c2b50f}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{c873e74b-956e-4bb0-95e5-b9fc94de672f}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{c873e74b-956e-4bb0-95e5-b9fc94de672f}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{d08c9280-7ff2-4f57-8534-5e6bc85df8e1}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{d08c9280-7ff2-4f57-8534-5e6bc85df8e1}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{d655dbc8-c8f7-48c8-b869-3f9d403df27b}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{d655dbc8-c8f7-48c8-b869-3f9d403df27b}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{e85c1cf7-7215-4746-a9f5-b3dd72b26d04}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{e85c1cf7-7215-4746-a9f5-b3dd72b26d04}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{ea8caca4-bfe3-42dd-abde-80806eb6ed99}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{ea8caca4-bfe3-42dd-abde-80806eb6ed99}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{f01a53f1-6e2d-411e-899d-ae7d642f159f}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{f01a53f1-6e2d-411e-899d-ae7d642f159f}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameOff2022-New.sln.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/GameOff2022-New.sln.DotSettings" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +39,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d3dacd00ce441dc8c61d528a2193088158400/4a/0169707f/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@5.0.6/Editor/EditorCore/EditShapeTool.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
@@ -90,7 +101,7 @@
       <updated>1667690270694</updated>
       <workItem from="1667690272226" duration="18216000" />
       <workItem from="1667881224148" duration="1000" />
-      <workItem from="1667920388230" duration="1326000" />
+      <workItem from="1667920388230" duration="3456000" />
     </task>
     <servers />
   </component>

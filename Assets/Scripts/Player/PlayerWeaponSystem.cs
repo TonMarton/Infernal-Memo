@@ -5,16 +5,24 @@ using UnityEngine;
 public enum WeaponType
 {
     Stapler,
-    Shotgun
+    Pistol,
+    Shotgun,
 }
 
 [DisallowMultipleComponent]
 public class PlayerWeaponSystem : MonoBehaviour
 {
-    [Header("Sound")] [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
+    [Header("Sound")] 
+    [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
+    [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
+    [SerializeField] private FMODUnity.EventReference shotgunPutAwaySoundEvent;
+    [SerializeField] private FMODUnity.EventReference staplerPutAwaySoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
+    private FMOD.Studio.EventInstance staplerDrawSoundInstance;
+    private FMOD.Studio.EventInstance shotgunPutAwaySoundInstance;
+    private FMOD.Studio.EventInstance staplerPutAwaySoundInstance;
 
     private WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
@@ -45,6 +53,9 @@ public class PlayerWeaponSystem : MonoBehaviour
             case WeaponType.Stapler:
                 staplerAttack.Attack();
                 break;
+            case WeaponType.Pistol:
+                // TODO: pistol shoot
+                break;
             case WeaponType.Shotgun:
                 shotgun.Shoot();
                 break;
@@ -57,6 +68,9 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         // log the weapon we switched to
         Debug.Log("Switched to " + weaponType);
+        
+        // remember the last weapon type
+        var lastWeaponType = currentWeaponType;
 
         // set current weapon
         currentWeaponType = weaponType;
@@ -67,13 +81,21 @@ public class PlayerWeaponSystem : MonoBehaviour
             case WeaponType.Stapler:
                 // hide shotgun
                 shotgun.SetVisible(false);
+                // TODO: hide pistol
                 // TODO: show stapler
                 // TODO: play stapler show sound
+                // play draw stapler sound
+                SoundUtils.PlaySound3D(staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
                 break;
+            case WeaponType.Pistol:
+                // TODO: hide stapler
+                // TODO: hide shotgun
+                // TODO: draw pistol sound
             case WeaponType.Shotgun:
                 // show shotgun
                 shotgun.SetVisible(true);
                 // TODO: hide stapler
+                // TODO: hide pistol
                 // TODO: play shotgun show sound
                 // play draw shotgun sound
                 SoundUtils.PlaySound3D(shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);

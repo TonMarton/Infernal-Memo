@@ -1,174 +1,267 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(CharacterController))]
 [DisallowMultipleComponent]
 public class Controller : MonoBehaviour
 {
-    public bool _canMove { get; private set; } = true;
-    private bool _IsSprinting => _canSprint && Input.GetKey(_sprintKey);
-    private bool _ShouldJump => Input.GetKeyDown(_jumpKey) && _characterController.isGrounded;
-    private bool _ShouldCrouch => Input.GetKeyDown(_crouchKey) && !_crouchAnimation && _characterController.isGrounded;
+    private bool canMove { get; set; } = true;
+    private bool IsSprinting => canSprint && Input.GetKey(sprintKey);
+    private bool ShouldJump => Input.GetKeyDown(jumpKey) && characterController.isGrounded;
+    private bool ShouldCrouch => Input.GetKeyDown(crouchKey) && !crouchAnimation && characterController.isGrounded;
 
-    [Header("Functional")]
-    [SerializeField] private bool _canSprint = true;
-    [SerializeField] private bool _canJump = true;
-    [SerializeField] private bool _canCrouch = true;
-    [SerializeField] private bool _canShakeScreen = true;
+    [FormerlySerializedAs("_canSprint")] [Header("Functional")] [SerializeField]
+    private bool canSprint = true;
 
-    [Header("Controls")]
-    [SerializeField] private KeyCode _sprintKey = KeyCode.LeftShift;
-    [SerializeField] private KeyCode _jumpKey = KeyCode.Space;
-    [SerializeField] private KeyCode _crouchKey = KeyCode.C;
+    [FormerlySerializedAs("_canJump")] [SerializeField]
+    private bool canJump = true;
 
-    [Header("Movement Params")]
-    [SerializeField] private float _walkSpeed = 3.65f;
-    [SerializeField] private float _sprintSpeed = 6.15f;
-    [SerializeField] private float _crouchSpeed = 1.85f;
+    [FormerlySerializedAs("_canCrouch")] [SerializeField]
+    private bool canCrouch = true;
 
-    [Header("Look Params")]
-    [SerializeField, Range(1, 10)] private float _lookSpeedX = 2.0f;
-    [SerializeField, Range(1, 10)] private float _lookSpeedY = 2.0f;
-    [SerializeField, Range(1, 180)] private float _upperLookLimit = 80.0f;
-    [SerializeField, Range(1, 180)] private float _lowerLookLimit = 80.0f;
+    [FormerlySerializedAs("_canShakeScreen")] [SerializeField]
+    private bool canShakeScreen = true;
 
-    [Header("Force/Gravity")]
-    [SerializeField] private float _jumpForce = 8.0f;
+    [FormerlySerializedAs("_sprintKey")] [Header("Controls")] [SerializeField]
+    private KeyCode sprintKey = KeyCode.LeftShift;
+
+    [FormerlySerializedAs("_jumpKey")] [SerializeField]
+    private KeyCode jumpKey = KeyCode.Space;
+
+    [FormerlySerializedAs("_crouchKey")] [SerializeField]
+    private KeyCode crouchKey = KeyCode.C;
+
+    [FormerlySerializedAs("_walkSpeed")] [Header("Movement Params")] [SerializeField]
+    private float walkSpeed = 3.65f;
+
+    [FormerlySerializedAs("_sprintSpeed")] [SerializeField]
+    private float sprintSpeed = 6.15f;
+
+    [FormerlySerializedAs("_crouchSpeed")] [SerializeField]
+    private float crouchSpeed = 1.85f;
+
+    [FormerlySerializedAs("_lookSpeedX")] [Header("Look Params")] [SerializeField, Range(1, 10)]
+    private float lookSpeedX = 2.0f;
+
+    [FormerlySerializedAs("_lookSpeedY")] [SerializeField, Range(1, 10)]
+    private float lookSpeedY = 2.0f;
+
+    [FormerlySerializedAs("_upperLookLimit")] [SerializeField, Range(1, 180)]
+    private float upperLookLimit = 80.0f;
+
+    [FormerlySerializedAs("_lowerLookLimit")] [SerializeField, Range(1, 180)]
+    private float lowerLookLimit = 80.0f;
+
+    [FormerlySerializedAs("_jumpForce")] [Header("Force/Gravity")] [SerializeField]
+    private float jumpForce = 8.0f;
+
     [SerializeField] private float _gravity = 30.0f;
 
-    [Header("Crouch")]
-    [SerializeField] private float _crouchHeight = .5f;
-    [SerializeField] private float _standingHeight = 2f;
-    [SerializeField] private float _timeToCrouch = .25f;
-    [SerializeField] private Vector3 _crouchingCenter = new Vector3(0, .5f, 0);
-    [SerializeField] private Vector3 _standingCenter = new Vector3(0, 0, 0);
-    private bool _isCrouching;
-    private bool _crouchAnimation;
+    [Header("Crouch")] [SerializeField] private float _crouchHeight = .5f;
 
-    [Header("Screenshake")]
-    [SerializeField] private float _walkShakeSpeed = 14f;
-    [SerializeField] private float _walkShakeAmount = .05f;
-    [SerializeField] private float _sprintShakeSpeed = 18f;
-    [SerializeField] private float _sprintShakeAmount = .11f;
-    [SerializeField] private float _crouchShakeSpeed = 8f;
-    [SerializeField] private float _crouchShakeAmount = .025f;
-    private float defaulyYPos = 0;
+    [FormerlySerializedAs("_standingHeight")] [SerializeField]
+    private float standingHeight = 2f;
+
+    [FormerlySerializedAs("_timeToCrouch")] [SerializeField]
+    private float timeToCrouch = .25f;
+
+    [FormerlySerializedAs("_crouchingCenter")] [SerializeField]
+    private Vector3 crouchingCenter = new Vector3(0, .5f, 0);
+
+    [FormerlySerializedAs("_standingCenter")] [SerializeField]
+    private Vector3 standingCenter = new Vector3(0, 0, 0);
+
+    private bool isCrouching;
+    private bool crouchAnimation;
+
+    [FormerlySerializedAs("_walkShakeSpeed")] [Header("Screenshake")] [SerializeField]
+    private float walkShakeSpeed = 14f;
+
+    [FormerlySerializedAs("_walkShakeAmount")] [SerializeField]
+    private float walkShakeAmount = .05f;
+
+    [FormerlySerializedAs("_sprintShakeSpeed")] [SerializeField]
+    private float sprintShakeSpeed = 18f;
+
+    [FormerlySerializedAs("_sprintShakeAmount")] [SerializeField]
+    private float sprintShakeAmount = .11f;
+
+    [FormerlySerializedAs("_crouchShakeSpeed")] [SerializeField]
+    private float crouchShakeSpeed = 8f;
+
+    [FormerlySerializedAs("_crouchShakeAmount")] [SerializeField]
+    private float crouchShakeAmount = .025f;
+
+    [Header("Sound")] [SerializeField] private FMODUnity.EventReference jumpSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance jumpSoundInstance;
+
+    private float defaultYPos = 0;
     private float timer;
 
-    private Camera _playerCamera;
-    private CharacterController _characterController;
+    private Camera playerCamera;
+    private CharacterController characterController;
 
-    private Vector3 _moveDirection;
-    private Vector2 _currentInput;
+    private Vector3 moveDirection;
+    private Vector2 currentInput;
 
-    private float _rotationX = 0;
+    private float rotationX = 0;
 
-    void Awake()
+    private void Awake()
     {
-        _playerCamera = GetComponentInChildren<Camera>();
-        _characterController = GetComponent<CharacterController>();
-        defaulyYPos = _playerCamera.transform.localPosition.y;
+        playerCamera = GetComponentInChildren<Camera>();
+        characterController = GetComponent<CharacterController>();
+
+        // remember the starting mouse location
+        defaultYPos = playerCamera.transform.localPosition.y;
+
+        // hijack the cursor for player look by locking the cursor and hiding it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
-    void Update()
+    private void Update()
     {
-        if (_canMove)
+        // Can't move?
+        if (!canMove)
         {
-            MovementInput();
-            MouseLook();
-
-            if (_canJump)
-                Jump();
-
-            if (_canCrouch)
-                Crouch();
-
-            if (_canShakeScreen)
-                ScreenShake();
-
-            FinalMovements();
+            // then do nothing
+            return;
         }
+
+        // move
+        MovementInput();
+
+        // look
+        MouseLook();
+
+        // can jump?
+        if (canJump)
+        {
+            // then jump
+            Jump();
+        }
+
+        // can crouch?
+        if (canCrouch)
+        {
+            // then crouch
+            Crouch();
+        }
+
+        // can shake screen?
+        if (canShakeScreen)
+        {
+            // then shake the screen
+            ScreenShake();
+        }
+
+        FinalMovements();
     }
 
     private void MovementInput()
     {
-        _currentInput = new Vector2((_isCrouching ? _crouchSpeed : _IsSprinting ? _sprintSpeed : _walkSpeed) * Input.GetAxis("Vertical"), (_isCrouching ? _crouchSpeed : _IsSprinting ? _sprintSpeed : _walkSpeed) * Input.GetAxis("Horizontal"));
+        currentInput =
+            new Vector2(
+                (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"),
+                (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal"));
 
-        float moveDirectionY = _moveDirection.y;
-        _moveDirection = (transform.TransformDirection(Vector3.forward) * _currentInput.x) + (transform.TransformDirection(Vector3.right) * _currentInput.y);
-        _moveDirection.y = moveDirectionY;
+        var moveDirectionY = moveDirection.y;
+        moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) +
+                        (transform.TransformDirection(Vector3.right) * currentInput.y);
+        moveDirection.y = moveDirectionY;
     }
 
     private void MouseLook()
     {
-        _rotationX -= Input.GetAxis("Mouse Y") * _lookSpeedY;
-        _rotationX = Mathf.Clamp(_rotationX, -_upperLookLimit, _lowerLookLimit);
-        _playerCamera.transform.localRotation = Quaternion.Euler(_rotationX, 0, 0);
-        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * _lookSpeedX, 0);
+        rotationX -= Input.GetAxis("Mouse Y") * lookSpeedY;
+        rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
+        playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeedX, 0);
     }
 
     private void Jump()
     {
-        if (_ShouldJump && !_isCrouching)
-            _moveDirection.y = _jumpForce;
+        // can't jump?
+        if (!ShouldJump || isCrouching)
+        {
+            // do nothing
+            return;
+        }
+
+        // apply jump force
+        moveDirection.y = jumpForce;
+
+        // play jump sound
+        SoundUtils.PlaySound3D(jumpSoundInstance, jumpSoundEvent, gameObject);
     }
 
     private void Crouch()
     {
-        if (_ShouldCrouch)
-            StartCoroutine(CrouchStand());
+        // shouldn't crouch?
+        if (!ShouldCrouch)
+        {
+            // do nothing
+            return;
+        }
+
+        // crouch
+        StartCoroutine(CrouchStand());
     }
 
     private void ScreenShake()
     {
-        if (!_characterController.isGrounded) return;
+        if (!characterController.isGrounded) return;
 
-        if (Mathf.Abs(_moveDirection.x) > 0.1f || Mathf.Abs(_moveDirection.z) > 0.1f)
+        if (!(Mathf.Abs(moveDirection.x) > 0.1f) && !(Mathf.Abs(moveDirection.z) > 0.1f))
         {
-            timer += Time.deltaTime * (_isCrouching ? _crouchShakeSpeed : _IsSprinting ? _sprintShakeSpeed : _walkShakeSpeed);
-            _playerCamera.transform.localPosition = new Vector3(
-                _playerCamera.transform.localPosition.x, defaulyYPos + Mathf.Sin(timer) * (_isCrouching ? _crouchShakeAmount : _IsSprinting ? _sprintShakeAmount : _walkShakeAmount),
-                _playerCamera.transform.localPosition.z);
+            return;
         }
+
+        timer += Time.deltaTime *
+                 (isCrouching ? crouchShakeSpeed : IsSprinting ? sprintShakeSpeed : walkShakeSpeed);
+        playerCamera.transform.localPosition = new Vector3(
+            playerCamera.transform.localPosition.x,
+            defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchShakeAmount :
+                IsSprinting ? sprintShakeAmount : walkShakeAmount),
+            playerCamera.transform.localPosition.z);
     }
 
     private void FinalMovements()
     {
-        if (!_characterController.isGrounded)
-            _moveDirection.y -= _gravity * Time.deltaTime;
+        if (!characterController.isGrounded)
+            moveDirection.y -= _gravity * Time.deltaTime;
 
-        _characterController.Move(_moveDirection * Time.deltaTime);
+        characterController.Move(moveDirection * Time.deltaTime);
     }
 
     private IEnumerator CrouchStand()
     {
-        if (_isCrouching && Physics.Raycast(_playerCamera.transform.position, Vector3.up, 1.5f))
+        if (isCrouching && Physics.Raycast(playerCamera.transform.position, Vector3.up, 1.5f))
             yield break;
 
-        _crouchAnimation = true;
+        crouchAnimation = true;
 
         float timeElapsed = 0;
-        float targetHeight = _isCrouching ? _standingHeight : _crouchHeight;
-        float currentHeight = _characterController.height;
-        Vector3 targetCenter = _isCrouching ? _standingCenter : _crouchingCenter;
-        Vector3 currentCenter = _characterController.center;
+        var targetHeight = isCrouching ? standingHeight : _crouchHeight;
+        var currentHeight = characterController.height;
+        var targetCenter = isCrouching ? standingCenter : crouchingCenter;
+        var currentCenter = characterController.center;
 
-        while(timeElapsed < _timeToCrouch)
+        while (timeElapsed < timeToCrouch)
         {
-            _characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / _timeToCrouch);
-            _characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / _timeToCrouch);
+            characterController.height = Mathf.Lerp(currentHeight, targetHeight, timeElapsed / timeToCrouch);
+            characterController.center = Vector3.Lerp(currentCenter, targetCenter, timeElapsed / timeToCrouch);
             timeElapsed += Time.deltaTime;
             yield return null;
         }
 
-        _characterController.height = targetHeight;
-        _characterController.center = targetCenter;
+        characterController.height = targetHeight;
+        characterController.center = targetCenter;
 
-        _isCrouching = !_isCrouching;
-        _crouchAnimation = false;
+        isCrouching = !isCrouching;
+        crouchAnimation = false;
     }
 }

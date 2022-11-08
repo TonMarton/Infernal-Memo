@@ -1,19 +1,44 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 [DisallowMultipleComponent]
 public class PauseMenu : MonoBehaviour
 {
+    // Buttons
     [SerializeField] private Button continueButton;
     [SerializeField] private Button mainMenuButton;
     [SerializeField] private Button exitButton;
 
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference hoverSoundEvent;
+    [SerializeField] private FMODUnity.EventReference clickSoundEvent;
+    [SerializeField] private FMODUnity.EventReference openSoundEvent;
+    [SerializeField] private FMODUnity.EventReference closeSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance hoverSoundInstance;
+    private FMOD.Studio.EventInstance clickSoundInstance;
+    private FMOD.Studio.EventInstance openSoundInstance;
+    private FMOD.Studio.EventInstance closeSoundInstance;
+
     private void Awake()
     {
+        // click sounds
+        continueButton.onClick.AddListener(PlayClickSound);
+        mainMenuButton.onClick.AddListener(PlayClickSound);
+        exitButton.onClick.AddListener(PlayClickSound);
+        
+        // hover sounds (using OnPointerEnter)
+        continueButton.GetComponent<EventTrigger>().triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
+        mainMenuButton.GetComponent<EventTrigger>().triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
+        exitButton.GetComponent<EventTrigger>().triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
+        
         // continue button toggles the pause menu
         continueButton.onClick.AddListener(Toggle);
 
+        // main menu button loads the main menu scene
         mainMenuButton.onClick.AddListener(OpenMainMenu);
 
         // exit button quits the game 
@@ -25,6 +50,19 @@ public class PauseMenu : MonoBehaviour
     {
         // toggle the pause menu 
         gameObject.SetActive(!gameObject.activeSelf);
+
+        // menu is open?
+        if (gameObject.activeSelf)
+        {
+            // play menu open sound
+            SoundUtils.PlaySound3D(openSoundInstance, openSoundEvent, gameObject);
+        }
+        // menu is closed?
+        else
+        {
+            // play menu closed sound
+            SoundUtils.PlaySound3D(closeSoundInstance, closeSoundEvent, gameObject);
+        }
 
         // if pause menu is active, show the mouse cursor
         if (gameObject.activeSelf)
@@ -38,6 +76,16 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+    
+    private void PlayClickSound()
+    {
+        SoundUtils.PlaySound3D(clickSoundInstance, clickSoundEvent, gameObject);
+    }
+    
+    private void PlayHoverSound(PointerEventData pointerEventData)
+    {
+        SoundUtils.PlaySound3D(hoverSoundInstance, hoverSoundEvent, gameObject);
     }
 
     private void OpenMainMenu()

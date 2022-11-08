@@ -15,8 +15,11 @@ public class PlayerStats : MonoBehaviour
     [Header("UI")] [SerializeField] private DeathMenu deathMenu;
     [SerializeField] private HUD hud;
 
-    [FormerlySerializedAs("hurtSound")] [Header("Sound")] [SerializeField] private FMODUnity.EventReference hurtSoundEvent;
-    [FormerlySerializedAs("deathSound")] [SerializeField] private FMODUnity.EventReference deathSoundEvent;
+    [FormerlySerializedAs("hurtSound")] [Header("Sound")] [SerializeField]
+    private FMODUnity.EventReference hurtSoundEvent;
+
+    [FormerlySerializedAs("deathSound")] [SerializeField]
+    private FMODUnity.EventReference deathSoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance hurtSoundInstance;
@@ -94,5 +97,24 @@ public class PlayerStats : MonoBehaviour
 
         // had enough ammo
         return true;
+    }
+
+
+    public void GetShells(int count)
+    {
+        // are we at max shells?
+        if (shells == maxShells)
+        {
+            // then do nothing
+            return;
+        }
+
+        // add shells
+        shells = Mathf.Min(shells + count, maxShells);
+
+        // TODO: play shell pickup sound
+
+        // update HUD
+        hud.ChangeShellsText(shells);
     }
 }
