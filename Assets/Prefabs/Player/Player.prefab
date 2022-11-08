@@ -598,7 +598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0194184224695fb4aaa206b898e2eaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSpeed: 1
+  stepSpeed: 0.7
   footstepSoundEvent:
     Guid:
       Data1: 0

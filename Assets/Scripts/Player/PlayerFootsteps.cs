@@ -21,24 +21,34 @@ public class PlayerFootsteps : MonoBehaviour
         characterController = GetComponent<CharacterController>();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
-        Vector3 velocity = characterController.velocity;
-        velocity.y = 0;
-        float amount = velocity.magnitude;
-        timer += amount * stepSpeed;
 
-        if (timer >= 1f && characterController.isGrounded)
+        if (characterController.isGrounded)
         {
-            timer %= 1f;
-            PlayFootstepSound();
+            Vector3 velocity = characterController.velocity;
+            velocity.y = 0;
+            float amount = velocity.magnitude;
+            timer += amount * stepSpeed * Time.deltaTime;
+
+            if (timer >= 1f)
+            {
+                timer %= 1f;
+                try
+                {
+                    PlayFootstepSound();
+                }
+                catch (System.Exception)
+                {
+                }
+            }
         }
+
     }
 
     public void PlayFootstepSound()
     {
-        //Debug.Log("Step");
-        
+        Debug.Log("<footstep>"); // print to console until sounds work
         SoundUtils.PlaySound3D(footstepSoundInstance, footstepSoundEvent, gameObject);
     }
 }
