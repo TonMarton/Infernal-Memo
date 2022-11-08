@@ -613,7 +613,20 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    Android: 
+    EmbeddedLinux: 
+    GameCoreXboxOne: 
+    Lumin: 
+    Nintendo Switch: 
+    PS4: 
+    PS5: 
+    Stadia: 
+    Standalone: 
+    WebGL: 
+    Windows Store Apps: 
+    XboxOne: 
+    tvOS: 
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}
