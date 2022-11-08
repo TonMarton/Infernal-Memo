@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{f01a53f1-6e2d-411e-899d-ae7d642f159f}">
 		<property name="assetPath">
-			<value>Stapler swing.wav</value>
+			<value>sfxs/Guns/Stapler/Stapler swing.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
