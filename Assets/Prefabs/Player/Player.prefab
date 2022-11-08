@@ -601,10 +601,10 @@ MonoBehaviour:
   stepSpeed: 0.7
   footstepSoundEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
+      Data1: 797809666
+      Data2: 1334959478
+      Data3: 1049463692
+      Data4: -113583250
     Path: event:/Sfxs/Player/Footsteps/Footsteps
 --- !u!1001 &3811574758114830044
 PrefabInstance:
