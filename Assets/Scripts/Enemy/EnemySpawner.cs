@@ -42,10 +42,16 @@ public class EnemySpawner : MonoBehaviour
         // find the mesh filter component in children
         var meshFilter = enemyPrefab.GetComponentInChildren<MeshFilter>();
         var mesh = meshFilter.sharedMesh;
+        if (meshFilter == null)
+        {
+            var skinnedMeshRenderer = enemyPrefab.GetComponent<SkinnedMeshRenderer>();
+            mesh = skinnedMeshRenderer.sharedMesh;
+        }
+
         var meshTransform = meshFilter.gameObject.transform;
 
         // also add half the mesh's height to the position so the gizmo is centered on the enemy
-        var position = transform.position + meshTransform.localPosition + Vector3.up * (mesh.bounds.size.y) * 3;
+        var position = transform.position;
 
         Gizmos.DrawMesh(mesh, 0,
             position,
