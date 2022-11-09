@@ -5,7 +5,7 @@
 			<value>Office soundscape</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{eed1e450-863e-4996-b83c-3ad59b705259}</destination>
@@ -130,7 +130,6 @@
 	<object class="MixerBusEffectChain" id="{35898bd5-2dd2-46fb-8eee-8143c54cf96e}">
 		<relationship name="effects">
 			<destination>{51f1e9b8-324a-44de-9abd-8211c505df3d}</destination>
-			<destination>{7fbf46c4-1b5e-408e-b122-ae53f16dfbb0}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1b8b2147-0d26-45fd-a525-5222a5973ba1}" />
@@ -142,6 +141,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{b40f5f75-5d7f-4a96-bc0b-195f80d60800}" />
 	<object class="MixerBusFader" id="{51f1e9b8-324a-44de-9abd-8211c505df3d}" />
-	<object class="SpatialiserEffect" id="{7fbf46c4-1b5e-408e-b122-ae53f16dfbb0}" />
 	<object class="MixerBusFader" id="{649d4afd-3211-4e61-a253-38332e63d5ba}" />
 </objects>

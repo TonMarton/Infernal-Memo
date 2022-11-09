@@ -5,7 +5,7 @@
 			<value>Draw_handling</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{b37663c3-e791-46e5-9dfe-a04b8b9ebc91}</destination>
@@ -96,7 +96,7 @@
 			<destination>{1362d059-28b5-4755-9347-9a3a3a16b244}</destination>
 		</relationship>
 		<relationship name="audioFile">
-			<destination>{91e9299a-c7f0-4431-b558-b793d4a6c868}</destination>
+			<destination>{fce1562d-7304-4fd4-aca6-f9d5afd5b257}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{eceff54d-f87f-429f-bba9-fbd8feaae0b0}">
@@ -119,7 +119,6 @@
 	<object class="MixerBusEffectChain" id="{67bcf3e9-81e2-43cf-8563-1647a98c80f7}">
 		<relationship name="effects">
 			<destination>{6258fa67-1759-45a8-909a-ee2235ad2674}</destination>
-			<destination>{7764ff30-49b6-4c3e-9194-7587815211a2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1ebf38d8-e95d-4b92-b29e-2148e9e139d2}" />
@@ -139,7 +138,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{1469a510-e4ae-47e9-8ae6-2fb370312b01}" />
 	<object class="MixerBusFader" id="{6258fa67-1759-45a8-909a-ee2235ad2674}" />
-	<object class="SpatialiserEffect" id="{7764ff30-49b6-4c3e-9194-7587815211a2}" />
 	<object class="AutomationPoint" id="{d86e924b-46ba-4169-a0c8-2097dad800a9}">
 		<property name="position">
 			<value>0.84482758620689657</value>
