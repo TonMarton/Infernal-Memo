@@ -5,7 +5,7 @@
 			<value>Enemy</value>
 		</property>
 		<relationship name="folder">
-			<destination>{00c2d73f-997a-46ef-9b2c-75a63ab940fa}</destination>
+			<destination>{a93fea4a-5986-4cde-82f9-7b45cba1e89e}</destination>
 		</relationship>
 	</object>
 </objects>

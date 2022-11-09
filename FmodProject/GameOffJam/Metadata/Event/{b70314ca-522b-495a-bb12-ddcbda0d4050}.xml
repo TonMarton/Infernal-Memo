@@ -5,7 +5,7 @@
 			<value>Win Stinger</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{00c2d73f-997a-46ef-9b2c-75a63ab940fa}</destination>
@@ -116,7 +116,6 @@
 	<object class="MixerBusEffectChain" id="{377f73c0-4a80-4c56-bda7-922c21e09127}">
 		<relationship name="effects">
 			<destination>{e90ebf4c-86ce-47c0-b078-e7a8310cd597}</destination>
-			<destination>{ab48222e-5e44-48e8-aec8-cacb80460cc3}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6801b631-a14a-432c-99ee-f82a74f05c2a}" />
@@ -128,6 +127,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{3e91585a-5435-4bc4-9f5b-8ea368cb1fa1}" />
 	<object class="MixerBusFader" id="{e90ebf4c-86ce-47c0-b078-e7a8310cd597}" />
-	<object class="SpatialiserEffect" id="{ab48222e-5e44-48e8-aec8-cacb80460cc3}" />
 	<object class="MixerBusFader" id="{1c2391bc-a514-41c3-bc83-5dffe2189b38}" />
 </objects>

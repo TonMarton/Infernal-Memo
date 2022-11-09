@@ -5,7 +5,7 @@
 			<value>Lose Stinger</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{00c2d73f-997a-46ef-9b2c-75a63ab940fa}</destination>
@@ -116,7 +116,6 @@
 	<object class="MixerBusEffectChain" id="{86309e6b-359e-4f60-a17b-0342cb64ccbc}">
 		<relationship name="effects">
 			<destination>{f0e1e299-bfd1-4705-a22b-7604873ee489}</destination>
-			<destination>{37f65e70-574c-4670-8eef-f2785ecddf60}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{31bc20ed-a863-4cd8-9667-b8e45a07ea62}" />
@@ -128,6 +127,5 @@
 	</object>
 	<object class="MixerBusPanner" id="{098d7040-4a35-4f67-8f26-52609619bbe4}" />
 	<object class="MixerBusFader" id="{f0e1e299-bfd1-4705-a22b-7604873ee489}" />
-	<object class="SpatialiserEffect" id="{37f65e70-574c-4670-8eef-f2785ecddf60}" />
 	<object class="MixerBusFader" id="{ec6654c1-aa6b-4bc3-8029-c62f14ddaa67}" />
 </objects>

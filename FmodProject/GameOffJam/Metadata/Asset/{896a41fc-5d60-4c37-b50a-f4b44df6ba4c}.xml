@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{896a41fc-5d60-4c37-b50a-f4b44df6ba4c}">
+		<property name="assetPath">
+			<value>Sfxs/Guns/Shotgun/Empty_Shells/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>

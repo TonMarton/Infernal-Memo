@@ -5,7 +5,7 @@
 			<value>Stapler draw</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{1e95d452-a86f-4a44-85a9-47e17735d3e1}</destination>
@@ -96,7 +96,7 @@
 			<destination>{59f72625-389e-4775-a592-f2e52a187427}</destination>
 		</relationship>
 		<relationship name="audioFile">
-			<destination>{5bb9d57c-45b6-4ce9-aaaf-103826979284}</destination>
+			<destination>{2316e430-58b0-42b5-91c9-ba7901519ff2}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{051b06e8-8ca6-40a7-a5dc-21833da7e61b}">
@@ -116,7 +116,6 @@
 	<object class="MixerBusEffectChain" id="{c47d7823-cbf0-439b-98e3-0a6692965c97}">
 		<relationship name="effects">
 			<destination>{f0339c05-2c18-4466-b68d-6a1f965f92f5}</destination>
-			<destination>{84f0691f-739a-4a9b-9003-acb1337e591f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6e9d7d1e-2a94-4899-af18-0fd273f15e0c}" />
@@ -136,7 +135,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{1ec2b10b-8416-473f-bc4b-dab0372ccac1}" />
 	<object class="MixerBusFader" id="{f0339c05-2c18-4466-b68d-6a1f965f92f5}" />
-	<object class="SpatialiserEffect" id="{84f0691f-739a-4a9b-9003-acb1337e591f}" />
 	<object class="AutomationPoint" id="{213b193d-2e31-4735-aef4-eae4de397f30}">
 		<property name="position">
 			<value>0.9375</value>
