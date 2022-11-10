@@ -159,6 +159,8 @@ public class Controller : MonoBehaviour
         }
 
         FinalMovements();
+
+        CheckCeilingCollisions();
     }
 
     private void MovementInput()
@@ -235,6 +237,18 @@ public class Controller : MonoBehaviour
             moveDirection.y -= _gravity * Time.deltaTime;
 
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void CheckCeilingCollisions()
+    {
+        if ((characterController.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            // Set vertical movement to 0 when character hits the ceiling
+            if (moveDirection.y > 0)
+            {
+                moveDirection.y = 0;
+            }
+        }
     }
 
     private IEnumerator CrouchStand()
