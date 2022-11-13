@@ -57,7 +57,22 @@ ModelImporter:
   - first:
       74: -62226230877068951
     second: muzzle_light|Point.002Action
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 9a80469d852bd154d811882d3609929a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flash
+    second: {fileID: 2100000, guid: c1310f8bc498e9e4cab55e3ddfc5d1b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: gun
+    second: {fileID: 2100000, guid: e409e8e61a9e8564fa043c025d2028d6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
