@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{9ac96fcc-9ffc-4285-ab54-57afb41e9bc3}">
 		<property name="name">
-			<value>Pistol_draw</value>
+			<value>Draw_to_shotgun</value>
 		</property>
 		<property name="outputFormat">
 			<value>2</value>
@@ -59,11 +59,18 @@
 	<object class="EventAutomatableProperties" id="{24cf5f5b-40dd-4070-9ef2-24ddda27db60}" />
 	<object class="MarkerTrack" id="{f5c20719-547e-4347-bebb-cb5a9989051e}" />
 	<object class="GroupTrack" id="{b0423fe7-ae2e-4c28-8528-8e9844200cd7}">
+		<relationship name="modules">
+			<destination>{999d2baf-b341-43e3-87dd-e636e3f326bb}</destination>
+		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{b039fa11-4163-4ea6-a7ab-8d8e8e39af63}</destination>
 		</relationship>
 	</object>
-	<object class="Timeline" id="{ef4c115c-6db0-4208-904d-a4c23a875bf7}" />
+	<object class="Timeline" id="{ef4c115c-6db0-4208-904d-a4c23a875bf7}">
+		<relationship name="modules">
+			<destination>{999d2baf-b341-43e3-87dd-e636e3f326bb}</destination>
+		</relationship>
+	</object>
 	<object class="EventMixerMaster" id="{94279510-723d-41f4-b360-9b7fba921ef2}">
 		<relationship name="effectChain">
 			<destination>{6235f5da-8076-4c42-bcb7-f91fb131c862}</destination>
@@ -81,6 +88,11 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6efc92a6-a2f2-4e27-93c4-561b0f2b2782}" />
+	<object class="MultiSound" id="{999d2baf-b341-43e3-87dd-e636e3f326bb}">
+		<property name="length">
+			<value>2</value>
+		</property>
+	</object>
 	<object class="EventMixerGroup" id="{b039fa11-4163-4ea6-a7ab-8d8e8e39af63}">
 		<property name="name">
 			<value>Audio 1</value>
