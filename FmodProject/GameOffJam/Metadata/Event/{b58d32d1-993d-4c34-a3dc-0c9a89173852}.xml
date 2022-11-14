@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{b58d32d1-993d-4c34-a3dc-0c9a89173852}">
 		<property name="name">
-			<value>Draw_shotgun_pistol</value>
+			<value>Take away</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -90,24 +90,21 @@
 	<object class="MixerBusPanner" id="{c5c362f5-504f-4275-885b-152eecbcab28}" />
 	<object class="MultiSound" id="{65619c59-a195-44b4-8c79-0eccebc24722}">
 		<property name="length">
-			<value>3.5</value>
+			<value>1.875</value>
 		</property>
 		<relationship name="modulators">
-			<destination>{ddbc85bc-cfbd-4702-8626-d3203d80e38e}</destination>
+			<destination>{8759d548-e4c6-4f47-b087-ad3f2f14a699}</destination>
 		</relationship>
 		<relationship name="fadeOutCurve">
 			<destination>{b1049309-d229-4a15-997d-9cee17659a81}</destination>
 		</relationship>
 		<relationship name="sounds">
-			<destination>{8020a804-6055-48ac-97bc-d9a2d3d629aa}</destination>
-			<destination>{f8cd5d83-2627-49de-8e59-d139b19c30a6}</destination>
-			<destination>{ce8e4d7d-b196-43c5-8c27-ac7e83537c9a}</destination>
+			<destination>{208751c1-6f95-431a-93a8-47f1b19cf92b}</destination>
+			<destination>{aa6ea0f3-83cf-44dd-9cf1-aeaa269c6664}</destination>
+			<destination>{78154376-0a55-40ca-a6ea-3450d4767997}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{fd91a8a6-9202-49e3-9f76-9604363e1e36}">
-		<property name="volume">
-			<value>-6.5</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -128,12 +125,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{b1799cd1-381c-4982-9927-4692e356b7f4}" />
 	<object class="MixerBusFader" id="{f1b735b3-16da-499f-afc2-cbf05875426f}" />
-	<object class="RandomizerModulator" id="{ddbc85bc-cfbd-4702-8626-d3203d80e38e}">
+	<object class="RandomizerModulator" id="{8759d548-e4c6-4f47-b087-ad3f2f14a699}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>
 		<property name="amount">
-			<value>2</value>
+			<value>7</value>
 		</property>
 	</object>
 	<object class="FadeCurve" id="{b1049309-d229-4a15-997d-9cee17659a81}">
@@ -144,19 +141,19 @@
 			<destination>{b4011e76-01b6-4f59-89c4-8be05a42d65a}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{8020a804-6055-48ac-97bc-d9a2d3d629aa}">
+	<object class="SingleSound" id="{208751c1-6f95-431a-93a8-47f1b19cf92b}">
 		<relationship name="audioFile">
-			<destination>{91d07756-b885-4f05-8920-d60f26adc684}</destination>
+			<destination>{7ed2df01-7b03-4082-9996-aa824879baaf}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{f8cd5d83-2627-49de-8e59-d139b19c30a6}">
+	<object class="SingleSound" id="{aa6ea0f3-83cf-44dd-9cf1-aeaa269c6664}">
 		<relationship name="audioFile">
-			<destination>{67a4125c-7917-46b1-bed1-5437c7d26e17}</destination>
+			<destination>{7760be25-fceb-472b-9471-88c5fafd7b4c}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{ce8e4d7d-b196-43c5-8c27-ac7e83537c9a}">
+	<object class="SingleSound" id="{78154376-0a55-40ca-a6ea-3450d4767997}">
 		<relationship name="audioFile">
-			<destination>{a4b4aef1-7efb-449f-b2f4-5047fa8470d7}</destination>
+			<destination>{d522ec74-de58-44d2-a375-f41ef7d8e4c2}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{a6a4584f-8e29-4440-9599-08b4863af74c}">
@@ -168,18 +165,18 @@
 	<object class="MixerBusFader" id="{6b6cf801-05e0-4d81-aded-bac9103a29ae}" />
 	<object class="AutomationPoint" id="{a36685d1-6af0-43b3-9933-6114ae55e511}">
 		<property name="position">
-			<value>2.5</value>
+			<value>0.875</value>
 		</property>
 		<property name="value">
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>0.25471893</value>
+			<value>1</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{b4011e76-01b6-4f59-89c4-8be05a42d65a}">
 		<property name="position">
-			<value>3.5</value>
+			<value>1.875</value>
 		</property>
 		<property name="value">
 			<value>0</value>
