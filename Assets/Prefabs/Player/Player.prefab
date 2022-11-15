@@ -415,12 +415,48 @@ MonoBehaviour:
   timeToCrouch: 0.25
   crouchingCenter: {x: 0, y: 0.5, z: 0}
   standingCenter: {x: 0, y: 0, z: 0}
-  walkShakeSpeed: 0
-  walkShakeAmount: 0
-  sprintShakeSpeed: 0
-  sprintShakeAmount: 0
-  crouchShakeSpeed: 8
-  crouchShakeAmount: 0.25
+  walkShakeSpeed: 20
+  walkShakeAmount: 0.05
+  sprintShakeSpeed: 22
+  sprintShakeAmount: 0.06
+  crouchShakeSpeed: 9
+  crouchShakeAmount: 0.1
+  damageShakeAmount: 0.3
+  damageShakeSpeed: 25
+  damageShakeDuration: 0.2
+  damageShakeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.0040983604
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.17622308
+      value: 0.2900943
+      inSlope: 0.41437826
+      outSlope: 0.41437826
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.29409817
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.9699454
+      value: -0.000000007450581
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 136
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   jumpSoundEvent:
     Guid:
       Data1: -1079842936
@@ -428,6 +464,7 @@ MonoBehaviour:
       Data3: -1876612434
       Data4: 531018577
     Path: event:/Sfxs/Player/Jump/Jump
+  damageTaken: 0
 --- !u!114 &6386166238158225820
 MonoBehaviour:
   m_ObjectHideFlags: 0

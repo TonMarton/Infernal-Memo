@@ -61,6 +61,9 @@ public class PlayerStats : MonoBehaviour
             return;
         }
 
+        // shake screen
+        gameObject.GetComponent<Controller>().damageTaken = true;
+
         // play hurt sound
         SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
     }
