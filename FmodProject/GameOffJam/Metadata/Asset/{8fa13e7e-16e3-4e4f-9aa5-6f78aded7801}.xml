@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="EncodableAsset" id="{15506915-fe39-4ddb-926d-fa13c9f6a379}">
+	<object class="EncodableAsset" id="{8fa13e7e-16e3-4e4f-9aa5-6f78aded7801}">
 		<property name="assetPath">
-			<value>Sfxs/Guns/Shotgun/Take away/</value>
+			<value>Sfxs/Guns/Shotgun/Shotgun put away/</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
