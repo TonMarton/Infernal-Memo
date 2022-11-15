@@ -13,8 +13,10 @@ public class Shotgun : MonoBehaviour
 
     [SerializeField] private GameObject shotgunModel;
 
+    [SerializeField] private Animator animator;
+
     [Min(1)] [SerializeField] private int bulletCount = 20;
-    [Min(1)] [SerializeField] private int shellsShootCost = 2;
+    [Min(0)] [SerializeField] private int shellsShootCost = 2;
     [Min(0)] [SerializeField] private float cooldownTime = 1.4f;
     [Min(1)] [SerializeField] private float damagePerBullet = 2f;
 
@@ -106,6 +108,9 @@ public class Shotgun : MonoBehaviour
             // TODO: play out of ammo sound
             return;
         }
+
+        // play animation
+        animator.Play("Shotgun Shoot", -1, 0);
 
         // reset cooldown time
         currentCooldownTime = cooldownTime;
