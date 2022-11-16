@@ -24,7 +24,6 @@
 		</relationship>
 		<relationship name="markerTracks">
 			<destination>{2fe69023-0b2a-499d-b472-2d59a584c311}</destination>
-			<destination>{7596163f-4814-422b-bb7c-f3ed8a5a5ae6}</destination>
 		</relationship>
 		<relationship name="groupTracks">
 			<destination>{f623406f-0c6f-4203-ab26-f9f4cbc898f0}</destination>
@@ -65,7 +64,6 @@
 	</object>
 	<object class="EventAutomatableProperties" id="{09bf29c3-ecf1-452e-aa87-2858b1db0886}" />
 	<object class="MarkerTrack" id="{2fe69023-0b2a-499d-b472-2d59a584c311}" />
-	<object class="MarkerTrack" id="{7596163f-4814-422b-bb7c-f3ed8a5a5ae6}" />
 	<object class="GroupTrack" id="{f623406f-0c6f-4203-ab26-f9f4cbc898f0}">
 		<relationship name="modules">
 			<destination>{a6518a70-7759-4f2b-a591-928e961554c2}</destination>
@@ -108,7 +106,6 @@
 			<destination>{4dc0ef46-87aa-4575-bdb5-4eeb5d425186}</destination>
 		</relationship>
 		<relationship name="markers">
-			<destination>{12038682-681a-4ac6-a86d-53727efc1501}</destination>
 			<destination>{6fefe9f0-8c8a-4653-9d5b-4a5f48a877ba}</destination>
 			<destination>{e157afde-329c-4b01-bccb-684454b54b6e}</destination>
 			<destination>{e1194849-e2a4-419f-be25-ed3bfcc0de7d}</destination>
@@ -261,26 +258,6 @@
 		</relationship>
 		<relationship name="output">
 			<destination>{3a259957-8adb-4a44-ad9d-68acced850dc}</destination>
-		</relationship>
-	</object>
-	<object class="LoopRegion" id="{12038682-681a-4ac6-a86d-53727efc1501}">
-		<property name="position">
-			<value>122</value>
-		</property>
-		<property name="length">
-			<value>120.54129251700681</value>
-		</property>
-		<property name="triggerProbabilityEnabled">
-			<value>true</value>
-		</property>
-		<property name="triggerProbability">
-			<value>80</value>
-		</property>
-		<relationship name="timeline">
-			<destination>{60b04bdb-7f95-4982-9348-88e3c408f650}</destination>
-		</relationship>
-		<relationship name="markerTrack">
-			<destination>{7596163f-4814-422b-bb7c-f3ed8a5a5ae6}</destination>
 		</relationship>
 	</object>
 	<object class="TransitionMarker" id="{6fefe9f0-8c8a-4653-9d5b-4a5f48a877ba}">
