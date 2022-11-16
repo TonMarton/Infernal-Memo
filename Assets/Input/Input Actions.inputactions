@@ -60,6 +60,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Select Weapon Deagle",
+                    "type": "Button",
+                    "id": "4c6a5b20-ed0e-45b8-b3ca-879c0650aaad",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Select Weapon Shotgun",
                     "type": "Button",
                     "id": "0afb44fd-d3bd-4d51-971c-2886090c27ca",
@@ -344,7 +353,7 @@
                 {
                     "name": "",
                     "id": "b5d8585c-8066-46e7-9998-5d0a11d6a5d1",
-                    "path": "<Keyboard>/2",
+                    "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -382,6 +391,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Reload",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "82ffe717-688c-47cb-bf43-d8aceca3901a",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Select Weapon Deagle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
