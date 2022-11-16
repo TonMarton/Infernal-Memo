@@ -401,8 +401,8 @@ MonoBehaviour:
   sprintKey: 304
   jumpKey: 32
   crouchKey: 99
-  walkSpeed: 10
-  sprintSpeed: 15
+  walkSpeed: 4
+  sprintSpeed: 7
   crouchSpeed: 1.85
   lookSpeedX: 2
   lookSpeedY: 2
@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0194184224695fb4aaa206b898e2eaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepSpeed: 0.3
+  stepSpeed: 1.44
   footstepSoundEvent:
     Guid:
       Data1: 797809666
@@ -684,7 +684,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponTransform: {fileID: 8803328187418656584}
-  bobSpeed: 0.075
+  bobSpeed: 0.36
   bobScale: {x: 0.03, y: 0.01, z: 0.02}
   preMultiplier: 0.25
   finalMultiplier: 0.5

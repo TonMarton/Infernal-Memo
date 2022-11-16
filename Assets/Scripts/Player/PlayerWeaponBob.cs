@@ -36,7 +36,7 @@ public class PlayerWeaponBob : MonoBehaviour
         velocity.y = 0;
 
         // calculate the footstep timer
-        float amount = velocity.magnitude;
+        float amount = Mathf.Sqrt(velocity.magnitude);
         timer += amount * bobSpeed * Time.deltaTime;
 
         //if (amount < 0.001f)
