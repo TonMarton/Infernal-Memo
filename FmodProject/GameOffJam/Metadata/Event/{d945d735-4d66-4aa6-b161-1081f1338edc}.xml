@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{d945d735-4d66-4aa6-b161-1081f1338edc}">
 		<property name="name">
-			<value>Stapler put away</value>
+			<value>Stapler_put_away</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
