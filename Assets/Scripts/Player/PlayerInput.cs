@@ -23,7 +23,11 @@ public class PlayerInput : MonoBehaviour
         
         // switch weapon directly
         inputActions.Player.SelectWeaponMelee.performed += _ctx => playerWeaponSystem.SwitchWeapon(WeaponType.Stapler);
+        inputActions.Player.SelectWeaponDeagle.performed += _ctx => playerWeaponSystem.SwitchWeapon(WeaponType.Pistol);
         inputActions.Player.SelectWeaponShotgun.performed += _ctx => playerWeaponSystem.SwitchWeapon(WeaponType.Shotgun);
+
+        // reload weapon
+        inputActions.Player.Reload.performed += _ctx => playerWeaponSystem.Reload();
         
         // switch weapon prev/next
         inputActions.Player.SelectPreviousWeapon.performed += _ctx => playerWeaponSystem.SwitchWeaponPrevious();

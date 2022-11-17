@@ -12,7 +12,12 @@ public enum WeaponType
 [DisallowMultipleComponent]
 public class PlayerWeaponSystem : MonoBehaviour
 {
-    [Header("Sound")] 
+    [SerializeField] private GameObject armsModel; // the base transform for the arms and all the weapons
+    [SerializeField] private GameObject staplerModel; // stapler only
+    [SerializeField] private GameObject deagleModel; // deagle only
+    [SerializeField] private GameObject shotgunModel; // shotgun only
+
+    [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference shotgunPutAwaySoundEvent;
@@ -43,6 +48,9 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         // hide crosshair by default
         hud.SetCrossHairVisible(false);
+
+        // hide arms by default
+        armsModel.SetActive(false);
     }
 
     // attack
@@ -64,11 +72,29 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
+    public void Reload()
+    {
+        switch (currentWeaponType)
+        {
+            case WeaponType.Stapler:
+                // no stapler reload
+                break;
+            case WeaponType.Pistol:
+                // TODO: pistol reload
+                break;
+            case WeaponType.Shotgun:
+                shotgun.Reload();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
     public void SwitchWeapon(WeaponType weaponType)
     {
         // log the weapon we switched to
         Debug.Log("Switched to " + weaponType);
-        
+
         // remember the last weapon type
         var lastWeaponType = currentWeaponType;
 
@@ -79,6 +105,10 @@ public class PlayerWeaponSystem : MonoBehaviour
         switch (currentWeaponType)
         {
             case WeaponType.Stapler:
+                // show arms
+                armsModel.SetActive(true);
+
+
                 // hide shotgun
                 shotgun.SetVisible(false);
                 // TODO: hide pistol
@@ -87,11 +117,18 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // play draw stapler sound
                 SoundUtils.PlaySound3D(staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
                 break;
+
             case WeaponType.Pistol:
+                // show arms
+                armsModel.SetActive(true);
                 // TODO: hide stapler
                 // TODO: hide shotgun
                 // TODO: draw pistol sound
+                break;
+
             case WeaponType.Shotgun:
+                // show arms
+                armsModel.SetActive(true);
                 // show shotgun
                 shotgun.SetVisible(true);
                 // TODO: hide stapler

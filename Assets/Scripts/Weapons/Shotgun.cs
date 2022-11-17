@@ -136,6 +136,24 @@ public class Shotgun : MonoBehaviour
         }
     }
 
+    public void Reload()
+    {
+        // TO-DO: Check if can reload
+        //   - Check if total ammo is greater than 0
+        //   - Check if not currently firing
+
+
+        // Play weapon reload animation
+        animator.Play("Shotgun Reload", -1, 0);
+
+        // Play weapon reload sound
+        PlayReloadSound();
+
+        // AFTER RELOAD IS COMPLETE:
+        //   - Subtract bullets from total ammo
+        //   - Add bullets to ammo 
+    }
+
     private void PlayShootSound()
     {
         SoundUtils.PlaySound3D(shootSoundInstance, shootSoundEvent, gameObject);
