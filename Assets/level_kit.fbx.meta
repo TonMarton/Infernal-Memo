@@ -50,7 +50,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: LEVEL_KIT_DIFFUSE
-    second: {fileID: 2100000, guid: 4e81c7292592ebf428a1078bf595f1b4, type: 2}
+    second: {fileID: 2100000, guid: ef803899d1d4c47b6ae58d2747049653, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
