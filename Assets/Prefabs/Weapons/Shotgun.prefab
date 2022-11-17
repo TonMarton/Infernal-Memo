@@ -51,6 +51,7 @@ MonoBehaviour:
     m_Bits: 65
   fpsCam: {fileID: 0}
   shotgunModel: {fileID: 0}
+  animator: {fileID: 0}
   bulletCount: 20
   shellsShootCost: 2
   cooldownTime: 1.4
@@ -67,14 +68,14 @@ MonoBehaviour:
       Data2: 1244190977
       Data3: 1186845116
       Data4: -230296701
-    Path: event:/Sfxs/Player/gun/Shoot
+    Path: event:/Sfxs/Player/guns/Shotgun/Shoot
   reloadSoundEvent:
     Guid:
       Data1: -1211606828
       Data2: 1169175841
       Data3: 764012196
       Data4: -1864398657
-    Path: event:/Sfxs/Player/gun/Reload
+    Path: event:/Sfxs/Player/guns/Shotgun/Reload
 --- !u!1001 &4618499867799780071
 PrefabInstance:
   m_ObjectHideFlags: 0

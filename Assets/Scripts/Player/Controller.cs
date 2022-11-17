@@ -93,6 +93,16 @@ public class Controller : MonoBehaviour
     [FormerlySerializedAs("_crouchShakeAmount")] [SerializeField]
     private float crouchShakeAmount = .025f;
 
+    [SerializeField]
+    private float damageShakeSpeed = 25f;
+
+    [SerializeField]
+    private float damageShakeDuration = 0.2f;
+
+    [SerializeField]
+    private AnimationCurve damageShakeCurve;
+
+
     [Header("Sound")] [SerializeField] private FMODUnity.EventReference jumpSoundEvent;
 
     // Sounds
@@ -108,6 +118,8 @@ public class Controller : MonoBehaviour
     private Vector2 currentInput;
 
     private float rotationX = 0;
+
+    public bool damageTaken = false;
 
     private void Awake()
     {
@@ -154,11 +166,19 @@ public class Controller : MonoBehaviour
         // can shake screen?
         if (canShakeScreen)
         {
-            // then shake the screen
-            ScreenShake();
+            if (damageTaken)
+            {
+                StartCoroutine(DamageScreenShake());
+            } else
+            {
+                // then shake the screen
+                ScreenShake();
+            }
         }
 
         FinalMovements();
+
+        CheckCeilingCollisions();
     }
 
     private void MovementInput()
@@ -211,6 +231,22 @@ public class Controller : MonoBehaviour
         StartCoroutine(CrouchStand());
     }
 
+    private IEnumerator DamageScreenShake() {
+        Vector3 startPos = transform.position;
+        float elapsedTime = 0f;
+
+        while (elapsedTime < damageShakeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            float strength = damageShakeCurve.Evaluate(elapsedTime / damageShakeDuration);
+            transform.position = startPos + Random.insideUnitSphere * strength;
+            yield return null;
+        }
+
+        transform.position = startPos;
+        damageTaken = false;
+    }
+
     private void ScreenShake()
     {
         if (!characterController.isGrounded) return;
@@ -220,12 +256,25 @@ public class Controller : MonoBehaviour
             return;
         }
 
-        timer += Time.deltaTime *
-                 (isCrouching ? crouchShakeSpeed : IsSprinting ? sprintShakeSpeed : walkShakeSpeed);
+        float shakeAmount = walkShakeAmount;
+        float shakeSpeed = walkShakeSpeed;
+
+        if (isCrouching)
+        {
+            shakeSpeed = crouchShakeSpeed;
+            shakeAmount = crouchShakeAmount;
+        }
+        else if (IsSprinting)
+        {
+            shakeSpeed = sprintShakeSpeed;
+            shakeAmount = sprintShakeAmount;
+        }
+
+        timer += Time.deltaTime * shakeSpeed;
+
         playerCamera.transform.localPosition = new Vector3(
             playerCamera.transform.localPosition.x,
-            defaultYPos + Mathf.Sin(timer) * (isCrouching ? crouchShakeAmount :
-                IsSprinting ? sprintShakeAmount : walkShakeAmount),
+            defaultYPos + Mathf.Sin(timer) * shakeAmount,
             playerCamera.transform.localPosition.z);
     }
 
@@ -235,6 +284,18 @@ public class Controller : MonoBehaviour
             moveDirection.y -= _gravity * Time.deltaTime;
 
         characterController.Move(moveDirection * Time.deltaTime);
+    }
+
+    private void CheckCeilingCollisions()
+    {
+        if ((characterController.collisionFlags & CollisionFlags.Above) != 0)
+        {
+            // Set vertical movement to 0 when character hits the ceiling
+            if (moveDirection.y > 0)
+            {
+                moveDirection.y = 0;
+            }
+        }
     }
 
     private IEnumerator CrouchStand()

@@ -55,6 +55,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Reload"",
+                    ""type"": ""Button"",
+                    ""id"": ""9ba873a6-2e75-49e5-b7a8-00e4e2370511"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""b1994a06-55d2-421c-bb4b-02db3c93531d"",
@@ -67,6 +76,15 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""name"": ""Select Weapon Melee"",
                     ""type"": ""Button"",
                     ""id"": ""bc39ae11-20cf-4323-8abb-5f33e2e994b4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select Weapon Deagle"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c6a5b20-ed0e-45b8-b3ca-879c0650aaad"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -357,7 +375,7 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b5d8585c-8066-46e7-9998-5d0a11d6a5d1"",
-                    ""path"": ""<Keyboard>/2"",
+                    ""path"": ""<Keyboard>/3"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -384,6 +402,28 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Select Next Weapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e9d94afc-4068-423d-ac9c-83ad8643d3c5"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Reload"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""82ffe717-688c-47cb-bf43-d8aceca3901a"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Select Weapon Deagle"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -974,8 +1014,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
+        m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_SelectWeaponMelee = m_Player.FindAction("Select Weapon Melee", throwIfNotFound: true);
+        m_Player_SelectWeaponDeagle = m_Player.FindAction("Select Weapon Deagle", throwIfNotFound: true);
         m_Player_SelectWeaponShotgun = m_Player.FindAction("Select Weapon Shotgun", throwIfNotFound: true);
         m_Player_SelectPreviousWeapon = m_Player.FindAction("Select Previous Weapon", throwIfNotFound: true);
         m_Player_SelectNextWeapon = m_Player.FindAction("Select Next Weapon", throwIfNotFound: true);
@@ -1053,8 +1095,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
+    private readonly InputAction m_Player_Reload;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_SelectWeaponMelee;
+    private readonly InputAction m_Player_SelectWeaponDeagle;
     private readonly InputAction m_Player_SelectWeaponShotgun;
     private readonly InputAction m_Player_SelectPreviousWeapon;
     private readonly InputAction m_Player_SelectNextWeapon;
@@ -1065,8 +1109,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
+        public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @SelectWeaponMelee => m_Wrapper.m_Player_SelectWeaponMelee;
+        public InputAction @SelectWeaponDeagle => m_Wrapper.m_Player_SelectWeaponDeagle;
         public InputAction @SelectWeaponShotgun => m_Wrapper.m_Player_SelectWeaponShotgun;
         public InputAction @SelectPreviousWeapon => m_Wrapper.m_Player_SelectPreviousWeapon;
         public InputAction @SelectNextWeapon => m_Wrapper.m_Player_SelectNextWeapon;
@@ -1088,12 +1134,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Fire.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFire;
+                @Reload.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Reload.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
+                @Reload.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnReload;
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @SelectWeaponMelee.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponMelee;
                 @SelectWeaponMelee.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponMelee;
                 @SelectWeaponMelee.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponMelee;
+                @SelectWeaponDeagle.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponDeagle;
+                @SelectWeaponDeagle.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponDeagle;
+                @SelectWeaponDeagle.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponDeagle;
                 @SelectWeaponShotgun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponShotgun;
                 @SelectWeaponShotgun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponShotgun;
                 @SelectWeaponShotgun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelectWeaponShotgun;
@@ -1116,12 +1168,18 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Reload.started += instance.OnReload;
+                @Reload.performed += instance.OnReload;
+                @Reload.canceled += instance.OnReload;
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
                 @SelectWeaponMelee.started += instance.OnSelectWeaponMelee;
                 @SelectWeaponMelee.performed += instance.OnSelectWeaponMelee;
                 @SelectWeaponMelee.canceled += instance.OnSelectWeaponMelee;
+                @SelectWeaponDeagle.started += instance.OnSelectWeaponDeagle;
+                @SelectWeaponDeagle.performed += instance.OnSelectWeaponDeagle;
+                @SelectWeaponDeagle.canceled += instance.OnSelectWeaponDeagle;
                 @SelectWeaponShotgun.started += instance.OnSelectWeaponShotgun;
                 @SelectWeaponShotgun.performed += instance.OnSelectWeaponShotgun;
                 @SelectWeaponShotgun.canceled += instance.OnSelectWeaponShotgun;
@@ -1290,8 +1348,10 @@ public partial class @InputActions : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnReload(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnSelectWeaponMelee(InputAction.CallbackContext context);
+        void OnSelectWeaponDeagle(InputAction.CallbackContext context);
         void OnSelectWeaponShotgun(InputAction.CallbackContext context);
         void OnSelectPreviousWeapon(InputAction.CallbackContext context);
         void OnSelectNextWeapon(InputAction.CallbackContext context);

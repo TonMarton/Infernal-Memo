@@ -33,8 +33,8 @@ public class PlayerFootsteps : MonoBehaviour
         velocity.y = 0;
         
         // calculate the footstep timer
-        float amount = velocity.magnitude;
-        timer += velocity.magnitude * stepSpeed * Time.deltaTime;
+        float amount = Mathf.Sqrt(velocity.magnitude);
+        timer += amount * stepSpeed * Time.deltaTime;
 
         // footstep timer didn't hit yet?
         if (!(timer >= 1f))

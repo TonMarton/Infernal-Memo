@@ -4,6 +4,7 @@ using UnityEngine;
 // enum for melee and shotgun weapons
 public enum WeaponType
 {
+    None,
     Stapler,
     Pistol,
     Shotgun,
@@ -12,17 +13,28 @@ public enum WeaponType
 [DisallowMultipleComponent]
 public class PlayerWeaponSystem : MonoBehaviour
 {
-    [Header("Sound")] 
-    [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
+    [SerializeField] private GameObject armsModel; // the base transform for the arms and all the weapons
+    [SerializeField] private GameObject staplerModel; // stapler only
+    [SerializeField] private GameObject deagleModel; // deagle only
+    [SerializeField] private GameObject shotgunModel; // shotgun only
+
+    [SerializeField] private Animator armsAnimator;
+
+    [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
-    [SerializeField] private FMODUnity.EventReference shotgunPutAwaySoundEvent;
     [SerializeField] private FMODUnity.EventReference staplerPutAwaySoundEvent;
+    [SerializeField] private FMODUnity.EventReference pistolDrawSoundEvent;
+    [SerializeField] private FMODUnity.EventReference pistolPutAwaySoundEvent;
+    [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
+    [SerializeField] private FMODUnity.EventReference shotgunPutAwaySoundEvent;
 
     // Sounds
-    private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
     private FMOD.Studio.EventInstance staplerDrawSoundInstance;
-    private FMOD.Studio.EventInstance shotgunPutAwaySoundInstance;
     private FMOD.Studio.EventInstance staplerPutAwaySoundInstance;
+    private FMOD.Studio.EventInstance pistolDrawSoundInstance;
+    private FMOD.Studio.EventInstance pistolPutAwaySoundInstance;
+    private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
+    private FMOD.Studio.EventInstance shotgunPutAwaySoundInstance;
 
     private WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
@@ -34,15 +46,18 @@ public class PlayerWeaponSystem : MonoBehaviour
         staplerAttack = GetComponent<PlayerStaplerAttack>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
-
-        // start with melee
-        currentWeaponType = WeaponType.Stapler;
     }
 
     private void Start()
     {
         // hide crosshair by default
         hud.SetCrossHairVisible(false);
+
+        // hide arms by default
+        armsModel.SetActive(false);
+
+        // start with melee
+        SwitchWeapon(WeaponType.Stapler);
     }
 
     // attack
@@ -64,11 +79,35 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
+    public void Reload()
+    {
+        switch (currentWeaponType)
+        {
+            case WeaponType.Stapler:
+                // no stapler reload
+                break;
+            case WeaponType.Pistol:
+                // TODO: pistol reload
+                break;
+            case WeaponType.Shotgun:
+                shotgun.Reload();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    }
+
     public void SwitchWeapon(WeaponType weaponType)
     {
         // log the weapon we switched to
         Debug.Log("Switched to " + weaponType);
-        
+
+        // don't switch if this is the weapon that's already selected
+        if (currentWeaponType == weaponType)
+        {
+            return;
+        }
+
         // remember the last weapon type
         var lastWeaponType = currentWeaponType;
 
@@ -79,33 +118,66 @@ public class PlayerWeaponSystem : MonoBehaviour
         switch (currentWeaponType)
         {
             case WeaponType.Stapler:
+                // show arms
+                armsModel.SetActive(true);
+
+
                 // hide shotgun
                 shotgun.SetVisible(false);
-                // TODO: hide pistol
-                // TODO: show stapler
-                // TODO: play stapler show sound
+                // hide pistol
+                deagleModel.gameObject.SetActive(false);
+                // show stapler
+                staplerModel.gameObject.SetActive(true);
+
                 // play draw stapler sound
                 SoundUtils.PlaySound3D(staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
+
+                // TODO: Play weapon switch animation
+
+                // Play Stapler Idle
+                armsAnimator.Play("StaplerIdlePlaceholder", -1, 0);
+
                 break;
+
             case WeaponType.Pistol:
-                // TODO: hide stapler
-                // TODO: hide shotgun
-                // TODO: draw pistol sound
+                // show arms
+                armsModel.SetActive(true);
+                // hide stapler
+                staplerModel.gameObject.SetActive(false);
+                // show pistol
+                deagleModel.gameObject.SetActive(true);
+                // hide shotgun
+                shotgun.SetVisible(false);
+                // play draw pistol sound
+                SoundUtils.PlaySound3D(pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
+                // Play Pistol Idle
+                armsAnimator.Play("Deagle Idle", -1, 0);
+
+                // TODO: Play weapon switch animation
+                break;
+
             case WeaponType.Shotgun:
+                // show arms
+                armsModel.SetActive(true);
                 // show shotgun
                 shotgun.SetVisible(true);
-                // TODO: hide stapler
-                // TODO: hide pistol
-                // TODO: play shotgun show sound
+                // hide stapler
+                staplerModel.gameObject.SetActive(false);
+                // hide pistol
+                deagleModel.gameObject.SetActive(false);
                 // play draw shotgun sound
                 SoundUtils.PlaySound3D(shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);
+                // Play Shotgun Idle
+                armsAnimator.Play("Shotgun Idle", -1, 0);
+
+                // TODO: Play weapon switch animation
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
 
-        // show crosshair for shotgun only
-        var visible = weaponType == WeaponType.Shotgun;
+        // show crosshair for shotgun and pistol only
+        var visible = weaponType == WeaponType.Pistol || weaponType == WeaponType.Shotgun;
         hud.SetCrossHairVisible(visible);
     }
 
