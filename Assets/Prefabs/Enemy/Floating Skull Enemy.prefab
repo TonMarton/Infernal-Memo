@@ -79,14 +79,14 @@ MonoBehaviour:
       Data2: 1236965014
       Data3: 1789481361
       Data4: 1163085084
-    Path: event:/Sfxs/Enemy/Enemy take damage
+    Path: event:/Enemy/Enemy take damage
   deathSoundEvent:
     Guid:
       Data1: 700295798
       Data2: 1164871486
       Data3: 1636269741
       Data4: -1097586009
-    Path: event:/Sfxs/Enemy/Enemy death
+    Path: event:/Enemy/Enemy death
 --- !u!195 &4154061717746472633
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
       Data2: 1084205076
       Data3: -1482649717
       Data4: -1610614253
-    Path: event:/Sfxs/Enemy/Enemy damage
+    Path: event:/Enemy/Enemy damage
   range: 20
 --- !u!114 &6316131371778422694
 MonoBehaviour:
