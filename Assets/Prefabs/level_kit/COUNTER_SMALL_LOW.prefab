@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 294656082857511795}
   - component: {fileID: 6751903175974446317}
   - component: {fileID: 8740431870877122613}
+  - component: {fileID: 7735109420334553562}
   m_Layer: 0
   m_Name: COUNTER_SMALL_LOW
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &7735109420334553562
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2219320022710317918}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -4036826121801197536, guid: e855db417ce4bb040bfc18710cb751c9, type: 3}

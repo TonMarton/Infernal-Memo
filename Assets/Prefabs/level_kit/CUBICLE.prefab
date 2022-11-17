@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6646695372146697020}
   - component: {fileID: 547404206787920002}
   - component: {fileID: 8578950095771412153}
+  - component: {fileID: 244791864648055082}
   m_Layer: 0
   m_Name: CUBICLE
   m_TagString: Untagged
@@ -83,3 +84,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &244791864648055082
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2564198139267299047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 9103259327568202250, guid: e855db417ce4bb040bfc18710cb751c9, type: 3}
