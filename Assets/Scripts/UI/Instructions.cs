@@ -7,6 +7,6 @@ public class Instructions : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("Enemy Spawn Test");
+        SceneManager.LoadScene("IKEA Showroom");
     }
 }
