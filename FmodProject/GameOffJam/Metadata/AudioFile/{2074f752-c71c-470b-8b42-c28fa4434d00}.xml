@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{2074f752-c71c-470b-8b42-c28fa4434d00}">
 		<property name="assetPath">
-			<value>Pistol_put_away2.wav</value>
+			<value>Sfxs/Guns/Pistol/Put_away/Pistol_put_away2.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
