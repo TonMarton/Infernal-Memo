@@ -424,7 +424,9 @@ GameObject:
   - component: {fileID: 7576061198846146304}
   - component: {fileID: 4289160584079738295}
   - component: {fileID: 1232932227}
+  - component: {fileID: 6098927164504811140}
   - component: {fileID: 719967899060198336}
+  - component: {fileID: 1674198715}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -820,21 +822,21 @@ MonoBehaviour:
       Data2: 1252412774
       Data3: -2129632847
       Data4: -594660367
-    Path: event:/Sfxs/Player/guns/Stapler/Stapler put away
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler_put_away
   pistolDrawSoundEvent:
     Guid:
-      Data1: -142356871
-      Data2: 1073853546
-      Data3: -1187312963
-      Data4: 1138031890
-    Path: event:/Sfxs/Player/guns/Stapler/Stapler draw
+      Data1: 1431458527
+      Data2: 1184648723
+      Data3: 825964981
+      Data4: 1546848419
+    Path: event:/Sfxs/Player/guns/Pistol/Pistol Draw
   pistolPutAwaySoundEvent:
     Guid:
-      Data1: -649734347
-      Data2: 1252412774
-      Data3: -2129632847
-      Data4: -594660367
-    Path: event:/Sfxs/Player/guns/Stapler/Stapler put away
+      Data1: -1916042588
+      Data2: 1090932447
+      Data3: 879928457
+      Data4: 23071558
+    Path: event:/Sfxs/Player/guns/Pistol/Pistol_put_away
   shotgunDrawSoundEvent:
     Guid:
       Data1: 1908357555
@@ -848,7 +850,7 @@ MonoBehaviour:
       Data2: 1252412774
       Data3: -2129632847
       Data4: -594660367
-    Path: event:/Sfxs/Player/guns/Stapler/Stapler put away
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler_put_away
 --- !u!114 &4289160584079738295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -886,6 +888,25 @@ MonoBehaviour:
   bobScale: {x: 0.03, y: 0.01, z: 0.02}
   preMultiplier: 0.25
   finalMultiplier: 0.5
+--- !u!114 &6098927164504811140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983632887037757786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 052e0841bd895b440b73250eb89fdf43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 65
+  fpsCam: {fileID: 5983632887014776814}
+  animator: {fileID: 1997952733}
+  bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
+  autoDestroyBulletHoleTime: 10
 --- !u!114 &719967899060198336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -898,18 +919,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e41b5e459bb9b419fae210d471657e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 65
-  fpsCam: {fileID: 5983632887014776814}
-  shotgunModel: {fileID: 6128295132931750345}
-  animator: {fileID: 1997952733}
+  model: {fileID: 6128295132931750345}
   bulletCount: 20
   shellsShootCost: 1
   cooldownTime: 0.72
   damagePerBullet: 2
-  bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
-  autoDestroyBulletHoleTime: 10
   muzzleFlash: {fileID: 7288353736965989574}
   hideMuzzleFlashAfterTime: 0.05
   maxSpreadDegreesY: 9
@@ -928,6 +942,164 @@ MonoBehaviour:
       Data3: 764012196
       Data4: -1864398657
     Path: event:/Sfxs/Player/guns/Shotgun/Reload
+  shootAnimationState: Shotgun Shoot
+  reloadAnimationState: Shotgun Reload
+--- !u!114 &1674198715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983632887037757786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665452b4df5b8a545a983a30ed27a63a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 3248975548900535975}
+  bulletCount: 1
+  shellsShootCost: 1
+  cooldownTime: 0.9
+  damagePerBullet: 10
+  muzzleFlash: {fileID: 202609298}
+  hideMuzzleFlashAfterTime: 0.04
+  maxSpreadDegreesY: 1
+  maxSpreadDegreesX: 1
+  shootSoundEvent:
+    Guid:
+      Data1: 1675110751
+      Data2: 1079034144
+      Data3: 1562151602
+      Data4: 1611682824
+    Path: event:/Sfxs/Player/guns/Pistol/Pistol_shoot
+  reloadSoundEvent:
+    Guid:
+      Data1: -689362031
+      Data2: 1262006650
+      Data3: -1432114557
+      Data4: 357721362
+    Path: event:/Sfxs/Player/guns/Pistol/Pistol_reload
+  shootAnimationState: Pistol Shoot
+  reloadAnimationState: Pistol Reload
+--- !u!1001 &202511414
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 543450651684951979}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_Name
+      value: Toon Muzzleflash 1 (Pistol)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_Layer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.52498704
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.47369674
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.52498704
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.47369677
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -635.88
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+--- !u!1 &202609298 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+  m_PrefabInstance: {fileID: 202511414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &202609310 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100008, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+  m_PrefabInstance: {fileID: 202511414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &677315540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 202609310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1001 &2015342656
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -993,7 +1165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3248975548767723239, guid: 7dc178d80670cb04aaf009198d4bf920, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6986759644772506977, guid: 7dc178d80670cb04aaf009198d4bf920, type: 3}
       propertyPath: m_IsActive
@@ -1432,7 +1604,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_Name
-      value: Toon Muzzleflash 1 (1)
+      value: Toon Muzzleflash 1 (Shotgun)
       objectReference: {fileID: 0}
     - target: {fileID: 100004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_Layer

@@ -38,12 +38,14 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
+    private Pistol pistol;
     private Shotgun shotgun;
     private HUD hud;
 
     private void Awake()
     {
         staplerAttack = GetComponent<PlayerStaplerAttack>();
+        pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
     }
@@ -69,7 +71,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 staplerAttack.Attack();
                 break;
             case WeaponType.Pistol:
-                // TODO: pistol shoot
+                pistol.Shoot();
                 break;
             case WeaponType.Shotgun:
                 shotgun.Shoot();
@@ -87,7 +89,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // no stapler reload
                 break;
             case WeaponType.Pistol:
-                // TODO: pistol reload
+                pistol.Reload();
                 break;
             case WeaponType.Shotgun:
                 shotgun.Reload();
@@ -151,7 +153,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // play draw pistol sound
                 SoundUtils.PlaySound3D(pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
                 // Play Pistol Idle
-                armsAnimator.Play("Deagle Idle", -1, 0);
+                armsAnimator.Play("Pistol Idle", -1, 0);
 
                 // TODO: Play weapon switch animation
                 break;
