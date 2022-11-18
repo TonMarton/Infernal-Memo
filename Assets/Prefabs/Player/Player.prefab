@@ -615,7 +615,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   maxHealth: 100
-  startingShells: 20
+  startingShells: 99
   maxShells: 99
   deathMenu: {fileID: 2847941732124859794}
   hud: {fileID: 0}
@@ -843,7 +843,7 @@ MonoBehaviour:
       Data2: 1180208786
       Data3: -1733723725
       Data4: 768986661
-    Path: event:/Sfxs/Player/guns/Shotgun/Draw_handling
+    Path: event:/Sfxs/Player/guns/Shotgun/Shootgun_draw
   shotgunPutAwaySoundEvent:
     Guid:
       Data1: -649734347
@@ -963,8 +963,8 @@ MonoBehaviour:
   damagePerBullet: 10
   muzzleFlash: {fileID: 202609298}
   hideMuzzleFlashAfterTime: 0.04
-  maxSpreadDegreesY: 1
-  maxSpreadDegreesX: 1
+  maxSpreadDegreesY: 0.5
+  maxSpreadDegreesX: 0.5
   shootSoundEvent:
     Guid:
       Data1: 1675110751
