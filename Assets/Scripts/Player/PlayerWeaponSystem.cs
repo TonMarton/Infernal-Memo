@@ -20,6 +20,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     [SerializeField] private Animator armsAnimator;
 
+    private PlayerStats PlayerStatsScript;
+
     [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference staplerPutAwaySoundEvent;
@@ -36,7 +38,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
     private FMOD.Studio.EventInstance shotgunPutAwaySoundInstance;
 
-    private WeaponType currentWeaponType;
+    [HideInInspector] public WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
     private Pistol pistol;
     private Shotgun shotgun;
@@ -44,6 +46,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void Awake()
     {
+        PlayerStatsScript = GetComponent<PlayerStats>();
         staplerAttack = GetComponent<PlayerStaplerAttack>();
         pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
@@ -71,10 +74,16 @@ public class PlayerWeaponSystem : MonoBehaviour
                 staplerAttack.Attack();
                 break;
             case WeaponType.Pistol:
-                pistol.Shoot();
+                if (PlayerStatsScript.bulletsInClip > 0)
+                {
+                    pistol.Shoot();
+                }
                 break;
             case WeaponType.Shotgun:
-                shotgun.Shoot();
+                if (PlayerStatsScript.shellsInClip > 0)
+                {
+                    shotgun.Shoot();
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -89,10 +98,16 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // no stapler reload
                 break;
             case WeaponType.Pistol:
-                pistol.Reload();
+                if (PlayerStatsScript.bullets > 0)
+                {
+                    pistol.Reload();
+                }
                 break;
             case WeaponType.Shotgun:
-                shotgun.Reload();
+                if (PlayerStatsScript.shells > 0)
+                {
+                    shotgun.Reload();
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();

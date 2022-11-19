@@ -28,7 +28,6 @@ public class WeaponSharedComponent : MonoBehaviour
     public float currentCooldownTime { get; set; }
     public float lastFireTime { get; set; }
 
-
     private void Awake()
     {
         playerStats = GetComponentInParent<PlayerStats>();

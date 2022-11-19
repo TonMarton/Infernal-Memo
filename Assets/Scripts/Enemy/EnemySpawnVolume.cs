@@ -14,11 +14,6 @@ public class EnemySpawnVolume : MonoBehaviour
         enemySpawners = FindObjectsOfType<EnemySpawner>();
     }
 
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     // Search for all enemy spawner's inside the volume boundaries within the world
     public void SpawnEnemies()
     {
@@ -47,7 +42,8 @@ public class EnemySpawnVolume : MonoBehaviour
 
     public void WakeEnemies()
     {
-        foreach (var enemy in enemies) {
+        foreach (var enemy in enemies) 
+        {
             enemy.GetComponent<EnemyAI>().isAwake = true;
         }
     }

@@ -3,16 +3,16 @@ using UnityEngine.Serialization;
 
 public abstract class BaseWeapon : MonoBehaviour
 {
-
     [SerializeField]
     public GameObject model;
-
 
     [Min(1)][SerializeField] protected int bulletCount = 20;
     [Min(0)][SerializeField] protected int shellsShootCost = 2;
     [Min(0)][SerializeField] protected float cooldownTime = 1.4f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
     private WeaponSharedComponent weaponShared;
+    private PlayerWeaponSystem PlayerWeaponSystemScript;
+    private PlayerStats PlayerStatsScript;
     //protected LayerMask collisionLayerMask => weaponSharedComponent.collisionLayerMask;
     //protected Transform fpsCam => weaponSharedComponent.fpsCam;
     [Header("Muzzle Flash")]
@@ -48,10 +48,10 @@ public abstract class BaseWeapon : MonoBehaviour
     public string shootAnimationState;
     public string reloadAnimationState;
 
-
-
     private void Awake()
     {
+        PlayerWeaponSystemScript = GetComponent<PlayerWeaponSystem>();
+        PlayerStatsScript = GetComponent<PlayerStats>();
         weaponShared = GetComponent<WeaponSharedComponent>();
 
         // hide shotgun and muzzle flash to start
@@ -105,7 +105,6 @@ public abstract class BaseWeapon : MonoBehaviour
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
     }
 
-
     public void SetVisible(bool visible)
     {
         model.SetActive(visible);
@@ -128,9 +127,6 @@ public abstract class BaseWeapon : MonoBehaviour
         }
     }
 
-
-
-
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
     {
         // spawn a bullet hole decal
@@ -141,7 +137,6 @@ public abstract class BaseWeapon : MonoBehaviour
         Destroy(bulletHole, weaponShared.autoDestroyBulletHoleTime);
     }
 
-
     public void Shoot()
     {
         // didn't cooldown yet?
@@ -151,11 +146,17 @@ public abstract class BaseWeapon : MonoBehaviour
             return;
         }
 
-        // does the player have enough shells?
-        if (!weaponShared.playerStats.UseShells(shellsShootCost))
+        if (PlayerWeaponSystemScript.currentWeaponType
+            == WeaponType.Pistol
+            && PlayerStatsScript.bulletsInClip > 0)
         {
-            // TODO: play out of ammo sound
-            return;
+            PlayerStatsScript.Fire("handgun");
+        }
+        else if (PlayerWeaponSystemScript.currentWeaponType
+                 == WeaponType.Shotgun
+                 && PlayerStatsScript.shellsInClip > 0)
+        {
+            PlayerStatsScript.Fire("shotgun");
         }
 
         // play animation
@@ -183,18 +184,26 @@ public abstract class BaseWeapon : MonoBehaviour
     public void Reload()
     {
         // TO-DO: Check if can reload
-        //   - Check if total ammo is greater than 0
         //   - Check if not currently firing
+
+        if (PlayerWeaponSystemScript.currentWeaponType
+            == WeaponType.Pistol
+            && PlayerStatsScript.bullets > 0)
+        {
+            PlayerStatsScript.Reload("handgun");
+        }
+        else if (PlayerWeaponSystemScript.currentWeaponType
+                 == WeaponType.Shotgun
+                 && PlayerStatsScript.shells > 0)
+        {
+            PlayerStatsScript.Reload("shotgun");
+        }
 
         // Play weapon reload animation
         weaponShared.animator.Play(reloadAnimationState, -1, 0);
 
         // Play weapon reload sound
         PlayReloadSound();
-
-        // AFTER RELOAD IS COMPLETE:
-        //   - Subtract bullets from total ammo
-        //   - Add bullets to ammo 
     }
 
     private void PlayShootSound()
@@ -206,5 +215,4 @@ public abstract class BaseWeapon : MonoBehaviour
     {
         SoundUtils.PlaySound3D(reloadSoundInstance, reloadSoundEvent, gameObject);
     }
-
 }

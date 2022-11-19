@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class EnemyStats : MonoBehaviour
 {
     [Header("Stats")]

@@ -40,11 +40,11 @@ public class PlayerStats : MonoBehaviour
     private int health;
     private int armor;
 
-    private int bullets;
-    private int bulletsInClip;
+    [HideInInspector] public int bullets;
+    [HideInInspector] public int bulletsInClip;
 
-    private int shells;
-    private int shellsInClip;
+    [HideInInspector] public int shells;
+    [HideInInspector] public int shellsInClip;
 
     private void Awake()
     {
@@ -59,41 +59,40 @@ public class PlayerStats : MonoBehaviour
         hud = GetComponentInChildren<HUD>();
 
         // initialize HUD
-        hud.ChangeHealthText(health);
-        hud.ChangeArmorText(armor);
-        hud.ChangeBulletsInClipText(bulletsInClip);
-        hud.ChangeBulletsText(bullets);
-        hud.ChangeShellsInClipText(shellsInClip);
-        hud.ChangeShellsText(shells);
+        hud.UpdateUIText("health", health);
+        hud.UpdateUIText("armor", armor);
+        hud.UpdateUIText("bulletsInClip", bulletsInClip);
+        hud.UpdateUIText("bullets", bullets);
+        hud.UpdateUIText("shellsInClip", shellsInClip);
+        hud.UpdateUIText("shells", shells);
     }
 
-    public void TakeDamage(int damage)
+    //updates player health,
+    //either when player takes damage or picks up a health item to heal themselves
+    public void UpdateHealth(int updatedHealth)
     {
-        // take damage
-        health -= damage;
+        health += updatedHealth;
 
-        // update HUD
-        hud.ChangeHealthText(health);
-
-        if (health <= 0)
+        if (updatedHealth < 0)
         {
-            Die();
-            return;
+            if (health <= 0)
+            {
+                Die();
+                return;
+            }
+
+            gameObject.GetComponent<Controller>().damageTaken = true;
+            SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
+        }
+        else
+        {
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
 
-        // shake screen
-        gameObject.GetComponent<Controller>().damageTaken = true;
-
-        // play hurt sound
-        SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
-    }
-
-    public void Heal(int healing)
-    {
-        health = Mathf.Min(healing + health, maxHealth);
-
-        // update HUD
-        hud.ChangeHealthText(health);
+        hud.UpdateUIText("health", health);
     }
 
     private void Die()
@@ -104,147 +103,77 @@ public class PlayerStats : MonoBehaviour
         deathMenu.Show();
     }
 
-    public bool UseBullets(int count)
+    //fire while there are enough remaining bullets
+    public void Fire(string gun)
     {
-        if (bullets < count)
+        if (gun == "handgun")
         {
-            // didn't have enough ammo
-            return false;
+            bulletsInClip--;
+            hud.UpdateUIText("bulletsInClip", bulletsInClip);
+            Debug.Log("Shot handgun");
         }
-
-        // use the bullets
-        bullets -= count;
-
-        // update HUD
-        hud.ChangeBulletsText(bullets);
-
-        // had enough ammo
-        return true;
+        else if (gun == "shotgun")
+        {
+            shellsInClip--;
+            hud.UpdateUIText("shellsInClip", shellsInClip);
+            Debug.Log("Shot shotgun");
+        }
     }
 
-    public bool UseBulletsInClip(int count)
+    //reload while there are enough remaining bullets
+    public void Reload(string gun)
     {
-        if (bulletsInClip < count)
+        if (gun == "handgun"
+            && bullets > 0)
         {
-            // didn't have enough ammo in clip
-            return false;
+            if (maxBullets >= bullets)
+            {
+                if (bulletsInClip == 0)
+                {
+                    bulletsInClip = maxBulletsInClip;
+                    bullets -= bulletsInClip;
+                }
+                else
+                {
+                    int remainingAvailableSpace = maxBullets - bulletsInClip;
+                    bulletsInClip += remainingAvailableSpace;
+                    bullets -= remainingAvailableSpace;
+                }
+            }
+            else if (maxBullets > bullets)
+            {
+                bulletsInClip = bullets;
+                bullets = 0;
+            }
+
+            hud.UpdateUIText("bullets", bullets);
+            hud.UpdateUIText("bulletsInClip", bulletsInClip);
         }
-
-        // use bullets in clip
-        bulletsInClip -= count;
-
-        // update HUD
-        hud.ChangeBulletsInClipText(bulletsInClip);
-
-        // had enough ammo in clip
-        return true;
-    }
-
-    public void AddBullets(int count)
-    {
-        // are we at max bullets?
-        if (bullets == maxBullets)
+        else if (gun == "shotgun"
+                 && shells > 0)
         {
-            // then do nothing
-            return;
+            if (maxShells >= shells)
+            {
+                if (shellsInClip == 0)
+                {
+                    shellsInClip = maxShellsInClip;
+                    shells -= shellsInClip;
+                }
+                else
+                {
+                    int remainingAvailableSpace = maxShells - shellsInClip;
+                    shellsInClip += remainingAvailableSpace;
+                    shells -= remainingAvailableSpace;
+                }
+            }
+            else if (maxShells > shells)
+            {
+                shellsInClip = shells;
+                shells = 0;
+            }
+
+            hud.UpdateUIText("shells", shells);
+            hud.UpdateUIText("shellsInClip", shellsInClip);
         }
-
-        // add bullets
-        bullets = Mathf.Min(bullets + count, maxBullets);
-
-        // TODO: play shell pickup sound
-
-        // update HUD
-        hud.ChangeBulletsText(bullets);
-    }
-
-    public bool AddBulletsInClip(int count)
-    {
-        // are we at max bullets in clip?
-        if (bulletsInClip == maxBulletsInClip)
-        {
-            // could not add further ammo to clip
-            return false;
-        }
-
-        // add bullets to clip
-        bulletsInClip = Mathf.Min(bulletsInClip + count, maxBulletsInClip);
-
-        // update HUD
-        hud.ChangeBulletsInClipText(bullets);
-
-        return true;
-    }
-
-    public bool UseShells(int count)
-    {
-        if (shells < count)
-        {
-            // didn't have enough ammo
-            return false;
-        }
-
-        // use the shells
-        shells -= count;
-
-        // update HUD
-        hud.ChangeShellsText(shells);
-
-        // had enough ammo
-        return true;
-    }
-
-    public bool UseShellsInClip(int count)
-    {
-        if (shellsInClip < count)
-        {
-            // didn't have enough ammo in clip
-            return false;
-        }
-
-        // use shells in clip
-        shellsInClip -= count;
-
-        // update HUD
-        hud.ChangeShellsInClipText(shellsInClip);
-
-        // had enough ammo in clip
-        return true;
-    }
-
-    public void AddShells(int count)
-    {
-        // are we at max shells?
-        if (shells == maxShells)
-        {
-            // then do nothing
-            return;
-        }
-
-        // add shells
-        shells = Mathf.Min(shells + count, maxShells);
-
-        // TODO: play shell pickup sound
-
-        // update HUD
-        hud.ChangeShellsText(shells);
-    }
-
-    public bool AddShellsInClip(int count)
-    {
-        // are we at max shells in clip?
-        if (shellsInClip == maxShellsInClip)
-        {
-            // could not add further ammo to clip
-            return false;
-        }
-
-        // add shells to clip
-        shellsInClip = Mathf.Min(shellsInClip + count, maxShellsInClip);
-
-        // update HUD
-        hud.ChangeShellsInClipText(shells);
-
-        return true;
     }
 }
