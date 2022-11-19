@@ -7,7 +7,10 @@ public class HUD : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI armorText;
+    [SerializeField] private TextMeshProUGUI bulletsText;
+    [SerializeField] private TextMeshProUGUI bulletsInClipText;
     [SerializeField] private TextMeshProUGUI shellsText;
+    [SerializeField] private TextMeshProUGUI shellsInClipText;
     [SerializeField] private Image crossHair;
 
     private void Awake()
@@ -27,16 +30,31 @@ public class HUD : MonoBehaviour
 
     public void ChangeHealthText(int health)
     {
-        healthText.text = "Health: " + health;
+        healthText.text = "" + health;
     }
 
     public void ChangeArmorText(int armor)
     {
-        armorText.text = "Armor: " + armor;
+        armorText.text = "" + armor;
+    }
+
+    public void ChangeBulletsText(int bullets)
+    {
+        bulletsText.text = "" + bullets;
+    }
+
+    public void ChangeBulletsInClipText(int bulletsInClip)
+    {
+        bulletsInClipText.text = "" + bulletsInClip;
     }
 
     public void ChangeShellsText(int shells)
     {
-        shellsText.text = "Shells: " + shells;
+        shellsText.text = "" + shells;
+    }
+
+    public void ChangeShellsInClipText(int shellsInClip)
+    {
+        shellsInClipText.text = "" + shellsInClip;
     }
 }
