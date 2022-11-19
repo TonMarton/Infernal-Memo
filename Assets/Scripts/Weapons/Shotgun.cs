@@ -5,4 +5,8 @@ using UnityEngine.Serialization;
 
 public class Shotgun : BaseWeapon
 {
+    protected override bool UseAmmoInClip()
+    {
+        return weaponShared.playerStats.UseShellsInClip(shellsShootCost);
+    }
 }

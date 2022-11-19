@@ -12,7 +12,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [Min(0)][SerializeField] protected int shellsShootCost = 2;
     [Min(0)][SerializeField] protected float cooldownTime = 1.4f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
-    private WeaponSharedComponent weaponShared;
+    protected WeaponSharedComponent weaponShared { get; private set; }
     //protected LayerMask collisionLayerMask => weaponSharedComponent.collisionLayerMask;
     //protected Transform fpsCam => weaponSharedComponent.fpsCam;
     [Header("Muzzle Flash")]
@@ -142,6 +142,17 @@ public abstract class BaseWeapon : MonoBehaviour
     }
 
 
+    protected virtual bool UseAmmoInClip()
+    {
+        return false;
+    }
+
+    protected virtual bool UseAmmo()
+    {
+        return false;
+    }    
+
+
     public void Shoot()
     {
         // didn't cooldown yet?
@@ -152,7 +163,7 @@ public abstract class BaseWeapon : MonoBehaviour
         }
 
         // does the player have enough shells?
-        if (!weaponShared.playerStats.UseShells(shellsShootCost))
+        if (!UseAmmoInClip())
         {
             // TODO: play out of ammo sound
             return;
@@ -185,6 +196,7 @@ public abstract class BaseWeapon : MonoBehaviour
         // TO-DO: Check if can reload
         //   - Check if total ammo is greater than 0
         //   - Check if not currently firing
+
 
         // Play weapon reload animation
         weaponShared.animator.Play(reloadAnimationState, -1, 0);
