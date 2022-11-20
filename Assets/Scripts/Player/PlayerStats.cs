@@ -6,20 +6,31 @@ using UnityEngine.Serialization;
 [DisallowMultipleComponent]
 public class PlayerStats : MonoBehaviour
 {
-    [Header("Health")] [SerializeField] private int startingHealth = 100;
+    [Header("Health")]
+    [SerializeField] private int startingHealth = 100;
     [SerializeField] private int maxHealth = 100;
 
-    [Header("Ammo")] [SerializeField] private int startingShells = 20;
-    [SerializeField] private int maxShells = 99;
+    [Header("Ammo - Pistol")]
+    // pistol
+    [SerializeField] private int startingBullets = 12;
+    [SerializeField] private int maxBullets = 99;
+    [SerializeField] private int startingBulletsInClip = 12;
+    [SerializeField] private int maxBulletsInClip = 12;
 
-    [Header("UI")] [SerializeField] private DeathMenu deathMenu;
+    [Header("Ammo - Shotgun")]
+    // shotgun
+    [SerializeField] private int startingShells = 20;
+    [SerializeField] private int maxShells = 99;
+    [SerializeField] private int startingShellsInClip = 3;
+    [SerializeField] private int maxShellsInClip = 3;
+
+    [Header("UI")]
+    [SerializeField] private DeathMenu deathMenu;
     [SerializeField] private HUD hud;
 
-    [FormerlySerializedAs("hurtSound")] [Header("Sound")] [SerializeField]
-    private FMODUnity.EventReference hurtSoundEvent;
-
-    [FormerlySerializedAs("deathSound")] [SerializeField]
-    private FMODUnity.EventReference deathSoundEvent;
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference hurtSoundEvent;
+    [SerializeField] private FMODUnity.EventReference deathSoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance hurtSoundInstance;
@@ -28,52 +39,60 @@ public class PlayerStats : MonoBehaviour
     // Stats
     private int health;
     private int armor;
-    private int shells;
 
+    [HideInInspector] public int bullets;
+    [HideInInspector] public int bulletsInClip;
 
-    // Start is called before the first frame update
+    [HideInInspector] public int shells;
+    [HideInInspector] public int shellsInClip;
+
     private void Awake()
     {
         // initialize stats 
         health = startingHealth;
+        bullets = startingBullets;
+        bulletsInClip = startingBulletsInClip;
         shells = startingShells;
+        shellsInClip = startingShellsInClip;
 
         // set reference to HUD
         hud = GetComponentInChildren<HUD>();
 
         // initialize HUD
-        hud.ChangeHealthText(health);
-        hud.ChangeArmorText(armor);
-        hud.ChangeShellsText(shells);
+        hud.UpdateUIText("health", health);
+        hud.UpdateUIText("armor", armor);
+        hud.UpdateUIText("bulletsInClip", bulletsInClip);
+        hud.UpdateUIText("bullets", bullets);
+        hud.UpdateUIText("shellsInClip", shellsInClip);
+        hud.UpdateUIText("shells", shells);
     }
 
-    public void TakeDamage(int damage)
+    //updates player health,
+    //either when player takes damage or picks up a health item to heal themselves
+    public void UpdateHealth(int updatedHealth)
     {
-        // take damage
-        health -= damage;
+        health += updatedHealth;
 
-        // update HUD
-        hud.ChangeHealthText(health);
-
-        if (health <= 0)
+        if (updatedHealth < 0)
         {
-            Die();
-            return;
+            if (health <= 0)
+            {
+                Die();
+                return;
+            }
+
+            gameObject.GetComponent<Controller>().damageTaken = true;
+            SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
+        }
+        else
+        {
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
 
-        // shake screen
-        gameObject.GetComponent<Controller>().damageTaken = true;
-
-        // play hurt sound
-        SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
-    }
-
-    public void Heal(int healing)
-    {
-        health = Mathf.Min(healing + health, maxHealth);
-
-        // update HUD
-        hud.ChangeHealthText(health);
+        hud.UpdateUIText("health", health);
     }
 
     private void Die()
@@ -84,40 +103,77 @@ public class PlayerStats : MonoBehaviour
         deathMenu.Show();
     }
 
-    public bool UseShells(int count)
+    //fire while there are enough remaining bullets
+    public void Fire(string gun)
     {
-        if (shells < count)
+        if (gun == "handgun")
         {
-            // didn't have enough ammo
-            return false;
+            bulletsInClip--;
+            hud.UpdateUIText("bulletsInClip", bulletsInClip);
+            Debug.Log("Shot handgun");
         }
-
-        // use the shells
-        shells -= count;
-
-        // update HUD
-        hud.ChangeShellsText(shells);
-
-        // had enough ammo
-        return true;
+        else if (gun == "shotgun")
+        {
+            shellsInClip--;
+            hud.UpdateUIText("shellsInClip", shellsInClip);
+            Debug.Log("Shot shotgun");
+        }
     }
 
-
-    public void GetShells(int count)
+    //reload while there are enough remaining bullets
+    public void Reload(string gun)
     {
-        // are we at max shells?
-        if (shells == maxShells)
+        if (gun == "handgun"
+            && bullets > 0)
         {
-            // then do nothing
-            return;
+            if (maxBullets >= bullets)
+            {
+                if (bulletsInClip == 0)
+                {
+                    bulletsInClip = maxBulletsInClip;
+                    bullets -= bulletsInClip;
+                }
+                else
+                {
+                    int remainingAvailableSpace = maxBullets - bulletsInClip;
+                    bulletsInClip += remainingAvailableSpace;
+                    bullets -= remainingAvailableSpace;
+                }
+            }
+            else if (maxBullets > bullets)
+            {
+                bulletsInClip = bullets;
+                bullets = 0;
+            }
+
+            hud.UpdateUIText("bullets", bullets);
+            hud.UpdateUIText("bulletsInClip", bulletsInClip);
         }
+        else if (gun == "shotgun"
+                 && shells > 0)
+        {
+            if (maxShells >= shells)
+            {
+                if (shellsInClip == 0)
+                {
+                    shellsInClip = maxShellsInClip;
+                    shells -= shellsInClip;
+                }
+                else
+                {
+                    int remainingAvailableSpace = maxShells - shellsInClip;
+                    shellsInClip += remainingAvailableSpace;
+                    shells -= remainingAvailableSpace;
+                }
+            }
+            else if (maxShells > shells)
+            {
+                shellsInClip = shells;
+                shells = 0;
+            }
 
-        // add shells
-        shells = Mathf.Min(shells + count, maxShells);
-
-        // TODO: play shell pickup sound
-
-        // update HUD
-        hud.ChangeShellsText(shells);
+            hud.UpdateUIText("shells", shells);
+            hud.UpdateUIText("shellsInClip", shellsInClip);
+        }
     }
 }

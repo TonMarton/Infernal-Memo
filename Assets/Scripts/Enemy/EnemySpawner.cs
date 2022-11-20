@@ -6,16 +6,6 @@ public class EnemySpawner : MonoBehaviour
     // The enemy prefab to spawn with this enemy spawner
     [SerializeField] private Enemy enemyPrefab;
 
-    // Start is called before the first frame update
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
-
     // Spawn an enemy
     public Enemy SpawnEnemy()
     {

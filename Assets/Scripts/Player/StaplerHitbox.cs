@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 // structure for knockback with a direction and a force
 public struct Knockback
 {
@@ -23,10 +22,6 @@ public class StaplerHitbox : MonoBehaviour
     
     private bool hitboxEnabled;
     private bool didDamageThisAttack;
-
-    private void Awake()
-    {
-    }
 
     // on trigger collision
     private void OnTriggerEnter(Collider other)

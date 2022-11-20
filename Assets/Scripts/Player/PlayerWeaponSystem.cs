@@ -20,6 +20,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     [SerializeField] private Animator armsAnimator;
 
+    private PlayerStats PlayerStatsScript;
+
     [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference staplerPutAwaySoundEvent;
@@ -36,14 +38,17 @@ public class PlayerWeaponSystem : MonoBehaviour
     private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
     private FMOD.Studio.EventInstance shotgunPutAwaySoundInstance;
 
-    private WeaponType currentWeaponType;
+    [HideInInspector] public WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
+    private Pistol pistol;
     private Shotgun shotgun;
     private HUD hud;
 
     private void Awake()
     {
+        PlayerStatsScript = GetComponent<PlayerStats>();
         staplerAttack = GetComponent<PlayerStaplerAttack>();
+        pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
     }
@@ -69,10 +74,16 @@ public class PlayerWeaponSystem : MonoBehaviour
                 staplerAttack.Attack();
                 break;
             case WeaponType.Pistol:
-                // TODO: pistol shoot
+                if (PlayerStatsScript.bulletsInClip > 0)
+                {
+                    pistol.Shoot();
+                }
                 break;
             case WeaponType.Shotgun:
-                shotgun.Shoot();
+                if (PlayerStatsScript.shellsInClip > 0)
+                {
+                    shotgun.Shoot();
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -87,10 +98,16 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // no stapler reload
                 break;
             case WeaponType.Pistol:
-                // TODO: pistol reload
+                if (PlayerStatsScript.bullets > 0)
+                {
+                    pistol.Reload();
+                }
                 break;
             case WeaponType.Shotgun:
-                shotgun.Reload();
+                if (PlayerStatsScript.shells > 0)
+                {
+                    shotgun.Reload();
+                }
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -151,7 +168,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // play draw pistol sound
                 SoundUtils.PlaySound3D(pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
                 // Play Pistol Idle
-                armsAnimator.Play("Deagle Idle", -1, 0);
+                armsAnimator.Play("Pistol Idle", -1, 0);
 
                 // TODO: Play weapon switch animation
                 break;

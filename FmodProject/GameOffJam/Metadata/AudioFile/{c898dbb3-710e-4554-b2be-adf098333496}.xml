@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{4386c32f-f87e-43e3-b112-15c78819046b}">
+	<object class="AudioFile" id="{c898dbb3-710e-4554-b2be-adf098333496}">
 		<property name="assetPath">
-			<value>Sfxs/Guns/Stapler/Put away/Stapler put away.wav</value>
+			<value>Sfxs/Guns/Pistol/Reload_no_slide/No_Slide_reload1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>1.2692290249433107</value>
+			<value>1.8221088435374149</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>

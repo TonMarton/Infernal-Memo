@@ -9,8 +9,9 @@ public class HPPickup : MonoBehaviour
     {
         PlayerStats playerStats = other.GetComponent<PlayerStats>();
 
-        if (playerStats != null) {
-            playerStats.Heal(HP);
+        if (playerStats != null) 
+        {
+            playerStats.UpdateHealth(HP);
             gameObject.SetActive(false);
         }
     }

@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-
 // Interface for if the enemy should attack or not
 public interface IEnemyShouldAttack
 {
@@ -18,7 +17,6 @@ public interface IEnemyShouldAttack
         throw new System.NotImplementedException();
     }
 }
-
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(EnemyAttack))]

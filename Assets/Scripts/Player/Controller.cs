@@ -99,9 +99,10 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private float damageShakeDuration = 0.2f;
 
+    [SerializeField] private PauseMenu PauseMenuScript;
+
     [SerializeField]
     private AnimationCurve damageShakeCurve;
-
 
     [Header("Sound")] [SerializeField] private FMODUnity.EventReference jumpSoundEvent;
 
@@ -136,49 +137,53 @@ public class Controller : MonoBehaviour
 
     private void Update()
     {
-        // Can't move?
-        if (!canMove)
+        if (Time.timeScale == 1)
         {
-            // then do nothing
-            return;
-        }
-
-        // move
-        MovementInput();
-
-        // look
-        MouseLook();
-
-        // can jump?
-        if (canJump)
-        {
-            // then jump
-            Jump();
-        }
-
-        // can crouch?
-        if (canCrouch)
-        {
-            // then crouch
-            Crouch();
-        }
-
-        // can shake screen?
-        if (canShakeScreen)
-        {
-            if (damageTaken)
+            // Can't move?
+            if (!canMove)
             {
-                StartCoroutine(DamageScreenShake());
-            } else
-            {
-                // then shake the screen
-                ScreenShake();
+                // then do nothing
+                return;
             }
+
+            // move
+            MovementInput();
+
+            // look
+            MouseLook();
+
+            // can jump?
+            if (canJump)
+            {
+                // then jump
+                Jump();
+            }
+
+            // can crouch?
+            if (canCrouch)
+            {
+                // then crouch
+                Crouch();
+            }
+
+            // can shake screen?
+            if (canShakeScreen)
+            {
+                if (damageTaken)
+                {
+                    StartCoroutine(DamageScreenShake());
+                }
+                else
+                {
+                    // then shake the screen
+                    ScreenShake();
+                }
+            }
+
+            FinalMovements();
+
+            CheckCeilingCollisions();
         }
-
-        FinalMovements();
-
-        CheckCeilingCollisions();
     }
 
     private void MovementInput()
