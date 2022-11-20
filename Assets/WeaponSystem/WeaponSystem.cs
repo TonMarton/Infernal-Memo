@@ -21,6 +21,9 @@ public class WeaponSystem : MonoBehaviour
     public class WeaponParams
     {
         public Image weaponImage;
+        public Sprite defaultSprite;
+        public Sprite fireSprite;
+        public float fireSpriteNormalizedDuration = 0.25f;
         public StateParams raise = StateParams.Default;
         public StateParams idle = StateParams.Default;
         public StateParams attack = StateParams.Default;
@@ -111,11 +114,11 @@ public class WeaponSystem : MonoBehaviour
         currentWeapon = value;
         if (value == Weapon.None)
         {
-            SetState(State.None);
+            SetState(State.None, 0);
         }
         else
         {
-            SetState(State.Raise);
+            SetState(State.Raise, 0);
         }
         for (int i = 0; i < 3; i++)
         {
@@ -124,10 +127,10 @@ public class WeaponSystem : MonoBehaviour
         }
     }
 
-    void SetState(State value)
+    void SetState(State value, float time)
     {
         currentState = value;
-        stateTime = 0.0f;
+        stateTime = time;
         if (value != State.None)
         {
             OnStateUpdate();
@@ -142,9 +145,12 @@ public class WeaponSystem : MonoBehaviour
     //}
     void OnStateUpdate()
     {
-        var rt = GetWeaponParams(currentWeapon).weaponImage.rectTransform;
+        var weap = GetWeaponParams(currentWeapon);
+        var img = weap.weaponImage;
+        var rt = img.rectTransform;
         float yOffset = 0;
         float height = rt.rect.height;
+        Sprite sprite = weap.defaultSprite;
         // state update
         switch (currentState)
         {
@@ -153,17 +159,25 @@ public class WeaponSystem : MonoBehaviour
                 if (desiredWeapon != currentWeapon)
                 {
                     float lastStateTime = stateTime;
-                    SetState(State.Lower);
+                    SetState(State.Lower, 0);
                     stateTime = 1 - lastStateTime;
                 }
                 break;
             case State.Idle:
                 if (desiredWeapon != currentWeapon)
                 {
-                    SetState(State.Lower);
+                    SetState(State.Lower, 0);
+                }
+                else if (Input.GetMouseButton(0))
+                {
+                    SetState(State.Attack, 0);
                 }
                 break;
             case State.Attack:
+                if (stateTime < weap.fireSpriteNormalizedDuration)
+                {
+                    sprite = weap.fireSprite;
+                }
                 break;
             case State.Reload:
                 break;
@@ -173,7 +187,7 @@ public class WeaponSystem : MonoBehaviour
                 break;
         }
         rt.anchoredPosition = new Vector2(rt.anchoredPosition.x, yOffset);
-
+        img.sprite = sprite;
     }
     void OnStateEnd()
     {
@@ -181,11 +195,19 @@ public class WeaponSystem : MonoBehaviour
         switch (currentState)
         {
             case State.Raise:
-                SetState(State.Idle);
+                SetState(State.Idle, stateTime);
                 break;
             case State.Idle:
                 break;
             case State.Attack:
+                if (Input.GetMouseButton(0) && desiredWeapon == currentWeapon)
+                {
+                    SetState(State.Attack, stateTime);
+                }
+                else
+                {
+                    SetState(State.Idle, stateTime);
+                }
                 break;
             case State.Reload:
                 break;

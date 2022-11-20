@@ -337,36 +337,45 @@ MonoBehaviour:
   weaponText: {fileID: 7479848265235797114}
   stapler:
     weaponImage: {fileID: 3480702998231773275}
+    defaultSprite: {fileID: 21300000, guid: a70112ace17b7014a85da8c7a2867389, type: 3}
+    fireSprite: {fileID: 21300000, guid: 211c9e67d21892d4982fc6f4e6ec354f, type: 3}
+    fireSpriteNormalizedDuration: 0.4
     raise:
-      duration: 0.18
+      duration: 0.2
     idle:
       duration: 1
     attack:
-      duration: 1
+      duration: 0.4
     reload:
       duration: 1
     lower:
       duration: 0.09
   pistol:
     weaponImage: {fileID: 1990962734820759714}
+    defaultSprite: {fileID: 21300000, guid: f5b8dd55a2cd84948a49a29054111f86, type: 3}
+    fireSprite: {fileID: 21300000, guid: 30ab2c57666aaf341aa1c9635d50d359, type: 3}
+    fireSpriteNormalizedDuration: 0.2
     raise:
       duration: 0.24
     idle:
       duration: 1
     attack:
-      duration: 1
+      duration: 0.4
     reload:
       duration: 1
     lower:
       duration: 0.09
   shotgun:
     weaponImage: {fileID: 1007498682365857612}
+    defaultSprite: {fileID: 21300000, guid: 8e85efa23af86c24f836e6cac76affa2, type: 3}
+    fireSprite: {fileID: 21300000, guid: 3482d21a38a55a240a7d3e9ab3d836c4, type: 3}
+    fireSpriteNormalizedDuration: 0.25
     raise:
       duration: 0.3
     idle:
       duration: 1
     attack:
-      duration: 1
+      duration: 0.6
     reload:
       duration: 1
     lower:
