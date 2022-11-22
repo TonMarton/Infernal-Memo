@@ -349,6 +349,7 @@ MonoBehaviour:
   crouchShakeAmount: 0.03
   damageShakeSpeed: 25
   damageShakeDuration: 0.2
+  PauseMenuScript: {fileID: 0}
   damageShakeCurve:
     serializedVersion: 2
     m_Curve:
@@ -404,7 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   maxHealth: 100
-  startingBullets: 12
+  startingBullets: 32
   maxBullets: 200
   startingBulletsInClip: 16
   maxBulletsInClip: 16
@@ -428,6 +429,10 @@ MonoBehaviour:
       Data3: 0
       Data4: 0
     Path: 
+  bullets: 0
+  bulletsInClip: 0
+  shells: 0
+  shellsInClip: 0
 --- !u!114 &-7273339783095973456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -646,6 +651,7 @@ MonoBehaviour:
       Data3: -2129632847
       Data4: -594660367
     Path: event:/Sfxs/Player/guns/Stapler/Stapler_put_away
+  currentWeaponType: 0
 --- !u!114 &4289160584079738295
 MonoBehaviour:
   m_ObjectHideFlags: 0
