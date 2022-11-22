@@ -121,56 +121,70 @@ public class PlayerStats : MonoBehaviour
     }
 
     //reload while there are enough remaining bullets
-    public void Reload(string gun)
+    public void Reload(WeaponType gun)
     {
-        if (gun == "handgun"
+        if (gun == WeaponType.Pistol 
             && bullets > 0)
         {
-            if (maxBullets >= bullets)
-            {
-                if (bulletsInClip == 0)
-                {
-                    bulletsInClip = maxBulletsInClip;
-                    bullets -= bulletsInClip;
-                }
-                else
-                {
-                    int remainingAvailableSpace = maxBullets - bulletsInClip;
-                    bulletsInClip += remainingAvailableSpace;
-                    bullets -= remainingAvailableSpace;
-                }
-            }
-            else if (maxBullets > bullets)
-            {
-                bulletsInClip = bullets;
-                bullets = 0;
-            }
+
+            int bulletsDesired = maxBulletsInClip - bulletsInClip;
+            int addBullets = Mathf.Min(bulletsDesired, bullets);
+
+            bulletsInClip += addBullets;
+            bullets -= addBullets;
+
+            //if (maxBullets >= bullets)
+            //{
+            //    if (bulletsInClip == 0)
+            //    {
+            //        bulletsInClip = maxBulletsInClip;
+            //        bullets -= bulletsInClip;
+            //    }
+            //    else
+            //    {
+            //        int remainingAvailableSpace = maxBullets - bulletsInClip;
+            //        bulletsInClip += remainingAvailableSpace;
+            //        bullets -= remainingAvailableSpace;
+            //    }
+            //}
+            //else if (maxBullets > bullets)
+            //{
+            //    bulletsInClip = bullets;
+            //    bullets = 0;
+            //}
 
             hud.UpdateUIText("bullets", bullets);
             hud.UpdateUIText("bulletsInClip", bulletsInClip);
         }
-        else if (gun == "shotgun"
-                 && shells > 0)
+        else if (gun == WeaponType.Shotgun
+            && shells > 0)
         {
-            if (maxShells >= shells)
-            {
-                if (shellsInClip == 0)
-                {
-                    shellsInClip = maxShellsInClip;
-                    shells -= shellsInClip;
-                }
-                else
-                {
-                    int remainingAvailableSpace = maxShells - shellsInClip;
-                    shellsInClip += remainingAvailableSpace;
-                    shells -= remainingAvailableSpace;
-                }
-            }
-            else if (maxShells > shells)
-            {
-                shellsInClip = shells;
-                shells = 0;
-            }
+
+            int shellsDesired = maxShellsInClip - shellsInClip;
+            int addShells = Mathf.Min(shellsDesired, shells);
+
+            shellsInClip += addShells;
+            shells -= addShells;
+
+            //if (maxShells >= shells)
+            //{
+            //    if (shellsInClip == 0)
+            //    {
+            //        shellsInClip = maxShellsInClip;
+            //        shells -= shellsInClip;
+            //    }
+            //    else
+            //    {
+            //        int remainingAvailableSpace = maxShells - shellsInClip;
+            //        shellsInClip += remainingAvailableSpace;
+            //        shells -= remainingAvailableSpace;
+            //    }
+            //}
+            //else if (maxShells > shells)
+            //{
+            //    shellsInClip = shells;
+            //    shells = 0;
+            //}
 
             hud.UpdateUIText("shells", shells);
             hud.UpdateUIText("shellsInClip", shellsInClip);

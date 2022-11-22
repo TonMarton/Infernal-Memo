@@ -11,10 +11,8 @@ public abstract class BaseWeapon : MonoBehaviour
     [Min(0)][SerializeField] protected float cooldownTime = 1.4f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
     private WeaponSharedComponent weaponShared;
-    private PlayerWeaponSystem PlayerWeaponSystemScript;
-    private PlayerStats PlayerStatsScript;
-    //protected LayerMask collisionLayerMask => weaponSharedComponent.collisionLayerMask;
-    //protected Transform fpsCam => weaponSharedComponent.fpsCam;
+    private PlayerWeaponSystem weaponSystem;
+
     [Header("Muzzle Flash")]
     [SerializeField]
     private GameObject muzzleFlash;
@@ -50,8 +48,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     private void Awake()
     {
-        PlayerWeaponSystemScript = GetComponent<PlayerWeaponSystem>();
-        PlayerStatsScript = GetComponent<PlayerStats>();
+        weaponSystem = GetComponent<PlayerWeaponSystem>();
         weaponShared = GetComponent<WeaponSharedComponent>();
 
         // hide shotgun and muzzle flash to start
@@ -146,17 +143,17 @@ public abstract class BaseWeapon : MonoBehaviour
             return;
         }
 
-        if (PlayerWeaponSystemScript.currentWeaponType
+        if (weaponSystem.currentWeaponType
             == WeaponType.Pistol
-            && PlayerStatsScript.bulletsInClip > 0)
+            && weaponShared.playerStats.bulletsInClip > 0)
         {
-            PlayerStatsScript.Fire("handgun");
+            weaponShared.playerStats.Fire("handgun");
         }
-        else if (PlayerWeaponSystemScript.currentWeaponType
+        else if (weaponSystem.currentWeaponType
                  == WeaponType.Shotgun
-                 && PlayerStatsScript.shellsInClip > 0)
+                 && weaponShared.playerStats.shellsInClip > 0)
         {
-            PlayerStatsScript.Fire("shotgun");
+            weaponShared.playerStats.Fire("shotgun");
         }
 
         // play animation
@@ -186,17 +183,17 @@ public abstract class BaseWeapon : MonoBehaviour
         // TO-DO: Check if can reload
         //   - Check if not currently firing
 
-        if (PlayerWeaponSystemScript.currentWeaponType
+        if (weaponSystem.currentWeaponType
             == WeaponType.Pistol
-            && PlayerStatsScript.bullets > 0)
+            && weaponShared.playerStats.bullets > 0)
         {
-            PlayerStatsScript.Reload("handgun");
+            weaponShared.playerStats.Reload(WeaponType.Pistol);
         }
-        else if (PlayerWeaponSystemScript.currentWeaponType
+        else if (weaponSystem.currentWeaponType
                  == WeaponType.Shotgun
-                 && PlayerStatsScript.shells > 0)
+                 && weaponShared.playerStats.shells > 0)
         {
-            PlayerStatsScript.Reload("shotgun");
+            weaponShared.playerStats.Reload(WeaponType.Shotgun);
         }
 
         // Play weapon reload animation
