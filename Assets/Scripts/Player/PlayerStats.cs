@@ -13,16 +13,16 @@ public class PlayerStats : MonoBehaviour
     [Header("Ammo - Pistol")]
     // pistol
     [SerializeField] private int startingBullets = 12;
-    [SerializeField] private int maxBullets = 99;
+    public int maxBullets = 99;
     [SerializeField] private int startingBulletsInClip = 12;
-    [SerializeField] private int maxBulletsInClip = 12;
+    public int maxBulletsInClip = 12;
 
     [Header("Ammo - Shotgun")]
     // shotgun
     [SerializeField] private int startingShells = 20;
-    [SerializeField] private int maxShells = 99;
+    public int maxShells = 99;
     [SerializeField] private int startingShellsInClip = 3;
-    [SerializeField] private int maxShellsInClip = 3;
+    public int maxShellsInClip = 3;
 
     [Header("UI")]
     [SerializeField] private DeathMenu deathMenu;

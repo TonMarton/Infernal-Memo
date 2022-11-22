@@ -9,6 +9,8 @@ public abstract class BaseWeapon : MonoBehaviour
     [Min(1)][SerializeField] protected int bulletCount = 20;
     [Min(0)][SerializeField] protected int shellsShootCost = 2;
     [Min(0)][SerializeField] protected float cooldownTime = 1.4f;
+    [Min(0)]
+    [SerializeField] protected float reloadCooldownTime = 1f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
     private WeaponSharedComponent weaponShared;
     private PlayerWeaponSystem weaponSystem;
@@ -122,6 +124,25 @@ public abstract class BaseWeapon : MonoBehaviour
         {
             SetMuzzleFlashVisible(false);
         }
+
+        if (weaponShared.currentReloadCooldownTime > 0)
+        {
+            weaponShared.currentReloadCooldownTime -= Time.deltaTime;
+            if (weaponShared.currentReloadCooldownTime < 0)
+            {
+                if (weaponSystem.currentWeaponType == WeaponType.Pistol
+                    && weaponShared.playerStats.bullets > 0)
+                {
+                    weaponShared.playerStats.Reload(WeaponType.Pistol);
+                }
+                else if (weaponSystem.currentWeaponType == WeaponType.Shotgun
+                    && weaponShared.playerStats.shells > 0)
+                {
+                    weaponShared.playerStats.Reload(WeaponType.Shotgun);
+                }
+                weaponShared.currentReloadCooldownTime = 0;
+            }
+        }
     }
 
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
@@ -142,6 +163,8 @@ public abstract class BaseWeapon : MonoBehaviour
             // can't shoot
             return;
         }
+
+        weaponShared.currentReloadCooldownTime = 0;
 
         if (weaponSystem.currentWeaponType
             == WeaponType.Pistol
@@ -180,21 +203,24 @@ public abstract class BaseWeapon : MonoBehaviour
 
     public void Reload()
     {
+        // didn't cooldown yet?
+        if (weaponShared.currentCooldownTime > 0)
+        {
+            // can't reload
+            return;
+        }
+
+        // didn't cooldown yet?
+        if (weaponShared.currentReloadCooldownTime > 0)
+        {
+            // can't reload
+            return;
+        }
         // TO-DO: Check if can reload
         //   - Check if not currently firing
+        weaponShared.currentReloadCooldownTime = reloadCooldownTime;
 
-        if (weaponSystem.currentWeaponType
-            == WeaponType.Pistol
-            && weaponShared.playerStats.bullets > 0)
-        {
-            weaponShared.playerStats.Reload(WeaponType.Pistol);
-        }
-        else if (weaponSystem.currentWeaponType
-                 == WeaponType.Shotgun
-                 && weaponShared.playerStats.shells > 0)
-        {
-            weaponShared.playerStats.Reload(WeaponType.Shotgun);
-        }
+
 
         // Play weapon reload animation
         weaponShared.animator.Play(reloadAnimationState, -1, 0);

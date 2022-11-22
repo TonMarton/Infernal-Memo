@@ -27,6 +27,7 @@ public class WeaponSharedComponent : MonoBehaviour
 
     public float currentCooldownTime { get; set; }
     public float lastFireTime { get; set; }
+    public float currentReloadCooldownTime { get; set; }
 
     private void Awake()
     {

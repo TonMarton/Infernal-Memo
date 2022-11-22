@@ -43,6 +43,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     private Pistol pistol;
     private Shotgun shotgun;
     private HUD hud;
+    private WeaponSharedComponent weaponSharedComponent;
 
     private void Awake()
     {
@@ -51,6 +52,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
+        weaponSharedComponent = GetComponentInChildren<WeaponSharedComponent>();
     }
 
     private void Start()
@@ -98,13 +100,13 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // no stapler reload
                 break;
             case WeaponType.Pistol:
-                if (PlayerStatsScript.bullets > 0)
+                if (PlayerStatsScript.bullets > 0 && PlayerStatsScript.bulletsInClip != PlayerStatsScript.maxBulletsInClip)
                 {
                     pistol.Reload();
                 }
                 break;
             case WeaponType.Shotgun:
-                if (PlayerStatsScript.shells > 0)
+                if (PlayerStatsScript.shells > 0 && PlayerStatsScript.shellsInClip != PlayerStatsScript.maxShellsInClip)
                 {
                     shotgun.Reload();
                 }
@@ -192,6 +194,9 @@ public class PlayerWeaponSystem : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        weaponSharedComponent.currentCooldownTime = 0;
+        weaponSharedComponent.currentReloadCooldownTime = 0;
 
         // show crosshair for shotgun and pistol only
         var visible = weaponType == WeaponType.Pistol || weaponType == WeaponType.Shotgun;
