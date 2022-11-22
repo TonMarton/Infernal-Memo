@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{cdaae90c-01fa-4ee7-97d0-407743f5a419}">
 		<property name="assetPath">
-			<value>Carpet footsteps3.wav</value>
+			<value>Sfxs/Player/Footsteps/Carpet/Carpet footsteps3.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
