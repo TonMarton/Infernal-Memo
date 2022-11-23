@@ -5,7 +5,7 @@
 			<value>Pistol_reload</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{4807fa72-0de0-4ce2-b502-fe1fbb53baee}</destination>
@@ -124,7 +124,6 @@
 	<object class="MixerBusEffectChain" id="{bdcfe47f-c91a-4667-b734-998b194bb38c}">
 		<relationship name="effects">
 			<destination>{0a940c79-bafa-4d09-922a-de7827763dcd}</destination>
-			<destination>{250f5b61-a490-4916-b537-63c060388a71}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b4e1d4a9-77c3-4843-974c-179c4e45ad5f}" />
@@ -167,7 +166,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{1c5625ee-598d-4079-ae52-22e73f1f3e43}" />
 	<object class="MixerBusFader" id="{0a940c79-bafa-4d09-922a-de7827763dcd}" />
-	<object class="SpatialiserEffect" id="{250f5b61-a490-4916-b537-63c060388a71}" />
 	<object class="AutomationPoint" id="{4e5fdaec-d941-4be2-a7e9-9db082f4a771}">
 		<property name="position">
 			<value>1.5</value>
