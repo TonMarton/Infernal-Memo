@@ -28,33 +28,38 @@ public class HUD : MonoBehaviour
         // crossHair.visible = show;
     }
 
-    public void ChangeHealthText(int health)
+    //update any UI text from one method,
+    //simply add a new if check to update what UI was updated
+    public void UpdateUIText(string textType, 
+                             int value)
     {
-        healthText.text = "" + health;
-    }
-
-    public void ChangeArmorText(int armor)
-    {
-        armorText.text = "" + armor;
-    }
-
-    public void ChangeBulletsText(int bullets)
-    {
-        bulletsText.text = "" + bullets;
-    }
-
-    public void ChangeBulletsInClipText(int bulletsInClip)
-    {
-        bulletsInClipText.text = "" + bulletsInClip;
-    }
-
-    public void ChangeShellsText(int shells)
-    {
-        shellsText.text = "" + shells;
-    }
-
-    public void ChangeShellsInClipText(int shellsInClip)
-    {
-        shellsInClipText.text = "" + shellsInClip;
+        if (textType == "health")
+        {
+            healthText.text = value.ToString();
+        }
+        else if (textType == "armor")
+        {
+            armorText.text = value.ToString();
+        }
+        else if (textType == "bullets")
+        {
+            bulletsText.text = value.ToString();
+        }
+        else if (textType == "bulletsInClip")
+        {
+            bulletsInClipText.text = value.ToString();
+        }
+        else if (textType == "shells")
+        {
+            shellsText.text = value.ToString();
+        }
+        else if (textType == "shellsInClip")
+        {
+            shellsInClipText.text = value.ToString();
+        }
+        else
+        {
+            Debug.LogError("Error: Invalid text type!");
+        }
     }
 }

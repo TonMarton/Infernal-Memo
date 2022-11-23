@@ -12,7 +12,6 @@ public class PlayerWeaponBob : MonoBehaviour
     [SerializeField] private float preMultiplier = .25f;
     [SerializeField] private float finalMultiplier = 0.01f;
 
-
     private float timer;
     private Vector3 startPosition;
 
@@ -51,7 +50,6 @@ public class PlayerWeaponBob : MonoBehaviour
             timer %= 1f;
 
         }
-
 
         // apply transform
         Vector3 bobOffset = new Vector3(Mathf.Sin(timer * Mathf.PI * 2), Mathf.Sin(timer * Mathf.PI * 4), Mathf.Sin(timer * Mathf.PI * 4));
