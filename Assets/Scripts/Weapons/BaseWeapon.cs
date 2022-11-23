@@ -12,7 +12,6 @@ public abstract class BaseWeapon : MonoBehaviour
     [Min(0)]
     [SerializeField] protected float reloadCooldownTime = 1f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
-    private WeaponSharedComponent weaponShared;
     private PlayerWeaponSystem weaponSystem;
 
     [Header("Muzzle Flash")]
@@ -51,7 +50,6 @@ public abstract class BaseWeapon : MonoBehaviour
     private void Awake()
     {
         weaponSystem = GetComponent<PlayerWeaponSystem>();
-        weaponShared = GetComponent<WeaponSharedComponent>();
 
         // hide shotgun and muzzle flash to start
         SetVisible(false);
@@ -61,20 +59,20 @@ public abstract class BaseWeapon : MonoBehaviour
     private void ShootBullet()
     {
         // get the camera's forward direction
-        Vector3 fpsCamForward = weaponShared.fpsCam.forward;
+        Vector3 fpsCamForward = weaponSystem.fpsCam.forward;
 
         // calculate random spread
         float degreesX = Random.Range(-maxSpreadDegreesX, maxSpreadDegreesX);
         float degreesY = Random.Range(-maxSpreadDegreesY, maxSpreadDegreesY);
 
         // calculate trajectory
-        Quaternion rotationX = Quaternion.AngleAxis(degreesX, weaponShared.fpsCam.right);
-        Quaternion rotationY = Quaternion.AngleAxis(degreesY, weaponShared.fpsCam.up);
+        Quaternion rotationX = Quaternion.AngleAxis(degreesX, weaponSystem.fpsCam.right);
+        Quaternion rotationY = Quaternion.AngleAxis(degreesY, weaponSystem.fpsCam.up);
         Vector3 bulletTrajectory = rotationX * rotationY * fpsCamForward;
 
         // Raycast for hit
         const float range = 10000f; // max distance
-        if (!Physics.Raycast(weaponShared.fpsCam.transform.position, bulletTrajectory, out var hit, range, weaponShared.collisionLayerMask))
+        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, range, weaponSystem.collisionLayerMask))
         {
             // didn't hit so nothing to do
             return;
@@ -117,30 +115,30 @@ public abstract class BaseWeapon : MonoBehaviour
     private void Update()
     {
         // update cooldown time
-        weaponShared.currentCooldownTime -= Time.deltaTime;
+        weaponSystem.currentCooldownTime -= Time.deltaTime;
 
         // hide muzzle flash after a delay
-        if (muzzleFlash.activeSelf && Time.time > weaponShared.lastFireTime + hideMuzzleFlashAfterTime)
+        if (muzzleFlash.activeSelf && Time.time > weaponSystem.lastFireTime + hideMuzzleFlashAfterTime)
         {
             SetMuzzleFlashVisible(false);
         }
 
-        if (weaponShared.currentReloadCooldownTime > 0)
+        if (weaponSystem.currentReloadCooldownTime > 0)
         {
-            weaponShared.currentReloadCooldownTime -= Time.deltaTime;
-            if (weaponShared.currentReloadCooldownTime < 0)
+            weaponSystem.currentReloadCooldownTime -= Time.deltaTime;
+            if (weaponSystem.currentReloadCooldownTime < 0)
             {
                 if (weaponSystem.currentWeaponType == WeaponType.Pistol
-                    && weaponShared.playerStats.bullets > 0)
+                    && weaponSystem.playerStats.bullets > 0)
                 {
-                    weaponShared.playerStats.Reload(WeaponType.Pistol);
+                    weaponSystem.playerStats.Reload(WeaponType.Pistol);
                 }
                 else if (weaponSystem.currentWeaponType == WeaponType.Shotgun
-                    && weaponShared.playerStats.shells > 0)
+                    && weaponSystem.playerStats.shells > 0)
                 {
-                    weaponShared.playerStats.Reload(WeaponType.Shotgun);
+                    weaponSystem.playerStats.Reload(WeaponType.Shotgun);
                 }
-                weaponShared.currentReloadCooldownTime = 0;
+                weaponSystem.currentReloadCooldownTime = 0;
             }
         }
     }
@@ -148,42 +146,42 @@ public abstract class BaseWeapon : MonoBehaviour
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
     {
         // spawn a bullet hole decal
-        GameObject bulletHole = Instantiate(weaponShared.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
+        GameObject bulletHole = Instantiate(weaponSystem.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
             Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
 
         // auto destroy bullet hole after a delay
-        Destroy(bulletHole, weaponShared.autoDestroyBulletHoleTime);
+        Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);
     }
 
     public void Shoot()
     {
         // didn't cooldown yet?
-        if (weaponShared.currentCooldownTime > 0)
+        if (weaponSystem.currentCooldownTime > 0)
         {
             // can't shoot
             return;
         }
 
-        weaponShared.currentReloadCooldownTime = 0;
+        weaponSystem.currentReloadCooldownTime = 0;
 
         if (weaponSystem.currentWeaponType
             == WeaponType.Pistol
-            && weaponShared.playerStats.bulletsInClip > 0)
+            && weaponSystem.playerStats.bulletsInClip > 0)
         {
-            weaponShared.playerStats.Fire("handgun");
+            weaponSystem.playerStats.Fire("handgun");
         }
         else if (weaponSystem.currentWeaponType
                  == WeaponType.Shotgun
-                 && weaponShared.playerStats.shellsInClip > 0)
+                 && weaponSystem.playerStats.shellsInClip > 0)
         {
-            weaponShared.playerStats.Fire("shotgun");
+            weaponSystem.playerStats.Fire("shotgun");
         }
 
         // play animation
-        weaponShared.animator.Play(shootAnimationState, -1, 0);
+        weaponSystem.armsAnimator.Play(shootAnimationState, -1, 0);
 
         // reset cooldown time
-        weaponShared.currentCooldownTime = cooldownTime;
+        weaponSystem.currentCooldownTime = cooldownTime;
 
         // play shoot sound
         PlayShootSound();
@@ -192,7 +190,7 @@ public abstract class BaseWeapon : MonoBehaviour
         SetMuzzleFlashVisible(true);
 
         // Keep track of time fired
-        weaponShared.lastFireTime = Time.time;
+        weaponSystem.lastFireTime = Time.time;
 
         // Shoot each bullet
         for (int i = 0; i < bulletCount; i++)
@@ -204,26 +202,26 @@ public abstract class BaseWeapon : MonoBehaviour
     public void Reload()
     {
         // didn't cooldown yet?
-        if (weaponShared.currentCooldownTime > 0)
+        if (weaponSystem.currentCooldownTime > 0)
         {
             // can't reload
             return;
         }
 
         // didn't cooldown yet?
-        if (weaponShared.currentReloadCooldownTime > 0)
+        if (weaponSystem.currentReloadCooldownTime > 0)
         {
             // can't reload
             return;
         }
         // TO-DO: Check if can reload
         //   - Check if not currently firing
-        weaponShared.currentReloadCooldownTime = reloadCooldownTime;
+        weaponSystem.currentReloadCooldownTime = reloadCooldownTime;
 
 
 
         // Play weapon reload animation
-        weaponShared.animator.Play(reloadAnimationState, -1, 0);
+        weaponSystem.armsAnimator.Play(reloadAnimationState, -1, 0);
 
         // Play weapon reload sound
         PlayReloadSound();

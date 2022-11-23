@@ -213,7 +213,6 @@ GameObject:
   - component: {fileID: 7576061198846146304}
   - component: {fileID: 4289160584079738295}
   - component: {fileID: 1232932227}
-  - component: {fileID: 6098927164504811140}
   - component: {fileID: 719967899060198336}
   - component: {fileID: 1674198715}
   m_Layer: 9
@@ -652,6 +651,12 @@ MonoBehaviour:
       Data4: -594660367
     Path: event:/Sfxs/Player/guns/Stapler/Stapler_put_away
   currentWeaponType: 0
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 65
+  fpsCam: {fileID: 5983632887014776814}
+  bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
+  autoDestroyBulletHoleTime: 10
 --- !u!114 &4289160584079738295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,25 +694,6 @@ MonoBehaviour:
   bobScale: {x: 0.03, y: 0.01, z: 0.02}
   preMultiplier: 0.25
   finalMultiplier: 0.5
---- !u!114 &6098927164504811140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5983632887037757786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 052e0841bd895b440b73250eb89fdf43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 65
-  fpsCam: {fileID: 5983632887014776814}
-  animator: {fileID: 1997952733}
-  bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
-  autoDestroyBulletHoleTime: 10
 --- !u!114 &719967899060198336
 MonoBehaviour:
   m_ObjectHideFlags: 0

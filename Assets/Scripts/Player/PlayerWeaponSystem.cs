@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // enum for melee and shotgun weapons
 public enum WeaponType
@@ -18,10 +19,21 @@ public class PlayerWeaponSystem : MonoBehaviour
     [SerializeField] private GameObject deagleModel; // deagle only
     [SerializeField] private GameObject shotgunModel; // shotgun only
 
-    [SerializeField] private Animator armsAnimator;
+    public Animator armsAnimator;
+    // TODO: customize the layer mask so it doesn't hit things like trigger volumes
+    [FormerlySerializedAs("layerMask")]
+    [SerializeField]
+    public LayerMask collisionLayerMask = Physics.DefaultRaycastLayers;
 
-    private PlayerStats PlayerStatsScript;
+    [SerializeField]
+    public Transform fpsCam;
 
+    [Header("Bullet Hole")]
+    [SerializeField]
+    public GameObject bulletHolePrefab;
+
+    [SerializeField]
+    public float autoDestroyBulletHoleTime = 10f;
     [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference staplerPutAwaySoundEvent;
@@ -43,16 +55,22 @@ public class PlayerWeaponSystem : MonoBehaviour
     private Pistol pistol;
     private Shotgun shotgun;
     private HUD hud;
-    private WeaponSharedComponent weaponSharedComponent;
+
+    
+
+    public PlayerStats playerStats { get; private set; }
+
+    public float currentCooldownTime { get; set; }
+    public float lastFireTime { get; set; }
+    public float currentReloadCooldownTime { get; set; }
 
     private void Awake()
     {
-        PlayerStatsScript = GetComponent<PlayerStats>();
+        playerStats = GetComponent<PlayerStats>();
         staplerAttack = GetComponent<PlayerStaplerAttack>();
         pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
-        weaponSharedComponent = GetComponentInChildren<WeaponSharedComponent>();
     }
 
     private void Start()
@@ -76,13 +94,13 @@ public class PlayerWeaponSystem : MonoBehaviour
                 staplerAttack.Attack();
                 break;
             case WeaponType.Pistol:
-                if (PlayerStatsScript.bulletsInClip > 0)
+                if (playerStats.bulletsInClip > 0)
                 {
                     pistol.Shoot();
                 }
                 break;
             case WeaponType.Shotgun:
-                if (PlayerStatsScript.shellsInClip > 0)
+                if (playerStats.shellsInClip > 0)
                 {
                     shotgun.Shoot();
                 }
@@ -100,13 +118,13 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // no stapler reload
                 break;
             case WeaponType.Pistol:
-                if (PlayerStatsScript.bullets > 0 && PlayerStatsScript.bulletsInClip != PlayerStatsScript.maxBulletsInClip)
+                if (playerStats.bullets > 0 && playerStats.bulletsInClip != playerStats.maxBulletsInClip)
                 {
                     pistol.Reload();
                 }
                 break;
             case WeaponType.Shotgun:
-                if (PlayerStatsScript.shells > 0 && PlayerStatsScript.shellsInClip != PlayerStatsScript.maxShellsInClip)
+                if (playerStats.shells > 0 && playerStats.shellsInClip != playerStats.maxShellsInClip)
                 {
                     shotgun.Reload();
                 }
@@ -195,8 +213,8 @@ public class PlayerWeaponSystem : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        weaponSharedComponent.currentCooldownTime = 0;
-        weaponSharedComponent.currentReloadCooldownTime = 0;
+        currentCooldownTime = 0;
+        currentReloadCooldownTime = 0;
 
         // show crosshair for shotgun and pistol only
         var visible = weaponType == WeaponType.Pistol || weaponType == WeaponType.Shotgun;
