@@ -753,7 +753,7 @@ MonoBehaviour:
   bulletCount: 1
   shellsShootCost: 1
   cooldownTime: 0.5
-  reloadCooldownTime: 1.5
+  reloadCooldownTime: 1.55
   damagePerBullet: 10
   maxDistance: 10000
   muzzleFlash: {fileID: 202609298}
