@@ -5,10 +5,10 @@
 			<value>Gameplay music</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
-			<destination>{4e335091-1302-4f8d-a5a0-77ec7da669f7}</destination>
+			<destination>{a93fea4a-5986-4cde-82f9-7b45cba1e89e}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{b3bd8468-1265-404b-b1fb-7c8fc7322e1b}</destination>
