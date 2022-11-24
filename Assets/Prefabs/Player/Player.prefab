@@ -215,6 +215,7 @@ GameObject:
   - component: {fileID: 1232932227}
   - component: {fileID: 719967899060198336}
   - component: {fileID: 1674198715}
+  - component: {fileID: 1379996700852073033}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -608,6 +609,12 @@ MonoBehaviour:
   deagleModel: {fileID: 3248975548900535975}
   shotgunModel: {fileID: 6128295132931750345}
   armsAnimator: {fileID: 1997952733}
+  collisionLayerMask:
+    serializedVersion: 2
+    m_Bits: 65
+  fpsCam: {fileID: 5983632887014776814}
+  bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
+  autoDestroyBulletHoleTime: 10
   staplerDrawSoundEvent:
     Guid:
       Data1: -142356871
@@ -651,12 +658,6 @@ MonoBehaviour:
       Data4: -594660367
     Path: event:/Sfxs/Player/guns/Stapler/Stapler_put_away
   currentWeaponType: 0
-  collisionLayerMask:
-    serializedVersion: 2
-    m_Bits: 65
-  fpsCam: {fileID: 5983632887014776814}
-  bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
-  autoDestroyBulletHoleTime: 10
 --- !u!114 &4289160584079738295
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -712,6 +713,7 @@ MonoBehaviour:
   cooldownTime: 0.72
   reloadCooldownTime: 5
   damagePerBullet: 2
+  maxDistance: 10000
   muzzleFlash: {fileID: 7288353736965989574}
   hideMuzzleFlashAfterTime: 0.05
   maxSpreadDegreesY: 9
@@ -750,6 +752,7 @@ MonoBehaviour:
   cooldownTime: 0.9
   reloadCooldownTime: 3
   damagePerBullet: 10
+  maxDistance: 10000
   muzzleFlash: {fileID: 202609298}
   hideMuzzleFlashAfterTime: 0.04
   maxSpreadDegreesY: 0.5
@@ -770,6 +773,45 @@ MonoBehaviour:
     Path: event:/Sfxs/Player/guns/Pistol/Pistol_reload
   shootAnimationState: Pistol Shoot
   reloadAnimationState: Pistol Reload
+--- !u!114 &1379996700852073033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5983632887037757786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f5bc214e802bf0449e4656b27adf884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 6986759645711609121}
+  bulletCount: 1
+  shellsShootCost: 2
+  cooldownTime: 1.4
+  reloadCooldownTime: 1
+  damagePerBullet: 2
+  maxDistance: 1.5
+  muzzleFlash: {fileID: 0}
+  hideMuzzleFlashAfterTime: 0.1
+  maxSpreadDegreesY: 1
+  maxSpreadDegreesX: 1
+  shootSoundEvent:
+    Guid:
+      Data1: -857558730
+      Data2: 1190526070
+      Data3: 1626287774
+      Data4: -1627835889
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler-swing
+  reloadSoundEvent:
+    Guid:
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  shootAnimationState: 
+  reloadAnimationState: 
 --- !u!1001 &202511414
 PrefabInstance:
   m_ObjectHideFlags: 0

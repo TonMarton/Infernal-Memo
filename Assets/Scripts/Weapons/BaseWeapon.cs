@@ -12,6 +12,7 @@ public abstract class BaseWeapon : MonoBehaviour
     [Min(0)]
     [SerializeField] protected float reloadCooldownTime = 1f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
+    [SerializeField] protected float maxDistance = 10000f;
     private PlayerWeaponSystem weaponSystem;
 
     [Header("Muzzle Flash")]
@@ -71,8 +72,7 @@ public abstract class BaseWeapon : MonoBehaviour
         Vector3 bulletTrajectory = rotationX * rotationY * fpsCamForward;
 
         // Raycast for hit
-        const float range = 10000f; // max distance
-        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, range, weaponSystem.collisionLayerMask))
+        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, maxDistance, weaponSystem.collisionLayerMask))
         {
             // didn't hit so nothing to do
             return;
@@ -109,6 +109,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
     private void SetMuzzleFlashVisible(bool visible)
     {
+        if (muzzleFlash == null) return;
         muzzleFlash.SetActive(visible);
     }
 
@@ -118,9 +119,13 @@ public abstract class BaseWeapon : MonoBehaviour
         weaponSystem.currentCooldownTime -= Time.deltaTime;
 
         // hide muzzle flash after a delay
-        if (muzzleFlash.activeSelf && Time.time > weaponSystem.lastFireTime + hideMuzzleFlashAfterTime)
+        if (muzzleFlash != null)
         {
-            SetMuzzleFlashVisible(false);
+
+            if (muzzleFlash.activeSelf && Time.time > weaponSystem.lastFireTime + hideMuzzleFlashAfterTime)
+            {
+                SetMuzzleFlashVisible(false);
+            }
         }
 
         if (weaponSystem.currentReloadCooldownTime > 0)
@@ -178,7 +183,10 @@ public abstract class BaseWeapon : MonoBehaviour
         }
 
         // play animation
-        weaponSystem.armsAnimator.Play(shootAnimationState, -1, 0);
+        if (!string.IsNullOrEmpty(shootAnimationState))
+        {
+            weaponSystem.armsAnimator.Play(shootAnimationState, -1, 0);
+        }
 
         // reset cooldown time
         weaponSystem.currentCooldownTime = cooldownTime;

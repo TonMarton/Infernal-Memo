@@ -52,6 +52,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     [HideInInspector] public WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
+    private Stapler stapler;
     private Pistol pistol;
     private Shotgun shotgun;
     private HUD hud;
@@ -68,6 +69,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         playerStats = GetComponent<PlayerStats>();
         staplerAttack = GetComponent<PlayerStaplerAttack>();
+        stapler = GetComponentInChildren<Stapler>();
         pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
@@ -91,7 +93,7 @@ public class PlayerWeaponSystem : MonoBehaviour
         switch (currentWeaponType)
         {
             case WeaponType.Stapler:
-                staplerAttack.Attack();
+                stapler.Shoot();
                 break;
             case WeaponType.Pistol:
                 if (playerStats.bulletsInClip > 0)
@@ -157,15 +159,12 @@ public class PlayerWeaponSystem : MonoBehaviour
             case WeaponType.Stapler:
                 // show arms
                 armsModel.SetActive(true);
-
-
                 // hide shotgun
                 shotgun.SetVisible(false);
                 // hide pistol
                 deagleModel.gameObject.SetActive(false);
                 // show stapler
                 staplerModel.gameObject.SetActive(true);
-
                 // play draw stapler sound
                 SoundUtils.PlaySound3D(staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
 
@@ -187,10 +186,12 @@ public class PlayerWeaponSystem : MonoBehaviour
                 shotgun.SetVisible(false);
                 // play draw pistol sound
                 SoundUtils.PlaySound3D(pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
+
+                // TODO: Play weapon switch animation
+
                 // Play Pistol Idle
                 armsAnimator.Play("Pistol Idle", -1, 0);
 
-                // TODO: Play weapon switch animation
                 break;
 
             case WeaponType.Shotgun:
@@ -204,10 +205,12 @@ public class PlayerWeaponSystem : MonoBehaviour
                 deagleModel.gameObject.SetActive(false);
                 // play draw shotgun sound
                 SoundUtils.PlaySound3D(shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);
+
+                // TODO: Play weapon switch animation
+
                 // Play Shotgun Idle
                 armsAnimator.Play("Shotgun Idle", -1, 0);
 
-                // TODO: Play weapon switch animation
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
