@@ -171,7 +171,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // TODO: Play weapon switch animation
 
                 // Play Stapler Idle
-                armsAnimator.Play("StaplerIdlePlaceholder", -1, 0);
+                armsAnimator.Play(stapler.drawAnimationState, -1, 0);
 
                 break;
 
@@ -190,7 +190,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // TODO: Play weapon switch animation
 
                 // Play Pistol Idle
-                armsAnimator.Play("Pistol Idle", -1, 0);
+                armsAnimator.Play(pistol.drawAnimationState, -1, 0);
 
                 break;
 
@@ -209,7 +209,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // TODO: Play weapon switch animation
 
                 // Play Shotgun Idle
-                armsAnimator.Play("Shotgun Idle", -1, 0);
+                armsAnimator.Play(shotgun.drawAnimationState, -1, 0);
 
                 break;
             default:
@@ -222,6 +222,34 @@ public class PlayerWeaponSystem : MonoBehaviour
         // show crosshair for shotgun and pistol only
         var visible = weaponType == WeaponType.Pistol || weaponType == WeaponType.Shotgun;
         hud.SetCrossHairVisible(visible);
+    }
+
+    private void Update()
+    {
+
+        // update cooldown time
+        currentCooldownTime -= Time.deltaTime;
+
+
+        if (currentReloadCooldownTime > 0)
+        {
+            currentReloadCooldownTime -= Time.deltaTime;
+            if (currentReloadCooldownTime < 0)
+            {
+                if (currentWeaponType == WeaponType.Pistol
+                    && playerStats.bullets > 0)
+                {
+                    playerStats.Reload(WeaponType.Pistol);
+                }
+                else if (currentWeaponType == WeaponType.Shotgun
+                    && playerStats.shells > 0)
+                {
+                    playerStats.Reload(WeaponType.Shotgun);
+                }
+                currentReloadCooldownTime = 0;
+            }
+        }
+
     }
 
     public void SwitchWeaponNext()

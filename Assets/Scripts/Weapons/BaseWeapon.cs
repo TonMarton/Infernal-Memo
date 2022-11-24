@@ -45,6 +45,9 @@ public abstract class BaseWeapon : MonoBehaviour
     private FMOD.Studio.EventInstance shootSoundInstance;
     private FMOD.Studio.EventInstance reloadSoundInstance;
 
+    public string drawAnimationState;
+    public string putAwayAnimationState;
+    public string idleAnimationState;
     public string shootAnimationState;
     public string reloadAnimationState;
 
@@ -115,37 +118,17 @@ public abstract class BaseWeapon : MonoBehaviour
 
     private void Update()
     {
-        // update cooldown time
-        weaponSystem.currentCooldownTime -= Time.deltaTime;
 
         // hide muzzle flash after a delay
         if (muzzleFlash != null)
         {
-
             if (muzzleFlash.activeSelf && Time.time > weaponSystem.lastFireTime + hideMuzzleFlashAfterTime)
             {
                 SetMuzzleFlashVisible(false);
             }
         }
 
-        if (weaponSystem.currentReloadCooldownTime > 0)
-        {
-            weaponSystem.currentReloadCooldownTime -= Time.deltaTime;
-            if (weaponSystem.currentReloadCooldownTime < 0)
-            {
-                if (weaponSystem.currentWeaponType == WeaponType.Pistol
-                    && weaponSystem.playerStats.bullets > 0)
-                {
-                    weaponSystem.playerStats.Reload(WeaponType.Pistol);
-                }
-                else if (weaponSystem.currentWeaponType == WeaponType.Shotgun
-                    && weaponSystem.playerStats.shells > 0)
-                {
-                    weaponSystem.playerStats.Reload(WeaponType.Shotgun);
-                }
-                weaponSystem.currentReloadCooldownTime = 0;
-            }
-        }
+        
     }
 
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
