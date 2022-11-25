@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{653f95ce-b920-40d9-ae8f-6197e8757dcc}">
+		<property name="name">
+			<value>Bullet_impacts</value>
+		</property>
+		<relationship name="folder">
+			<destination>{24c08485-0465-470b-bd71-0b8680bb76ac}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{5e97771a-b6e4-41ae-89b7-1652440cb065}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{5e97771a-b6e4-41ae-89b7-1652440cb065}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

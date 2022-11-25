@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{b12b8694-f9b5-461e-924e-f18bec9a6ad9}">
+		<property name="assetPath">
+			<value>Sfxs/Bullets impacts/Enemy_Bullet_impact/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>
