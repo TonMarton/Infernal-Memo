@@ -931,7 +931,7 @@ MonoBehaviour:
   drawAnimationState: Stapler Draw
   putAwayAnimationState: Stapler Put Away
   idleAnimationState: Stapler Idle
-  shootAnimationState: 
+  shootAnimationState: Stapler Attack
   reloadAnimationState: 
 --- !u!1001 &202511414
 PrefabInstance:
