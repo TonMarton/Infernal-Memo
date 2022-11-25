@@ -57,6 +57,15 @@ ModelImporter:
   - first:
       74: 1872247771216583938
     second: Armature|StaplerToShotgun
+  - first:
+      74: 8852593511147193071
+    second: Armature|stapler_attack_1_and_2
+  - first:
+      74: -8909422489505680387
+    second: Armature|stapler_attack_4
+  - first:
+      74: 5868791067209566374
+    second: Armature|stapler_attack_sequence
   externalObjects: {}
   materials:
     materialImportMode: 2
