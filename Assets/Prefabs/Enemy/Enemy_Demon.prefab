@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 1662434240737359982}
   - component: {fileID: 1662434240737359983}
   - component: {fileID: 1662434240737359976}
+  - component: {fileID: 3429120028290255369}
+  - component: {fileID: 1095935455416166423}
   m_Layer: 6
   m_Name: Enemy_Demon
   m_TagString: Enemy
@@ -67,6 +69,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   targetSightAngleThreshold: 90
+  lineOfSightRange: 10000
+  closeWakeRange: 10
   noTarget: 0
   checkPathUpdateRate: 0.9
   zigZagDistanceThreshold: 10
@@ -85,6 +89,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1662434240677004447}
   moveParameterName: Move
+--- !u!114 &3429120028290255369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662434240737359980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deed4788ce3522b418e226e6f647302a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startHealth: 100
+  health: 0
+  minTimeBetweenDamageSounds: 0.5
+  hurtSoundEvent:
+    Guid:
+      Data1: 1950732164
+      Data2: 1084205076
+      Data3: -1482649717
+      Data4: -1610614253
+    Path: event:/Sfxs/Enemy/Enemy damage
+  deathSoundEvent:
+    Guid:
+      Data1: 700295798
+      Data2: 1164871486
+      Data3: 1636269741
+      Data4: -1097586009
+    Path: event:/Sfxs/Enemy/Enemy death
+--- !u!114 &1095935455416166423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662434240737359980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a21909c65520f4884df3cdfb256198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1662434240614267448
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -325,9 +325,9 @@ GameObject:
   - component: {fileID: 7576061198846146304}
   - component: {fileID: 4289160584079738295}
   - component: {fileID: 1232932227}
-  - component: {fileID: 719967899060198336}
-  - component: {fileID: 1674198715}
   - component: {fileID: 1379996700852073033}
+  - component: {fileID: 1674198715}
+  - component: {fileID: 719967899060198336}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -807,7 +807,7 @@ MonoBehaviour:
   bobScale: {x: 0.03, y: 0.01, z: 0.02}
   preMultiplier: 0.25
   finalMultiplier: 0.5
---- !u!114 &719967899060198336
+--- !u!114 &1379996700852073033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -816,39 +816,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 5983632887037757786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26e41b5e459bb9b419fae210d471657e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f5bc214e802bf0449e4656b27adf884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 2062527563857075471}
-  bulletCount: 20
+  model: {fileID: 2983202581438613991}
+  bulletCount: 1
   shellsShootCost: 1
-  cooldownTime: 0.55
-  reloadCooldownTime: 1.6666666
+  cooldownTime: 0.75
+  reloadCooldownTime: 1
   damagePerBullet: 2
-  maxDistance: 10000
-  muzzleFlash: {fileID: 7288353736965989574}
-  hideMuzzleFlashAfterTime: 0.05
-  maxSpreadDegreesY: 9
-  maxSpreadDegreesX: 3
+  maxDistance: 1.75
+  muzzleFlash: {fileID: 0}
+  hideMuzzleFlashAfterTime: 0.1
+  maxSpreadDegreesY: 0.2
+  maxSpreadDegreesX: 0.2
   shootSoundEvent:
     Guid:
-      Data1: 32657246
-      Data2: 1244190977
-      Data3: 1186845116
-      Data4: -230296701
-    Path: event:/Sfxs/Player/guns/Shotgun/Shoot
+      Data1: -857558730
+      Data2: 1190526070
+      Data3: 1626287774
+      Data4: -1627835889
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler-swing
   reloadSoundEvent:
     Guid:
-      Data1: -1211606828
-      Data2: 1169175841
-      Data3: 764012196
-      Data4: -1864398657
-    Path: event:/Sfxs/Player/guns/Shotgun/Reload
-  drawAnimationState: Shotgun Draw
-  putAwayAnimationState: Shotgun Put Away
-  idleAnimationState: Shotgun Idle
-  shootAnimationState: Shotgun Shoot
-  reloadAnimationState: Shotgun Reload
+      Data1: 0
+      Data2: 0
+      Data3: 0
+      Data4: 0
+    Path: 
+  drawAnimationState: Stapler Draw
+  putAwayAnimationState: Stapler Put Away
+  idleAnimationState: Stapler Idle
+  shootAnimationState: Stapler Attack
+  reloadAnimationState: 
 --- !u!114 &1674198715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -891,7 +891,7 @@ MonoBehaviour:
   idleAnimationState: Pistol Idle
   shootAnimationState: Pistol Shoot
   reloadAnimationState: Pistol Reload
---- !u!114 &1379996700852073033
+--- !u!114 &719967899060198336
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -900,39 +900,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 5983632887037757786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f5bc214e802bf0449e4656b27adf884, type: 3}
+  m_Script: {fileID: 11500000, guid: 26e41b5e459bb9b419fae210d471657e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  model: {fileID: 2983202581438613991}
-  bulletCount: 1
-  shellsShootCost: 2
-  cooldownTime: 0.5
-  reloadCooldownTime: 1
+  model: {fileID: 2062527563857075471}
+  bulletCount: 20
+  shellsShootCost: 1
+  cooldownTime: 0.55
+  reloadCooldownTime: 1.6666666
   damagePerBullet: 2
-  maxDistance: 1.5
-  muzzleFlash: {fileID: 0}
-  hideMuzzleFlashAfterTime: 0.1
-  maxSpreadDegreesY: 1
-  maxSpreadDegreesX: 1
+  maxDistance: 10000
+  muzzleFlash: {fileID: 7288353736965989574}
+  hideMuzzleFlashAfterTime: 0.05
+  maxSpreadDegreesY: 9
+  maxSpreadDegreesX: 3
   shootSoundEvent:
     Guid:
-      Data1: -857558730
-      Data2: 1190526070
-      Data3: 1626287774
-      Data4: -1627835889
-    Path: event:/Sfxs/Player/guns/Stapler/Stapler-swing
+      Data1: 32657246
+      Data2: 1244190977
+      Data3: 1186845116
+      Data4: -230296701
+    Path: event:/Sfxs/Player/guns/Shotgun/Shoot
   reloadSoundEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
-  drawAnimationState: Stapler Draw
-  putAwayAnimationState: Stapler Put Away
-  idleAnimationState: Stapler Idle
-  shootAnimationState: Stapler Attack
-  reloadAnimationState: 
+      Data1: -1211606828
+      Data2: 1169175841
+      Data3: 764012196
+      Data4: -1864398657
+    Path: event:/Sfxs/Player/guns/Shotgun/Reload
+  drawAnimationState: Shotgun Draw
+  putAwayAnimationState: Shotgun Put Away
+  idleAnimationState: Shotgun Idle
+  shootAnimationState: Shotgun Shoot
+  reloadAnimationState: Shotgun Reload
 --- !u!1001 &202511414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3665,6 +3665,10 @@ PrefabInstance:
     - target: {fileID: 8415522583891423301, guid: 7b18345b12189284b8fc919773b8b3b9, type: 3}
       propertyPath: m_Layer
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8415522583891423301, guid: 7b18345b12189284b8fc919773b8b3b9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b18345b12189284b8fc919773b8b3b9, type: 3}

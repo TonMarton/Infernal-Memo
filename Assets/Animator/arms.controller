@@ -35,7 +35,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Stapler Attack
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 2675121610476906567}
@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7829098498535815181, guid: af521693cc56b7c4eb501d612375b412, type: 3}
+  m_Motion: {fileID: 8852593511147193071, guid: af521693cc56b7c4eb501d612375b412, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

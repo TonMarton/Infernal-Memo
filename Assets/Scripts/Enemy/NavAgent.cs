@@ -15,6 +15,8 @@ public class NavAgent : MonoBehaviour
 {
     #region Referenced components
     private Transform target;
+    private Collider targetCollider;
+    private Collider myCollider;
     public CharacterController characterController { get; private set; }
 
     #endregion
@@ -30,6 +32,8 @@ public class NavAgent : MonoBehaviour
     #region Parameters
     public float speed = 3;
     public float targetSightAngleThreshold = 90;
+    public float lineOfSightRange = 10000;
+    public float closeWakeRange = 10f;
     #endregion
 
 
@@ -79,6 +83,30 @@ public class NavAgent : MonoBehaviour
         return angle < targetSightAngleThreshold || angle > (360 - targetSightAngleThreshold);
     }
 
+
+    protected bool IsTargetInCloseRange()
+    {
+        // get the range to the player
+        var range = Vector3.Distance(transform.position, target.position);
+
+        // check if player is within range
+        return range <= closeWakeRange;
+    }
+
+    protected bool PlayerInLineOfSight()
+    {
+        // do a raycast to check whether player is in line of sight of the enemy
+        var origin = myCollider.bounds.center;
+        var rayDirection = targetCollider.bounds.center - origin;
+        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange))
+        {
+            // raycast didn't hit anything so player isn't in line of sight
+            return false;
+        }
+        
+        // did the raycast hit the player?
+        return hit.collider == targetCollider;
+    }
     void UpdatePath()
     {
         // Update the way to the goal every second.
@@ -88,7 +116,7 @@ public class NavAgent : MonoBehaviour
         {
             elapsed -= 1.0f;
 
-            if (IsTargetInFront())
+            if (PlayerInLineOfSight() && (IsTargetInCloseRange() || IsTargetInFront()))
             {
                 isAwake = true;
             }
@@ -157,6 +185,8 @@ public class NavAgent : MonoBehaviour
             }
         }
     }
+
+
     #endregion
 
 
@@ -165,6 +195,8 @@ public class NavAgent : MonoBehaviour
     private void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        targetCollider = target.GetComponent<Collider>();
+        myCollider = GetComponent<Collider>();
         path = new NavMeshPath();
         elapsed = 0.0f;
         isMoving = false;
@@ -172,6 +204,8 @@ public class NavAgent : MonoBehaviour
     }
     private void Update()
     {
+        Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
+
         UpdatePath();
         UpdateMovement();
     }
