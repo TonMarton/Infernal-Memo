@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38e5ed5ea1d420147967a3907c9fbba1
+guid: c5d597967ced3994290e374436f3fa7b
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,13 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: prop_set_01
-    second: {fileID: 2100000, guid: c5764aa857367e9488b803dd24bce78c, type: 2}
+      name: plant2
+    second: {fileID: 2100000, guid: b95306bb23be4be48af503a54c10977f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sticks
+    second: {fileID: 2100000, guid: 30956749f9a3add48bba80347e0287be, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
