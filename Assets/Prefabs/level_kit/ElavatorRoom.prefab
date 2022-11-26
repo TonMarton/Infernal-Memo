@@ -125,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 622235235791439586}
   - component: {fileID: 1516133013200899273}
+  - component: {fileID: 5071846756496489041}
   m_Layer: 0
   m_Name: ElavatorRoom
   m_TagString: Untagged
@@ -203,3 +204,17 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.014955806, y: -0.000000015832484, z: -0.004499999}
     m_Extent: {x: 0.0150442105, y: 0.015000014, z: 0.015500006}
   m_DirtyAABB: 0
+--- !u!64 &5071846756496489041
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635717998700959444}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

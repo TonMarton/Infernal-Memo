@@ -5,7 +5,7 @@
 			<value>Pistol_put_away</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{4807fa72-0de0-4ce2-b502-fe1fbb53baee}</destination>
@@ -121,7 +121,6 @@
 	<object class="MixerBusEffectChain" id="{2004730e-283f-4b4d-8c02-ead3d056d682}">
 		<relationship name="effects">
 			<destination>{0cf085a0-7100-464a-96bc-7d592c575378}</destination>
-			<destination>{a5dfc7e1-7ace-4632-9b83-b5ecbf02a210}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{997a4214-4b38-4d24-a167-b1e8af9ba5f3}" />
@@ -164,7 +163,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{f6487c6c-c9c8-4927-a115-38c6a6b90b10}" />
 	<object class="MixerBusFader" id="{0cf085a0-7100-464a-96bc-7d592c575378}" />
-	<object class="SpatialiserEffect" id="{a5dfc7e1-7ace-4632-9b83-b5ecbf02a210}" />
 	<object class="AutomationPoint" id="{ebe30661-5d37-47be-a10a-8ea425783540}">
 		<property name="position">
 			<value>0.78125</value>

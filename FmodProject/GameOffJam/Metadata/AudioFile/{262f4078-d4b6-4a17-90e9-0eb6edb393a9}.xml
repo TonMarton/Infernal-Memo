@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{262f4078-d4b6-4a17-90e9-0eb6edb393a9}">
+		<property name="assetPath">
+			<value>Sfxs/Bullets impacts/Enemy_Bullet_impact/flesh_bullet_impact2.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.46154195011337867</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>

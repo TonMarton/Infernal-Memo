@@ -5,7 +5,7 @@
 			<value>Pistol Draw</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{4807fa72-0de0-4ce2-b502-fe1fbb53baee}</destination>
@@ -121,7 +121,6 @@
 	<object class="MixerBusEffectChain" id="{ced06c8d-c45a-47e3-b4c6-02f770777b5e}">
 		<relationship name="effects">
 			<destination>{c61e72d9-4f2f-43ad-b212-98d050cd6ee8}</destination>
-			<destination>{0d85bc63-314c-473c-b587-52d0076ce627}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{1b6dbbd1-9429-4382-b5e6-56c7517e57d2}" />
@@ -164,7 +163,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{6abd250c-b02f-4e33-9827-372553ece09f}" />
 	<object class="MixerBusFader" id="{c61e72d9-4f2f-43ad-b212-98d050cd6ee8}" />
-	<object class="SpatialiserEffect" id="{0d85bc63-314c-473c-b587-52d0076ce627}" />
 	<object class="AutomationPoint" id="{8e90d864-c443-45ca-a2ba-c2d473db6578}">
 		<property name="position">
 			<value>1.0190886699507389</value>
