@@ -824,7 +824,7 @@ MonoBehaviour:
   shellsShootCost: 1
   cooldownTime: 0.75
   reloadCooldownTime: 1
-  damagePerBullet: 2
+  damagePerBullet: 20
   maxDistance: 1.75
   muzzleFlash: {fileID: 0}
   hideMuzzleFlashAfterTime: 0.1
