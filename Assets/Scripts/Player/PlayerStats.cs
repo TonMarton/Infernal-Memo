@@ -122,9 +122,15 @@ public class PlayerStats : MonoBehaviour
         hud.UpdateUIText("armor", armor);
     }
 
-    public void UpdateAmmo(int amount) {
+    public void UpdateBullets(int amount) {
         bullets = Mathf.Min(maxBullets, bullets + amount);
         hud.UpdateUIText("bullets", bullets);
+    }
+
+    public void UpdateShells(int amount)
+    {
+        shells = Mathf.Min(maxShells, shells + amount);
+        hud.UpdateUIText("shells", shells);
     }
 
     private void Die()

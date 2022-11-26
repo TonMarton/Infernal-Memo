@@ -4,7 +4,8 @@ public enum StatType
 {
     Armor,
     Health,
-    Ammo,
+    Bullets,
+    Shells,
 }
 
 public class PickupItem : MonoBehaviour
@@ -27,9 +28,13 @@ public class PickupItem : MonoBehaviour
                     Debug.Log("Picked up Armor");
                     playerStats.UpdateArmor(amount);
                     break;
-                case StatType.Ammo:
-                    Debug.Log("Picked up Ammo");
-                    playerStats.UpdateAmmo(amount);
+                case StatType.Bullets:
+                    Debug.Log("Picked up Bullets");
+                    playerStats.UpdateBullets(amount);
+                    break;
+                case StatType.Shells:
+                    Debug.Log("Picked up Shells");
+                    playerStats.UpdateShells(amount);
                     break;
                 case StatType.Health:
                     Debug.Log("Picked up Health");
