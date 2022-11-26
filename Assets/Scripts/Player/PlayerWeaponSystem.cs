@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 // enum for melee and shotgun weapons
 public enum WeaponType
@@ -18,9 +19,28 @@ public class PlayerWeaponSystem : MonoBehaviour
     [SerializeField] private GameObject deagleModel; // deagle only
     [SerializeField] private GameObject shotgunModel; // shotgun only
 
-    [SerializeField] private Animator armsAnimator;
+    public Animator armsAnimator;
+    // TODO: customize the layer mask so it doesn't hit things like trigger volumes
+    [FormerlySerializedAs("layerMask")]
+    [SerializeField]
+    public LayerMask collisionLayerMask = Physics.DefaultRaycastLayers;
 
-    private PlayerStats PlayerStatsScript;
+    [SerializeField]
+    public Transform fpsCam;
+
+    [Header("Bullet Hole")]
+    [SerializeField]
+    public GameObject bulletHolePrefab;
+    [SerializeField]
+    public float autoDestroyBulletHoleTime = 10f;
+
+    [Header("Impacts")]
+    [SerializeField]
+    public GameObject bloodImpactParticlePrefab;
+    [SerializeField]
+    public float autoDestroyParticleTime = 3f;
+    [SerializeField]
+    public float particleSpawnOffset = 0.2f;
 
     [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
@@ -40,14 +60,24 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     [HideInInspector] public WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
+    private Stapler stapler;
     private Pistol pistol;
     private Shotgun shotgun;
     private HUD hud;
 
+    
+
+    public PlayerStats playerStats { get; private set; }
+
+    public float currentCooldownTime { get; set; }
+    public float lastFireTime { get; set; }
+    public float currentReloadCooldownTime { get; set; }
+
     private void Awake()
     {
-        PlayerStatsScript = GetComponent<PlayerStats>();
+        playerStats = GetComponent<PlayerStats>();
         staplerAttack = GetComponent<PlayerStaplerAttack>();
+        stapler = GetComponentInChildren<Stapler>();
         pistol = GetComponentInChildren<Pistol>();
         shotgun = GetComponentInChildren<Shotgun>();
         hud = GetComponentInChildren<HUD>();
@@ -71,16 +101,16 @@ public class PlayerWeaponSystem : MonoBehaviour
         switch (currentWeaponType)
         {
             case WeaponType.Stapler:
-                staplerAttack.Attack();
+                stapler.Shoot();
                 break;
             case WeaponType.Pistol:
-                if (PlayerStatsScript.bulletsInClip > 0)
+                if (playerStats.bulletsInClip > 0)
                 {
                     pistol.Shoot();
                 }
                 break;
             case WeaponType.Shotgun:
-                if (PlayerStatsScript.shellsInClip > 0)
+                if (playerStats.shellsInClip > 0)
                 {
                     shotgun.Shoot();
                 }
@@ -98,13 +128,13 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // no stapler reload
                 break;
             case WeaponType.Pistol:
-                if (PlayerStatsScript.bullets > 0)
+                if (playerStats.bullets > 0 && playerStats.bulletsInClip != playerStats.maxBulletsInClip)
                 {
                     pistol.Reload();
                 }
                 break;
             case WeaponType.Shotgun:
-                if (PlayerStatsScript.shells > 0)
+                if (playerStats.shells > 0 && playerStats.shellsInClip != playerStats.maxShellsInClip)
                 {
                     shotgun.Reload();
                 }
@@ -137,22 +167,19 @@ public class PlayerWeaponSystem : MonoBehaviour
             case WeaponType.Stapler:
                 // show arms
                 armsModel.SetActive(true);
-
-
                 // hide shotgun
                 shotgun.SetVisible(false);
                 // hide pistol
                 deagleModel.gameObject.SetActive(false);
                 // show stapler
                 staplerModel.gameObject.SetActive(true);
-
                 // play draw stapler sound
                 SoundUtils.PlaySound3D(staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
 
                 // TODO: Play weapon switch animation
 
                 // Play Stapler Idle
-                armsAnimator.Play("StaplerIdlePlaceholder", -1, 0);
+                armsAnimator.Play(stapler.drawAnimationState, -1, 0);
 
                 break;
 
@@ -167,10 +194,12 @@ public class PlayerWeaponSystem : MonoBehaviour
                 shotgun.SetVisible(false);
                 // play draw pistol sound
                 SoundUtils.PlaySound3D(pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
-                // Play Pistol Idle
-                armsAnimator.Play("Pistol Idle", -1, 0);
 
                 // TODO: Play weapon switch animation
+
+                // Play Pistol Idle
+                armsAnimator.Play(pistol.drawAnimationState, -1, 0);
+
                 break;
 
             case WeaponType.Shotgun:
@@ -184,18 +213,64 @@ public class PlayerWeaponSystem : MonoBehaviour
                 deagleModel.gameObject.SetActive(false);
                 // play draw shotgun sound
                 SoundUtils.PlaySound3D(shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);
-                // Play Shotgun Idle
-                armsAnimator.Play("Shotgun Idle", -1, 0);
 
                 // TODO: Play weapon switch animation
+
+                // Play Shotgun Idle
+                armsAnimator.Play(shotgun.drawAnimationState, -1, 0);
+
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
 
+        currentCooldownTime = 0;
+        currentReloadCooldownTime = 0;
+
         // show crosshair for shotgun and pistol only
         var visible = weaponType == WeaponType.Pistol || weaponType == WeaponType.Shotgun;
         hud.SetCrossHairVisible(visible);
+    }
+
+    private void Update()
+    {
+
+        // update cooldown time
+        currentCooldownTime -= Time.deltaTime;
+        if (currentCooldownTime <= 0)
+        {
+            currentCooldownTime = 0;
+        }
+
+        if (currentReloadCooldownTime > 0)
+        {
+            currentReloadCooldownTime -= Time.deltaTime;
+            if (currentReloadCooldownTime < 0)
+            {
+                if (currentWeaponType == WeaponType.Pistol
+                    && playerStats.bullets > 0)
+                {
+                    playerStats.Reload(WeaponType.Pistol);
+                }
+                else if (currentWeaponType == WeaponType.Shotgun
+                    && playerStats.shells > 0)
+                {
+                    playerStats.Reload(WeaponType.Shotgun);
+                }
+                currentReloadCooldownTime = 0;
+            }
+        }
+        else if (currentCooldownTime == 0)
+        {
+            if (currentWeaponType == WeaponType.Pistol && playerStats.bulletsInClip == 0 && playerStats.bullets > 0)
+            {
+                Reload();
+            }
+            else if (currentWeaponType == WeaponType.Shotgun && playerStats.shellsInClip == 0 && playerStats.shells > 0)
+            {
+                Reload();
+            }
+        }
     }
 
     public void SwitchWeaponNext()

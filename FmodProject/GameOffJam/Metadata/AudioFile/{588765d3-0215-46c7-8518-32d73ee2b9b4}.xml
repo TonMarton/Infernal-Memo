@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{588765d3-0215-46c7-8518-32d73ee2b9b4}">
 		<property name="assetPath">
-			<value>Sfxs/Guns/Stapler/Impact/Staplerhit.wav</value>
+			<value>Sfxs/Guns/Stapler/Impact/Stapler_impact4.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

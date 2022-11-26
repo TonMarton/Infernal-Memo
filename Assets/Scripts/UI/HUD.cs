@@ -1,6 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 [DisallowMultipleComponent]
 public class HUD : MonoBehaviour
@@ -11,7 +11,7 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bulletsInClipText;
     [SerializeField] private TextMeshProUGUI shellsText;
     [SerializeField] private TextMeshProUGUI shellsInClipText;
-    [SerializeField] private Image crossHair;
+    [SerializeField] private Image crosshair;
 
     private void Awake()
     {
@@ -24,8 +24,7 @@ public class HUD : MonoBehaviour
 
     public void SetCrossHairVisible(bool show)
     {
-        // TODO: re-enable this, doesn't work
-        // crossHair.visible = show;
+        crosshair.enabled = show;
     }
 
     //update any UI text from one method,

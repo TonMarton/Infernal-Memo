@@ -86,7 +86,7 @@ MonoBehaviour:
       Data2: 1164871486
       Data3: 1636269741
       Data4: -1097586009
-    Path: event:/Enemy/Enemy death
+    Path: event:/Sfxs/Enemy/Enemy death
 --- !u!195 &4154061717746472633
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -135,7 +135,7 @@ MonoBehaviour:
       Data2: 1084205076
       Data3: -1482649717
       Data4: -1610614253
-    Path: event:/Enemy/Enemy damage
+    Path: event:/Sfxs/Enemy/Enemy damage
   range: 20
 --- !u!114 &6316131371778422694
 MonoBehaviour:
