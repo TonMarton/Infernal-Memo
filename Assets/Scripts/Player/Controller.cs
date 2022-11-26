@@ -330,4 +330,11 @@ public class Controller : MonoBehaviour
         isCrouching = !isCrouching;
         crouchAnimation = false;
     }
+
+    public void TeleportToPositionMaintainingRelativePosition(Vector3 destination, Quaternion rotationDifference) {
+        gameObject.transform.position = destination;
+        gameObject.transform.rotation *= rotationDifference;
+        Physics.SyncTransforms();
+        Debug.Log("Player teleported to new location");
+    }
 }
