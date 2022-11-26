@@ -34,6 +34,7 @@ public class NavAgent : MonoBehaviour
     public float targetSightAngleThreshold = 90;
     public float lineOfSightRange = 10000;
     public float closeWakeRange = 10f;
+    public LayerMask lineOfSightLayers = default;
     #endregion
 
 
@@ -98,7 +99,7 @@ public class NavAgent : MonoBehaviour
         // do a raycast to check whether player is in line of sight of the enemy
         var origin = myCollider.bounds.center;
         var rayDirection = targetCollider.bounds.center - origin;
-        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange))
+        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange, lineOfSightLayers))
         {
             // raycast didn't hit anything so player isn't in line of sight
             return false;

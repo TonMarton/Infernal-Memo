@@ -45,6 +45,7 @@ public abstract class BaseWeapon : MonoBehaviour
     private FMOD.Studio.EventInstance shootSoundInstance;
     private FMOD.Studio.EventInstance reloadSoundInstance;
 
+    [Header("Animation")]
     public string drawAnimationState;
     public string putAwayAnimationState;
     public string idleAnimationState;
@@ -82,18 +83,20 @@ public abstract class BaseWeapon : MonoBehaviour
         }
 
         // Not an enemy?
-        if (hit.collider.gameObject.layer != LayerMask.NameToLayer(Enemy.EnemyLayer))
+        if (hit.collider.gameObject.layer != LayerMask.NameToLayer(Enemy.EnemyHitboxLayer))
         {
             // Create a bullet hole
             CreateBulletHoleDecal(hit.point, hit.normal);
+
         }
+        OnHit();
 
         // find the game object that was hit
         // and see if it was an enemy
         var hitObject = hit.collider.gameObject;
 
         // log the tag of the object that was hit
-        if (!hitObject.CompareTag(Enemy.EnemyTag))
+        if (!hitObject.transform.root.CompareTag(Enemy.EnemyTag))
         {
             // wasn't an enemy so nothing to do
             return;
@@ -105,6 +108,8 @@ public abstract class BaseWeapon : MonoBehaviour
         Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
+
+
     }
 
     public void SetVisible(bool visible)
@@ -190,6 +195,10 @@ public abstract class BaseWeapon : MonoBehaviour
         {
             ShootBullet();
         }
+    }
+
+    protected virtual void OnHit()
+    { 
     }
 
     public void Reload()

@@ -687,7 +687,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5983632887037757786}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d0be3ce5f3d2468eb285b683f76ca4d5, type: 3}
   m_Name: 
@@ -723,12 +723,13 @@ MonoBehaviour:
   armsAnimator: {fileID: 4658032268169522809}
   collisionLayerMask:
     serializedVersion: 2
-    m_Bits: 65
+    m_Bits: 1025
   fpsCam: {fileID: 5983632887014776814}
   bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
   autoDestroyBulletHoleTime: 10
   bloodImpactParticlePrefab: {fileID: 7451740709918929473, guid: 1e72c8491a5cf5c46a345851f0236c01, type: 3}
   autoDestroyParticleTime: 3
+  particleSpawnOffset: 0.2
   staplerDrawSoundEvent:
     Guid:
       Data1: -142356871
@@ -834,11 +835,11 @@ MonoBehaviour:
   maxSpreadDegreesX: 0.2
   shootSoundEvent:
     Guid:
-      Data1: -857558730
-      Data2: 1190526070
-      Data3: 1626287774
-      Data4: -1627835889
-    Path: event:/Sfxs/Player/guns/Stapler/Stapler-swing
+      Data1: 1047879963
+      Data2: 1159142212
+      Data3: -2138727521
+      Data4: 1913582692
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler_attack1
   reloadSoundEvent:
     Guid:
       Data1: 0
@@ -851,6 +852,13 @@ MonoBehaviour:
   idleAnimationState: Stapler Idle
   shootAnimationState: Stapler Attack
   reloadAnimationState: 
+  staplerImpactSoundEvent:
+    Guid:
+      Data1: -715793156
+      Data2: 1275949764
+      Data3: 837679285
+      Data4: -1897294596
+    Path: event:/Sfxs/Player/guns/Stapler/Stapler impact
 --- !u!114 &1674198715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -867,7 +875,7 @@ MonoBehaviour:
   bulletCount: 1
   shellsShootCost: 1
   cooldownTime: 0.5
-  reloadCooldownTime: 1.55
+  reloadCooldownTime: 2
   damagePerBullet: 10
   maxDistance: 10000
   muzzleFlash: {fileID: 202609298}
@@ -908,8 +916,8 @@ MonoBehaviour:
   model: {fileID: 2062527563857075471}
   bulletCount: 20
   shellsShootCost: 1
-  cooldownTime: 0.55
-  reloadCooldownTime: 1.6666666
+  cooldownTime: 0.5
+  reloadCooldownTime: 2.3
   damagePerBullet: 2
   maxDistance: 10000
   muzzleFlash: {fileID: 7288353736965989574}

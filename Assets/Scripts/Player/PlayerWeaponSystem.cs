@@ -237,7 +237,10 @@ public class PlayerWeaponSystem : MonoBehaviour
 
         // update cooldown time
         currentCooldownTime -= Time.deltaTime;
-
+        if (currentCooldownTime <= 0)
+        {
+            currentCooldownTime = 0;
+        }
 
         if (currentReloadCooldownTime > 0)
         {
@@ -257,7 +260,17 @@ public class PlayerWeaponSystem : MonoBehaviour
                 currentReloadCooldownTime = 0;
             }
         }
-
+        else if (currentCooldownTime == 0)
+        {
+            if (currentWeaponType == WeaponType.Pistol && playerStats.bulletsInClip == 0 && playerStats.bullets > 0)
+            {
+                Reload();
+            }
+            else if (currentWeaponType == WeaponType.Shotgun && playerStats.shellsInClip == 0 && playerStats.shells > 0)
+            {
+                Reload();
+            }
+        }
     }
 
     public void SwitchWeaponNext()
