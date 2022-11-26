@@ -517,11 +517,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   maxHealth: 100
-  startingBullets: 32
+  startingBullets: 128
   maxBullets: 200
   startingBulletsInClip: 16
   maxBulletsInClip: 16
-  startingShells: 9
+  startingShells: 48
   maxShells: 100
   startingShellsInClip: 3
   maxShellsInClip: 3
