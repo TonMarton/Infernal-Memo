@@ -69,11 +69,11 @@ public class PlayerStats : MonoBehaviour
 
     //updates player health,
     //either when player takes damage or picks up a health item to heal themselves
-    public void UpdateHealth(int updatedHealth)
+    public void UpdateHealth(int amount)
     {
-        health += updatedHealth;
+        health += amount;
 
-        if (updatedHealth < 0)
+        if (amount < 0)
         {
             if (health <= 0)
             {
@@ -93,6 +93,11 @@ public class PlayerStats : MonoBehaviour
         }
 
         hud.UpdateUIText("health", health);
+    }
+
+    public void UpdateAmmo(int amount) {
+        bullets = Mathf.Min(maxBullets, bullets + amount);
+        hud.UpdateUIText("bullets", bullets);
     }
 
     private void Die()
