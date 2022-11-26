@@ -4,4 +4,15 @@ using UnityEngine;
 
 public class Stapler : BaseWeapon
 {
+    [Header("Stapler")]
+    [SerializeField]
+    private FMODUnity.EventReference staplerImpactSoundEvent;
+
+    private FMOD.Studio.EventInstance staplerImpactSoundInstance;
+
+    protected override void OnHit()
+    {
+        base.OnHit();
+        SoundUtils.PlaySound3D(staplerImpactSoundInstance, staplerImpactSoundEvent, gameObject);
+    }
 }

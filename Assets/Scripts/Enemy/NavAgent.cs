@@ -34,6 +34,7 @@ public class NavAgent : MonoBehaviour
     public float targetSightAngleThreshold = 90;
     public float lineOfSightRange = 10000;
     public float closeWakeRange = 10f;
+    public LayerMask lineOfSightLayers = default;
     #endregion
 
 
@@ -65,6 +66,11 @@ public class NavAgent : MonoBehaviour
 
     private NavMeshPath path;
     private bool isAwake;
+
+    private Vector3 moveDirection;
+
+    [SerializeField]
+    private float gravity = 30.0f;
 
     #region Custom Methods
     bool IsTargetInFront()
@@ -98,7 +104,7 @@ public class NavAgent : MonoBehaviour
         // do a raycast to check whether player is in line of sight of the enemy
         var origin = myCollider.bounds.center;
         var rayDirection = targetCollider.bounds.center - origin;
-        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange))
+        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange, lineOfSightLayers))
         {
             // raycast didn't hit anything so player isn't in line of sight
             return false;
@@ -150,7 +156,9 @@ public class NavAgent : MonoBehaviour
                     }
                     else
                     {
-                        isMoving = false;
+                        direction = target.position - transform.position;
+                        direction.y = 0;
+                        direction.Normalize();
                     }
                 }
                 else
@@ -164,14 +172,23 @@ public class NavAgent : MonoBehaviour
 
     void UpdateMovement()
     {
+        float moveDirectionY = moveDirection.y;
+        moveDirection = isMoving ? speed * direction : Vector3.zero;
+        moveDirection.y = moveDirectionY;
+
+        if (!characterController.isGrounded)
+        {
+            moveDirection.y -= gravity * Time.deltaTime;
+        }
+
+        // Move the controller
+        characterController.Move(moveDirection * Time.deltaTime);
+
         if (isMoving)
         {
             // Calculate rotation from direction
             transform.rotation = Quaternion.LookRotation(direction);
-            // Set up final movement vector
-            Vector3 movement = speed * Time.deltaTime * direction;
-            // Move the controller
-            characterController.Move(movement);
+            
             // Check if the controller collided on its sides
             if ((characterController.collisionFlags & CollisionFlags.Sides) != 0)
             {
