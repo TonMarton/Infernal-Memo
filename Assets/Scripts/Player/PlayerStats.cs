@@ -10,6 +10,10 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private int startingHealth = 100;
     [SerializeField] private int maxHealth = 100;
 
+    [Header("Armor")]
+    [SerializeField] private int startingArmor;
+    [SerializeField] private int maxArmor = 100;
+
     [Header("Ammo - Pistol")]
     // pistol
     [SerializeField] private int startingBullets = 12;
@@ -50,6 +54,7 @@ public class PlayerStats : MonoBehaviour
     {
         // initialize stats 
         health = startingHealth;
+        armor = startingArmor;
         bullets = startingBullets;
         bulletsInClip = startingBulletsInClip;
         shells = startingShells;
@@ -65,6 +70,16 @@ public class PlayerStats : MonoBehaviour
         hud.UpdateUIText("bullets", bullets);
         hud.UpdateUIText("shellsInClip", shellsInClip);
         hud.UpdateUIText("shells", shells);
+    }
+
+    public void TakeDamage(int amount) {
+        int armorReducedAmount = amount - armor;
+        if (armorReducedAmount != amount) {
+            UpdateArmor(-amount);
+        }
+        if (armorReducedAmount > 0) {
+            UpdateHealth(-armorReducedAmount);
+        }
     }
 
     //updates player health,
@@ -93,6 +108,18 @@ public class PlayerStats : MonoBehaviour
         }
 
         hud.UpdateUIText("health", health);
+    }
+
+    public void UpdateArmor(int amount) {
+        if (amount > 0)
+        {
+            armor = Mathf.Min(maxArmor, armor + amount);
+        }
+        else
+        {
+            armor = Mathf.Max(0, armor + amount);
+        }
+        hud.UpdateUIText("armor", armor);
     }
 
     public void UpdateAmmo(int amount) {
@@ -194,5 +221,6 @@ public class PlayerStats : MonoBehaviour
             hud.UpdateUIText("shells", shells);
             hud.UpdateUIText("shellsInClip", shellsInClip);
         }
+
     }
 }
