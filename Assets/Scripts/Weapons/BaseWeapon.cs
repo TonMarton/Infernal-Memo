@@ -101,6 +101,8 @@ public abstract class BaseWeapon : MonoBehaviour
 
         // damage the enemy
         var enemy = hitObject.GetComponentInParent<Enemy>();
+        var bloodImpact = Instantiate(weaponSystem.bloodImpactParticlePrefab, hit.point + hit.normal * weaponSystem.particleSpawnOffset, Quaternion.LookRotation(-hit.normal));
+        Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
     }

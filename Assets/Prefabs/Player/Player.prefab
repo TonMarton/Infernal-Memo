@@ -727,6 +727,8 @@ MonoBehaviour:
   fpsCam: {fileID: 5983632887014776814}
   bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
   autoDestroyBulletHoleTime: 10
+  bloodImpactParticlePrefab: {fileID: 7451740709918929473, guid: 1e72c8491a5cf5c46a345851f0236c01, type: 3}
+  autoDestroyParticleTime: 3
   staplerDrawSoundEvent:
     Guid:
       Data1: -142356871

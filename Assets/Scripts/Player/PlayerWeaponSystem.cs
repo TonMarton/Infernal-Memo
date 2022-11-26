@@ -31,9 +31,17 @@ public class PlayerWeaponSystem : MonoBehaviour
     [Header("Bullet Hole")]
     [SerializeField]
     public GameObject bulletHolePrefab;
-
     [SerializeField]
     public float autoDestroyBulletHoleTime = 10f;
+
+    [Header("Impacts")]
+    [SerializeField]
+    public GameObject bloodImpactParticlePrefab;
+    [SerializeField]
+    public float autoDestroyParticleTime = 3f;
+    [SerializeField]
+    public float particleSpawnOffset = 0.2f;
+
     [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference staplerDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference staplerPutAwaySoundEvent;
