@@ -79,6 +79,8 @@ public class EnemyStats : MonoBehaviour
         // play death sound
         SoundUtils.PlaySound3D(hurtSoundInstance, deathSoundEvent, gameObject);
 
+        gameObject.GetComponentInParent<LevelManager>().DecreaseEnemyCount();
+
         // disable enemy
         gameObject.SetActive(false);
     }
