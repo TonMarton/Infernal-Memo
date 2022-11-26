@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 38e5ed5ea1d420147967a3907c9fbba1
+guid: 55af96d3f800e104a83d95fa88f1dd03
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: prop_set_01
-    second: {fileID: 2100000, guid: c5764aa857367e9488b803dd24bce78c, type: 2}
+      name: LEVEL_KIT_DIFFUSE
+    second: {fileID: 2100000, guid: 350ba5de56702e24498ab40c148ead65, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -52,7 +52,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
