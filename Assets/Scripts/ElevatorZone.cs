@@ -7,21 +7,22 @@ public class ElevatorZone : MonoBehaviour
     [SerializeField]
     private ElevatorZone destinationElevatorZone;
 
-    [SerializeField]
     private GameObject player;
-
     private LevelManager levelManager;
 
-    private void Awake()
+    private void Start()
     {
         levelManager = gameObject.GetComponentInParent<LevelManager>();
-        Debug.Log(levelManager == null);
+        player = GameObject.Find("Player");
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!destinationElevatorZone) { return;  }
-        // Ignore if it wasn't the player
+        if (!destinationElevatorZone)
+        {
+            return;
+        }
+
         if (other.gameObject != player || !levelManager.allowMovingLevels)
         {
             return;
