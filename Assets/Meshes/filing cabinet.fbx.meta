@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e438349698bdafc4eb81406c3336b0b5
+guid: 77f528d4d7a7cf7458905461ede89c4f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
@@ -7,8 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: LEVEL_KIT_DIFFUSE
-    second: {fileID: 2100000, guid: 1c1460f1255f77f4c9991ca1214c4dd8, type: 2}
+      name: Filing cabinet_flat
+    second: {fileID: 2100000, guid: 9b9e5c35b6faa1944958e39379ff3930, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,7 +42,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
