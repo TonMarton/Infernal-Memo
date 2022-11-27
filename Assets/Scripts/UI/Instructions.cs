@@ -7,6 +7,6 @@ public class Instructions : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("IKEA Showroom");
+        SceneManager.LoadScene(2);
     }
 }

@@ -34,7 +34,7 @@ MonoBehaviour:
   m_MainLightShadowsSupported: 0
   m_MainLightShadowmapResolution: 1024
   m_AdditionalLightsRenderingMode: 2
-  m_AdditionalLightsPerObjectLimit: 4
+  m_AdditionalLightsPerObjectLimit: 8
   m_AdditionalLightShadowsSupported: 0
   m_AdditionalLightsShadowmapResolution: 1024
   m_AdditionalLightsShadowResolutionTierLow: 256
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Cascade2Split: 0.33333334
   m_Cascade3Split: {x: 0.1, y: 0.3}
   m_Cascade4Split: {x: 0.06666667, y: 0.2, z: 0.46666667}
-  m_CascadeBorder: 0.2
+  m_CascadeBorder: 0.506
   m_ShadowDepthBias: 1
   m_ShadowNormalBias: 1
   m_SoftShadowsSupported: 0
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_DebugLevel: 0
   m_UseAdaptivePerformance: 1
   m_ColorGradingMode: 0
-  m_ColorGradingLutSize: 32
+  m_ColorGradingLutSize: 64
   m_UseFastSRGBLinearConversion: 0
   m_ShadowType: 1
   m_LocalShadowsSupported: 0
