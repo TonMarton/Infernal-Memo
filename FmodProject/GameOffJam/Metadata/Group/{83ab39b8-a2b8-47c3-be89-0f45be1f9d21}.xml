@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerGroup" id="{83ab39b8-a2b8-47c3-be89-0f45be1f9d21}">
+		<property name="name">
+			<value>Enemy footsteps</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{7567efd3-5fc1-4829-a9e1-538b6dc184b0}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{2250dde1-84a2-4549-8ad1-01213aa1fcbb}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{40e335d6-651b-4a62-b10f-f7811a2907fc}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{7567efd3-5fc1-4829-a9e1-538b6dc184b0}">
+		<relationship name="effects">
+			<destination>{9dcdd74d-60bb-4a96-bc95-1f494bdf3638}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{2250dde1-84a2-4549-8ad1-01213aa1fcbb}" />
+	<object class="MixerBusFader" id="{9dcdd74d-60bb-4a96-bc95-1f494bdf3638}" />
+</objects>
