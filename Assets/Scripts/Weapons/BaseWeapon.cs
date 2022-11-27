@@ -95,15 +95,17 @@ public abstract class BaseWeapon : MonoBehaviour
         // and see if it was an enemy
         var hitObject = hit.collider.gameObject;
 
-        // log the tag of the object that was hit
-        if (!hitObject.transform.root.CompareTag(Enemy.EnemyTag))
-        {
-            // wasn't an enemy so nothing to do
-            return;
-        }
+        //// log the tag of the object that was hit
+        //if (!hitObject.transform.root.CompareTag(Enemy.EnemyTag))
+        //{
+        //    // wasn't an enemy so nothing to do
+        //    return;
+        //}
 
         // damage the enemy
         var enemy = hitObject.GetComponentInParent<Enemy>();
+
+        if (enemy == null) return;
         var bloodImpact = Instantiate(weaponSystem.bloodImpactParticlePrefab, hit.point + hit.normal * weaponSystem.particleSpawnOffset, Quaternion.LookRotation(-hit.normal));
         Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();

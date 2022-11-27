@@ -332,8 +332,10 @@ public class Controller : MonoBehaviour
     }
 
     public void TeleportToPositionMaintainingRelativePosition(Vector3 destination, Quaternion rotationDifference) {
+        characterController.enabled = false;
         gameObject.transform.position = destination;
         gameObject.transform.rotation *= rotationDifference;
+        characterController.enabled = true;
         Physics.SyncTransforms();
         Debug.Log("Player teleported to new location");
     }
