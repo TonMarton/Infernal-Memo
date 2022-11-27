@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     private int currentLevelIndex = 0;
     private GameObject currentLevel;
     private int enemyCount;
-    private bool allowMovingLevels = false;
+    public bool allowMovingLevels = false;
 
     void Start()
     {
