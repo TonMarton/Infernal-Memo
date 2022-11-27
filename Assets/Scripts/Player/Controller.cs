@@ -9,7 +9,7 @@ public class Controller : MonoBehaviour
     private bool canMove { get; set; } = true;
     private bool IsSprinting => canSprint && Input.GetKey(sprintKey);
     private bool ShouldJump => Input.GetKeyDown(jumpKey) && characterController.isGrounded;
-    private bool ShouldCrouch => Input.GetKeyDown(crouchKey) && !crouchAnimation && characterController.isGrounded;
+    private bool ShouldCrouch => (Input.GetKeyDown(crouchKey1) || Input.GetKeyDown(crouchKey2)) && !crouchAnimation && characterController.isGrounded;
 
     [FormerlySerializedAs("_canSprint")] [Header("Functional")] [SerializeField]
     private bool canSprint = true;
@@ -29,8 +29,10 @@ public class Controller : MonoBehaviour
     [FormerlySerializedAs("_jumpKey")] [SerializeField]
     private KeyCode jumpKey = KeyCode.Space;
 
-    [FormerlySerializedAs("_crouchKey")] [SerializeField]
-    private KeyCode crouchKey = KeyCode.C;
+    [FormerlySerializedAs("crouchKey")] [SerializeField]
+    private KeyCode crouchKey1 = KeyCode.C;
+    [SerializeField]
+    private KeyCode crouchKey2 = KeyCode.LeftControl;
 
     [FormerlySerializedAs("_walkSpeed")] [Header("Movement Params")] [SerializeField]
     private float walkSpeed = 3.65f;
