@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{02a0c351-6fc1-45fc-9e01-09c16c51d0cf}">
 		<property name="assetPath">
-			<value>Ammo_pickup1.wav</value>
+			<value>Sfxs/Ui/Pickup/ammo_pickup/Ammo_pickup1.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
