@@ -76,7 +76,7 @@ public abstract class BaseWeapon : MonoBehaviour
         Vector3 bulletTrajectory = rotationX * rotationY * fpsCamForward;
 
         // Raycast for hit
-        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, maxDistance, weaponSystem.collisionLayerMask))
+        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, maxDistance, weaponSystem.collisionLayerMask, QueryTriggerInteraction.Ignore))
         {
             // didn't hit so nothing to do
             return;
