@@ -222,7 +222,7 @@ public class Controller : MonoBehaviour
         moveDirection.y = jumpForce;
 
         // play jump sound
-        SoundUtils.PlaySound3D(jumpSoundInstance, jumpSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref jumpSoundInstance, jumpSoundEvent, gameObject);
     }
 
     private void Crouch()

@@ -63,7 +63,7 @@ public class EnemyStats : MonoBehaviour
             if (damageSoundCooldown <= 0)
             {
                 // play hurt sound
-                SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
+                SoundUtils.PlaySound3D(ref hurtSoundInstance, hurtSoundEvent, gameObject);
 
                 // reset the damage sound cooldown
                 damageSoundCooldown = minTimeBetweenDamageSounds;
@@ -77,7 +77,7 @@ public class EnemyStats : MonoBehaviour
         // TODO: play death sound with fmod
 
         // play death sound
-        SoundUtils.PlaySound3D(hurtSoundInstance, deathSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref hurtSoundInstance, deathSoundEvent, gameObject);
 
         gameObject.GetComponentInParent<LevelManager>().DecreaseEnemyCount();
 

@@ -97,7 +97,7 @@ public class PlayerStats : MonoBehaviour
             }
 
             gameObject.GetComponent<Controller>().damageTaken = true;
-            SoundUtils.PlaySound3D(hurtSoundInstance, hurtSoundEvent, gameObject);
+            SoundUtils.PlaySound3D(ref hurtSoundInstance, hurtSoundEvent, gameObject);
         }
         else
         {

@@ -27,7 +27,7 @@ public class RangedEnemyAttack : EnemyAttack
             hit.collider.gameObject.GetComponent<PlayerStats>().UpdateHealth(-damage);
             
             // play the damage sound for this enemy on the player
-            SoundUtils.PlaySound3D(damageSoundInstance, damageSoundEvent, hit.collider.gameObject);
+            SoundUtils.PlaySound3D(ref damageSoundInstance, damageSoundEvent, hit.collider.gameObject);
         }
         
         // TODO: set attacking = false at the end of attack animation

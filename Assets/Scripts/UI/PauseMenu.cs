@@ -55,13 +55,13 @@ public class PauseMenu : MonoBehaviour
         if (gameObject.activeSelf)
         {
             // play menu open sound
-            SoundUtils.PlaySound3D(openSoundInstance, openSoundEvent, gameObject);
+            SoundUtils.PlaySound3D(ref openSoundInstance, openSoundEvent, gameObject);
         }
         // menu is closed?
         else
         {
             // play menu closed sound
-            SoundUtils.PlaySound3D(closeSoundInstance, closeSoundEvent, gameObject);
+            SoundUtils.PlaySound3D(ref closeSoundInstance, closeSoundEvent, gameObject);
         }
 
         // if pause menu is active, show the mouse cursor
@@ -82,12 +82,12 @@ public class PauseMenu : MonoBehaviour
     
     private void PlayClickSound()
     {
-        SoundUtils.PlaySound3D(clickSoundInstance, clickSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref clickSoundInstance, clickSoundEvent, gameObject);
     }
     
     private void PlayHoverSound(PointerEventData pointerEventData)
     {
-        SoundUtils.PlaySound3D(hoverSoundInstance, hoverSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref hoverSoundInstance, hoverSoundEvent, gameObject);
     }
 
     private void OpenMainMenu()

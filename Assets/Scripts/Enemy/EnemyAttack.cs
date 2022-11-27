@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
     public virtual void Attack()
     {
         // play hurt sound
-        SoundUtils.PlaySound3D(attackSoundInstance, attackSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref attackSoundInstance, attackSoundEvent, gameObject);
     }
 
     public void NoLongerAttacking()
