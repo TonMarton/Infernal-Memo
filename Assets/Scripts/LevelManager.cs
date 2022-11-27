@@ -23,7 +23,11 @@ public class LevelManager : MonoBehaviour
                 currentLevel = child.gameObject;
             }
             index += 1;
-            FindAllEnemies();
+        }
+        FindAllEnemies();
+        if (enemyCount == 0)
+        {
+            allowMovingLevels = true;
         }
     }
 
