@@ -23,20 +23,15 @@ public class ElevatorZone : MonoBehaviour
             return;
         }
 
-        if (other.gameObject != player || !levelManager.allowMovingLevels)
+        if (other.gameObject != player)
         {
             return;
         }
-        
+
         Debug.Log("Player entered the elevator");
 
-        levelManager.ActivateNextLevel();
-
         Quaternion rotationDiffernece = gameObject.transform.rotation * Quaternion.Inverse(destinationElevatorZone.transform.rotation);
-
-        player.GetComponent<Controller>().TeleportToPositionMaintainingRelativePosition(destinationElevatorZone.transform.position, rotationDiffernece);
-
-        levelManager.DeactivatePreviousLevel();
+        levelManager.ChangeToNextLevel(destinationElevatorZone.transform.position,rotationDiffernece);
     }
 
     // Draw a box in the editor to show where the enemy spawn volume is
