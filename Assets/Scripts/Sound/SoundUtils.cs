@@ -20,7 +20,7 @@ public class SoundUtils : MonoBehaviour
         instance.stop(STOP_MODE.IMMEDIATE);
     }
 
-    public static void PlaySound3DParameter(FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, string parameterName, float parameterValue)
+    public static void PlaySound3DParameter(ref FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, string parameterName, float parameterValue)
     {
         instance = CreateInstance(eventRef);
         PlaySound3DCommonParameter(instance, gameObject, parameterName, parameterValue);

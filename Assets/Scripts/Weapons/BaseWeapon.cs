@@ -155,7 +155,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         // play bullet impact sound
         // to-do: play different sound depending on material
-        SoundUtils.PlaySound3D(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole);
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole, "Bullet_impacts", 1);
 
         // auto destroy bullet hole after a delay
         Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);
