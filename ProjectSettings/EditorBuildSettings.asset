@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Instructions Screen.unity
     guid: b8f62c262743a4352a955a75ec49b3b4
   - enabled: 1
-    path: Assets/Scenes/Main Level.unity
-    guid: 678903b2aa18d134dbffde8fc688e9ab
+    path: Assets/Scenes/WeaponsTest.unity
+    guid: 3843ea4840a16ef47919fdbd9f77d1b4
   m_configObjects: {}
