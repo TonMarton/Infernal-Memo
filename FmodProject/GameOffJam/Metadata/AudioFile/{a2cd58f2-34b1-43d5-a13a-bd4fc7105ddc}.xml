@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{a2cd58f2-34b1-43d5-a13a-bd4fc7105ddc}">
+		<property name="assetPath">
+			<value>Sfxs/Bullets impacts/wood/bulle_impact_wood1.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.69231292517006804</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>
