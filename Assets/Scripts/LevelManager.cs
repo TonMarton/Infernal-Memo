@@ -9,8 +9,12 @@ public class LevelManager : MonoBehaviour
     private int enemyCount;
     public bool allowMovingLevels = false;
 
+    private GameObject player;
+
     void Start()
     {
+        player = GameObject.Find("Player");
+
         int index = 0;
         foreach (Transform child in transform)
         {
@@ -35,6 +39,7 @@ public class LevelManager : MonoBehaviour
         if (--enemyCount == 0) {
             allowMovingLevels = true;
             Debug.Log("All enemies were killed");
+            player.GetComponentInChildren<HUD>().ShowLevelClearMessage();
         } else
         {
             Debug.Log("There are " + enemyCount + " enemies left.");
@@ -45,6 +50,20 @@ public class LevelManager : MonoBehaviour
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
         Debug.Log("There are " + enemyCount + " enemies on this level");
+    }
+
+
+    public void ChangeToNextLevel(Vector3 destination,Quaternion rotationDiffernece)
+    {
+        if (allowMovingLevels)
+        {
+            ActivateNextLevel();
+            player.GetComponent<Controller>().TeleportToPositionMaintainingRelativePosition(destination, rotationDiffernece);
+            DeactivatePreviousLevel();
+        }
+        else {
+            player.GetComponentInChildren<HUD>().ShowEnemiesOnLevelText();
+        }
     }
 
     public void ActivateNextLevel()
