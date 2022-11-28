@@ -44,6 +44,8 @@ public abstract class BaseWeapon : MonoBehaviour
     // Sounds
     private FMOD.Studio.EventInstance shootSoundInstance;
     private FMOD.Studio.EventInstance reloadSoundInstance;
+    private FMOD.Studio.EventInstance brickBulletImpactSoundInstance;
+
 
     [Header("Animation")]
     public string drawAnimationState;
@@ -150,6 +152,10 @@ public abstract class BaseWeapon : MonoBehaviour
         // spawn a bullet hole decal
         GameObject bulletHole = Instantiate(weaponSystem.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
             Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
+
+        // play bullet impact sound
+        // to-do: play different sound depending on material
+        SoundUtils.PlaySound3D(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole);
 
         // auto destroy bullet hole after a delay
         Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);

@@ -438,7 +438,8 @@ MonoBehaviour:
   canShakeScreen: 1
   sprintKey: 304
   jumpKey: 32
-  crouchKey: 99
+  crouchKey1: 99
+  crouchKey2: 306
   walkSpeed: 4
   sprintSpeed: 7
   crouchSpeed: 1.85
@@ -517,6 +518,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingHealth: 100
   maxHealth: 100
+  startingArmor: 0
+  maxArmor: 100
   startingBullets: 128
   maxBullets: 200
   startingBulletsInClip: 16
@@ -772,6 +775,13 @@ MonoBehaviour:
       Data3: -2129632847
       Data4: -594660367
     Path: event:/Sfxs/Player/guns/Stapler/Stapler_put_away
+  brickBulletImpactSoundEvent:
+    Guid:
+      Data1: -741412630
+      Data2: 1285842728
+      Data3: 58724798
+      Data4: 1853140873
+    Path: event:/Sfxs/Bullet impacts/Bullets Impacts
   currentWeaponType: 0
 --- !u!114 &4289160584079738295
 MonoBehaviour:

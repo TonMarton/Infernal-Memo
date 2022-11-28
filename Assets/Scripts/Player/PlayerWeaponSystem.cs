@@ -49,6 +49,8 @@ public class PlayerWeaponSystem : MonoBehaviour
     [SerializeField] private FMODUnity.EventReference pistolPutAwaySoundEvent;
     [SerializeField] private FMODUnity.EventReference shotgunDrawSoundEvent;
     [SerializeField] private FMODUnity.EventReference shotgunPutAwaySoundEvent;
+    [Space]
+    [SerializeField] public FMODUnity.EventReference brickBulletImpactSoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance staplerDrawSoundInstance;
@@ -57,6 +59,8 @@ public class PlayerWeaponSystem : MonoBehaviour
     private FMOD.Studio.EventInstance pistolPutAwaySoundInstance;
     private FMOD.Studio.EventInstance shotgunDrawSoundInstance;
     private FMOD.Studio.EventInstance shotgunPutAwaySoundInstance;
+
+
 
     [HideInInspector] public WeaponType currentWeaponType;
     private PlayerStaplerAttack staplerAttack;
