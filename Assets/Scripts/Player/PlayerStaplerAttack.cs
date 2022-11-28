@@ -62,7 +62,7 @@ public class PlayerStaplerAttack : MonoBehaviour, IPlayerAttack
         currentCooldown = cooldownBetweenAttacks;
         
         // play attack sound
-        SoundUtils.PlaySound3D(attackSoundInstance, attackSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref attackSoundInstance, attackSoundEvent, gameObject);
 
         // start can hit after a delay (will use animation notify for this later)
         Invoke(nameof(StartCanHit), startCanHitTime);

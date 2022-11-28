@@ -1,17 +1,23 @@
-﻿using UnityEngine;
+﻿using FMOD.Studio;
+using UnityEngine;
 
 public class SoundUtils : MonoBehaviour
 {
-    public static void PlaySound3D(FMOD.Studio.EventInstance instance, string eventName, GameObject gameObject)
+    public static void PlaySound3D(ref FMOD.Studio.EventInstance instance, string eventName, GameObject gameObject)
     {
         instance = CreateInstance(eventName);
         PlaySound3DCommon(instance, gameObject);
     }
     
-    public static void PlaySound3D(FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject)
+    public static void PlaySound3D(ref FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject)
     {
         instance = CreateInstance(eventRef);
         PlaySound3DCommon(instance, gameObject);
+    }
+
+    public static void StopSound3D(FMOD.Studio.EventInstance instance)
+    {
+        instance.stop(STOP_MODE.IMMEDIATE);
     }
 
     public static void PlaySound3DParameter(FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, string parameterName, float parameterValue)

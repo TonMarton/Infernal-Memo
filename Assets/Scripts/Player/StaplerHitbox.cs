@@ -75,7 +75,7 @@ public class StaplerHitbox : MonoBehaviour
         };
         
         // play impact sound
-        SoundUtils.PlaySound3D(impactSoundInstance, impactSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref impactSoundInstance, impactSoundEvent, gameObject);
 
         // do damage to the enemy stats
         enemyStats.TakeDamage(damage, knockback);

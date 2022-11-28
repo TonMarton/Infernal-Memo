@@ -13,6 +13,6 @@ public class Stapler : BaseWeapon
     protected override void OnHit()
     {
         base.OnHit();
-        SoundUtils.PlaySound3D(staplerImpactSoundInstance, staplerImpactSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref staplerImpactSoundInstance, staplerImpactSoundEvent, gameObject);
     }
 }

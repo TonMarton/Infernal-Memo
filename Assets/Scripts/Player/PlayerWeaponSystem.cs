@@ -120,6 +120,25 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
+    private void StopReload(WeaponType weaponType)
+    {
+        switch (weaponType)
+        {
+            case WeaponType.Pistol:
+                if (currentReloadCooldownTime > 0)
+                {
+                    pistol.StopReload();
+                }
+                break;
+            case WeaponType.Shotgun:
+                if (currentReloadCooldownTime > 0)
+                {
+                    shotgun.StopReload();
+                }
+                break;
+        }
+    }
+
     public void Reload()
     {
         switch (currentWeaponType)
@@ -174,7 +193,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // show stapler
                 staplerModel.gameObject.SetActive(true);
                 // play draw stapler sound
-                SoundUtils.PlaySound3D(staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
+                SoundUtils.PlaySound3D(ref staplerDrawSoundInstance, staplerDrawSoundEvent, gameObject);
 
                 // TODO: Play weapon switch animation
 
@@ -193,7 +212,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // hide shotgun
                 shotgun.SetVisible(false);
                 // play draw pistol sound
-                SoundUtils.PlaySound3D(pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
+                SoundUtils.PlaySound3D(ref pistolDrawSoundInstance, pistolDrawSoundEvent, gameObject);
 
                 // TODO: Play weapon switch animation
 
@@ -212,7 +231,7 @@ public class PlayerWeaponSystem : MonoBehaviour
                 // hide pistol
                 deagleModel.gameObject.SetActive(false);
                 // play draw shotgun sound
-                SoundUtils.PlaySound3D(shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);
+                SoundUtils.PlaySound3D(ref shotgunDrawSoundInstance, shotgunDrawSoundEvent, gameObject);
 
                 // TODO: Play weapon switch animation
 
@@ -223,6 +242,8 @@ public class PlayerWeaponSystem : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
+
+        StopReload(lastWeaponType);
 
         currentCooldownTime = 0;
         currentReloadCooldownTime = 0;

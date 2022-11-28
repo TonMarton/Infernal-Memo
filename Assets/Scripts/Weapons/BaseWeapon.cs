@@ -61,6 +61,11 @@ public abstract class BaseWeapon : MonoBehaviour
         SetMuzzleFlashVisible(false);
     }
 
+    public void StopReload()
+    {
+        SoundUtils.StopSound3D(reloadSoundInstance);
+    }
+
     private void ShootBullet()
     {
         // get the camera's forward direction
@@ -76,7 +81,7 @@ public abstract class BaseWeapon : MonoBehaviour
         Vector3 bulletTrajectory = rotationX * rotationY * fpsCamForward;
 
         // Raycast for hit
-        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, maxDistance, weaponSystem.collisionLayerMask))
+        if (!Physics.Raycast(weaponSystem.fpsCam.transform.position, bulletTrajectory, out var hit, maxDistance, weaponSystem.collisionLayerMask, QueryTriggerInteraction.Ignore))
         {
             // didn't hit so nothing to do
             return;
@@ -183,6 +188,9 @@ public abstract class BaseWeapon : MonoBehaviour
         // reset cooldown time
         weaponSystem.currentCooldownTime = cooldownTime;
 
+        // stop reloading sound
+        StopReload();
+
         // play shoot sound
         PlayShootSound();
 
@@ -233,11 +241,11 @@ public abstract class BaseWeapon : MonoBehaviour
 
     private void PlayShootSound()
     {
-        SoundUtils.PlaySound3D(shootSoundInstance, shootSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref shootSoundInstance, shootSoundEvent, gameObject);
     }
 
     private void PlayReloadSound()
     {
-        SoundUtils.PlaySound3D(reloadSoundInstance, reloadSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref reloadSoundInstance, reloadSoundEvent, gameObject);
     }
 }

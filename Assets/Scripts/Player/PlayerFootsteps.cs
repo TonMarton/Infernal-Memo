@@ -58,6 +58,6 @@ public class PlayerFootsteps : MonoBehaviour
 
     private void PlayFootstepSound()
     {
-        SoundUtils.PlaySound3D(footstepSoundInstance, footstepSoundEvent, gameObject);
+        SoundUtils.PlaySound3D(ref footstepSoundInstance, footstepSoundEvent, gameObject);
     }
 }
