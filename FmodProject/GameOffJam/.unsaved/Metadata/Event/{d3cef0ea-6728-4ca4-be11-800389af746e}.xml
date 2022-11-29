@@ -160,6 +160,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7409e22d-efed-4171-bc48-4adb1d3b7ad9}">
+		<property name="volume">
+			<value>2.5</value>
+		</property>
 		<property name="name">
 			<value>Enemy impact</value>
 		</property>
@@ -589,7 +592,7 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>3.60000014</value>
+			<value>80</value>
 		</property>
 		<property name="minimumExtent">
 			<value>360</value>
