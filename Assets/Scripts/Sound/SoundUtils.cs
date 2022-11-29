@@ -15,14 +15,28 @@ public class SoundUtils : MonoBehaviour
         PlaySound3DCommon(instance, gameObject);
     }
 
+    public static void PlaySound3D(ref FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, float volume)
+    {
+        instance = CreateInstance(eventRef);
+        instance.setVolume(volume);
+        PlaySound3DCommon(instance, gameObject);
+    }
+
     public static void StopSound3D(FMOD.Studio.EventInstance instance)
     {
         instance.stop(STOP_MODE.IMMEDIATE);
     }
 
-    public static void PlaySound3DParameter(FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, string parameterName, float parameterValue)
+    public static void PlaySound3DParameter(ref FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, string parameterName, float parameterValue)
     {
         instance = CreateInstance(eventRef);
+        PlaySound3DCommonParameter(instance, gameObject, parameterName, parameterValue);
+    }
+
+    public static void PlaySound3DParameter(ref FMOD.Studio.EventInstance instance, FMODUnity.EventReference eventRef, GameObject gameObject, string parameterName, float parameterValue, float volume)
+    {
+        instance = CreateInstance(eventRef);
+        instance.setVolume(volume);
         PlaySound3DCommonParameter(instance, gameObject, parameterName, parameterValue);
     }
 

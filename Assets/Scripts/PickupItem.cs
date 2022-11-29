@@ -38,7 +38,7 @@ public class PickupItem : MonoBehaviour
                     break;
                 case StatType.Health:
                     Debug.Log("Picked up Health");
-                    playerStats.UpdateHealth(amount);
+                    playerStats.UpdateHealth(amount, gameObject);
                     break;
             }
             gameObject.SetActive(false);
