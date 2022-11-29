@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 using static UnityEngine.UI.Image;
 
 // Written by Caleb Ralph
@@ -87,6 +88,9 @@ public class NavAgent : MonoBehaviour
     private PlayerStats playerStats;
     private GameObject player;
 
+    public UnityEvent onAttack;
+    [SerializeField] private float attackDelay;
+
     #region Custom Methods
     bool IsTargetInFront()
     {
@@ -127,6 +131,16 @@ public class NavAgent : MonoBehaviour
         
         // did the raycast hit the player?
         return hit.collider == targetCollider;
+    }
+    Vector3 GetAttackDirection()
+    {
+        Vector3 attackOrigin = myCollider.bounds.center;
+        Vector3 attackDirection = direction;
+        Vector3 closestPoint = targetCollider.ClosestPoint(attackOrigin);
+        Vector3 playerDifference = closestPoint - attackOrigin;
+        attackDirection.y = playerDifference.y;
+        attackDirection.Normalize();
+        return attackDirection;
     }
     void UpdatePath()
     {
@@ -213,12 +227,7 @@ public class NavAgent : MonoBehaviour
             // try attacking
             if (attackCooldownTime <= 0)
             {
-                Vector3 attackOrigin = myCollider.bounds.center;
-                Vector3 attackDirection = direction;
-                Vector3 closestPoint = targetCollider.ClosestPoint(attackOrigin);
-                Vector3 playerDifference = closestPoint - attackOrigin;
-                attackDirection.y = playerDifference.y;
-                attackDirection.Normalize();
+                var attackDirection = GetAttackDirection();
                 if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
                 {
                     // check if player
@@ -228,9 +237,10 @@ public class NavAgent : MonoBehaviour
                         var playerStats = attackHit.collider.GetComponent<PlayerStats>();
                         if (!playerStats.isDead)
                         {
-                            // attack
-                            playerStats.TakeDamage(attackDamageAmount, gameObject);
                             attackCooldownTime += 1f;
+                            onAttack.Invoke();
+                            StopAllCoroutines();
+                            StartCoroutine(AttackWithDelay());
                         }
                         
                     }
@@ -239,6 +249,27 @@ public class NavAgent : MonoBehaviour
                 if (attackCooldownTime < 0)
                 {
                     attackCooldownTime = 0;
+                }
+            }
+        }
+        
+    }
+
+    IEnumerator AttackWithDelay()
+    {
+        yield return new WaitForSeconds(attackDelay);
+        // attack
+        var attackDirection = GetAttackDirection();
+        if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
+        {
+            // check if player
+            if (attackHit.collider.CompareTag("Player"))
+            {
+                // check if not dead
+                var playerStats = attackHit.collider.GetComponent<PlayerStats>();
+                if (!playerStats.isDead)
+                {
+                    playerStats.TakeDamage(attackDamageAmount, gameObject);
                 }
             }
         }
