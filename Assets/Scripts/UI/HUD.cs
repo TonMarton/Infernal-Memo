@@ -18,11 +18,28 @@ public class HUD : MonoBehaviour
     [SerializeField] private string levelClearMessage;
     [SerializeField] private string levelStillHasEnemiesMessage;
 
+    [SerializeField] private Image damageFlash;
+    [SerializeField] private float damageFlashFadeSpeed = 5f;
+
     Coroutine lastCoroutine;
+    float damageFlashAlpha;
 
     private void Start()
     {
         levelStatusMessageText.gameObject.SetActive(false);
+    }
+
+    public void AddDamageFlash(float amount)
+    {
+        damageFlashAlpha += amount;
+        damageFlashAlpha = Mathf.Clamp(damageFlashAlpha, 0, 0.5f);
+    }
+
+    private void SetDamageFlashAlpha(float a)
+    {
+        Color color = damageFlash.color;
+        color.a = a;
+        damageFlash.color = color;
     }
 
     private void Awake()
@@ -32,6 +49,24 @@ public class HUD : MonoBehaviour
         
         // hide cursor by default
         SetCrossHairVisible(false);
+
+        // ensure damage flash alpha is 0
+        damageFlashAlpha = 0;
+        SetDamageFlashAlpha(damageFlashAlpha);
+    }
+
+    private void Update()
+    {
+        // fade damage flash
+        if (damageFlashAlpha > 0)
+        {
+            damageFlashAlpha -= Time.deltaTime * damageFlashFadeSpeed;
+            if (damageFlashAlpha < 0)
+            {
+                damageFlashAlpha = 0;
+            }
+            SetDamageFlashAlpha(damageFlashAlpha);
+        }
     }
 
     public void SetCrossHairVisible(bool show)

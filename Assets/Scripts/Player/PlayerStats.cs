@@ -115,6 +115,7 @@ public class PlayerStats : MonoBehaviour
 
         if (amount < 0)
         {
+            hud.AddDamageFlash(Mathf.Abs(amount) / 100.0f);
             if (health <= 0)
             {
                 health = 0;
