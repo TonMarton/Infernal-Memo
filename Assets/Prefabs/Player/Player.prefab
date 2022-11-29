@@ -506,6 +506,7 @@ MonoBehaviour:
   damageTaken: 0
   cameraDeathPosition: {x: 0, y: 0.4, z: 0}
   cameraDeathRotation: {x: 0, y: 0, z: 30}
+  cameraHolder: {fileID: 5983632885282657471}
 --- !u!114 &6386166238158225820
 MonoBehaviour:
   m_ObjectHideFlags: 0

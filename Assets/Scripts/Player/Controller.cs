@@ -127,6 +127,7 @@ public class Controller : MonoBehaviour
 
     [SerializeField] Vector3 cameraDeathPosition = new Vector3(0, 0.4f, 0);
     [SerializeField] Vector3 cameraDeathRotation = new Vector3(0, 0, 30);
+    [SerializeField] Transform cameraHolder;
 
     private void Awake()
     {
@@ -278,18 +279,18 @@ public class Controller : MonoBehaviour
     }
 
     private IEnumerator DamageScreenShake() {
-        Vector3 startPos = transform.position;
+        Vector3 startPos = cameraHolder.localPosition;
         float elapsedTime = 0f;
 
         while (elapsedTime < damageShakeDuration)
         {
             elapsedTime += Time.deltaTime;
             float strength = damageShakeCurve.Evaluate(elapsedTime / damageShakeDuration);
-            transform.position = startPos + Random.insideUnitSphere * strength;
+            cameraHolder.localPosition = startPos + Random.insideUnitSphere * strength;
             yield return null;
         }
 
-        transform.position = startPos;
+        cameraHolder.localPosition = startPos;
         damageTaken = false;
     }
 

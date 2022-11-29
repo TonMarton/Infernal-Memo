@@ -77,14 +77,20 @@ public class PlayerStats : MonoBehaviour
         hud.UpdateUIText("shells", shells);
     }
 
-    //private void Update()
-    //{
-    //    // Test death
-    //    if (Input.GetKeyDown(KeyCode.B))
-    //    {
-    //        TakeDamage(1000);
-    //    }
-    //}
+    private void Update()
+    {
+        // Test take damage
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    TakeDamage(10);
+        //}
+
+        // Test death
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    TakeDamage(1000);
+        //}
+    }
 
     public void TakeDamage(int amount)
     {
