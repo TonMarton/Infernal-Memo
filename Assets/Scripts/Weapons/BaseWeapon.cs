@@ -114,7 +114,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         if (enemy == null) return;
         var bloodImpact = Instantiate(weaponSystem.bloodImpactParticlePrefab, hit.point + hit.normal * weaponSystem.particleSpawnOffset, Quaternion.LookRotation(-hit.normal));
-        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bloodImpact, "Bullet_impacts", 0);
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bloodImpact, "Bullet_impacts", 0, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
         Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
@@ -156,7 +156,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         // play bullet impact sound
         // to-do: play different sound depending on material
-        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole, "Bullet_impacts", impactParamIndex);
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.2f, 1f));
 
         // auto destroy bullet hole after a delay
         Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);
