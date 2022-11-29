@@ -92,6 +92,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OpenMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Title Screen");
     }
 
