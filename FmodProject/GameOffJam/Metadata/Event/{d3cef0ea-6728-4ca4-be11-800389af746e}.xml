@@ -5,7 +5,7 @@
 			<value>Bullets Impacts</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{7e567b56-d56a-48a6-a44d-584ebaa3265b}</destination>
@@ -63,7 +63,11 @@
 			<destination>{34d99a74-c439-4de8-bb69-153801384e0f}</destination>
 		</relationship>
 	</object>
-	<object class="EventAutomatableProperties" id="{5e07f3f6-6bfd-4215-9260-cf03f36fe000}" />
+	<object class="EventAutomatableProperties" id="{5e07f3f6-6bfd-4215-9260-cf03f36fe000}">
+		<property name="maximumDistance">
+			<value>60</value>
+		</property>
+	</object>
 	<object class="MarkerTrack" id="{6ba17f45-45e7-43ed-8232-b58ec9c6fc3c}" />
 	<object class="GroupTrack" id="{f559caa2-bf36-467f-bdb1-f7166c6bd6ef}">
 		<relationship name="modules">
@@ -156,6 +160,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7409e22d-efed-4171-bc48-4adb1d3b7ad9}">
+		<property name="volume">
+			<value>2.5</value>
+		</property>
 		<property name="name">
 			<value>Enemy impact</value>
 		</property>
@@ -353,6 +360,7 @@
 	<object class="MixerBusEffectChain" id="{0aadb758-abc8-489a-a277-60c30451e350}">
 		<relationship name="effects">
 			<destination>{146d8cdc-b336-459a-b14c-0123ff4b1f05}</destination>
+			<destination>{1fce46c6-442d-4f50-b794-1d7a6be8363e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{cbfc7cc6-d387-4b32-82f4-b32aac83c9e0}" />
@@ -401,6 +409,7 @@
 	<object class="MixerBusEffectChain" id="{dc35107a-eb6a-4063-86a1-98a517c8f3d1}">
 		<relationship name="effects">
 			<destination>{2164cf84-b4c8-42bf-8f80-5f8747607b65}</destination>
+			<destination>{a0de1aa4-7e09-4a4b-9199-d6112216b812}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b2d000be-3807-45af-8942-e69af5970f77}" />
@@ -448,6 +457,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{db0f6864-1bd8-46c1-8498-b1040fc3b2cc}">
 		<relationship name="effects">
+			<destination>{81c1b70b-146f-4df8-ab1e-8c62c402e0e6}</destination>
 			<destination>{2ebf8778-c08d-47d2-ab39-15e28528fa0d}</destination>
 		</relationship>
 	</object>
@@ -496,6 +506,7 @@
 	</object>
 	<object class="MixerBusEffectChain" id="{4162dfed-ced6-45d8-88e9-430d00ec51af}">
 		<relationship name="effects">
+			<destination>{7fbcf995-bc86-4395-a040-ed25c8fe8dee}</destination>
 			<destination>{ef86ba04-1c6a-45c9-bfdb-4e3c7db70ffc}</destination>
 		</relationship>
 	</object>
@@ -545,6 +556,7 @@
 	<object class="MixerBusEffectChain" id="{f0b50e83-ebd6-41cd-9bfe-ef0236f41411}">
 		<relationship name="effects">
 			<destination>{0a5e36e0-8a18-44a4-8aca-16c9ca864e97}</destination>
+			<destination>{41c81fbe-be10-4c52-b54f-e916d96d4836}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{536de2fb-ed49-420b-a6a8-7618c2573ec3}" />
@@ -569,6 +581,23 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{146d8cdc-b336-459a-b14c-0123ff4b1f05}" />
+	<object class="SpatialiserEffect" id="{1fce46c6-442d-4f50-b794-1d7a6be8363e}">
+		<property name="maximumDistance">
+			<value>60</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>80</value>
+		</property>
+		<property name="minimumExtent">
+			<value>360</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{41c24537-9129-4933-81f1-96c3dc810c63}">
 		<property name="position">
 			<value>0.328125</value>
@@ -589,6 +618,23 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{2164cf84-b4c8-42bf-8f80-5f8747607b65}" />
+	<object class="SpatialiserEffect" id="{a0de1aa4-7e09-4a4b-9199-d6112216b812}">
+		<property name="maximumDistance">
+			<value>70</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>3.60000014</value>
+		</property>
+		<property name="minimumExtent">
+			<value>360</value>
+		</property>
+	</object>
 	<object class="AutomationPoint" id="{8af53223-a343-455f-8336-fc36cb9c315d}">
 		<property name="position">
 			<value>0.671875</value>
@@ -606,6 +652,23 @@
 		</property>
 		<property name="value">
 			<value>0</value>
+		</property>
+	</object>
+	<object class="SpatialiserEffect" id="{81c1b70b-146f-4df8-ab1e-8c62c402e0e6}">
+		<property name="maximumDistance">
+			<value>70</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>3.60000014</value>
+		</property>
+		<property name="minimumExtent">
+			<value>360</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{2ebf8778-c08d-47d2-ab39-15e28528fa0d}" />
@@ -626,6 +689,23 @@
 		</property>
 		<property name="value">
 			<value>0</value>
+		</property>
+	</object>
+	<object class="SpatialiserEffect" id="{7fbcf995-bc86-4395-a040-ed25c8fe8dee}">
+		<property name="maximumDistance">
+			<value>70</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>3.60000014</value>
+		</property>
+		<property name="minimumExtent">
+			<value>360</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{ef86ba04-1c6a-45c9-bfdb-4e3c7db70ffc}" />
@@ -649,4 +729,24 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{0a5e36e0-8a18-44a4-8aca-16c9ca864e97}" />
+	<object class="SpatialiserEffect" id="{41c81fbe-be10-4c52-b54f-e916d96d4836}">
+		<property name="maximumDistance">
+			<value>70</value>
+		</property>
+		<property name="overrideRange">
+			<value>true</value>
+		</property>
+		<property name="extentMode">
+			<value>1</value>
+		</property>
+		<property name="soundSize">
+			<value>3.60000014</value>
+		</property>
+		<property name="minimumExtent">
+			<value>360</value>
+		</property>
+		<property name="userStereoSeparation">
+			<value>82.4962006</value>
+		</property>
+	</object>
 </objects>
