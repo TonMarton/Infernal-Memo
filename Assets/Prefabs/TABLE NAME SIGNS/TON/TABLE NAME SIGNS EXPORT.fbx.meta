@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 4b96aff66a6744b4b9c5b1f2963ba8cd
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -1594132817216116117
+    second: table name sign|table name signAction
+  - first:
+      74: -1644854025805411346
+    second: table name sign|table name signAction.001
+  - first:
+      74: 384498747391959155
+    second: table name sign|table name signAction.002
+  - first:
+      74: 4866954061912616310
+    second: table name sign|table name signAction.004
+  - first:
+      74: 6729982582420723391
+    second: table name sign|table name signAction.007
+  - first:
+      74: 209628421338870941
+    second: table name sign|table name signAction.010
+  - first:
+      74: 1447828179982618074
+    second: table name sign.001|table name signAction
+  - first:
+      74: 6099622705460989371
+    second: table name sign.001|table name signAction.001
+  - first:
+      74: -1250148124560138562
+    second: table name sign.001|table name signAction.002
+  - first:
+      74: -5820812817231895301
+    second: table name sign.001|table name signAction.004
+  - first:
+      74: 5875955786412484866
+    second: table name sign.001|table name signAction.007
+  - first:
+      74: 8518811285124812429
+    second: table name sign.001|table name signAction.010
+  - first:
+      74: 446769258253948252
+    second: table name sign.002|table name signAction
+  - first:
+      74: -7236941488325369387
+    second: table name sign.002|table name signAction.001
+  - first:
+      74: -3629824044816691314
+    second: table name sign.002|table name signAction.002
+  - first:
+      74: -286001215584710025
+    second: table name sign.002|table name signAction.004
+  - first:
+      74: -2900480038091473859
+    second: table name sign.002|table name signAction.007
+  - first:
+      74: -1358819956709625310
+    second: table name sign.002|table name signAction.010
+  - first:
+      74: 5223950506113019019
+    second: table name sign.004|table name signAction
+  - first:
+      74: -8606073431737453001
+    second: table name sign.004|table name signAction.001
+  - first:
+      74: 6282919634729966428
+    second: table name sign.004|table name signAction.002
+  - first:
+      74: -5153102538854884105
+    second: table name sign.004|table name signAction.004
+  - first:
+      74: -4904932487721655719
+    second: table name sign.004|table name signAction.007
+  - first:
+      74: -5264423021790674475
+    second: table name sign.004|table name signAction.010
+  - first:
+      74: -897159384972914428
+    second: table name sign.006|table name signAction
+  - first:
+      74: -4305997279928018824
+    second: table name sign.006|table name signAction.001
+  - first:
+      74: 4564823823444674916
+    second: table name sign.006|table name signAction.002
+  - first:
+      74: -8398225970691862474
+    second: table name sign.006|table name signAction.004
+  - first:
+      74: 5193826931935315906
+    second: table name sign.006|table name signAction.007
+  - first:
+      74: 1204843343535219266
+    second: table name sign.006|table name signAction.010
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
