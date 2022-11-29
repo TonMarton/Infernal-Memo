@@ -160,6 +160,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{7409e22d-efed-4171-bc48-4adb1d3b7ad9}">
+		<property name="volume">
+			<value>2.5</value>
+		</property>
 		<property name="name">
 			<value>Enemy impact</value>
 		</property>
@@ -589,10 +592,10 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>4.5999999</value>
+			<value>80</value>
 		</property>
 		<property name="minimumExtent">
-			<value>136</value>
+			<value>360</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{41c24537-9129-4933-81f1-96c3dc810c63}">
@@ -626,7 +629,7 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>4.5999999</value>
+			<value>3.60000014</value>
 		</property>
 		<property name="minimumExtent">
 			<value>360</value>
@@ -662,10 +665,10 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>6</value>
+			<value>3.60000014</value>
 		</property>
 		<property name="minimumExtent">
-			<value>136</value>
+			<value>360</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{2ebf8778-c08d-47d2-ab39-15e28528fa0d}" />
@@ -699,10 +702,10 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>7.5</value>
+			<value>3.60000014</value>
 		</property>
 		<property name="minimumExtent">
-			<value>142</value>
+			<value>360</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{ef86ba04-1c6a-45c9-bfdb-4e3c7db70ffc}" />
@@ -737,10 +740,10 @@
 			<value>1</value>
 		</property>
 		<property name="soundSize">
-			<value>5.5</value>
+			<value>3.60000014</value>
 		</property>
 		<property name="minimumExtent">
-			<value>154</value>
+			<value>360</value>
 		</property>
 		<property name="userStereoSeparation">
 			<value>82.4962006</value>
