@@ -55,6 +55,8 @@ public class PlayerStats : MonoBehaviour
 
     public UnityEvent onDie;
 
+    public GameObject causeOfDeath { get; private set; }
+
     private void Awake()
     {
         // initialize stats 
@@ -92,7 +94,7 @@ public class PlayerStats : MonoBehaviour
         //}
     }
 
-    public void TakeDamage(int amount)
+    public void TakeDamage(int amount, GameObject sender)
     {
         int armorReducedAmount = amount - armor;
         if (armorReducedAmount != amount)
@@ -101,13 +103,13 @@ public class PlayerStats : MonoBehaviour
         }
         if (armorReducedAmount > 0)
         {
-            UpdateHealth(-armorReducedAmount);
+            UpdateHealth(-armorReducedAmount, sender);
         }
     }
 
     //updates player health,
     //either when player takes damage or picks up a health item to heal themselves
-    public void UpdateHealth(int amount)
+    public void UpdateHealth(int amount, GameObject sender)
     {
         health += amount;
 
@@ -116,6 +118,7 @@ public class PlayerStats : MonoBehaviour
             if (health <= 0)
             {
                 health = 0;
+                causeOfDeath = sender;
                 Die();
             }
             else

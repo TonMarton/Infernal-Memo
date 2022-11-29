@@ -128,6 +128,7 @@ public class Controller : MonoBehaviour
     [SerializeField] Vector3 cameraDeathPosition = new Vector3(0, 0.4f, 0);
     [SerializeField] Vector3 cameraDeathRotation = new Vector3(0, 0, 30);
     [SerializeField] Transform cameraHolder;
+    [SerializeField] private float deathCameraTurnSpeed = 10f;
 
     private void Awake()
     {
@@ -172,6 +173,15 @@ public class Controller : MonoBehaviour
 
         if (Time.timeScale == 1)
         {
+            // Face towards enemy that killed player when dead
+            if (playerStats.isDead && playerStats.causeOfDeath != null)
+            {
+                Vector3 diff = playerStats.causeOfDeath.transform.position - transform.position;
+                float angle = Mathf.Atan2(diff.x, diff.z) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, angle, 0), Time.deltaTime * deathCameraTurnSpeed);
+            }
+
+
             // Can't move?
             if (!canMove)
             {

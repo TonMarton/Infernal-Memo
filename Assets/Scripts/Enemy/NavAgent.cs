@@ -84,6 +84,8 @@ public class NavAgent : MonoBehaviour
     private int attackDamageAmount = 10;
 
     private float attackCooldownTime;
+    private PlayerStats playerStats;
+    private GameObject player;
 
     #region Custom Methods
     bool IsTargetInFront()
@@ -145,35 +147,51 @@ public class NavAgent : MonoBehaviour
             {
                 if (!noTarget)
                 {
-                    if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path))
+                    if (playerStats.isDead)
                     {
-                        int cornerCount = path.GetCornersNonAlloc(corners);
-                        direction = (corners[1] - corners[0]);
-                        direction.y = 0;
-                        direction.Normalize();
-                        isMoving = true;
-
-                        // Randomly turn left and right when far away
-                        if (Vector3.Distance(transform.position, target.position) > zigZagDistanceThreshold)
+                        var rand = Random.Range(0, 30);
+                        if (rand == 0)
                         {
-                            var rand = Random.Range(0, 6);
-                            if (rand == 0)
-                            {
-                                direction = Quaternion.Euler(0, 30, 0) * direction;
-
-                            }
-                            else if (rand == 1)
-                            {
-                                direction = Quaternion.Euler(0, -30, 0) * direction;
-                            }
+                            direction = Quaternion.Euler(0, 30, 0) * direction;
+                        }
+                        else if (rand == 1)
+                        {
+                            direction = Quaternion.Euler(0, -30, 0) * direction;
                         }
                     }
                     else
                     {
-                        direction = target.position - transform.position;
-                        direction.y = 0;
-                        direction.Normalize();
+                        if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path))
+                        {
+                            int cornerCount = path.GetCornersNonAlloc(corners);
+                            direction = (corners[1] - corners[0]);
+                            direction.y = 0;
+                            direction.Normalize();
+                            isMoving = true;
+
+                            // Randomly turn left and right when far away
+                            if (Vector3.Distance(transform.position, target.position) > zigZagDistanceThreshold)
+                            {
+                                var rand = Random.Range(0, 6); // 16% chance to turn left, 16% chance to turn right
+                                if (rand == 0)
+                                {
+                                    direction = Quaternion.Euler(0, 30, 0) * direction;
+                                }
+                                else if (rand == 1)
+                                {
+                                    direction = Quaternion.Euler(0, -30, 0) * direction;
+                                }
+                            }
+
+                        }
+                        else
+                        {
+                            direction = target.position - transform.position;
+                            direction.y = 0;
+                            direction.Normalize();
+                        }
                     }
+                    
                 }
                 else
                 {
@@ -211,15 +229,16 @@ public class NavAgent : MonoBehaviour
                         if (!playerStats.isDead)
                         {
                             // attack
-                            playerStats.TakeDamage(attackDamageAmount);
+                            playerStats.TakeDamage(attackDamageAmount, gameObject);
                             attackCooldownTime += 1f;
                         }
                         
                     }
                 }
-                else
+                // if the cooldown timer was below zero and never attacked, reset to 0
+                if (attackCooldownTime < 0)
                 {
-                    attackCooldownTime = 0f;
+                    attackCooldownTime = 0;
                 }
             }
         }
@@ -248,12 +267,17 @@ public class NavAgent : MonoBehaviour
             // Check if the controller collided on its sides
             if ((characterController.collisionFlags & CollisionFlags.Sides) != 0)
             {
-                if (Time.time > lastFlipTime + 0.3f)
+                if (Time.time > lastFlipTime + .4f)
                 {
-                    lastFlipTime = Time.time;
-                    float sign = 1;
-                    if (Random.value < 0.5f) sign *= -1;
-                    direction = Quaternion.Euler(0, Random.Range(30, 45) * sign, 0) * direction;
+                    if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 5.0f, 1 << 0))
+                    {
+                        direction = Vector3.Reflect(direction, wallHit.normal);
+                        lastFlipTime = Time.time;
+                        float sign = 1;
+                        if (Random.value < 0.5f) sign *= -1;
+                        direction = Quaternion.Euler(0, Random.Range(30, 45) * sign, 0) * direction;
+                    }
+                    
                 }
             }
         }
@@ -267,7 +291,9 @@ public class NavAgent : MonoBehaviour
     #region Unity Messages
     private void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
+        playerStats = player.GetComponent<PlayerStats>();
         targetCollider = target.GetComponent<Collider>();
         myCollider = GetComponent<Collider>();
         path = new NavMeshPath();

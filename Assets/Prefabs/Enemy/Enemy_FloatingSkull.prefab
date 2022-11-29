@@ -139,8 +139,8 @@ MonoBehaviour:
   attackLayers:
     serializedVersion: 2
     m_Bits: 513
-  attackFrequency: 1
-  attackDamageAmount: 10
+  attackFrequency: 1.54
+  attackDamageAmount: 8
 --- !u!114 &2289868260725089916
 MonoBehaviour:
   m_ObjectHideFlags: 0
