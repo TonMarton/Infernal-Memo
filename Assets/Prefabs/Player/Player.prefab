@@ -223,8 +223,8 @@ Camera:
   m_GameObject: {fileID: 5983632887014776811}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 2
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -862,6 +862,7 @@ MonoBehaviour:
   idleAnimationState: Stapler Idle
   shootAnimationState: Stapler Attack
   reloadAnimationState: 
+  impactParamIndex: 2
   staplerImpactSoundEvent:
     Guid:
       Data1: -715793156
@@ -911,6 +912,7 @@ MonoBehaviour:
   idleAnimationState: Pistol Idle
   shootAnimationState: Pistol Shoot
   reloadAnimationState: Pistol Reload
+  impactParamIndex: 2
 --- !u!114 &719967899060198336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -953,6 +955,7 @@ MonoBehaviour:
   idleAnimationState: Shotgun Idle
   shootAnimationState: Shotgun Shoot
   reloadAnimationState: Shotgun Reload
+  impactParamIndex: 2
 --- !u!1001 &202511414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1039,6 +1042,14 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_BoundingSphereOverride.w
+      value: -5.112165e+33
+      objectReference: {fileID: 0}
+    - target: {fileID: 10800000, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}
+      propertyPath: m_BoundingSphereOverride.x
+      value: 1.02e-43
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 302577c4c425ce14781bc5dd214f5576, type: 3}

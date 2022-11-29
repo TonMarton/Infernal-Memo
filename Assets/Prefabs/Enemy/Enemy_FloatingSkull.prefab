@@ -151,11 +151,11 @@ MonoBehaviour:
   minTimeBetweenDamageSounds: 0.5
   hurtSoundEvent:
     Guid:
-      Data1: 1950732164
-      Data2: 1084205076
-      Data3: -1482649717
-      Data4: -1610614253
-    Path: event:/Sfxs/Enemy/Enemy damage
+      Data1: -2016190065
+      Data2: 1159609651
+      Data3: 1039363481
+      Data4: 1851258643
+    Path: event:/Sfxs/Enemy/EnemySD/SD_hurt
   deathSoundEvent:
     Guid:
       Data1: 700295798
