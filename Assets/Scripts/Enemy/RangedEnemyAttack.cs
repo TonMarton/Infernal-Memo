@@ -24,7 +24,7 @@ public class RangedEnemyAttack : EnemyAttack
         if (hit.collider.CompareTag(PlayerBase.PLAYER_TAG))
         {
             // apply damage
-            hit.collider.gameObject.GetComponent<PlayerStats>().UpdateHealth(-damage);
+            hit.collider.gameObject.GetComponent<PlayerStats>().UpdateHealth(-damage, gameObject);
             
             // play the damage sound for this enemy on the player
             SoundUtils.PlaySound3D(ref damageSoundInstance, damageSoundEvent, hit.collider.gameObject);

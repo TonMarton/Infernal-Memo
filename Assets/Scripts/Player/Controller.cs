@@ -116,6 +116,7 @@ public class Controller : MonoBehaviour
 
     private Camera playerCamera;
     private CharacterController characterController;
+    private PlayerStats playerStats;
 
     private Vector3 moveDirection;
     private Vector2 currentInput;
@@ -124,10 +125,16 @@ public class Controller : MonoBehaviour
 
     public bool damageTaken = false;
 
+    [SerializeField] Vector3 cameraDeathPosition = new Vector3(0, 0.4f, 0);
+    [SerializeField] Vector3 cameraDeathRotation = new Vector3(0, 0, 30);
+    [SerializeField] Transform cameraHolder;
+    [SerializeField] private float deathCameraTurnSpeed = 10f;
+
     private void Awake()
     {
         playerCamera = GetComponentInChildren<Camera>();
         characterController = GetComponent<CharacterController>();
+        playerStats = GetComponent<PlayerStats>();
 
         // remember the starting mouse location
         defaultYPos = playerCamera.transform.localPosition.y;
@@ -137,10 +144,44 @@ public class Controller : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void HandleCursorLock()
+    {
+        if (PauseMenuScript.gameObject.activeSelf || playerStats.isDead)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+    }
+
+    public void OnPlayerDie()
+    {
+        playerCamera.transform.localPosition = cameraDeathPosition;
+        playerCamera.transform.localEulerAngles = cameraDeathRotation;
+
+        characterController.height = _crouchHeight;
+        characterController.center = crouchingCenter;
+    }
+
     private void Update()
     {
+        HandleCursorLock();
+
         if (Time.timeScale == 1)
         {
+            // Face towards enemy that killed player when dead
+            if (playerStats.isDead && playerStats.causeOfDeath != null)
+            {
+                Vector3 diff = playerStats.causeOfDeath.transform.position - transform.position;
+                float angle = Mathf.Atan2(diff.x, diff.z) * Mathf.Rad2Deg;
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, angle, 0), Time.deltaTime * deathCameraTurnSpeed);
+            }
+
+
             // Can't move?
             if (!canMove)
             {
@@ -155,14 +196,14 @@ public class Controller : MonoBehaviour
             MouseLook();
 
             // can jump?
-            if (canJump)
+            if (canJump && !playerStats.isDead)
             {
                 // then jump
                 Jump();
             }
 
             // can crouch?
-            if (canCrouch)
+            if (canCrouch && !playerStats.isDead)
             {
                 // then crouch
                 Crouch();
@@ -196,13 +237,22 @@ public class Controller : MonoBehaviour
                 (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal"));
 
         var moveDirectionY = moveDirection.y;
-        moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) +
+        if (playerStats.isDead)
+        {
+            moveDirection = Vector3.zero;
+        }
+        else
+        {
+            moveDirection = (transform.TransformDirection(Vector3.forward) * currentInput.x) +
                         (transform.TransformDirection(Vector3.right) * currentInput.y);
+        }
+        
         moveDirection.y = moveDirectionY;
     }
 
     private void MouseLook()
     {
+        if (playerStats.isDead) return;
         rotationX -= Input.GetAxis("Mouse Y") * lookSpeedY;
         rotationX = Mathf.Clamp(rotationX, -upperLookLimit, lowerLookLimit);
         playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
@@ -239,18 +289,18 @@ public class Controller : MonoBehaviour
     }
 
     private IEnumerator DamageScreenShake() {
-        Vector3 startPos = transform.position;
+        Vector3 startPos = cameraHolder.localPosition;
         float elapsedTime = 0f;
 
         while (elapsedTime < damageShakeDuration)
         {
             elapsedTime += Time.deltaTime;
             float strength = damageShakeCurve.Evaluate(elapsedTime / damageShakeDuration);
-            transform.position = startPos + Random.insideUnitSphere * strength;
+            cameraHolder.localPosition = startPos + Random.insideUnitSphere * strength;
             yield return null;
         }
 
-        transform.position = startPos;
+        cameraHolder.localPosition = startPos;
         damageTaken = false;
     }
 

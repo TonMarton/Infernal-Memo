@@ -19,11 +19,16 @@ public class PlayerInput : MonoBehaviour
         inputActions.Player.Enable();
         
         // toggle pause menu
-        inputActions.Player.Pause.performed += _ctx => pauseMenu.Toggle();
+        //inputActions.Player.Pause.performed += _ctx => ;
     }
 
     private void Update()
     {
+        if (inputActions.Player.Pause.WasPressedThisFrame())
+        {
+            pauseMenu.Toggle();
+        }
+
         if (Time.timeScale == 1)
         {
             // attack

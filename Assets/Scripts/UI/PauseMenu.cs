@@ -64,18 +64,14 @@ public class PauseMenu : MonoBehaviour
             SoundUtils.PlaySound3D(ref closeSoundInstance, closeSoundEvent, gameObject);
         }
 
-        // if pause menu is active, show the mouse cursor
+        // if pause menu is active, set time scale to 0
         if (gameObject.activeSelf)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
             Time.timeScale = 0;
         }
-        // otherwise hide the mouse cursor
+        // otherwise set time scale to 1
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
             Time.timeScale = 1;
         }
     }
@@ -92,6 +88,7 @@ public class PauseMenu : MonoBehaviour
 
     private void OpenMainMenu()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Title Screen");
     }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="ParameterPreset" id="{07de663c-070b-46c5-9fa8-7bbe554c7b58}">
+		<property name="name">
+			<value>Office_ambience</value>
+		</property>
+		<relationship name="folder">
+			<destination>{24c08485-0465-470b-bd71-0b8680bb76ac}</destination>
+		</relationship>
+		<relationship name="parameter">
+			<destination>{559ab234-1156-4536-90ca-73458b46f83e}</destination>
+		</relationship>
+	</object>
+	<object class="GameParameter" id="{559ab234-1156-4536-90ca-73458b46f83e}">
+		<property name="parameterType">
+			<value>1</value>
+		</property>
+		<property name="maximum">
+			<value>6</value>
+		</property>
+		<property name="initialValue">
+			<value>0</value>
+		</property>
+	</object>
+</objects>

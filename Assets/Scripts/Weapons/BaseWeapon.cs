@@ -44,6 +44,8 @@ public abstract class BaseWeapon : MonoBehaviour
     // Sounds
     private FMOD.Studio.EventInstance shootSoundInstance;
     private FMOD.Studio.EventInstance reloadSoundInstance;
+    private FMOD.Studio.EventInstance brickBulletImpactSoundInstance;
+
 
     [Header("Animation")]
     public string drawAnimationState;
@@ -112,6 +114,7 @@ public abstract class BaseWeapon : MonoBehaviour
 
         if (enemy == null) return;
         var bloodImpact = Instantiate(weaponSystem.bloodImpactParticlePrefab, hit.point + hit.normal * weaponSystem.particleSpawnOffset, Quaternion.LookRotation(-hit.normal));
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bloodImpact, "Bullet_impacts", 0, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
         Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
@@ -144,12 +147,16 @@ public abstract class BaseWeapon : MonoBehaviour
 
         
     }
-
+    public int impactParamIndex = 2;
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
     {
         // spawn a bullet hole decal
         GameObject bulletHole = Instantiate(weaponSystem.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
             Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
+
+        // play bullet impact sound
+        // to-do: play different sound depending on material
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
 
         // auto destroy bullet hole after a delay
         Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);
