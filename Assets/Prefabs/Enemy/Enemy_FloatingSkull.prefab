@@ -134,6 +134,13 @@ MonoBehaviour:
   zigZagDistanceThreshold: 10
   flipOnSidesTriggerInterval: 0.3
   gravity: 30
+  attackRange: 1.2
+  attackRadius: 0.1
+  attackLayers:
+    serializedVersion: 2
+    m_Bits: 513
+  attackFrequency: 1
+  attackDamageAmount: 10
 --- !u!114 &2289868260725089916
 MonoBehaviour:
   m_ObjectHideFlags: 0

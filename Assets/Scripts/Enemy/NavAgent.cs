@@ -72,6 +72,19 @@ public class NavAgent : MonoBehaviour
     [SerializeField]
     private float gravity = 30.0f;
 
+    [SerializeField]
+    private float attackRange = 3f;
+    [SerializeField]
+    private float attackRadius = 0.1f;
+    [SerializeField]
+    private LayerMask attackLayers = default;
+    [SerializeField]
+    private float attackFrequency = 1.0f;
+    [SerializeField]
+    private int attackDamageAmount = 10;
+
+    private float attackCooldownTime;
+
     #region Custom Methods
     bool IsTargetInFront()
     {
@@ -118,6 +131,7 @@ public class NavAgent : MonoBehaviour
         // Update the way to the goal every second.
         elapsed += Time.deltaTime * checkPathUpdateRate;
 
+        // Calculate path / update direction loop
         if (elapsed > 1.0f)
         {
             elapsed -= 1.0f;
@@ -163,17 +177,59 @@ public class NavAgent : MonoBehaviour
                 }
                 else
                 {
-                    if (noTarget) isAwake = false;
+                    isAwake = false;
                     isMoving = false;
                 }
             }
         }
+
+        // attack loop
+        if (isAwake)
+        {
+            // reduce timer
+            if (attackCooldownTime > 0)
+            {
+                attackCooldownTime -= Time.deltaTime * attackFrequency;
+            }
+
+            // try attacking
+            if (attackCooldownTime <= 0)
+            {
+                Vector3 attackOrigin = myCollider.bounds.center;
+                Vector3 attackDirection = direction;
+                Vector3 closestPoint = targetCollider.ClosestPoint(attackOrigin);
+                Vector3 playerDifference = closestPoint - attackOrigin;
+                attackDirection.y = playerDifference.y;
+                attackDirection.Normalize();
+                if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
+                {
+                    // check if player
+                    if (attackHit.collider.CompareTag("Player"))
+                    {
+                        // check if not dead
+                        var playerStats = attackHit.collider.GetComponent<PlayerStats>();
+                        if (!playerStats.isDead)
+                        {
+                            // attack
+                            playerStats.TakeDamage(attackDamageAmount);
+                            attackCooldownTime += 1f;
+                        }
+                        
+                    }
+                }
+                else
+                {
+                    attackCooldownTime = 0f;
+                }
+            }
+        }
+        
     }
 
     void UpdateMovement()
     {
         float moveDirectionY = moveDirection.y;
-        moveDirection = isMoving ? speed * direction : Vector3.zero;
+        moveDirection = (isMoving && attackCooldownTime <= 0) ? speed * direction : Vector3.zero;
         moveDirection.y = moveDirectionY;
 
         if (!characterController.isGrounded)

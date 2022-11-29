@@ -78,6 +78,14 @@ MonoBehaviour:
   checkPathUpdateRate: 0.9
   zigZagDistanceThreshold: 10
   flipOnSidesTriggerInterval: 0.3
+  gravity: 30
+  attackRange: 1.5
+  attackRadius: 0.1
+  attackLayers:
+    serializedVersion: 2
+    m_Bits: 513
+  attackFrequency: 1
+  attackDamageAmount: 10
 --- !u!114 &1662434240737359976
 MonoBehaviour:
   m_ObjectHideFlags: 0
