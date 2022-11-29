@@ -87,6 +87,12 @@ public class PlayerWeaponSystem : MonoBehaviour
         hud = GetComponentInChildren<HUD>();
     }
 
+    public void OnPlayerDie()
+    {
+        armsModel.SetActive(false);
+        StopReload(currentWeaponType);
+    }
+
     private void Start()
     {
         // hide crosshair by default
@@ -102,6 +108,7 @@ public class PlayerWeaponSystem : MonoBehaviour
     // attack
     public void Attack()
     {
+        if (playerStats.isDead) return;
         switch (currentWeaponType)
         {
             case WeaponType.Stapler:
@@ -145,6 +152,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     public void Reload()
     {
+        if (playerStats.isDead) return;
+
         switch (currentWeaponType)
         {
             case WeaponType.Stapler:
@@ -169,6 +178,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     public void SwitchWeapon(WeaponType weaponType)
     {
+        if (playerStats.isDead) return;
+
         // log the weapon we switched to
         Debug.Log("Switched to " + weaponType);
 
@@ -259,6 +270,7 @@ public class PlayerWeaponSystem : MonoBehaviour
 
     private void Update()
     {
+        if (playerStats.isDead) return;
 
         // update cooldown time
         currentCooldownTime -= Time.deltaTime;

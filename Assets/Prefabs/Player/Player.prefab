@@ -504,6 +504,8 @@ MonoBehaviour:
       Data4: 531018577
     Path: event:/Sfxs/Player/Jump/Jump
   damageTaken: 0
+  cameraDeathPosition: {x: 0, y: 0.4, z: 0}
+  cameraDeathRotation: {x: 0, y: 0, z: 30}
 --- !u!114 &6386166238158225820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -539,15 +541,42 @@ MonoBehaviour:
     Path: event:/Sfxs/Player/Damage/Damage
   deathSoundEvent:
     Guid:
-      Data1: 0
-      Data2: 0
-      Data3: 0
-      Data4: 0
-    Path: 
+      Data1: -295588607
+      Data2: 1116291187
+      Data3: 765854347
+      Data4: 727493933
+    Path: event:/Sfxs/Bullet impacts/Blood
   bullets: 0
   bulletsInClip: 0
   shells: 0
   shellsInClip: 0
+  onDie:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7576061198846146304}
+        m_TargetAssemblyTypeName: PlayerWeaponSystem, Assembly-CSharp
+        m_MethodName: OnPlayerDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 5983632887037757778}
+        m_TargetAssemblyTypeName: Controller, Assembly-CSharp
+        m_MethodName: OnPlayerDie
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-7273339783095973456
 MonoBehaviour:
   m_ObjectHideFlags: 0

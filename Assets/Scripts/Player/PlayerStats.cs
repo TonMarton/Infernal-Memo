@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 [DisallowMultipleComponent]
@@ -50,6 +51,10 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public int shells;
     [HideInInspector] public int shellsInClip;
 
+    public bool isDead => health <= 0;
+
+    public UnityEvent onDie;
+
     private void Awake()
     {
         // initialize stats 
@@ -72,12 +77,24 @@ public class PlayerStats : MonoBehaviour
         hud.UpdateUIText("shells", shells);
     }
 
-    public void TakeDamage(int amount) {
+    //private void Update()
+    //{
+    //    // Test death
+    //    if (Input.GetKeyDown(KeyCode.B))
+    //    {
+    //        TakeDamage(1000);
+    //    }
+    //}
+
+    public void TakeDamage(int amount)
+    {
         int armorReducedAmount = amount - armor;
-        if (armorReducedAmount != amount) {
+        if (armorReducedAmount != amount)
+        {
             UpdateArmor(-amount);
         }
-        if (armorReducedAmount > 0) {
+        if (armorReducedAmount > 0)
+        {
             UpdateHealth(-armorReducedAmount);
         }
     }
@@ -92,12 +109,14 @@ public class PlayerStats : MonoBehaviour
         {
             if (health <= 0)
             {
+                health = 0;
                 Die();
-                return;
             }
-
-            gameObject.GetComponent<Controller>().damageTaken = true;
-            SoundUtils.PlaySound3D(ref hurtSoundInstance, hurtSoundEvent, gameObject);
+            else
+            {
+                gameObject.GetComponent<Controller>().damageTaken = true;
+                SoundUtils.PlaySound3D(ref hurtSoundInstance, hurtSoundEvent, gameObject);
+            }
         }
         else
         {
@@ -110,7 +129,8 @@ public class PlayerStats : MonoBehaviour
         hud.UpdateUIText("health", health);
     }
 
-    public void UpdateArmor(int amount) {
+    public void UpdateArmor(int amount)
+    {
         if (amount > 0)
         {
             armor = Mathf.Min(maxArmor, armor + amount);
@@ -122,7 +142,8 @@ public class PlayerStats : MonoBehaviour
         hud.UpdateUIText("armor", armor);
     }
 
-    public void UpdateBullets(int amount) {
+    public void UpdateBullets(int amount)
+    {
         bullets = Mathf.Min(maxBullets, bullets + amount);
         hud.UpdateUIText("bullets", bullets);
     }
@@ -135,10 +156,14 @@ public class PlayerStats : MonoBehaviour
 
     private void Die()
     {
-        // TODO: play death sound with Fmod
+        // play death sound with Fmod
+        SoundUtils.PlaySound3D(ref deathSoundInstance, deathSoundEvent, gameObject);
 
         // show the death menu 
         deathMenu.Show();
+
+        // invoke event
+        onDie.Invoke();
     }
 
     //fire while there are enough remaining bullets
@@ -161,7 +186,7 @@ public class PlayerStats : MonoBehaviour
     //reload while there are enough remaining bullets
     public void Reload(WeaponType gun)
     {
-        if (gun == WeaponType.Pistol 
+        if (gun == WeaponType.Pistol
             && bullets > 0)
         {
 
