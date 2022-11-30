@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  targetSightAngleThreshold: 90
+  targetSightAngleThreshold: 360
   lineOfSightRange: 10000
   closeWakeRange: 10
   lineOfSightLayers:
@@ -141,6 +141,10 @@ MonoBehaviour:
     m_Bits: 513
   attackFrequency: 1.54
   attackDamageAmount: 8
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  attackDelay: 0
 --- !u!114 &2289868260725089916
 MonoBehaviour:
   m_ObjectHideFlags: 0
