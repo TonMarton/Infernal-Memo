@@ -9,7 +9,12 @@ ModelImporter:
   - first:
       74: -4969838706538340474
     second: ARCADE MACHINE|ARCADE MACHINEAction.005
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: d583a83b2e2beb348b4d552ebbc38c1b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -94,7 +99,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 0.01
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
