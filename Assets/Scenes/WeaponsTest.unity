@@ -4245,6 +4245,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1010096850}
     m_Modifications:
+    - target: {fileID: 204500896933942988, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.978
+      objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4289,6 +4293,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5451177866921987528, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
+      propertyPath: destinationElevatorZone
+      value: 
+      objectReference: {fileID: 874914127}
     - target: {fileID: 8250634596204961785, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_Name
       value: ElevatorZone
@@ -5626,7 +5634,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.929
+      value: -13.95
       objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8318,7 +8326,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.7522125
+      value: 6.745
       objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9046,7 +9054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.7522125
+      value: 6.74
       objectReference: {fileID: 0}
     - target: {fileID: 2473365051116764841, guid: 5296b9202a8154369b918ad037dc93e5, type: 3}
       propertyPath: m_LocalRotation.w
@@ -17027,6 +17035,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Demon (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 1662434240737359980, guid: 021910512197acd4c8615ebd14a83d6e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021910512197acd4c8615ebd14a83d6e, type: 3}
 --- !u!4 &1340452587 stripped
@@ -19127,6 +19139,10 @@ PrefabInstance:
     - target: {fileID: 1662434240737359980, guid: 021910512197acd4c8615ebd14a83d6e, type: 3}
       propertyPath: m_Name
       value: Enemy_Demon
+      objectReference: {fileID: 0}
+    - target: {fileID: 1662434240737359980, guid: 021910512197acd4c8615ebd14a83d6e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 021910512197acd4c8615ebd14a83d6e, type: 3}

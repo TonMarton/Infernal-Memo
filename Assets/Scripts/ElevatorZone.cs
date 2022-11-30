@@ -18,7 +18,7 @@ public class ElevatorZone : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!destinationElevatorZone)
+        if (destinationElevatorZone == null)
         {
             return;
         }
