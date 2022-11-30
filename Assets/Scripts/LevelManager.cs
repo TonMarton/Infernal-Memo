@@ -12,7 +12,7 @@ public class LevelManager : MonoBehaviour
 
     private GameObject player;
 
-    void Start()
+    void Awake()
     {
         player = GameObject.Find("Player");
         int index = 0;
