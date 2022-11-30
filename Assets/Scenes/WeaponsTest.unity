@@ -4825,6 +4825,7 @@ PrefabInstance:
     - target: {fileID: 3904422642520913120, guid: 35051bf8487074db08c6f7d7926a882d, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3976726175454594140, guid: 35051bf8487074db08c6f7d7926a882d, type: 3}
       propertyPath: m_Lightmapping
       value: 2
@@ -4983,7 +4984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7373202173879778348, guid: 35051bf8487074db08c6f7d7926a882d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7373202173879778348, guid: 35051bf8487074db08c6f7d7926a882d, type: 3}
       propertyPath: m_StaticEditorFlags
