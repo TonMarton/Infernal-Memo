@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 459750911517268884}
   - component: {fileID: 1804920253445515047}
   m_Layer: 0
-  m_Name: ShellsPickup
+  m_Name: HealthPickup 25
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,14 +27,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459750911517268887}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
   m_LocalPosition: {x: -2.564, y: -0.77, z: -5.87}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -90}
 --- !u!33 &459750911517268882
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459750911517268887}
-  m_Mesh: {fileID: -3796334203150700267, guid: 6a5790852a42de74698efd3ee511c8e3, type: 3}
+  m_Mesh: {fileID: 2062794032020481726, guid: 6006b01a7fc9a564da684edddc84658a, type: 3}
 --- !u!23 &459750911517268885
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -6922793697723135513, guid: 6a5790852a42de74698efd3ee511c8e3, type: 3}
+  - {fileID: -6478536213147159724, guid: 6006b01a7fc9a564da684edddc84658a, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.002
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1804920253445515047
 MonoBehaviour:
@@ -110,5 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d758a134e0b541bf9f42c07ccb6abeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statType: 3
-  amount: 18
+  statType: 1
+  amount: 25
