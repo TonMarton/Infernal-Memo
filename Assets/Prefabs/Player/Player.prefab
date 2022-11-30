@@ -447,7 +447,7 @@ MonoBehaviour:
   lookSpeedY: 2
   upperLookLimit: 80
   lowerLookLimit: 80
-  jumpForce: 8
+  jumpForce: 6
   _gravity: 30
   _crouchHeight: 0.5
   standingHeight: 2
