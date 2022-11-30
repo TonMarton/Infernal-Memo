@@ -10,7 +10,7 @@ public class ElevatorZone : MonoBehaviour
     private GameObject player;
     private LevelManager levelManager;
 
-    private void Start()
+    private void Awake()
     {
         levelManager = gameObject.GetComponentInParent<LevelManager>();
         player = GameObject.Find("Player");
