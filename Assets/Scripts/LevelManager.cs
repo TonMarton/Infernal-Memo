@@ -7,14 +7,14 @@ public class LevelManager : MonoBehaviour
     private int currentLevelIndex = 0;
     private GameObject currentLevel;
     private int enemyCount;
-    public bool allowMovingLevels = false;
+    private bool allowMovingLevels = false;
+    private ElevatorDoor[] elevatorDoors; 
 
     private GameObject player;
 
     void Start()
     {
         player = GameObject.Find("Player");
-
         int index = 0;
         foreach (Transform child in transform)
         {
@@ -29,9 +29,18 @@ public class LevelManager : MonoBehaviour
             index += 1;
         }
         FindAllEnemies();
+        FindAllElevatorDoors();
         if (enemyCount == 0)
         {
             allowMovingLevels = true;
+        }
+        ToggleElevatorDoors();
+    }
+
+    private void ToggleElevatorDoors() {
+        foreach (ElevatorDoor elevatorDoor in elevatorDoors)
+        {
+            elevatorDoor.ToggleDoor();
         }
     }
 
@@ -52,11 +61,17 @@ public class LevelManager : MonoBehaviour
         Debug.Log("There are " + enemyCount + " enemies on this level");
     }
 
+    private void FindAllElevatorDoors()
+    {
+        elevatorDoors = gameObject.GetComponentsInChildren<ElevatorDoor>();
+    }
+
 
     public void ChangeToNextLevel(Vector3 destination,Quaternion rotationDiffernece)
     {
         if (allowMovingLevels)
         {
+            ToggleElevatorDoors();
             ActivateNextLevel();
             player.GetComponent<Controller>().TeleportToPositionMaintainingRelativePosition(destination, rotationDiffernece);
             DeactivatePreviousLevel();
@@ -72,6 +87,8 @@ public class LevelManager : MonoBehaviour
         currentLevel = gameObject.transform.GetChild(++currentLevelIndex).gameObject;
         currentLevel.SetActive(true);
         FindAllEnemies();
+        FindAllElevatorDoors();
+        ToggleElevatorDoors();
     }
 
     public void DeactivatePreviousLevel()
