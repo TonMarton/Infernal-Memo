@@ -1343,6 +1343,7 @@ MonoBehaviour:
   levelClearMessage: Level Clear! Enter an elevator to proceed to the next level!
   levelStillHasEnemiesMessage: There are enemies to deal with before you can move
     to a new level!
+  gameWonMessage: That was the last one... You escaped! Congratulations!
   damageFlash: {fileID: 1335408563215625962}
   damageFlashFadeSpeed: 0.25
 --- !u!1 &5717466790403781802

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] WinMenu winMenu;
+
     private int currentLevelIndex = 0;
     private GameObject currentLevel;
     private int enemyCount;
@@ -50,11 +52,36 @@ public class LevelManager : MonoBehaviour
         if (--enemyCount == 0) {
             allowMovingLevels = true;
             Debug.Log("All enemies were killed");
-            player.GetComponentInChildren<HUD>().ShowLevelClearMessage();
+            HandleLevelCleared();
         } else
         {
             Debug.Log("There are " + enemyCount + " enemies left.");
         }
+    }
+
+    private void HandleLevelCleared() {
+        if (currentLevelIndex == 2)
+        {
+            player.GetComponentInChildren<HUD>().ShowGameWonMessage();
+            StartCoroutine(ShowWinScreen(5));
+        }
+        else {
+            player.GetComponentInChildren<HUD>().ShowLevelClearMessage();
+        }
+    }
+
+    private IEnumerator ShowWinScreen(int delay)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < delay)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        winMenu.Show();
+        player.GetComponent<PlayerWeaponSystem>().OnPlayerDie();
+        player.GetComponentInChildren<HUD>().gameObject.SetActive(false);
     }
 
     private void FindAllEnemies()
