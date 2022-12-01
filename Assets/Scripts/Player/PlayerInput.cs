@@ -44,12 +44,12 @@ public class PlayerInput : MonoBehaviour
             }
 
             //switch to last weapon
-            if (inputActions.Player.SelectPreviousWeapon.WasPressedThisFrame())
+            if (inputActions.Player.SelectPreviousWeapon.WasPressedThisFrame() || Input.GetAxis("Mouse ScrollWheel") > 0f )
             {
                 playerWeaponSystem.SwitchWeaponPrevious();
             }
             //switch to next weapon
-            if (inputActions.Player.SelectNextWeapon.WasPressedThisFrame())
+            if (inputActions.Player.SelectNextWeapon.WasPressedThisFrame() || Input.GetAxis("Mouse ScrollWheel") < 0f )
             {
                 playerWeaponSystem.SwitchWeaponNext();
             }
