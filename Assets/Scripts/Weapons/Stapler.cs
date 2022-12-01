@@ -15,4 +15,8 @@ public class Stapler : BaseWeapon
         base.OnHit();
         SoundUtils.PlaySound3D(ref staplerImpactSoundInstance, staplerImpactSoundEvent, gameObject);
     }
+
+    protected override void PlayMuzzleFlash()
+    {
+    }
 }

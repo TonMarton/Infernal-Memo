@@ -17,9 +17,8 @@ public abstract class BaseWeapon : MonoBehaviour
 
     [Header("Muzzle Flash")]
     [SerializeField]
-    private GameObject muzzleFlash;
-
-    [SerializeField] private float hideMuzzleFlashAfterTime = 0.1f;
+    private GameObject muzzleFlashObject;
+    private ParticleSystem muzzleFlashEffect;
 
     [Header("Bullet Spread")]
     [SerializeField]
@@ -56,11 +55,15 @@ public abstract class BaseWeapon : MonoBehaviour
 
     private void Awake()
     {
+        if (muzzleFlashObject != null)
+        {
+            muzzleFlashEffect = muzzleFlashObject.GetComponent<ParticleSystem>();
+        }
+
         weaponSystem = GetComponent<PlayerWeaponSystem>();
 
         // hide shotgun and muzzle flash to start
         SetVisible(false);
-        SetMuzzleFlashVisible(false);
     }
 
     public void StopReload()
@@ -118,8 +121,6 @@ public abstract class BaseWeapon : MonoBehaviour
         Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
-
-
     }
 
     public void SetVisible(bool visible)
@@ -127,26 +128,6 @@ public abstract class BaseWeapon : MonoBehaviour
         model.SetActive(visible);
     }
 
-    private void SetMuzzleFlashVisible(bool visible)
-    {
-        if (muzzleFlash == null) return;
-        muzzleFlash.SetActive(visible);
-    }
-
-    private void Update()
-    {
-
-        // hide muzzle flash after a delay
-        if (muzzleFlash != null)
-        {
-            if (muzzleFlash.activeSelf && Time.time > weaponSystem.lastFireTime + hideMuzzleFlashAfterTime)
-            {
-                SetMuzzleFlashVisible(false);
-            }
-        }
-
-        
-    }
     public int impactParamIndex = 2;
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
     {
@@ -201,8 +182,8 @@ public abstract class BaseWeapon : MonoBehaviour
         // play shoot sound
         PlayShootSound();
 
-        // show muzzle flash
-        SetMuzzleFlashVisible(true);
+        // play muzzle flash
+        PlayMuzzleFlash();
 
         // Keep track of time fired
         weaponSystem.lastFireTime = Time.time;
@@ -216,6 +197,10 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected virtual void OnHit()
     { 
+    }
+
+    protected virtual void PlayMuzzleFlash() {
+        muzzleFlashEffect.Play();
     }
 
     public void Reload()
