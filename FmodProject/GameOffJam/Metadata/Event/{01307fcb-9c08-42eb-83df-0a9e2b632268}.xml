@@ -5,7 +5,7 @@
 			<value>Armor pickup</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c872c640-c27f-425c-857c-2e703d73e62a}</destination>
@@ -105,6 +105,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{26f2a03e-ed9c-4511-9baa-633c7138040c}">
+		<property name="volume">
+			<value>6.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -121,7 +124,6 @@
 	<object class="MixerBusEffectChain" id="{77c56be4-59ad-4d7c-b0d0-dcbeda6ea2bd}">
 		<relationship name="effects">
 			<destination>{56702ed8-cecb-4db2-a81f-2d2600294e40}</destination>
-			<destination>{50ce5f7e-527f-46cf-b6e0-c05a978dc308}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{8a73322f-6c76-4af8-9db2-a020db24004b}" />
@@ -164,7 +166,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{fa3475a9-3dd9-4b7c-bbb2-67533e895a8a}" />
 	<object class="MixerBusFader" id="{56702ed8-cecb-4db2-a81f-2d2600294e40}" />
-	<object class="SpatialiserEffect" id="{50ce5f7e-527f-46cf-b6e0-c05a978dc308}" />
 	<object class="AutomationPoint" id="{ca93876a-dcd9-4dd4-b694-2a823427bd66}">
 		<property name="position">
 			<value>0.6875</value>

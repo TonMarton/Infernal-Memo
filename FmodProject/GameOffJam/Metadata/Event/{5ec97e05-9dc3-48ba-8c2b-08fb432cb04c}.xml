@@ -5,7 +5,7 @@
 			<value>Ui Hover</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{70bb1880-6350-42d1-b380-3c679e09eafe}</destination>
@@ -118,7 +118,6 @@
 	<object class="MixerBusEffectChain" id="{391576ca-b312-4041-86e5-4e7083506691}">
 		<relationship name="effects">
 			<destination>{7b5e271f-c225-4c24-8e38-731f2e6d4d42}</destination>
-			<destination>{a462a125-73fc-43dd-8d31-7a4fe32ecd30}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5afe52cf-4b51-4eba-8cca-37da5cab4ff6}" />
@@ -153,7 +152,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{5accb693-60ff-46fb-b30f-1be59fb487ee}" />
 	<object class="MixerBusFader" id="{7b5e271f-c225-4c24-8e38-731f2e6d4d42}" />
-	<object class="SpatialiserEffect" id="{a462a125-73fc-43dd-8d31-7a4fe32ecd30}" />
 	<object class="AutomationPoint" id="{d068a860-310b-4c4a-98a7-eba5003fc9c6}">
 		<property name="position">
 			<value>0.25</value>

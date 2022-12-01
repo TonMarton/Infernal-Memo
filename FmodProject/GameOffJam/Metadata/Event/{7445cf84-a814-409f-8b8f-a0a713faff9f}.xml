@@ -105,9 +105,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{3f1e9910-f22d-4c11-8cf5-50ad47ca9345}">
-		<property name="volume">
-			<value>-2</value>
-		</property>
 		<property name="name">
 			<value>Enemy hurt</value>
 		</property>
@@ -124,7 +121,7 @@
 	<object class="MixerBusEffectChain" id="{5336e9a3-dbb0-411b-9788-7691d11ba4d3}">
 		<relationship name="effects">
 			<destination>{37675c6a-1c50-4673-b623-94c2a32478df}</destination>
-			<destination>{85dea948-cccf-46a0-b1f5-fd35e0c656d5}</destination>
+			<destination>{73f327c6-f30b-4563-9d1a-4d76f29bfaf3}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{e5005599-1a70-4a74-b2ec-049b98cbf64f}" />
@@ -167,7 +164,7 @@
 	</object>
 	<object class="MixerBusPanner" id="{cc4319d2-3a1f-48dc-ad79-5a3e1b32213f}" />
 	<object class="MixerBusFader" id="{37675c6a-1c50-4673-b623-94c2a32478df}" />
-	<object class="SpatialiserEffect" id="{85dea948-cccf-46a0-b1f5-fd35e0c656d5}" />
+	<object class="SpatialiserEffect" id="{73f327c6-f30b-4563-9d1a-4d76f29bfaf3}" />
 	<object class="AutomationPoint" id="{66c4b2ef-7fdf-4306-9e4d-13d981a3b8ec}">
 		<property name="position">
 			<value>0.890625</value>
