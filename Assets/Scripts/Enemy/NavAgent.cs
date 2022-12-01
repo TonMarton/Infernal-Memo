@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using static UnityEngine.UI.Image;
 
 // Written by Caleb Ralph
@@ -91,9 +92,9 @@ public class NavAgent : MonoBehaviour
     public UnityEvent onAttack;
     [SerializeField] private float attackDelay;
     
+    [FormerlySerializedAs("attackFloatingSkullSoundEvent")]
     [Header("Sound")]
-    [SerializeField] private FMODUnity.EventReference attackFloatingSkullSoundEvent;
-    [SerializeField] private FMODUnity.EventReference attackDemonSoundEvent;
+    [SerializeField] private FMODUnity.EventReference attackSoundEvent;
 
     // Sounds
     private FMOD.Studio.EventInstance attackSoundInstance;
@@ -234,21 +235,20 @@ public class NavAgent : MonoBehaviour
             // try attacking
             if (attackCooldownTime <= 0)
             {
-                // attack sound
-                var soundEvent = gameObject.CompareTag("FloatingSkull") ? attackFloatingSkullSoundEvent : attackDemonSoundEvent;
-                SoundUtils.PlaySound3D(ref attackSoundInstance, soundEvent, gameObject);
-                
                 var attackDirection = GetAttackDirection();
                 if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
                 {
                     // check if player
                     if (attackHit.collider.CompareTag("Player"))
                     {
+                        // attack sound
+                        StartCoroutine(PlayAttackSound());
+                        
                         // check if not dead
                         var playerStats = attackHit.collider.GetComponent<PlayerStats>();
                         if (!playerStats.isDead)
                         {
-                            // TODO: play player hurt sound
+                            // TODO: play player hurt sound?
                             
                             attackCooldownTime += 1f;
                             onAttack.Invoke();
@@ -266,6 +266,13 @@ public class NavAgent : MonoBehaviour
             }
         }
         
+    }
+
+    private IEnumerator PlayAttackSound()
+    {
+        SoundUtils.PlaySound3D(ref attackSoundInstance, attackSoundEvent, gameObject);
+
+        yield return new WaitForSeconds(0);
     }
 
     IEnumerator AttackWithDelay()

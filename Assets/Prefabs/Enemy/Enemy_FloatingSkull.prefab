@@ -145,6 +145,13 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   attackDelay: 0
+  attackSoundEvent:
+    Guid:
+      Data1: -1083983601
+      Data2: 1173040748
+      Data3: 2055741572
+      Data4: -1285380650
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_attack
 --- !u!114 &2289868260725089916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,14 +173,14 @@ MonoBehaviour:
       Data2: 1159609651
       Data3: 1039363481
       Data4: 1851258643
-    Path: event:/Sfxs/Enemy/EnemySD/SD_hurt
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_hurt
   deathSoundEvent:
     Guid:
-      Data1: 700295798
-      Data2: 1164871486
-      Data3: 1636269741
-      Data4: -1097586009
-    Path: event:/Sfxs/Enemy/Enemy death
+      Data1: 82417581
+      Data2: 1315829776
+      Data3: 347281832
+      Data4: -1317605338
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_Death
 --- !u!114 &3967048200504053719
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -102,6 +102,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   attackDelay: 0.25
+  attackSoundEvent:
+    Guid:
+      Data1: -1342288763
+      Data2: 1155866078
+      Data3: -1777368444
+      Data4: 978697243
+    Path: event:/Sfxs/Enemy/Enemy attack
 --- !u!114 &2120492371299683339
 MonoBehaviour:
   m_ObjectHideFlags: 0

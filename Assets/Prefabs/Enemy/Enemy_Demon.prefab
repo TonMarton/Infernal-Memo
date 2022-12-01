@@ -102,14 +102,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   attackDelay: 0.25
-  attackFloatingSkullSoundEvent:
-    Guid:
-      Data1: -1083983601
-      Data2: 1173040748
-      Data3: 2055741572
-      Data4: -1285380650
-    Path: event:/Sfxs/Enemy/EnemySD/Sd_attack
-  attackDemonSoundEvent:
+  attackSoundEvent:
     Guid:
       Data1: -1342288763
       Data2: 1155866078
