@@ -101,3 +101,6 @@ Assets/Plugins/FMOD.meta
 
 # Definitely check in obj files
 !*.obj
+
+# FMod garbage
+FmodProject/GameOffJam/.cache

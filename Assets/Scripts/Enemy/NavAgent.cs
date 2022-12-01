@@ -90,6 +90,13 @@ public class NavAgent : MonoBehaviour
 
     public UnityEvent onAttack;
     [SerializeField] private float attackDelay;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference attackFloatingSkullSoundEvent;
+    [SerializeField] private FMODUnity.EventReference attackDemonSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance attackSoundInstance;
 
     #region Custom Methods
     bool IsTargetInFront()
@@ -227,6 +234,10 @@ public class NavAgent : MonoBehaviour
             // try attacking
             if (attackCooldownTime <= 0)
             {
+                // attack sound
+                var soundEvent = gameObject.CompareTag("FloatingSkull") ? attackFloatingSkullSoundEvent : attackDemonSoundEvent;
+                SoundUtils.PlaySound3D(ref attackSoundInstance, soundEvent, gameObject);
+                
                 var attackDirection = GetAttackDirection();
                 if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
                 {
@@ -237,6 +248,8 @@ public class NavAgent : MonoBehaviour
                         var playerStats = attackHit.collider.GetComponent<PlayerStats>();
                         if (!playerStats.isDead)
                         {
+                            // TODO: play player hurt sound
+                            
                             attackCooldownTime += 1f;
                             onAttack.Invoke();
                             StopAllCoroutines();
