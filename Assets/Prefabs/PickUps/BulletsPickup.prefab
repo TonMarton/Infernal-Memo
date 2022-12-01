@@ -112,3 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 2
   amount: 25
+  pickupSoundEvent:
+    Guid:
+      Data1: -1892360162
+      Data2: 1169553694
+      Data3: -2096453954
+      Data4: 1269509430
+    Path: event:/Sfxs/Interface sfxs/Pickup/Ammo pickup

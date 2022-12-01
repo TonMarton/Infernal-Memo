@@ -15,6 +15,12 @@ public class PickupItem : MonoBehaviour
 
     [SerializeField]
     private int amount = 10;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference pickupSoundEvent;
+
+    // Sounds
+    private FMOD.Studio.EventInstance pickupSoundInstance;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -41,6 +47,9 @@ public class PickupItem : MonoBehaviour
                     playerStats.UpdateHealth(amount, gameObject);
                     break;
             }
+            // pickup sound
+            SoundUtils.PlaySound3D(ref pickupSoundInstance, pickupSoundEvent, gameObject); 
+            
             gameObject.SetActive(false);
         }
     }
