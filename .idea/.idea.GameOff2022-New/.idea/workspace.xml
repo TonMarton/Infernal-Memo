@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0d4cc34-3413-449c-9830-0a069bfb2a6f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PickupItem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFloatSound.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFloatSound.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFootsteps.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFootsteps.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon_Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon_Boss.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_FloatingSkull.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_FloatingSkull.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PropsFurniture/water cooler.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PropsFurniture/water cooler.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1662434240737359976}
   - component: {fileID: 3429120028290255369}
   - component: {fileID: 1095935455416166423}
+  - component: {fileID: 5481827831454156492}
   m_Layer: 6
   m_Name: Enemy_Demon
   m_TagString: Enemy
@@ -165,6 +166,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a21909c65520f4884df3cdfb256198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5481827831454156492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1662434240737359980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38175420cf44adca167cae887358c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepSpeed: 1
+  footstepSoundEvent:
+    Guid:
+      Data1: -202426112
+      Data2: 1239614330
+      Data3: -252587883
+      Data4: 1315919833
+    Path: event:/Sfxs/Enemy/Enemy footsteps
 --- !u!1001 &1627492376
 PrefabInstance:
   m_ObjectHideFlags: 0
