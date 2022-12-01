@@ -22,6 +22,7 @@ public class WinMenu : MonoBehaviour
 
         // enable the win menu
         gameObject.SetActive(true);
+        gameObject.transform.parent.gameObject.GetComponentInChildren<HUD>().gameObject.SetActive(false);
     }
 
     // restart the game

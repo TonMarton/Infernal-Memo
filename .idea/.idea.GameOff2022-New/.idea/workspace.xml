@@ -3,16 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b0d4cc34-3413-449c-9830-0a069bfb2a6f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Death Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Death Menu.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Pause Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Pause Menu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Title Screen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Title Screen.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Instructions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Instructions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.bank" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.bank" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{3d9198e3-4398-49d7-8010-0be6ded66f4f}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{3d9198e3-4398-49d7-8010-0be6ded66f4f}.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{5ec97e05-9dc3-48ba-8c2b-08fb432cb04c}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{5ec97e05-9dc3-48ba-8c2b-08fb432cb04c}.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{aba74657-2e3b-4a25-9d80-1c6dfd609d17}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{aba74657-2e3b-4a25-9d80-1c6dfd609d17}.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{ade4c890-4a27-4260-803c-8594f9b46b22}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{ade4c890-4a27-4260-803c-8594f9b46b22}.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Win Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Win Menu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Controller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Controller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerStats.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerStats.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/WinMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WinMenu.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,6 +20,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d3dacd00ce441dc8c61d528a2193088158400/4a/0169707f/Component.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.4.4/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.probuilder@5.0.6/Editor/EditorCore/EditShapeTool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@12.1.7/Editor/Converter/RenderPipelineConvertersEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.render-pipelines.universal@12.1.7/Runtime/External/LibTessDotNet/Dict.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -34,15 +32,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Discover.Launch.Via.Unity": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="UnitTests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:\Unity\Hub\Editor\2021.3.12f1\Editor\Unity.exe" />
@@ -84,7 +83,7 @@
       <workItem from="1667690272226" duration="18216000" />
       <workItem from="1667881224148" duration="1000" />
       <workItem from="1667920388230" duration="6086000" />
-      <workItem from="1669857762204" duration="2538000" />
+      <workItem from="1669857762204" duration="4863000" />
     </task>
     <servers />
   </component>

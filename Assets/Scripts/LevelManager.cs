@@ -39,6 +39,19 @@ public class LevelManager : MonoBehaviour
             allowMovingLevels = true;
         }
         ToggleElevatorDoors();
+        
+
+    }
+    
+    void Update()
+    {
+        // press the F key to win
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // debug log that win screen is showing
+            Debug.Log("Win Screen is showing");
+            StartCoroutine(ShowWinScreen(0));
+        }
     }
 
     private void ToggleElevatorDoors() {
@@ -79,9 +92,15 @@ public class LevelManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        // pause the game, but still allow mouse input
+        Time.timeScale = 0f;
+        // keep allowing mouse input while game is paused
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        // mark player as won
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        playerStats.didWin = true;
         winMenu.Show();
-        player.GetComponent<PlayerWeaponSystem>().OnPlayerDie();
-        player.GetComponentInChildren<HUD>().gameObject.SetActive(false);
     }
 
     private void FindAllEnemies()
