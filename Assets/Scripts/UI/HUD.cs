@@ -17,6 +17,7 @@ public class HUD : MonoBehaviour
 
     [SerializeField] private string levelClearMessage;
     [SerializeField] private string levelStillHasEnemiesMessage;
+    [SerializeField] private string gameWonMessage;
 
     [SerializeField] private Image damageFlash;
     [SerializeField] private float damageFlashFadeSpeed = 5f;
@@ -112,6 +113,11 @@ public class HUD : MonoBehaviour
     public void ShowLevelClearMessage()
     {
         ShowLevelStatusMessageTextForFixedTime(5, levelClearMessage);
+    }
+
+    public void ShowGameWonMessage()
+    {
+        ShowLevelStatusMessageTextForFixedTime(5, gameWonMessage);
     }
 
     public void ShowEnemiesOnLevelText()

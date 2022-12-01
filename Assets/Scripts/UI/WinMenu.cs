@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿
+using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 [DisallowMultipleComponent]
-public class DeathMenu : MonoBehaviour
+public class WinMenu : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
 
@@ -19,9 +20,8 @@ public class DeathMenu : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // enable the death menu
+        // enable the win menu
         gameObject.SetActive(true);
-        gameObject.transform.parent.gameObject.GetComponentInChildren<HUD>().gameObject.SetActive(false);
     }
 
     // restart the game
