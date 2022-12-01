@@ -235,9 +235,11 @@ public class NavAgent : MonoBehaviour
         attackDirection.y = playerDifference.y;
         attackDirection.Normalize();
         return attackDirection;
-    }
+    } 
     private void UpdateMovement()
     {
+        navDirection = MathUtils.GetDirectionXZ(myCollider.bounds.center, targetCollider.bounds.center);
+
         float moveDirectionY = moveDirection.y;
         moveDirection = (IsMoving && AgentAttackCurrentCooldownTime <= 0) ? movementSpeed * navDirection : Vector3.zero;
         moveDirection.y = moveDirectionY;
@@ -280,7 +282,7 @@ public class NavAgent : MonoBehaviour
         // calculate path / update direction loop
         if (navCalcPathElapsedTime > 1.0f)
         {
-            navCalcPathElapsedTime -= 1.0f;
+            navCalcPathElapsedTime %= 1f; // reset timer
 
             if (PlayerInLineOfSight() && (IsTargetInCloseRange() || IsTargetInFront()))
             {
@@ -308,6 +310,7 @@ public class NavAgent : MonoBehaviour
                         // try to calculate a path from the nav mesh
                         if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, navPath))
                         {
+                            var navCorners = navPath.corners;
                             // calculate desired agent direction from the first two path points
                             navDirection = (navCorners[1] - navCorners[0]);
                             navDirection.y = 0;
