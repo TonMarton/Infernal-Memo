@@ -5,7 +5,7 @@
 			<value>SD_Iddle_voice_line</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{c1bdda85-3577-45ff-9dcd-4a8952b44ae8}</destination>
@@ -119,7 +119,6 @@
 	<object class="MixerBusEffectChain" id="{dd99fd05-a265-4440-9085-50d9881ac8ec}">
 		<relationship name="effects">
 			<destination>{99f417df-933c-4779-8ccd-6a9c1adf0372}</destination>
-			<destination>{6ab0cd84-d15a-498a-ab95-e5c5b93bc09f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{ba04b70a-7a30-4833-a93f-7330fdab0811}" />
@@ -140,7 +139,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{a00a3f05-6e24-4172-b0be-87915e08441a}" />
 	<object class="MixerBusFader" id="{99f417df-933c-4779-8ccd-6a9c1adf0372}" />
-	<object class="SpatialiserEffect" id="{6ab0cd84-d15a-498a-ab95-e5c5b93bc09f}" />
 	<object class="AutomationPoint" id="{a6eb9d59-b2b6-4ed3-acaf-adff268c9ec8}">
 		<property name="position">
 			<value>3</value>

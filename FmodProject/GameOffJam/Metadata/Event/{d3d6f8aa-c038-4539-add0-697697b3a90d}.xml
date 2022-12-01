@@ -5,7 +5,7 @@
 			<value>loading screen</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{70bb1880-6350-42d1-b380-3c679e09eafe}</destination>
@@ -130,7 +130,6 @@
 	<object class="MixerBusEffectChain" id="{6af7dfe7-a347-4204-a5c9-fb6a3e9cf293}">
 		<relationship name="effects">
 			<destination>{420971b9-d661-48ca-bc45-4b76561aa85f}</destination>
-			<destination>{1009d2dd-7f0a-4b9a-854a-7bf354b33f91}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{75dd0282-e866-40c4-9994-f9692a84de8b}" />
@@ -153,6 +152,5 @@
 		</relationship>
 	</object>
 	<object class="MixerBusFader" id="{420971b9-d661-48ca-bc45-4b76561aa85f}" />
-	<object class="SpatialiserEffect" id="{1009d2dd-7f0a-4b9a-854a-7bf354b33f91}" />
 	<object class="MixerBusFader" id="{ee6186bb-9735-4b82-91f5-65f01cc6419f}" />
 </objects>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="AudioFile" id="{afd12b1d-57fd-4b6e-8ac4-2f2019a982d2}">
 		<property name="assetPath">
-			<value>Barrel.wav</value>
+			<value>Sfxs/Voice_Lines/Environment/Barrel.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>

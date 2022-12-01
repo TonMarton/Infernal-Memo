@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{0d7550db-6660-464c-805c-63216f7272f1}">
 		<property name="name">
-			<value>Guess_phrase</value>
+			<value>Level_phrase</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
