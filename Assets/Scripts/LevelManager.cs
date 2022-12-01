@@ -41,17 +41,6 @@ public class LevelManager : MonoBehaviour
         ToggleElevatorDoors();
     }
     
-    void Update()
-    {
-        // press the F key to win
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            // debug log that win screen is showing
-            Debug.Log("Win Screen is showing");
-            StartCoroutine(ShowWinScreen(0));
-        }
-    }
-
     private void ToggleElevatorDoors() {
         foreach (ElevatorDoor elevatorDoor in elevatorDoors)
         {

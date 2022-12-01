@@ -112,3 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 1
   amount: 25
+  pickupSoundEvent:
+    Guid:
+      Data1: 1972987578
+      Data2: 1108222774
+      Data3: 1916051131
+      Data4: 2137324759
+    Path: event:/Sfxs/Interface sfxs/Pickup/Health pickup

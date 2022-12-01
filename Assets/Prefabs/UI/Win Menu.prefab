@@ -46,6 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartButton: {fileID: 1080105097180891536}
+  winSoundEvent:
+    Guid:
+      Data1: -1224534838
+      Data2: 1230656043
+      Data3: -874704197
+      Data4: 1346375130
+    Path: event:/Sfxs/Stinger/Win Stinger
 --- !u!1 &3635486393403471971
 GameObject:
   m_ObjectHideFlags: 0

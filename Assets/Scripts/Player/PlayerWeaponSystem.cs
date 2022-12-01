@@ -99,11 +99,8 @@ public class PlayerWeaponSystem : MonoBehaviour
         // hide crosshair by default
         hud.SetCrossHairVisible(false);
 
-        // hide arms by default
-        armsModel.SetActive(false);
-
         // start with melee
-        SwitchWeapon(WeaponType.Stapler);
+        SwitchWeapon(WeaponType.Stapler, true);
     }
 
     // attack
@@ -177,12 +174,12 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
-    public void SwitchWeapon(WeaponType weaponType)
+    public void SwitchWeapon(WeaponType weaponType, bool forceSwitch=false)
     {
         if (playerStats.isDead) return;
 
         // don't switch if this is the weapon that's already selected
-        if (currentWeaponType == weaponType)
+        if (currentWeaponType == weaponType && !forceSwitch)
         {
             return;
         }
