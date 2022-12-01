@@ -197,9 +197,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{30f22e29-6ffa-48cc-a87b-35cd33ba67a8}">
-		<property name="volume">
-			<value>-5</value>
-		</property>
 		<property name="name">
 			<value>Bass no tension</value>
 		</property>
@@ -239,9 +236,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{592332cf-4adf-4ce2-88a1-34cd309794c7}">
-		<property name="volume">
-			<value>-4.5</value>
-		</property>
 		<property name="name">
 			<value>Bass&amp;piano tension</value>
 		</property>
