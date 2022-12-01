@@ -1,13 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
-using static UnityEngine.UI.Image;
-
-// Written by Caleb Ralph
-// TO-DO: Organize & clean up code more
 
 /// <summary>
 /// Unity MonoBehaviour script useful for making enemies walk towards the player.
@@ -15,6 +10,47 @@ using static UnityEngine.UI.Image;
 [RequireComponent(typeof(CharacterController))] // uses a character controller for movement
 public class NavAgent : MonoBehaviour
 {
+    /// <summary>
+    /// Rate at which the script will calculate a new movement path.
+    /// </summary>
+    [Tooltip("Rate at which the script will calculate a new movement path.")]
+    [SerializeField] private float checkPathUpdateRate = 1.0f;
+
+    /// <summary>
+    /// The agent will randomly change direction when the distance from the target is greater than this value.
+    /// </summary>
+    [Tooltip("The agent will randomly change direction when the distance from the target is greater than this value.")]
+    [SerializeField] private float zigZagDistanceThreshold = 5.0f;
+
+    /// <summary>
+    /// The time in seconds the controller has to wait between flipping directions while its sides are being touched. (No homo)
+    /// </summary>
+    [Tooltip("The time in seconds the controller has to wait between flipping directions while its sides are being touched. (No homo)")]
+    [SerializeField] private float flipOnSidesTriggerInterval = 0.3f;
+
+    [Header("Attack")]
+
+    /// <summary>
+    /// Agent will attack when less than this distance from the player.
+    /// </summary>
+    [Tooltip("Agent will attack when less than this distance from the player.")]
+    [SerializeField] private float attackRange = 3f;
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    [Tooltip("")]
+    [SerializeField] private float attackRadius = 0.1f;
+
+    [SerializeField]
+    private LayerMask attackLayers = default;
+
+    [SerializeField]
+    private float attackFrequency = 1.0f;
+    [SerializeField]
+    private int attackDamageAmount = 10;
+
+
     #region Referenced components
     private Transform target;
     private Collider targetCollider;
@@ -39,30 +75,11 @@ public class NavAgent : MonoBehaviour
     public LayerMask lineOfSightLayers = default;
     #endregion
 
-
     #region Flags
     public bool noTarget;
     #endregion
 
-
-
-    /// <summary>
-    /// Rate at which the script will calculate a new movement path.
-    /// </summary>
-    [Tooltip("Rate at which the script will calculate a new movement path.")]
-    public float checkPathUpdateRate = 1.0f;
-
-    /// <summary>
-    /// The agent will randomly change direction when the distance from the target is greater than this value.
-    /// </summary>
-    [Tooltip("The agent will randomly change direction when the distance from the target is greater than this value.")]
-    public float zigZagDistanceThreshold = 5.0f;
-
-    /// <summary>
-    /// The time in seconds the controller has to wait between flipping directions while its sides are being touched. (No homo)
-    /// </summary>
-    [Tooltip("The time in seconds the controller has to wait between flipping directions while its sides are being touched. (No homo)")]
-    public float flipOnSidesTriggerInterval = 0.3f;
+    
 
     private float lastFlipTime;
 
@@ -74,16 +91,7 @@ public class NavAgent : MonoBehaviour
     [SerializeField]
     private float gravity = 30.0f;
 
-    [SerializeField]
-    private float attackRange = 3f;
-    [SerializeField]
-    private float attackRadius = 0.1f;
-    [SerializeField]
-    private LayerMask attackLayers = default;
-    [SerializeField]
-    private float attackFrequency = 1.0f;
-    [SerializeField]
-    private int attackDamageAmount = 10;
+    
 
     private float attackCooldownTime;
     private PlayerStats playerStats;
@@ -91,7 +99,7 @@ public class NavAgent : MonoBehaviour
 
     public UnityEvent onAttack;
     [SerializeField] private float attackDelay;
-    
+
     [FormerlySerializedAs("attackFloatingSkullSoundEvent")]
     [Header("Sound")]
     [SerializeField] private FMODUnity.EventReference attackSoundEvent;
@@ -99,8 +107,49 @@ public class NavAgent : MonoBehaviour
     // Sounds
     private FMOD.Studio.EventInstance attackSoundInstance;
 
-    #region Custom Methods
-    bool IsTargetInFront()
+
+
+    #region Unity Messages
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
+        playerStats = player.GetComponent<PlayerStats>();
+        targetCollider = target.GetComponent<Collider>();
+        myCollider = GetComponent<Collider>();
+        path = new NavMeshPath();
+        elapsed = 0.0f;
+        isMoving = false;
+        characterController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
+
+        UpdatePath();
+        UpdateMovement();
+    }
+    #endregion
+
+    private void RandomTurnLeftRight()
+    {
+        // Randomly turn left and right when far away
+        if (Vector3.Distance(transform.position, target.position) > zigZagDistanceThreshold)
+        {
+            int rand = Random.Range(0, 6); // 16% chance to turn left, 16% chance to turn right
+            if (rand == 0)
+            {
+                direction = Quaternion.Euler(0, 30, 0) * direction;
+            }
+            else if (rand == 1)
+            {
+                direction = Quaternion.Euler(0, -30, 0) * direction;
+            }
+        }
+    }
+
+    private bool IsTargetInFront()
     {
         // Get direction from player to origin (sprite actor position)
         Vector3 direction = target.position - transform.position;
@@ -116,11 +165,10 @@ public class NavAgent : MonoBehaviour
         return angle < targetSightAngleThreshold || angle > (360 - targetSightAngleThreshold);
     }
 
-
     protected bool IsTargetInCloseRange()
     {
         // get the range to the player
-        var range = Vector3.Distance(transform.position, target.position);
+        float range = Vector3.Distance(transform.position, target.position);
 
         // check if player is within range
         return range <= closeWakeRange;
@@ -129,18 +177,19 @@ public class NavAgent : MonoBehaviour
     protected bool PlayerInLineOfSight()
     {
         // do a raycast to check whether player is in line of sight of the enemy
-        var origin = myCollider.bounds.center;
-        var rayDirection = targetCollider.bounds.center - origin;
-        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange, lineOfSightLayers))
+        Vector3 origin = myCollider.bounds.center;
+        Vector3 rayDirection = targetCollider.bounds.center - origin;
+        if (!Physics.Raycast(origin, rayDirection, out RaycastHit hit, lineOfSightRange, lineOfSightLayers))
         {
             // raycast didn't hit anything so player isn't in line of sight
             return false;
         }
-        
+
         // did the raycast hit the player?
         return hit.collider == targetCollider;
     }
-    Vector3 GetAttackDirection()
+
+    private Vector3 GetAttackDirection()
     {
         Vector3 attackOrigin = myCollider.bounds.center;
         Vector3 attackDirection = direction;
@@ -150,12 +199,13 @@ public class NavAgent : MonoBehaviour
         attackDirection.Normalize();
         return attackDirection;
     }
-    void UpdatePath()
+
+    private void UpdatePath()
     {
-        // Update the way to the goal every second.
+        // update the way to the goal every second.
         elapsed += Time.deltaTime * checkPathUpdateRate;
 
-        // Calculate path / update direction loop
+        // calculate path / update direction loop
         if (elapsed > 1.0f)
         {
             elapsed -= 1.0f;
@@ -171,7 +221,7 @@ public class NavAgent : MonoBehaviour
                 {
                     if (playerStats.isDead)
                     {
-                        var rand = Random.Range(0, 30);
+                        int rand = Random.Range(0, 30);
                         if (rand == 0)
                         {
                             direction = Quaternion.Euler(0, 30, 0) * direction;
@@ -183,28 +233,19 @@ public class NavAgent : MonoBehaviour
                     }
                     else
                     {
+                        // try to calculate a path from the nav mesh
                         if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path))
                         {
-                            int cornerCount = path.GetCornersNonAlloc(corners);
+                            // calculate desired agent direction from the first two path points
                             direction = (corners[1] - corners[0]);
                             direction.y = 0;
                             direction.Normalize();
+
+                            // begin moving
                             isMoving = true;
 
-                            // Randomly turn left and right when far away
-                            if (Vector3.Distance(transform.position, target.position) > zigZagDistanceThreshold)
-                            {
-                                var rand = Random.Range(0, 6); // 16% chance to turn left, 16% chance to turn right
-                                if (rand == 0)
-                                {
-                                    direction = Quaternion.Euler(0, 30, 0) * direction;
-                                }
-                                else if (rand == 1)
-                                {
-                                    direction = Quaternion.Euler(0, -30, 0) * direction;
-                                }
-                            }
-
+                            // random movement
+                            RandomTurnLeftRight();
                         }
                         else
                         {
@@ -213,7 +254,6 @@ public class NavAgent : MonoBehaviour
                             direction.Normalize();
                         }
                     }
-                    
                 }
                 else
                 {
@@ -235,29 +275,38 @@ public class NavAgent : MonoBehaviour
             // try attacking
             if (attackCooldownTime <= 0)
             {
-                var attackDirection = GetAttackDirection();
-                if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
+                Vector3 attackDirection = GetAttackDirection();
+
+                if (Physics.SphereCast(myCollider.bounds.center,
+                                       attackRadius,
+                                       attackDirection,
+                                       out RaycastHit attackHit,
+                                       attackRange,
+                                       attackLayers,
+                                       QueryTriggerInteraction.Ignore))
                 {
                     // check if player
                     if (attackHit.collider.CompareTag("Player"))
                     {
                         // attack sound
                         StartCoroutine(PlayAttackSound());
-                        
+
                         // check if not dead
-                        var playerStats = attackHit.collider.GetComponent<PlayerStats>();
+                        PlayerStats playerStats = attackHit.collider.GetComponent<PlayerStats>();
+
+
                         if (!playerStats.isDead)
                         {
                             // TODO: play player hurt sound?
-                            
                             attackCooldownTime += 1f;
                             onAttack.Invoke();
                             StopAllCoroutines();
                             StartCoroutine(AttackWithDelay());
                         }
-                        
+
                     }
                 }
+
                 // if the cooldown timer was below zero and never attacked, reset to 0
                 if (attackCooldownTime < 0)
                 {
@@ -265,38 +314,36 @@ public class NavAgent : MonoBehaviour
                 }
             }
         }
-        
     }
 
     private IEnumerator PlayAttackSound()
     {
         SoundUtils.PlaySound3D(ref attackSoundInstance, attackSoundEvent, gameObject);
-
         yield return new WaitForSeconds(0);
     }
 
-    IEnumerator AttackWithDelay()
+    private IEnumerator AttackWithDelay()
     {
         yield return new WaitForSeconds(attackDelay);
+
         // attack
-        var attackDirection = GetAttackDirection();
+        Vector3 attackDirection = GetAttackDirection();
         if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
         {
             // check if player
             if (attackHit.collider.CompareTag("Player"))
             {
                 // check if not dead
-                var playerStats = attackHit.collider.GetComponent<PlayerStats>();
+                PlayerStats playerStats = attackHit.collider.GetComponent<PlayerStats>();
                 if (!playerStats.isDead)
                 {
                     playerStats.TakeDamage(attackDamageAmount, gameObject);
                 }
             }
         }
-        
     }
 
-    void UpdateMovement()
+    private void UpdateMovement()
     {
         float moveDirectionY = moveDirection.y;
         moveDirection = (isMoving && attackCooldownTime <= 0) ? speed * direction : Vector3.zero;
@@ -314,7 +361,7 @@ public class NavAgent : MonoBehaviour
         {
             // Calculate rotation from direction
             transform.rotation = Quaternion.LookRotation(direction);
-            
+
             // Check if the controller collided on its sides
             if ((characterController.collisionFlags & CollisionFlags.Sides) != 0)
             {
@@ -328,44 +375,8 @@ public class NavAgent : MonoBehaviour
                         if (Random.value < 0.5f) sign *= -1;
                         direction = Quaternion.Euler(0, Random.Range(30, 45) * sign, 0) * direction;
                     }
-                    
                 }
             }
         }
     }
-
-
-    #endregion
-
-
-
-    #region Unity Messages
-    private void Start()
-    {
-        player = GameObject.FindGameObjectWithTag("Player");
-        target = player.transform;
-        playerStats = player.GetComponent<PlayerStats>();
-        targetCollider = target.GetComponent<Collider>();
-        myCollider = GetComponent<Collider>();
-        path = new NavMeshPath();
-        elapsed = 0.0f;
-        isMoving = false;
-        characterController = GetComponent<CharacterController>();
-    }
-    private void Update()
-    {
-        Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
-
-        UpdatePath();
-        UpdateMovement();
-    }
-    #endregion
-
-
-
-
-
-
-
-
 }
