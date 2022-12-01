@@ -46,6 +46,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restartButton: {fileID: 1080105097180891536}
+  deathSoundEvent:
+    Guid:
+      Data1: -391599102
+      Data2: 1223038904
+      Data3: -1814105713
+      Data4: 1140035495
+    Path: event:/Sfxs/Stinger/Lose Stinger
 --- !u!1 &3635486393403471971
 GameObject:
   m_ObjectHideFlags: 0

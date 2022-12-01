@@ -368,15 +368,14 @@ public class NavAgent : MonoBehaviour
                     // check if player
                     if (attackHit.collider.CompareTag("Player"))
                     {
-                        // attack sound
-                        StartCoroutine(PlayAttackSound());
-
                         // check if not dead
                         PlayerStats playerStats = attackHit.collider.GetComponent<PlayerStats>();
 
-
                         if (!playerStats.isDead)
                         {
+                            // attack sound
+                            StartCoroutine(PlayAttackSound());
+                            
                             // TODO: play player hurt sound?
                             AgentAttackCurrentCooldownTime += 1f;
                             onAttack.Invoke();

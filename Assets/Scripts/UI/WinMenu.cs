@@ -7,13 +7,19 @@ using UnityEngine.UI;
 public class WinMenu : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference winSoundEvent;
+    
+    // Sounds
+    private FMOD.Studio.EventInstance winEventInstance;
 
     private void Awake()
     {
         // continue button toggles the pause menu
         restartButton.onClick.AddListener(Restart);
     }
-
+    
     public void Show()
     {
         // Show mouse cursor
@@ -23,6 +29,9 @@ public class WinMenu : MonoBehaviour
         // enable the win menu
         gameObject.SetActive(true);
         gameObject.transform.parent.gameObject.GetComponentInChildren<HUD>().gameObject.SetActive(false);
+        
+        // win sound
+        SoundUtils.PlaySound3D(ref winEventInstance, winSoundEvent, gameObject);
     }
 
     // restart the game
