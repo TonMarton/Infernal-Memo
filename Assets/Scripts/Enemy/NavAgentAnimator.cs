@@ -23,6 +23,6 @@ public class NavAgentAnimator : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat(moveParameterName, navAgent.isMoving ? 1 : 0);
+        animator.SetFloat(moveParameterName, navAgent.IsMoving ? 1 : 0);
     }
 }
