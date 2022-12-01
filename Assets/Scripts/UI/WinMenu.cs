@@ -17,7 +17,7 @@ public class WinMenu : MonoBehaviour
     public void Show()
     {
         // Show mouse cursor
-        Cursor.lockState = CursorLockMode.None;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;
 
         // enable the win menu
@@ -28,6 +28,9 @@ public class WinMenu : MonoBehaviour
     // restart the game
     private void Restart()
     {
+        // get player stats component
+        PlayerStats playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
+        playerStats.didWin = false;
         // Hide mouse cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

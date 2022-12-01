@@ -39,8 +39,6 @@ public class LevelManager : MonoBehaviour
             allowMovingLevels = true;
         }
         ToggleElevatorDoors();
-        
-
     }
     
     void Update()
@@ -92,11 +90,6 @@ public class LevelManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-        // pause the game, but still allow mouse input
-        Time.timeScale = 0f;
-        // keep allowing mouse input while game is paused
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         // mark player as won
         PlayerStats playerStats = player.GetComponent<PlayerStats>();
         playerStats.didWin = true;
