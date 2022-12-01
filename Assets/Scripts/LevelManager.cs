@@ -12,6 +12,8 @@ public class LevelManager : MonoBehaviour
 
     private GameObject player;
 
+    private bool hasPlayerJustSpawned = true;
+
     void Awake()
     {
         player = GameObject.Find("Player");
@@ -73,11 +75,18 @@ public class LevelManager : MonoBehaviour
         {
             ToggleElevatorDoors();
             ActivateNextLevel();
+            hasPlayerJustSpawned = true;
             player.GetComponent<Controller>().TeleportToPositionMaintainingRelativePosition(destination, rotationDiffernece);
             DeactivatePreviousLevel();
         }
         else {
-            player.GetComponentInChildren<HUD>().ShowEnemiesOnLevelText();
+            if (hasPlayerJustSpawned)
+            {
+                hasPlayerJustSpawned = false;
+            }
+            else {
+                player.GetComponentInChildren<HUD>().ShowEnemiesOnLevelText();
+            }
         }
     }
 
