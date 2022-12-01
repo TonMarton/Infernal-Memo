@@ -915,6 +915,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d478ede95b4e4fe6b2a4fd0e54da253, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playButton: {fileID: 1916782614}
+  hoverSoundEvent:
+    Guid:
+      Data1: 1590263301
+      Data2: 1220189635
+      Data3: -83350644
+      Data4: 1286614083
+    Path: event:/Sfxs/Interface sfxs/Ui Hover
+  startGameSoundEvent:
+    Guid:
+      Data1: -1377515376
+      Data2: 1113606695
+      Data3: -1803207552
+      Data4: 577484025
+    Path: event:/Sfxs/Interface sfxs/Ui Start
+  clickSoundEvent:
+    Guid:
+      Data1: 1032952035
+      Data2: 1238844312
+      Data3: -435482496
+      Data4: 1332729566
+    Path: event:/Sfxs/Interface sfxs/Ui front
 --- !u!1 &1254493608
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,6 +1440,7 @@ GameObject:
   - component: {fileID: 1916782616}
   - component: {fileID: 1916782615}
   - component: {fileID: 1916782614}
+  - component: {fileID: 1916782617}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1540,3 +1563,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1916782612}
   m_CullTransparentMesh: 1
+--- !u!114 &1916782617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1916782612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates: []

@@ -193,11 +193,11 @@ MonoBehaviour:
     Path: event:/Sfxs/Interface sfxs/Ui Hover
   clickSoundEvent:
     Guid:
-      Data1: -1377515376
-      Data2: 1113606695
-      Data3: -1803207552
-      Data4: 577484025
-    Path: event:/Sfxs/Interface sfxs/Ui Start
+      Data1: 1032952035
+      Data2: 1238844312
+      Data3: -435482496
+      Data4: 1332729566
+    Path: event:/Sfxs/Interface sfxs/Ui front
   openSoundEvent:
     Guid:
       Data1: 1032952035

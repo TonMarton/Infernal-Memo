@@ -2,15 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0d4cc34-3413-449c-9830-0a069bfb2a6f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFloatSound.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFloatSound.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFootsteps.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/EnemyFootsteps.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon_Boss.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_Demon_Boss.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_FloatingSkull.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Enemy/Enemy_FloatingSkull.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PropsFurniture/water cooler.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PropsFurniture/water cooler.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Pause Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Pause Menu.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Title Screen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Title Screen.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Instructions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Instructions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.bank" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Build/Desktop/Master.bank" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{3d9198e3-4398-49d7-8010-0be6ded66f4f}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{3d9198e3-4398-49d7-8010-0be6ded66f4f}.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{5ec97e05-9dc3-48ba-8c2b-08fb432cb04c}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{5ec97e05-9dc3-48ba-8c2b-08fb432cb04c}.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{aba74657-2e3b-4a25-9d80-1c6dfd609d17}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{aba74657-2e3b-4a25-9d80-1c6dfd609d17}.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{ade4c890-4a27-4260-803c-8594f9b46b22}.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/Metadata/Event/{ade4c890-4a27-4260-803c-8594f9b46b22}.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +84,7 @@
       <workItem from="1667690272226" duration="18216000" />
       <workItem from="1667881224148" duration="1000" />
       <workItem from="1667920388230" duration="6086000" />
+      <workItem from="1669857762204" duration="2538000" />
     </task>
     <servers />
   </component>
