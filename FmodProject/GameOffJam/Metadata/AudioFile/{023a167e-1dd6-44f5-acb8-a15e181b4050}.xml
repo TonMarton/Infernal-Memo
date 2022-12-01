@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{4238aca5-bed4-4453-873e-ff1c6afd7ce1}">
+	<object class="AudioFile" id="{023a167e-1dd6-44f5-acb8-a15e181b4050}">
 		<property name="assetPath">
-			<value>Sfxs/Ui/Pickup/Health_pickup/Heal pickup2.wav</value>
+			<value>Sfxs/Voice_Lines/Elevator/pc_first_elevator.wav</value>
 		</property>
 		<property name="frequencyInKHz">
 			<value>44.0999985</value>
@@ -11,7 +11,7 @@
 			<value>2</value>
 		</property>
 		<property name="length">
-			<value>2.8846258503401359</value>
+			<value>1.8461451247165532</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
