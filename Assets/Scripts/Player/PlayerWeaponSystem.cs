@@ -37,6 +37,8 @@ public class PlayerWeaponSystem : MonoBehaviour
     [SerializeField]
     public GameObject bloodImpactParticlePrefab;
     [SerializeField]
+    public GameObject surfaceImpactParticlePrefab;
+    [SerializeField]
     public float autoDestroyParticleTime = 3f;
     [SerializeField]
     public float particleSpawnOffset = 0.2f;

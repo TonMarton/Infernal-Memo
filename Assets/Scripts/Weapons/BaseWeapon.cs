@@ -131,13 +131,16 @@ public abstract class BaseWeapon : MonoBehaviour
     public int impactParamIndex = 2;
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
     {
+        var bulletImpact = Instantiate(weaponSystem.surfaceImpactParticlePrefab, point + normal * weaponSystem.particleSpawnOffset * 1.5f, Quaternion.LookRotation(normal)); ;
+        Destroy(bulletImpact, weaponSystem.autoDestroyParticleTime);
+
         // spawn a bullet hole decal
         GameObject bulletHole = Instantiate(weaponSystem.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
             Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
 
         // play bullet impact sound
         // to-do: play different sound depending on material
-        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletImpact, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
 
         // auto destroy bullet hole after a delay
         Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);

@@ -580,6 +580,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  didWin: 0
 --- !u!114 &-7273339783095973456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -763,6 +764,7 @@ MonoBehaviour:
   bulletHolePrefab: {fileID: 3789928012512024980, guid: 12f889504d9aecf4fb76c337fc0b8c79, type: 3}
   autoDestroyBulletHoleTime: 10
   bloodImpactParticlePrefab: {fileID: 7451740709918929473, guid: 1e72c8491a5cf5c46a345851f0236c01, type: 3}
+  surfaceImpactParticlePrefab: {fileID: 5937593522768723855, guid: 5fefd1034cb7222429f2e330a88446bd, type: 3}
   autoDestroyParticleTime: 3
   particleSpawnOffset: 0.2
   staplerDrawSoundEvent:
