@@ -30,6 +30,25 @@ public class PauseMenu : MonoBehaviour
         mainMenuButton.onClick.AddListener(PlayClickSound);
         exitButton.onClick.AddListener(PlayClickSound);
         
+        // hover sound for buttons
+        EventTrigger trigger = continueButton.GetComponent<EventTrigger>();
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((eventData) => { PlayHoverSound(); });
+        trigger.triggers.Add(entry);
+        
+        trigger = mainMenuButton.GetComponent<EventTrigger>();
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((eventData) => { PlayHoverSound(); });
+        trigger.triggers.Add(entry);
+        
+        trigger = exitButton.GetComponent<EventTrigger>();
+        entry = new EventTrigger.Entry();
+        entry.eventID = EventTriggerType.PointerEnter;
+        entry.callback.AddListener((eventData) => { PlayHoverSound(); });
+        trigger.triggers.Add(entry);
+        
         // hover sounds (using OnPointerEnter)
         continueButton.GetComponent<EventTrigger>().triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
         mainMenuButton.GetComponent<EventTrigger>().triggers.Add(new EventTrigger.Entry { eventID = EventTriggerType.PointerEnter, callback = new EventTrigger.TriggerEvent() });
@@ -81,7 +100,7 @@ public class PauseMenu : MonoBehaviour
         SoundUtils.PlaySound3D(ref clickSoundInstance, clickSoundEvent, gameObject);
     }
     
-    private void PlayHoverSound(PointerEventData pointerEventData)
+    private void PlayHoverSound()
     {
         SoundUtils.PlaySound3D(ref hoverSoundInstance, hoverSoundEvent, gameObject);
     }

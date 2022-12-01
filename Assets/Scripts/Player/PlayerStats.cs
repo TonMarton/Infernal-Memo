@@ -56,6 +56,9 @@ public class PlayerStats : MonoBehaviour
     public UnityEvent onDie;
 
     public GameObject causeOfDeath { get; private set; }
+    
+    
+    public bool didWin = false;
 
     private void Awake()
     {

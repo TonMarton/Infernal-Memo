@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 // enum for melee and shotgun weapons
 public enum WeaponType
 {
-    None,
     Stapler,
     Pistol,
     Shotgun,
@@ -180,9 +179,6 @@ public class PlayerWeaponSystem : MonoBehaviour
     {
         if (playerStats.isDead) return;
 
-        // log the weapon we switched to
-        Debug.Log("Switched to " + weaponType);
-
         // don't switch if this is the weapon that's already selected
         if (currentWeaponType == weaponType)
         {
@@ -255,6 +251,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
                 break;
             default:
+                // debug log the value currentWeaponType
+                Debug.Log("currentWeaponType = " + currentWeaponType);
                 throw new ArgumentOutOfRangeException();
         }
 
@@ -319,6 +317,11 @@ public class PlayerWeaponSystem : MonoBehaviour
     public void SwitchWeaponPrevious()
     {
         // switch to previous weapon
-        SwitchWeapon((WeaponType)(((int)currentWeaponType - 1) % System.Enum.GetValues(typeof(WeaponType)).Length));
+        var index = currentWeaponType - 1;
+        if (index < 0)
+        {
+            index = (WeaponType)(System.Enum.GetValues(typeof(WeaponType)).Length - 1);
+        }
+        SwitchWeapon((WeaponType)(((int)index) % System.Enum.GetValues(typeof(WeaponType)).Length));
     }
 }

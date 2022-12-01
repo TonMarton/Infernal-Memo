@@ -40,6 +40,17 @@ public class LevelManager : MonoBehaviour
         }
         ToggleElevatorDoors();
     }
+    
+    void Update()
+    {
+        // press the F key to win
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // debug log that win screen is showing
+            Debug.Log("Win Screen is showing");
+            StartCoroutine(ShowWinScreen(0));
+        }
+    }
 
     private void ToggleElevatorDoors() {
         foreach (ElevatorDoor elevatorDoor in elevatorDoors)
@@ -79,9 +90,10 @@ public class LevelManager : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
+        // mark player as won
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        playerStats.didWin = true;
         winMenu.Show();
-        player.GetComponent<PlayerWeaponSystem>().OnPlayerDie();
-        player.GetComponentInChildren<HUD>().gameObject.SetActive(false);
     }
 
     private void FindAllEnemies()
