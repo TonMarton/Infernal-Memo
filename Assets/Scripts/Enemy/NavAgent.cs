@@ -78,7 +78,7 @@ public class NavAgent : MonoBehaviour
     private float attackDelay;
 
     [Header("Sound")]
-    [SerializeField[FormerlySerializedAs("attackFloatingSkullSoundEvent")]
+    [SerializeField][FormerlySerializedAs("attackFloatingSkullSoundEvent")]
     private FMODUnity.EventReference attackSoundEvent;
 
     #endregion
