@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b0d4cc34-3413-449c-9830-0a069bfb2a6f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GameOff2022-New/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/UI/Death Menu.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/UI/Death Menu.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemy/NavAgent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemy/NavAgent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/DeathMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/DeathMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/WinMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/WinMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{1ea42590-cc1a-4658-9f2c-2b8ed0596743}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{1ea42590-cc1a-4658-9f2c-2b8ed0596743}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{2ea5cc05-fdb9-457b-a96b-ff3eb2d3b28a}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{2ea5cc05-fdb9-457b-a96b-ff3eb2d3b28a}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{6dfb9c3d-ab66-460b-a532-0d5199234cdd}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{6dfb9c3d-ab66-460b-a532-0d5199234cdd}.pdc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{f86a498d-c1bb-46f2-a992-95b2e684890b}.pdc" beforeDir="false" afterPath="$PROJECT_DIR$/FmodProject/GameOffJam/.cache/{f86a498d-c1bb-46f2-a992-95b2e684890b}.pdc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LevelManager.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +77,7 @@
       <workItem from="1667881224148" duration="1000" />
       <workItem from="1667920388230" duration="6086000" />
       <workItem from="1669857762204" duration="7330000" />
-      <workItem from="1669907530280" duration="593000" />
+      <workItem from="1669907530280" duration="960000" />
     </task>
     <servers />
   </component>
