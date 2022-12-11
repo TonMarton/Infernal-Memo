@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 // enum for melee and shotgun weapons
 public enum WeaponType
 {
-    None,
     Stapler,
     Pistol,
     Shotgun,
@@ -37,6 +36,8 @@ public class PlayerWeaponSystem : MonoBehaviour
     [Header("Impacts")]
     [SerializeField]
     public GameObject bloodImpactParticlePrefab;
+    [SerializeField]
+    public GameObject surfaceImpactParticlePrefab;
     [SerializeField]
     public float autoDestroyParticleTime = 3f;
     [SerializeField]
@@ -98,11 +99,8 @@ public class PlayerWeaponSystem : MonoBehaviour
         // hide crosshair by default
         hud.SetCrossHairVisible(false);
 
-        // hide arms by default
-        armsModel.SetActive(false);
-
         // start with melee
-        SwitchWeapon(WeaponType.Stapler);
+        SwitchWeapon(WeaponType.Stapler, true);
     }
 
     // attack
@@ -176,15 +174,12 @@ public class PlayerWeaponSystem : MonoBehaviour
         }
     }
 
-    public void SwitchWeapon(WeaponType weaponType)
+    public void SwitchWeapon(WeaponType weaponType, bool forceSwitch=false)
     {
         if (playerStats.isDead) return;
 
-        // log the weapon we switched to
-        Debug.Log("Switched to " + weaponType);
-
         // don't switch if this is the weapon that's already selected
-        if (currentWeaponType == weaponType)
+        if (currentWeaponType == weaponType && !forceSwitch)
         {
             return;
         }
@@ -255,6 +250,8 @@ public class PlayerWeaponSystem : MonoBehaviour
 
                 break;
             default:
+                // debug log the value currentWeaponType
+                Debug.Log("currentWeaponType = " + currentWeaponType);
                 throw new ArgumentOutOfRangeException();
         }
 
@@ -319,6 +316,11 @@ public class PlayerWeaponSystem : MonoBehaviour
     public void SwitchWeaponPrevious()
     {
         // switch to previous weapon
-        SwitchWeapon((WeaponType)(((int)currentWeaponType - 1) % System.Enum.GetValues(typeof(WeaponType)).Length));
+        var index = currentWeaponType - 1;
+        if (index < 0)
+        {
+            index = (WeaponType)(System.Enum.GetValues(typeof(WeaponType)).Length - 1);
+        }
+        SwitchWeapon((WeaponType)(((int)index) % System.Enum.GetValues(typeof(WeaponType)).Length));
     }
 }

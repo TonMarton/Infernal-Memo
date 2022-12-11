@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EncodableAsset" id="{78f1404d-d079-468c-bece-be6060a0cfd1}">
+		<property name="assetPath">
+			<value>Sfxs/Enemy/Enemy2/SD_hurt/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{649bc755-58fe-4c99-816a-19d9faa41f8c}</destination>
+		</relationship>
+	</object>
+</objects>

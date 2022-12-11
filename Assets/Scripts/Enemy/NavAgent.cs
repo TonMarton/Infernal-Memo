@@ -1,12 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
-using static UnityEngine.UI.Image;
-
-// Written by Caleb Ralph
-// TO-DO: Organize & clean up code more
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Unity MonoBehaviour script useful for making enemies walk towards the player.
@@ -14,85 +10,183 @@ using static UnityEngine.UI.Image;
 [RequireComponent(typeof(CharacterController))] // uses a character controller for movement
 public class NavAgent : MonoBehaviour
 {
-    #region Referenced components
-    private Transform target;
-    private Collider targetCollider;
-    private Collider myCollider;
-    public CharacterController characterController { get; private set; }
 
-    #endregion
-
-    #region State
-    private Vector3[] corners = new Vector3[2];
-    private Vector3 direction = default;
-    private float elapsed;
-    public bool isMoving { get; private set; }
-
-    #endregion
-
-    #region Parameters
-    public float speed = 3;
-    public float targetSightAngleThreshold = 90;
-    public float lineOfSightRange = 10000;
-    public float closeWakeRange = 10f;
-    public LayerMask lineOfSightLayers = default;
+    #region Debugging Variables
+    public bool noTarget = false;
     #endregion
 
 
-    #region Flags
-    public bool noTarget;
-    #endregion
+    #region Inspector Variables
 
-
-
-    /// <summary>
-    /// Rate at which the script will calculate a new movement path.
-    /// </summary>
     [Tooltip("Rate at which the script will calculate a new movement path.")]
-    public float checkPathUpdateRate = 1.0f;
+    [SerializeField]
+    private float checkPathUpdateRate = 1.0f;
 
-    /// <summary>
-    /// The agent will randomly change direction when the distance from the target is greater than this value.
-    /// </summary>
     [Tooltip("The agent will randomly change direction when the distance from the target is greater than this value.")]
-    public float zigZagDistanceThreshold = 5.0f;
+    [SerializeField]
+    private float zigZagDistanceThreshold = 5.0f;
 
-    /// <summary>
-    /// The time in seconds the controller has to wait between flipping directions while its sides are being touched. (No homo)
-    /// </summary>
     [Tooltip("The time in seconds the controller has to wait between flipping directions while its sides are being touched. (No homo)")]
-    public float flipOnSidesTriggerInterval = 0.3f;
+    [SerializeField]
+    private float flipOnSidesTriggerInterval = 0.3f;
 
-    private float lastFlipTime;
+    [Header("Attack")]
+    [Tooltip("Agent will attack when less than this distance from the player.")]
+    [SerializeField]
+    private float attackRange = 3f;
 
-    private NavMeshPath path;
-    private bool isAwake;
+    [Tooltip("Agent attack sphere-cast radius.")]
+    [SerializeField]
+    private float attackRadius = 0.1f;
 
-    private Vector3 moveDirection;
+    [Tooltip("Agent attack sphere-cast radius.")]
+    [SerializeField]
+    private LayerMask attackLayers = default;
+
+    [Tooltip("Attack cool-down takes this long.")]
+    [SerializeField]
+    private float attackFrequency = 1.0f;
+
+    [Tooltip("Enemy attack damage to victims.")]
+    [SerializeField]
+    private int attackDamageAmount = 10;
+
+    [Tooltip("How fast is the enemy.")]
+    [SerializeField][FormerlySerializedAs("speed")]
+    private float movementSpeed = 3;
+
+    [Tooltip("Defines how many degrees of freedom the player has to be around the enemy to wake.")]
+    [SerializeField]
+    private float targetSightAngleThreshold = 90;
+
+    [Tooltip("Distance for seeing the player (when within target sight angle threshold).")]
+    [SerializeField]
+    private float lineOfSightRange = 10000;
+
+    [Tooltip("Distance for seeing the player (disregards target sight angle threshold.")]
+    [SerializeField]
+    private float closeWakeRange = 10f;
+
+    [Header("Layermask used for line-of-sight raycasting.")]
+    [SerializeField]
+    private LayerMask lineOfSightLayers = default;
 
     [SerializeField]
     private float gravity = 30.0f;
 
     [SerializeField]
-    private float attackRange = 3f;
-    [SerializeField]
-    private float attackRadius = 0.1f;
-    [SerializeField]
-    private LayerMask attackLayers = default;
-    [SerializeField]
-    private float attackFrequency = 1.0f;
-    [SerializeField]
-    private int attackDamageAmount = 10;
+    private float attackDelay;
 
-    private float attackCooldownTime;
-    private PlayerStats playerStats;
+    [Header("Sound")]
+    [SerializeField][FormerlySerializedAs("attackFloatingSkullSoundEvent")]
+    private FMODUnity.EventReference attackSoundEvent;
+
+    #endregion
+
+
+    #region External References (Private)
+
+    private Transform target;
+    private Collider targetCollider;
+    private Collider myCollider;
+
+    #endregion
+
+
+    #region External References (Public)
+
+    public CharacterController characterController { get; private set; }
+
+    #endregion
+
+
+    #region State (Private)
+
     private GameObject player;
+    private PlayerStats playerStats;
+    private bool agentIsAwake;
+    private Vector3 moveDirection;
+    private Vector3[] navCorners = new Vector3[2];
+    private Vector3 navDirection = default;
+    private float navCalcPathElapsedTime;
+    private float navLastFlipTime;
+    private NavMeshPath navPath;
+
+    #endregion
+
+
+    #region State (Public)
+
+    public bool IsMoving
+    {
+        get;
+        private set;
+    }
+
+    public float AgentAttackCurrentCooldownTime
+    {
+        get;
+        private set;
+    }
+
+    #endregion
+
+
+    #region Sounds (Private)
+
+    private FMOD.Studio.EventInstance attackSoundInstance;
+
+    #endregion
+
+
+    #region Events
 
     public UnityEvent onAttack;
-    [SerializeField] private float attackDelay;
 
-    #region Custom Methods
-    bool IsTargetInFront()
+    #endregion
+
+
+    #region Unity Messages
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        target = player.transform;
+        playerStats = player.GetComponent<PlayerStats>();
+        targetCollider = target.GetComponent<Collider>();
+        myCollider = GetComponent<Collider>();
+        navPath = new NavMeshPath();
+        navCalcPathElapsedTime = 0.0f;
+        IsMoving = false;
+        characterController = GetComponent<CharacterController>();
+    }
+
+    private void Update()
+    {
+        Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
+
+        UpdatePath();
+        UpdateMovement();
+    }
+    #endregion
+
+    private void RandomTurnLeftRight()
+    {
+        // Randomly turn left and right when far away
+        if (Vector3.Distance(transform.position, target.position) > zigZagDistanceThreshold)
+        {
+            int rand = Random.Range(0, 6); // 16% chance to turn left, 16% chance to turn right
+            if (rand == 0)
+            {
+                navDirection = Quaternion.Euler(0, 30, 0) * navDirection;
+            }
+            else if (rand == 1)
+            {
+                navDirection = Quaternion.Euler(0, -30, 0) * navDirection;
+            }
+        }
+    }
+
+    private bool IsTargetInFront()
     {
         // Get direction from player to origin (sprite actor position)
         Vector3 direction = target.position - transform.position;
@@ -108,11 +202,10 @@ public class NavAgent : MonoBehaviour
         return angle < targetSightAngleThreshold || angle > (360 - targetSightAngleThreshold);
     }
 
-
     protected bool IsTargetInCloseRange()
     {
         // get the range to the player
-        var range = Vector3.Distance(transform.position, target.position);
+        float range = Vector3.Distance(transform.position, target.position);
 
         // check if player is within range
         return range <= closeWakeRange;
@@ -121,165 +214,34 @@ public class NavAgent : MonoBehaviour
     protected bool PlayerInLineOfSight()
     {
         // do a raycast to check whether player is in line of sight of the enemy
-        var origin = myCollider.bounds.center;
-        var rayDirection = targetCollider.bounds.center - origin;
-        if (!Physics.Raycast(origin, rayDirection, out var hit, lineOfSightRange, lineOfSightLayers))
+        Vector3 origin = myCollider.bounds.center;
+        Vector3 rayDirection = targetCollider.bounds.center - origin;
+        if (!Physics.Raycast(origin, rayDirection, out RaycastHit hit, lineOfSightRange, lineOfSightLayers))
         {
             // raycast didn't hit anything so player isn't in line of sight
             return false;
         }
-        
+
         // did the raycast hit the player?
         return hit.collider == targetCollider;
     }
-    Vector3 GetAttackDirection()
+
+    private Vector3 GetAttackDirection()
     {
         Vector3 attackOrigin = myCollider.bounds.center;
-        Vector3 attackDirection = direction;
+        Vector3 attackDirection = navDirection;
         Vector3 closestPoint = targetCollider.ClosestPoint(attackOrigin);
         Vector3 playerDifference = closestPoint - attackOrigin;
         attackDirection.y = playerDifference.y;
         attackDirection.Normalize();
         return attackDirection;
-    }
-    void UpdatePath()
+    } 
+    private void UpdateMovement()
     {
-        // Update the way to the goal every second.
-        elapsed += Time.deltaTime * checkPathUpdateRate;
+        navDirection = MathUtils.GetDirectionXZ(myCollider.bounds.center, targetCollider.bounds.center);
 
-        // Calculate path / update direction loop
-        if (elapsed > 1.0f)
-        {
-            elapsed -= 1.0f;
-
-            if (PlayerInLineOfSight() && (IsTargetInCloseRange() || IsTargetInFront()))
-            {
-                isAwake = true;
-            }
-
-            if (isAwake)
-            {
-                if (!noTarget)
-                {
-                    if (playerStats.isDead)
-                    {
-                        var rand = Random.Range(0, 30);
-                        if (rand == 0)
-                        {
-                            direction = Quaternion.Euler(0, 30, 0) * direction;
-                        }
-                        else if (rand == 1)
-                        {
-                            direction = Quaternion.Euler(0, -30, 0) * direction;
-                        }
-                    }
-                    else
-                    {
-                        if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, path))
-                        {
-                            int cornerCount = path.GetCornersNonAlloc(corners);
-                            direction = (corners[1] - corners[0]);
-                            direction.y = 0;
-                            direction.Normalize();
-                            isMoving = true;
-
-                            // Randomly turn left and right when far away
-                            if (Vector3.Distance(transform.position, target.position) > zigZagDistanceThreshold)
-                            {
-                                var rand = Random.Range(0, 6); // 16% chance to turn left, 16% chance to turn right
-                                if (rand == 0)
-                                {
-                                    direction = Quaternion.Euler(0, 30, 0) * direction;
-                                }
-                                else if (rand == 1)
-                                {
-                                    direction = Quaternion.Euler(0, -30, 0) * direction;
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            direction = target.position - transform.position;
-                            direction.y = 0;
-                            direction.Normalize();
-                        }
-                    }
-                    
-                }
-                else
-                {
-                    isAwake = false;
-                    isMoving = false;
-                }
-            }
-        }
-
-        // attack loop
-        if (isAwake)
-        {
-            // reduce timer
-            if (attackCooldownTime > 0)
-            {
-                attackCooldownTime -= Time.deltaTime * attackFrequency;
-            }
-
-            // try attacking
-            if (attackCooldownTime <= 0)
-            {
-                var attackDirection = GetAttackDirection();
-                if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
-                {
-                    // check if player
-                    if (attackHit.collider.CompareTag("Player"))
-                    {
-                        // check if not dead
-                        var playerStats = attackHit.collider.GetComponent<PlayerStats>();
-                        if (!playerStats.isDead)
-                        {
-                            attackCooldownTime += 1f;
-                            onAttack.Invoke();
-                            StopAllCoroutines();
-                            StartCoroutine(AttackWithDelay());
-                        }
-                        
-                    }
-                }
-                // if the cooldown timer was below zero and never attacked, reset to 0
-                if (attackCooldownTime < 0)
-                {
-                    attackCooldownTime = 0;
-                }
-            }
-        }
-        
-    }
-
-    IEnumerator AttackWithDelay()
-    {
-        yield return new WaitForSeconds(attackDelay);
-        // attack
-        var attackDirection = GetAttackDirection();
-        if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
-        {
-            // check if player
-            if (attackHit.collider.CompareTag("Player"))
-            {
-                // check if not dead
-                var playerStats = attackHit.collider.GetComponent<PlayerStats>();
-                if (!playerStats.isDead)
-                {
-                    playerStats.TakeDamage(attackDamageAmount, gameObject);
-                }
-            }
-        }
-        
-    }
-
-    void UpdateMovement()
-    {
         float moveDirectionY = moveDirection.y;
-        moveDirection = (isMoving && attackCooldownTime <= 0) ? speed * direction : Vector3.zero;
+        moveDirection = (IsMoving && AgentAttackCurrentCooldownTime <= 0) ? movementSpeed * navDirection : Vector3.zero;
         moveDirection.y = moveDirectionY;
 
         if (!characterController.isGrounded)
@@ -290,62 +252,175 @@ public class NavAgent : MonoBehaviour
         // Move the controller
         characterController.Move(moveDirection * Time.deltaTime);
 
-        if (isMoving)
+        if (IsMoving)
         {
             // Calculate rotation from direction
-            transform.rotation = Quaternion.LookRotation(direction);
-            
+            transform.rotation = Quaternion.LookRotation(navDirection);
+
             // Check if the controller collided on its sides
             if ((characterController.collisionFlags & CollisionFlags.Sides) != 0)
             {
-                if (Time.time > lastFlipTime + .4f)
+                if (Time.time > navLastFlipTime + .4f)
                 {
                     if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 5.0f, 1 << 0))
                     {
-                        direction = Vector3.Reflect(direction, wallHit.normal);
-                        lastFlipTime = Time.time;
+                        navDirection = Vector3.Reflect(navDirection, wallHit.normal);
+                        navLastFlipTime = Time.time;
                         float sign = 1;
                         if (Random.value < 0.5f) sign *= -1;
-                        direction = Quaternion.Euler(0, Random.Range(30, 45) * sign, 0) * direction;
+                        navDirection = Quaternion.Euler(0, Random.Range(30, 45) * sign, 0) * navDirection;
                     }
-                    
+                }
+            }
+        }
+    }
+    private void UpdatePath()
+    {
+        // update the way to the goal every second.
+        navCalcPathElapsedTime += Time.deltaTime * checkPathUpdateRate;
+
+        // calculate path / update direction loop
+        if (navCalcPathElapsedTime > 1.0f)
+        {
+            navCalcPathElapsedTime %= 1f; // reset timer
+
+            if (PlayerInLineOfSight() && (IsTargetInCloseRange() || IsTargetInFront()))
+            {
+                agentIsAwake = true;
+            }
+
+            if (agentIsAwake)
+            {
+                if (!noTarget)
+                {
+                    if (playerStats.isDead)
+                    {
+                        int rand = Random.Range(0, 30);
+                        if (rand == 0)
+                        {
+                            navDirection = Quaternion.Euler(0, 30, 0) * navDirection;
+                        }
+                        else if (rand == 1)
+                        {
+                            navDirection = Quaternion.Euler(0, -30, 0) * navDirection;
+                        }
+                    }
+                    else
+                    {
+                        // try to calculate a path from the nav mesh
+                        if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, navPath))
+                        {
+                            var navCorners = navPath.corners;
+                            // calculate desired agent direction from the first two path points
+                            navDirection = (navCorners[1] - navCorners[0]);
+                            navDirection.y = 0;
+                            navDirection.Normalize();
+
+                            // begin moving
+                            IsMoving = true;
+
+                            // random movement
+                            RandomTurnLeftRight();
+                        }
+                        else
+                        {
+                            navDirection = target.position - transform.position;
+                            navDirection.y = 0;
+                            navDirection.Normalize();
+                        }
+                    }
+                }
+                else
+                {
+                    agentIsAwake = false;
+                    IsMoving = false;
+                }
+            }
+        }
+
+        AttackLoop();
+    }
+
+    private void AttackLoop()
+    {
+        // attack loop
+        if (agentIsAwake)
+        {
+            // reduce timer
+            if (AgentAttackCurrentCooldownTime > 0)
+            {
+                AgentAttackCurrentCooldownTime -= Time.deltaTime * attackFrequency;
+            }
+
+            // try attacking
+            if (AgentAttackCurrentCooldownTime <= 0)
+            {
+                Vector3 attackDirection = GetAttackDirection();
+
+                if (Physics.SphereCast(myCollider.bounds.center,
+                                       attackRadius,
+                                       attackDirection,
+                                       out RaycastHit attackHit,
+                                       attackRange,
+                                       attackLayers,
+                                       QueryTriggerInteraction.Ignore))
+                {
+                    // check if player
+                    if (attackHit.collider.CompareTag("Player"))
+                    {
+                        // check if not dead
+                        PlayerStats playerStats = attackHit.collider.GetComponent<PlayerStats>();
+
+                        if (!playerStats.isDead)
+                        {
+                            // attack sound
+                            StartCoroutine(PlayAttackSound());
+                            
+                            // TODO: play player hurt sound?
+                            AgentAttackCurrentCooldownTime += 1f;
+                            onAttack.Invoke();
+                            StopAllCoroutines();
+                            StartCoroutine(AttackWithDelay());
+                        }
+
+                    }
+                }
+
+                // if the cooldown timer was below zero and never attacked, reset to 0
+                if (AgentAttackCurrentCooldownTime < 0)
+                {
+                    AgentAttackCurrentCooldownTime = 0;
                 }
             }
         }
     }
 
-
-    #endregion
-
-
-
-    #region Unity Messages
-    private void Start()
+    #region Coroutines
+    private IEnumerator PlayAttackSound()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        target = player.transform;
-        playerStats = player.GetComponent<PlayerStats>();
-        targetCollider = target.GetComponent<Collider>();
-        myCollider = GetComponent<Collider>();
-        path = new NavMeshPath();
-        elapsed = 0.0f;
-        isMoving = false;
-        characterController = GetComponent<CharacterController>();
+        SoundUtils.PlaySound3D(ref attackSoundInstance, attackSoundEvent, gameObject);
+        yield return new WaitForSeconds(0);
     }
-    private void Update()
-    {
-        Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
 
-        UpdatePath();
-        UpdateMovement();
+    private IEnumerator AttackWithDelay()
+    {
+        yield return new WaitForSeconds(attackDelay);
+
+        // attack
+        Vector3 attackDirection = GetAttackDirection();
+        if (Physics.SphereCast(myCollider.bounds.center, attackRadius, attackDirection, out RaycastHit attackHit, attackRange, attackLayers, QueryTriggerInteraction.Ignore))
+        {
+            // check if player
+            if (attackHit.collider.CompareTag("Player"))
+            {
+                // check if not dead
+                PlayerStats playerStats = attackHit.collider.GetComponent<PlayerStats>();
+                if (!playerStats.isDead)
+                {
+                    playerStats.TakeDamage(attackDamageAmount, gameObject);
+                }
+            }
+        }
     }
     #endregion
-
-
-
-
-
-
-
-
 }

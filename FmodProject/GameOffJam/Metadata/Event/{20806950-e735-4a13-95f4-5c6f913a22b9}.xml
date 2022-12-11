@@ -239,6 +239,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{6150c772-d9f4-40c2-a249-d04e83b54ed9}">
+		<property name="volume">
+			<value>5.5</value>
+		</property>
 		<property name="name">
 			<value>Printers</value>
 		</property>
@@ -270,6 +273,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{8e0f07c7-6f28-4881-a0b0-19c1f0f106e6}">
+		<property name="volume">
+			<value>3</value>
+		</property>
 		<property name="name">
 			<value>Television&amp;radio</value>
 		</property>
@@ -304,6 +310,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{42dfa7df-6c34-4b32-9bff-2d6048d968e4}">
+		<property name="volume">
+			<value>6.5</value>
+		</property>
 		<property name="name">
 			<value>Clocks</value>
 		</property>

@@ -121,6 +121,7 @@ public class Controller : MonoBehaviour
     private Vector3 moveDirection;
     private Vector2 currentInput;
 
+
     private float rotationX = 0;
 
     public bool damageTaken = false;
@@ -146,7 +147,7 @@ public class Controller : MonoBehaviour
 
     private void HandleCursorLock()
     {
-        if (PauseMenuScript.gameObject.activeSelf || playerStats.isDead)
+        if (PauseMenuScript.gameObject.activeSelf || playerStats.isDead || playerStats.didWin)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

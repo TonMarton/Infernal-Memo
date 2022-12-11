@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1804920253445515047
 MonoBehaviour:
@@ -112,3 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 2
   amount: 25
+  pickupSoundEvent:
+    Guid:
+      Data1: -1892360162
+      Data2: 1169553694
+      Data3: -2096453954
+      Data4: 1269509430
+    Path: event:/Sfxs/Interface sfxs/Pickup/Ammo pickup

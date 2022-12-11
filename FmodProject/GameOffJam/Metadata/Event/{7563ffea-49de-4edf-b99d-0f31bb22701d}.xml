@@ -2,13 +2,13 @@
 <objects serializationModel="Studio.02.02.00">
 	<object class="Event" id="{7563ffea-49de-4edf-b99d-0f31bb22701d}">
 		<property name="name">
-			<value>Character_health_voiceline</value>
+			<value>Health</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
 		</property>
 		<relationship name="folder">
-			<destination>{3284de62-dd61-4335-859d-10b161ba46f0}</destination>
+			<destination>{06154c7b-ebcf-4459-9e7c-370facc1610a}</destination>
 		</relationship>
 		<relationship name="mixer">
 			<destination>{fcc9ff96-e63f-4530-8799-3fc588ea0e12}</destination>

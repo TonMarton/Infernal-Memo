@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2120492371299683339}
   - component: {fileID: 2731725432495668842}
   - component: {fileID: 381166375792598132}
+  - component: {fileID: 1144091973107789714}
   m_Layer: 6
   m_Name: Enemy_Demon_Boss
   m_TagString: Enemy
@@ -30,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 2120492371299683343}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 189.64958, y: -1.4512405, z: -21.348999}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1005743957572453264}
@@ -79,7 +80,7 @@ MonoBehaviour:
   zigZagDistanceThreshold: 50
   flipOnSidesTriggerInterval: 0.3
   gravity: 30
-  attackRange: 1.5
+  attackRange: 3
   attackRadius: 0.2
   attackLayers:
     serializedVersion: 2
@@ -102,6 +103,13 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   attackDelay: 0.25
+  attackSoundEvent:
+    Guid:
+      Data1: -1342288763
+      Data2: 1155866078
+      Data3: -1777368444
+      Data4: 978697243
+    Path: event:/Sfxs/Enemy/Enemy attack
 --- !u!114 &2120492371299683339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +166,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a21909c65520f4884df3cdfb256198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1144091973107789714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120492371299683343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38175420cf44adca167cae887358c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stepSpeed: 1
+  footstepSoundEvent:
+    Guid:
+      Data1: -202426112
+      Data2: 1239614330
+      Data3: -252587883
+      Data4: 1315919833
+    Path: event:/Sfxs/Enemy/Enemy footsteps
 --- !u!1001 &756507643231036539
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -96,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.04
+  m_Radius: 0.08
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1804920253445515047
 MonoBehaviour:
@@ -112,3 +112,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   statType: 1
   amount: 5
+  pickupSoundEvent:
+    Guid:
+      Data1: 1972987578
+      Data2: 1108222774
+      Data3: 1916051131
+      Data4: 2137324759
+    Path: event:/Sfxs/Interface sfxs/Pickup/Health pickup

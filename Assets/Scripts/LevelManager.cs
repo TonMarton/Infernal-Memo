@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [SerializeField] WinMenu winMenu;
+
     private int currentLevelIndex = 0;
     private GameObject currentLevel;
     private int enemyCount;
@@ -11,6 +13,8 @@ public class LevelManager : MonoBehaviour
     private ElevatorDoor[] elevatorDoors; 
 
     private GameObject player;
+
+    private bool hasPlayerJustSpawned = true;
 
     void Awake()
     {
@@ -36,7 +40,7 @@ public class LevelManager : MonoBehaviour
         }
         ToggleElevatorDoors();
     }
-
+    
     private void ToggleElevatorDoors() {
         foreach (ElevatorDoor elevatorDoor in elevatorDoors)
         {
@@ -48,11 +52,37 @@ public class LevelManager : MonoBehaviour
         if (--enemyCount == 0) {
             allowMovingLevels = true;
             Debug.Log("All enemies were killed");
-            player.GetComponentInChildren<HUD>().ShowLevelClearMessage();
+            HandleLevelCleared();
         } else
         {
             Debug.Log("There are " + enemyCount + " enemies left.");
         }
+    }
+
+    private void HandleLevelCleared() {
+        if (currentLevelIndex == 2)
+        {
+            player.GetComponentInChildren<HUD>().ShowGameWonMessage();
+            StartCoroutine(ShowWinScreen(5));
+        }
+        else {
+            player.GetComponentInChildren<HUD>().ShowLevelClearMessage();
+        }
+    }
+
+    private IEnumerator ShowWinScreen(int delay)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < delay)
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        // mark player as won
+        PlayerStats playerStats = player.GetComponent<PlayerStats>();
+        playerStats.didWin = true;
+        winMenu.Show();
     }
 
     private void FindAllEnemies()
@@ -73,11 +103,18 @@ public class LevelManager : MonoBehaviour
         {
             ToggleElevatorDoors();
             ActivateNextLevel();
+            hasPlayerJustSpawned = true;
             player.GetComponent<Controller>().TeleportToPositionMaintainingRelativePosition(destination, rotationDiffernece);
             DeactivatePreviousLevel();
         }
         else {
-            player.GetComponentInChildren<HUD>().ShowEnemiesOnLevelText();
+            if (hasPlayerJustSpawned)
+            {
+                hasPlayerJustSpawned = false;
+            }
+            else {
+                player.GetComponentInChildren<HUD>().ShowEnemiesOnLevelText();
+            }
         }
     }
 

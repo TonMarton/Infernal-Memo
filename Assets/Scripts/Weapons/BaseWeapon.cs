@@ -17,9 +17,8 @@ public abstract class BaseWeapon : MonoBehaviour
 
     [Header("Muzzle Flash")]
     [SerializeField]
-    private GameObject muzzleFlash;
-
-    [SerializeField] private float hideMuzzleFlashAfterTime = 0.1f;
+    private GameObject muzzleFlashObject;
+    private ParticleSystem muzzleFlashEffect;
 
     [Header("Bullet Spread")]
     [SerializeField]
@@ -56,11 +55,15 @@ public abstract class BaseWeapon : MonoBehaviour
 
     private void Awake()
     {
+        if (muzzleFlashObject != null)
+        {
+            muzzleFlashEffect = muzzleFlashObject.GetComponent<ParticleSystem>();
+        }
+
         weaponSystem = GetComponent<PlayerWeaponSystem>();
 
         // hide shotgun and muzzle flash to start
         SetVisible(false);
-        SetMuzzleFlashVisible(false);
     }
 
     public void StopReload()
@@ -113,13 +116,11 @@ public abstract class BaseWeapon : MonoBehaviour
         var enemy = hitObject.GetComponentInParent<Enemy>();
 
         if (enemy == null) return;
-        var bloodImpact = Instantiate(weaponSystem.bloodImpactParticlePrefab, hit.point + hit.normal * weaponSystem.particleSpawnOffset, Quaternion.LookRotation(-hit.normal));
+        var bloodImpact = Instantiate(weaponSystem.bloodImpactParticlePrefab, hit.point + hit.normal * weaponSystem.particleSpawnOffset, Quaternion.LookRotation(hit.normal));
         SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bloodImpact, "Bullet_impacts", 0, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
         Destroy(bloodImpact, weaponSystem.autoDestroyParticleTime);
         var enemyStats = enemy.GetComponent<EnemyStats>();
         enemyStats.TakeDamage(damagePerBullet, knockback: null);
-
-
     }
 
     public void SetVisible(bool visible)
@@ -127,36 +128,19 @@ public abstract class BaseWeapon : MonoBehaviour
         model.SetActive(visible);
     }
 
-    private void SetMuzzleFlashVisible(bool visible)
-    {
-        if (muzzleFlash == null) return;
-        muzzleFlash.SetActive(visible);
-    }
-
-    private void Update()
-    {
-
-        // hide muzzle flash after a delay
-        if (muzzleFlash != null)
-        {
-            if (muzzleFlash.activeSelf && Time.time > weaponSystem.lastFireTime + hideMuzzleFlashAfterTime)
-            {
-                SetMuzzleFlashVisible(false);
-            }
-        }
-
-        
-    }
     public int impactParamIndex = 2;
     private void CreateBulletHoleDecal(Vector3 point, Vector3 normal)
     {
+        var bulletImpact = Instantiate(weaponSystem.surfaceImpactParticlePrefab, point + normal * weaponSystem.particleSpawnOffset * 1.5f, Quaternion.LookRotation(normal)); ;
+        Destroy(bulletImpact, weaponSystem.autoDestroyParticleTime);
+
         // spawn a bullet hole decal
         GameObject bulletHole = Instantiate(weaponSystem.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
             Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
 
         // play bullet impact sound
         // to-do: play different sound depending on material
-        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletHole, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
+        SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletImpact, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
 
         // auto destroy bullet hole after a delay
         Destroy(bulletHole, weaponSystem.autoDestroyBulletHoleTime);
@@ -201,8 +185,8 @@ public abstract class BaseWeapon : MonoBehaviour
         // play shoot sound
         PlayShootSound();
 
-        // show muzzle flash
-        SetMuzzleFlashVisible(true);
+        // play muzzle flash
+        PlayMuzzleFlash();
 
         // Keep track of time fired
         weaponSystem.lastFireTime = Time.time;
@@ -216,6 +200,10 @@ public abstract class BaseWeapon : MonoBehaviour
 
     protected virtual void OnHit()
     { 
+    }
+
+    protected virtual void PlayMuzzleFlash() {
+        muzzleFlashEffect.Play();
     }
 
     public void Reload()

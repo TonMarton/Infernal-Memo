@@ -67,6 +67,7 @@ GameObject:
   - component: {fileID: 1627567411275460082}
   - component: {fileID: 2289868260725089916}
   - component: {fileID: 3967048200504053719}
+  - component: {fileID: 7297407064930017747}
   m_Layer: 6
   m_Name: Enemy_FloatingSkull
   m_TagString: Enemy
@@ -123,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4.5
-  targetSightAngleThreshold: 90
+  targetSightAngleThreshold: 360
   lineOfSightRange: 10000
   closeWakeRange: 10
   lineOfSightLayers:
@@ -141,6 +142,17 @@ MonoBehaviour:
     m_Bits: 513
   attackFrequency: 1.54
   attackDamageAmount: 8
+  onAttack:
+    m_PersistentCalls:
+      m_Calls: []
+  attackDelay: 0
+  attackSoundEvent:
+    Guid:
+      Data1: -1083983601
+      Data2: 1173040748
+      Data3: 2055741572
+      Data4: -1285380650
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_attack
 --- !u!114 &2289868260725089916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,14 +174,14 @@ MonoBehaviour:
       Data2: 1159609651
       Data3: 1039363481
       Data4: 1851258643
-    Path: event:/Sfxs/Enemy/EnemySD/SD_hurt
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_hurt
   deathSoundEvent:
     Guid:
-      Data1: 700295798
-      Data2: 1164871486
-      Data3: 1636269741
-      Data4: -1097586009
-    Path: event:/Sfxs/Enemy/Enemy death
+      Data1: 82417581
+      Data2: 1315829776
+      Data3: 347281832
+      Data4: -1317605338
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_Death
 --- !u!114 &3967048200504053719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,6 +194,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a21909c65520f4884df3cdfb256198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7297407064930017747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627567411275460047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c470464ae874e3da7d8af2a8e85aa00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatSoundEvent:
+    Guid:
+      Data1: -352574496
+      Data2: 1259057259
+      Data3: -87573620
+      Data4: 1258590391
+    Path: event:/Sfxs/Enemy/EnemySD/Sd_Iddle
 --- !u!1 &5707397617051805685
 GameObject:
   m_ObjectHideFlags: 0

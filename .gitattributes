@@ -1,5 +1,4 @@
 ## Unity ##
-
 *.mat merge=unityyamlmerge eol=lf
 *.anim merge=unityyamlmerge eol=lf
 *.unity merge=unityyamlmerge eol=lf
@@ -46,3 +45,5 @@
 *.lxo filter=lfs diff=lfs merge=lfs -text
 #FMOD
 Assets/Plugins/FMOD/**/* filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/WeaponsTest/LightingData.asset filter=lfs diff=lfs merge=lfs -text
+Assets/Scenes/WeaponsTest/LightingData.asset.meta filter=lfs diff=lfs merge=lfs -text

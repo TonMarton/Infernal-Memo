@@ -6,6 +6,12 @@ using UnityEngine.UI;
 public class DeathMenu : MonoBehaviour
 {
     [SerializeField] private Button restartButton;
+    
+    [Header("Sound")]
+    [SerializeField] private FMODUnity.EventReference deathSoundEvent;
+    
+    // Sounds
+    private FMOD.Studio.EventInstance deathEventInstance;
 
     private void Awake()
     {
@@ -21,6 +27,10 @@ public class DeathMenu : MonoBehaviour
 
         // enable the death menu
         gameObject.SetActive(true);
+        gameObject.transform.parent.gameObject.GetComponentInChildren<HUD>().gameObject.SetActive(false);
+        
+        // death sound
+        SoundUtils.PlaySound3D(ref deathEventInstance, deathSoundEvent, gameObject);
     }
 
     // restart the game
