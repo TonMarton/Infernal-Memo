@@ -871,6 +871,7 @@ MonoBehaviour:
   reloadCooldownTime: 1
   damagePerBullet: 20
   maxDistance: 1.75
+  bulletHolePrefab: {fileID: 0}
   muzzleFlashObject: {fileID: 0}
   maxSpreadDegreesY: 0.2
   maxSpreadDegreesX: 0.2
@@ -920,6 +921,7 @@ MonoBehaviour:
   reloadCooldownTime: 2
   damagePerBullet: 10
   maxDistance: 10000
+  bulletHolePrefab: {fileID: 3789928012512024980, guid: 8670522399c9ef54280f621dafe39146, type: 3}
   muzzleFlashObject: {fileID: 3395705364252403417}
   maxSpreadDegreesY: 0.5
   maxSpreadDegreesX: 0.5
@@ -962,6 +964,7 @@ MonoBehaviour:
   reloadCooldownTime: 2.3
   damagePerBullet: 2
   maxDistance: 10000
+  bulletHolePrefab: {fileID: 3789928012512024980, guid: c38197bb6d8a5174b9bfd6d3550f0dfe, type: 3}
   muzzleFlashObject: {fileID: 152794969830532860}
   maxSpreadDegreesY: 9
   maxSpreadDegreesX: 3

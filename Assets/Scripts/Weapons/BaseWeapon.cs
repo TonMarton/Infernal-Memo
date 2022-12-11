@@ -13,6 +13,8 @@ public abstract class BaseWeapon : MonoBehaviour
     [SerializeField] protected float reloadCooldownTime = 1f;
     [Min(1)][SerializeField] protected float damagePerBullet = 2f;
     [SerializeField] protected float maxDistance = 10000f;
+    [SerializeField] protected GameObject bulletHolePrefab;
+    
     private PlayerWeaponSystem weaponSystem;
 
     [Header("Muzzle Flash")]
@@ -135,11 +137,17 @@ public abstract class BaseWeapon : MonoBehaviour
         Destroy(bulletImpact, weaponSystem.autoDestroyParticleTime);
 
         // spawn a bullet hole decal
-        GameObject bulletHole = Instantiate(weaponSystem.bulletHolePrefab, point + normal * Random.Range(0.001f, 0.002f),
+        GameObject prefabToSpawn = bulletHolePrefab;
+        if(prefabToSpawn==null)
+        {
+            prefabToSpawn=weaponSystem.bulletHolePrefab;
+        }
+        GameObject bulletHole = Instantiate(prefabToSpawn, point + normal * Random.Range(0.001f, 0.002f),
             Quaternion.LookRotation(-normal) * Quaternion.Euler(0, 0, Random.Range(0, 360)));
 
         // play bullet impact sound
         // to-do: play different sound depending on material
+
         SoundUtils.PlaySound3DParameter(ref brickBulletImpactSoundInstance, weaponSystem.brickBulletImpactSoundEvent, bulletImpact, "Bullet_impacts", impactParamIndex, Mathf.Clamp(1f / bulletCount, 0.3f, 1f));
 
         // auto destroy bullet hole after a delay
