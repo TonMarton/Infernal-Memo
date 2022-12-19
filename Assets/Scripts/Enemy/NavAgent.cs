@@ -43,6 +43,10 @@ public class NavAgent : MonoBehaviour
     [SerializeField]
     private LayerMask attackLayers = default;
 
+    [Tooltip("LayerMask for dodging obstacles.")]
+    [SerializeField]
+    private LayerMask obstacleLayers = 1 << 0;
+
     [Tooltip("Attack cool-down takes this long.")]
     [SerializeField]
     private float attackFrequency = 1.0f;
@@ -145,6 +149,16 @@ public class NavAgent : MonoBehaviour
 
     #endregion
 
+    public void WakeUp()
+    {
+        if (!agentIsAwake)
+        {
+            navDirection = transform.forward;
+        }
+        agentIsAwake = true;
+        IsMoving = true;
+    }
+
 
     #region Unity Messages
     private void Start()
@@ -216,7 +230,7 @@ public class NavAgent : MonoBehaviour
         // do a raycast to check whether player is in line of sight of the enemy
         Vector3 origin = myCollider.bounds.center;
         Vector3 rayDirection = targetCollider.bounds.center - origin;
-        if (!Physics.Raycast(origin, rayDirection, out RaycastHit hit, lineOfSightRange, lineOfSightLayers))
+        if (!Physics.Raycast(origin, rayDirection, out RaycastHit hit, lineOfSightRange, lineOfSightLayers, QueryTriggerInteraction.Ignore))
         {
             // raycast didn't hit anything so player isn't in line of sight
             return false;
@@ -238,7 +252,7 @@ public class NavAgent : MonoBehaviour
     } 
     private void UpdateMovement()
     {
-        navDirection = MathUtils.GetDirectionXZ(myCollider.bounds.center, targetCollider.bounds.center);
+        //navDirection = MathUtils.GetDirectionXZ(myCollider.bounds.center, targetCollider.bounds.center);
 
         float moveDirectionY = moveDirection.y;
         moveDirection = (IsMoving && AgentAttackCurrentCooldownTime <= 0) ? movementSpeed * navDirection : Vector3.zero;
@@ -255,14 +269,14 @@ public class NavAgent : MonoBehaviour
         if (IsMoving)
         {
             // Calculate rotation from direction
-            transform.rotation = Quaternion.LookRotation(navDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(navDirection), Time.deltaTime * 30);
 
             // Check if the controller collided on its sides
             if ((characterController.collisionFlags & CollisionFlags.Sides) != 0)
             {
                 if (Time.time > navLastFlipTime + .4f)
                 {
-                    if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 5.0f, 1 << 0))
+                    if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 10.0f, obstacleLayers, QueryTriggerInteraction.Ignore))
                     {
                         navDirection = Vector3.Reflect(navDirection, wallHit.normal);
                         navLastFlipTime = Time.time;
@@ -298,11 +312,11 @@ public class NavAgent : MonoBehaviour
                         int rand = Random.Range(0, 30);
                         if (rand == 0)
                         {
-                            navDirection = Quaternion.Euler(0, 30, 0) * navDirection;
+                            navDirection = Quaternion.Euler(0, 22.5f, 0) * navDirection;
                         }
                         else if (rand == 1)
                         {
-                            navDirection = Quaternion.Euler(0, -30, 0) * navDirection;
+                            navDirection = Quaternion.Euler(0, -22.5f, 0) * navDirection;
                         }
                     }
                     else

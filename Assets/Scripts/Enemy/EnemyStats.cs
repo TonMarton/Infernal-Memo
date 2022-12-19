@@ -18,11 +18,15 @@ public class EnemyStats : MonoBehaviour
     private CapsuleCollider capsuleCollider;
     private float damageSoundCooldown;
 
+    NavAgent navAgent;
+
     // Start is called before the first frame update
     private void Awake()
     {
         // get a reference to the child capsule collider
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
+
+        navAgent = GetComponent<NavAgent>();
 
         // set starting health
         health = startHealth;
@@ -39,6 +43,8 @@ public class EnemyStats : MonoBehaviour
     {
         // take damage
         health -= damage;
+
+        if (navAgent != null) navAgent.WakeUp();
         
         // log how much damage we took and our current health
         Debug.Log("Enemy took " + damage + " damage. Health is now " + health);

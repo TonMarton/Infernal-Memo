@@ -68,25 +68,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6b939fa81b987c439dfb264182b6308, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  noTarget: 0
+  checkPathUpdateRate: 0.6
+  zigZagDistanceThreshold: 10
+  flipOnSidesTriggerInterval: 0.3
+  attackRange: 1.5
+  attackRadius: 0.2
+  attackLayers:
+    serializedVersion: 2
+    m_Bits: 513
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  attackFrequency: 1.24
+  attackDamageAmount: 24
+  movementSpeed: 4
   targetSightAngleThreshold: 180
   lineOfSightRange: 10000
   closeWakeRange: 10
   lineOfSightLayers:
     serializedVersion: 2
     m_Bits: 513
-  noTarget: 0
-  checkPathUpdateRate: 0.9
-  zigZagDistanceThreshold: 10
-  flipOnSidesTriggerInterval: 0.3
   gravity: 30
-  attackRange: 1.5
-  attackRadius: 0.2
-  attackLayers:
-    serializedVersion: 2
-    m_Bits: 513
-  attackFrequency: 1.24
-  attackDamageAmount: 24
+  attackDelay: 0.25
+  attackSoundEvent:
+    Guid:
+      Data1: -1342288763
+      Data2: 1155866078
+      Data3: -1777368444
+      Data4: 978697243
+    Path: event:/Sfxs/Enemy/Enemy attack
   onAttack:
     m_PersistentCalls:
       m_Calls:
@@ -102,14 +113,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  attackDelay: 0.25
-  attackSoundEvent:
-    Guid:
-      Data1: -1342288763
-      Data2: 1155866078
-      Data3: -1777368444
-      Data4: 978697243
-    Path: event:/Sfxs/Enemy/Enemy attack
 --- !u!114 &1662434240737359976
 MonoBehaviour:
   m_ObjectHideFlags: 0
