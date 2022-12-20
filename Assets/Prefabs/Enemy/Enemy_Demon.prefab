@@ -69,7 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noTarget: 0
-  checkPathUpdateRate: 0.6
+  checkPathUpdateRate: 2
   zigZagDistanceThreshold: 10
   flipOnSidesTriggerInterval: 0.3
   attackRange: 1.5
