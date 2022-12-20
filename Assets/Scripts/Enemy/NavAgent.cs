@@ -81,6 +81,9 @@ public class NavAgent : MonoBehaviour
     [SerializeField]
     private float attackDelay;
 
+    //[SerializeField]
+    const float sideCollisionTurnInterval = 0.3f;
+
     [Header("Sound")]
     [SerializeField][FormerlySerializedAs("attackFloatingSkullSoundEvent")]
     private FMODUnity.EventReference attackSoundEvent;
@@ -274,17 +277,35 @@ public class NavAgent : MonoBehaviour
             // Check if the controller collided on its sides
             if ((characterController.collisionFlags & CollisionFlags.Sides) != 0)
             {
-                if (Time.time > navLastFlipTime + .4f)
+                if (Time.time > navLastFlipTime + sideCollisionTurnInterval)
                 {
                     if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 10.0f, obstacleLayers, QueryTriggerInteraction.Ignore))
                     {
-                        navDirection = Vector3.Reflect(navDirection, wallHit.normal);
+                        Vector3 wallL = Quaternion.Euler(0, -90, 0) * wallHit.normal;
+                        Vector3 wallR = Quaternion.Euler(0, 90, 0) * wallHit.normal;
+                        const float dotThreshold = 0.1f;
+                        float dot = Vector3.Dot(wallL, moveDirection);
+                        if (dot > dotThreshold)
+                        {
+                            navDirection = wallL;
+                        }
+                        else if (dot < -dotThreshold)
+                        {
+                            navDirection = wallR;
+                        }
+                        else
+                        {
+                            navDirection = Quaternion.Euler(0, 180, 0) * navDirection;
+
+                            float randomness = Random.Range(15, 30);
+                            float sign = Random.value < 0.5f ? -1 : 1;
+                            navDirection = Quaternion.Euler(0, randomness * sign, 0) * navDirection;
+                        }
                         navLastFlipTime = Time.time;
-                        float sign = 1;
-                        if (Random.value < 0.5f) sign *= -1;
-                        navDirection = Quaternion.Euler(0, Random.Range(30, 45) * sign, 0) * navDirection;
+
                     }
                 }
+
             }
         }
     }
