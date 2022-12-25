@@ -13,6 +13,9 @@ public class HUD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI bulletsInClipText;
     [SerializeField] private TextMeshProUGUI shellsText;
     [SerializeField] private TextMeshProUGUI shellsInClipText;
+    [SerializeField] private Image staplerSelected;
+    [SerializeField] private Image pistolSelected;
+    [SerializeField] private Image shotgunSelected;
     [SerializeField] private Image crosshair;
 
     [SerializeField] private string levelClearMessage;
@@ -24,6 +27,13 @@ public class HUD : MonoBehaviour
 
     Coroutine lastCoroutine;
     float damageFlashAlpha;
+
+    public void SetSelectedWeapon(WeaponType weaponType)
+    {
+        staplerSelected.gameObject.SetActive(weaponType == WeaponType.Stapler);
+        pistolSelected.gameObject.SetActive(weaponType == WeaponType.Pistol);
+        shotgunSelected.gameObject.SetActive(weaponType == WeaponType.Shotgun);
+    }
 
     private void Start()
     {

@@ -263,6 +263,9 @@ public class PlayerWeaponSystem : MonoBehaviour
         // show crosshair for shotgun and pistol only
         var visible = weaponType == WeaponType.Pistol || weaponType == WeaponType.Shotgun;
         hud.SetCrossHairVisible(visible);
+
+        // update hud to display the currently selected weapon
+        hud.SetSelectedWeapon(weaponType);
     }
 
     private void Update()
