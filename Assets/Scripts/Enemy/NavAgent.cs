@@ -293,8 +293,11 @@ public class NavAgent : MonoBehaviour
                 {
                     if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 10.0f, obstacleLayers, QueryTriggerInteraction.Ignore))
                     {
-                        Vector3 wallL = Quaternion.Euler(0, -90, 0) * wallHit.normal;
-                        Vector3 wallR = Quaternion.Euler(0, 90, 0) * wallHit.normal;
+                        Vector3 normalXZ = wallHit.normal;
+                        normalXZ.y = 0;
+                        normalXZ.Normalize();
+                        Vector3 wallL = Quaternion.Euler(0, -90, 0) * normalXZ;
+                        Vector3 wallR = Quaternion.Euler(0, 90, 0) * normalXZ;
                         const float dotThreshold = 0.1f;
                         float dot = Vector3.Dot(wallL, moveDirection);
                         if (dot > dotThreshold)
@@ -313,8 +316,9 @@ public class NavAgent : MonoBehaviour
                             float sign = Random.value < 0.5f ? -1 : 1;
                             navDirection = Quaternion.Euler(0, randomness * sign, 0) * navDirection;
                         }
-                        navLastFlipTime = Time.time;
 
+                        // set the time which the agent changed direction
+                        navLastFlipTime = Time.time;
                     }
                 }
 
