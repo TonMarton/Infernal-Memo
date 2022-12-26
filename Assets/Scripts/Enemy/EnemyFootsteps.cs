@@ -14,14 +14,21 @@ public class EnemyFootsteps : MonoBehaviour
 
     private CharacterController characterController;
     private float timer;
+    private EnemyStats enemyStats;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        enemyStats = GetComponent<EnemyStats>();
     }
 
     private void LateUpdate()
     {
+        if (enemyStats.isDead)
+        {
+            return;
+        }
+
         // in the air?
         if (!characterController.isGrounded)
         {

@@ -118,6 +118,7 @@ public class NavAgent : MonoBehaviour
     private float navCalcPathElapsedTime;
     private float navLastFlipTime;
     private NavMeshPath navPath;
+    private EnemyStats enemyStats;
 
     #endregion
 
@@ -175,14 +176,25 @@ public class NavAgent : MonoBehaviour
         navCalcPathElapsedTime = 0.0f;
         IsMoving = false;
         characterController = GetComponent<CharacterController>();
+        enemyStats = GetComponent<EnemyStats>();
+        enemyStats.onDeath.AddListener(OnDeathCallback);
+    }
+
+    private void OnDeathCallback()
+    {
+        StopAllCoroutines();
     }
 
     private void Update()
     {
-        Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
+        //Debug.DrawLine(myCollider.bounds.center, targetCollider.bounds.center);
 
-        UpdatePath();
-        UpdateMovement();
+        if (!enemyStats.isDead)
+        {
+            UpdatePath();
+            UpdateMovement();
+        }    
+        
     }
     #endregion
 

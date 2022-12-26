@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class EnemyStats : MonoBehaviour
 {
@@ -20,6 +21,14 @@ public class EnemyStats : MonoBehaviour
 
     NavAgent navAgent;
 
+    NavAgentAnimator navAgentAnimator;
+
+    Collider[] colliders;
+
+    public UnityEvent onDeath;
+
+    public bool isDead { get; private set; }
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -27,9 +36,13 @@ public class EnemyStats : MonoBehaviour
         capsuleCollider = GetComponentInChildren<CapsuleCollider>();
 
         navAgent = GetComponent<NavAgent>();
+        navAgentAnimator = GetComponent<NavAgentAnimator>();
 
         // set starting health
         health = startHealth;
+
+        // get all colliders
+        colliders = GetComponentsInChildren<Collider>();
     }
 
     // Update is called once per frame
@@ -87,7 +100,26 @@ public class EnemyStats : MonoBehaviour
 
         gameObject.GetComponentInParent<LevelManager>().DecreaseEnemyCount();
 
-        // disable enemy
-        gameObject.SetActive(false);
+        if (navAgentAnimator != null)
+        {
+            // play death animation
+            navAgentAnimator.PlayDeathAnimation();
+        }    
+        else
+        {
+            gameObject.SetActive(false);
+        }
+
+        // set isDead to true
+        isDead = true;
+
+        // turn off all colliders
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = false;
+        }
+
+        // invoke death event
+        onDeath.Invoke();
     }
 }

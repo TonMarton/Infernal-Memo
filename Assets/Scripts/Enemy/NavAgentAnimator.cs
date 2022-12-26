@@ -8,12 +8,17 @@ public class NavAgentAnimator : MonoBehaviour
 
     public string moveParameterName = "Move";
     public string attackState = "Attack";
-
+    public string deathState = "Death";
     private NavAgent navAgent;
 
     public void OnNavAgentAttack()
     {
         animator.Play(attackState);
+    }
+
+    public void PlayDeathAnimation()
+    {
+        animator.Play(deathState);
     }
 
     private void Awake()
