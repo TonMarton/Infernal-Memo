@@ -71,7 +71,7 @@ MonoBehaviour:
   noTarget: 0
   checkPathUpdateRate: 2
   zigZagDistanceThreshold: 50
-  flipOnSidesTriggerInterval: 0.3
+  flipOnSidesTriggerInterval: 1.5
   attackRange: 3
   attackRadius: 0.2
   attackLayers:
@@ -128,6 +128,7 @@ MonoBehaviour:
   animator: {fileID: 756507645191333372}
   moveParameterName: Move
   attackState: Attack
+  deathState: Death
 --- !u!114 &2731725432495668842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +158,9 @@ MonoBehaviour:
       Data3: 1636269741
       Data4: -1097586009
     Path: event:/Sfxs/Enemy/Enemy death
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &381166375792598132
 MonoBehaviour:
   m_ObjectHideFlags: 0

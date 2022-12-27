@@ -71,7 +71,7 @@ MonoBehaviour:
   noTarget: 0
   checkPathUpdateRate: 1.25
   zigZagDistanceThreshold: 10
-  flipOnSidesTriggerInterval: 0.3
+  flipOnSidesTriggerInterval: 1.5
   attackRange: 1.5
   attackRadius: 0.2
   attackLayers:

@@ -311,11 +311,11 @@ public class NavAgent : MonoBehaviour
                         else
                         {
                             navDirection = Quaternion.Euler(0, 180, 0) * navDirection;
-
-                            float randomness = Random.Range(15, 30);
-                            float sign = Random.value < 0.5f ? -1 : 1;
-                            navDirection = Quaternion.Euler(0, randomness * sign, 0) * navDirection;
                         }
+
+                        float randomness = Random.Range(15, 30);
+                        float sign = Random.value < 0.5f ? -1 : 1;
+                        navDirection = Quaternion.Euler(0, randomness * sign, 0) * navDirection;
 
                         // set the time which the agent changed direction
                         navLastFlipTime = Time.time;
@@ -359,7 +359,17 @@ public class NavAgent : MonoBehaviour
                     else
                     {
                         // try to calculate a path from the nav mesh
-                        if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, navPath))
+
+                        if (PlayerInLineOfSight())
+                        {
+                            navDirection = target.position - transform.position;
+                            navDirection.y = 0;
+                            navDirection.Normalize();
+
+                            // begin moving
+                            IsMoving = true;
+                        }
+                        else if (NavMesh.CalculatePath(transform.position, target.position, NavMesh.AllAreas, navPath))
                         {
                             var navCorners = navPath.corners;
                             // calculate desired agent direction from the first two path points

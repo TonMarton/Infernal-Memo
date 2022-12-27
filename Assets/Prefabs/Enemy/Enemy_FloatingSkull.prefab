@@ -126,7 +126,7 @@ MonoBehaviour:
   noTarget: 0
   checkPathUpdateRate: 2
   zigZagDistanceThreshold: 10
-  flipOnSidesTriggerInterval: 0.3
+  flipOnSidesTriggerInterval: 1.5
   attackRange: 1.2
   attackRadius: 0.1
   attackLayers:
@@ -185,6 +185,9 @@ MonoBehaviour:
       Data3: 347281832
       Data4: -1317605338
     Path: event:/Sfxs/Enemy/EnemySD/Sd_Death
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3967048200504053719
 MonoBehaviour:
   m_ObjectHideFlags: 0
