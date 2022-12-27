@@ -293,32 +293,36 @@ public class NavAgent : MonoBehaviour
                 {
                     if (Physics.Raycast(new Vector3(myCollider.bounds.center.x, myCollider.bounds.min.y + 0.2f, myCollider.bounds.center.z), transform.forward, out RaycastHit wallHit, 10.0f, obstacleLayers, QueryTriggerInteraction.Ignore))
                     {
-                        Vector3 normalXZ = wallHit.normal;
-                        normalXZ.y = 0;
-                        normalXZ.Normalize();
-                        Vector3 wallL = Quaternion.Euler(0, -90, 0) * normalXZ;
-                        Vector3 wallR = Quaternion.Euler(0, 90, 0) * normalXZ;
-                        const float dotThreshold = 0.1f;
-                        float dot = Vector3.Dot(wallL, moveDirection);
-                        if (dot > dotThreshold)
+                        if (playerStats.isDead || !IsTargetInCloseRange())
                         {
-                            navDirection = wallL;
-                        }
-                        else if (dot < -dotThreshold)
-                        {
-                            navDirection = wallR;
-                        }
-                        else
-                        {
-                            navDirection = Quaternion.Euler(0, 180, 0) * navDirection;
-                        }
+                            Vector3 normalXZ = wallHit.normal;
+                            normalXZ.y = 0;
+                            normalXZ.Normalize();
+                            Vector3 wallL = Quaternion.Euler(0, -90, 0) * normalXZ;
+                            Vector3 wallR = Quaternion.Euler(0, 90, 0) * normalXZ;
+                            const float dotThreshold = 0.1f;
+                            float dot = Vector3.Dot(wallL, moveDirection);
+                            if (dot > dotThreshold)
+                            {
+                                navDirection = wallL;
+                            }
+                            else if (dot < -dotThreshold)
+                            {
+                                navDirection = wallR;
+                            }
+                            else
+                            {
+                                navDirection = Quaternion.Euler(0, 180, 0) * navDirection;
+                            }
 
-                        float randomness = Random.Range(15, 30);
-                        float sign = Random.value < 0.5f ? -1 : 1;
-                        navDirection = Quaternion.Euler(0, randomness * sign, 0) * navDirection;
+                            float randomness = Random.Range(15, 30);
+                            float sign = Random.value < 0.5f ? -1 : 1;
+                            navDirection = Quaternion.Euler(0, randomness * sign, 0) * navDirection;
 
-                        // set the time which the agent changed direction
-                        navLastFlipTime = Time.time;
+                            // set the time which the agent changed direction
+                            navLastFlipTime = Time.time;
+
+                        }
                     }
                 }
 
