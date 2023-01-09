@@ -24329,6 +24329,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 26.942383
       objectReference: {fileID: 0}
+    - target: {fileID: 4989525957236877772, guid: 6d1d4601330963b40bedb6d4e31848bb, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 40
+      objectReference: {fileID: 0}
     - target: {fileID: 5983632887037757786, guid: 6d1d4601330963b40bedb6d4e31848bb, type: 3}
       propertyPath: m_Name
       value: Player
