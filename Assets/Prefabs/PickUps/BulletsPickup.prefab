@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statType: 2
-  amount: 25
+  amount: 16
   pickupSoundEvent:
     Guid:
       Data1: -1892360162
