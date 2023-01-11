@@ -99,6 +99,7 @@ public class PlayerStats : MonoBehaviour
 
     public void TakeDamage(int amount, GameObject sender)
     {
+        if (Cheats.God) return;
         int armorReducedAmount = amount - armor;
         if (armorReducedAmount != amount)
         {

@@ -237,6 +237,11 @@ public class Controller : MonoBehaviour
                 (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Vertical"),
                 (isCrouching ? crouchSpeed : IsSprinting ? sprintSpeed : walkSpeed) * Input.GetAxis("Horizontal"));
 
+        if (Cheats.SuperSpeed)
+        {
+            currentInput *= 10;
+        }
+
         var moveDirectionY = moveDirection.y;
         if (playerStats.isDead)
         {

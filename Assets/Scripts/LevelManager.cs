@@ -101,11 +101,11 @@ public class LevelManager : MonoBehaviour
     {
         if (allowMovingLevels)
         {
+            DeactivatePreviousLevel();
             ToggleElevatorDoors();
             ActivateNextLevel();
             hasPlayerJustSpawned = true;
             player.GetComponent<Controller>().TeleportToPositionMaintainingRelativePosition(destination, rotationDiffernece);
-            DeactivatePreviousLevel();
         }
         else {
             if (hasPlayerJustSpawned)
@@ -130,6 +130,6 @@ public class LevelManager : MonoBehaviour
 
     public void DeactivatePreviousLevel()
     {
-        gameObject.transform.GetChild(currentLevelIndex - 1).gameObject.SetActive(false);
+        gameObject.transform.GetChild(currentLevelIndex).gameObject.SetActive(false);
     }
 }

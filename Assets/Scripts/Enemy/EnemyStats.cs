@@ -54,6 +54,11 @@ public class EnemyStats : MonoBehaviour
     // take damage
     public void TakeDamage(float damage, Knockback? knockback)
     {
+        if (Cheats.Instakill)
+        {
+            health -= 1000000;
+        }
+
         // take damage
         health -= damage;
 
